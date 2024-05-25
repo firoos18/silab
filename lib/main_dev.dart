@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/app_confid.dart';
+import 'package:silab/core/router/router.dart';
+import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
+import 'package:silab/injector.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
   runApp(const MainApp());
 
   AppConfig.create(
@@ -16,11 +24,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<RegisterBloc>(
+          create: (_) => RegisterBloc(injector()),
         ),
+        BlocProvider<LoginBloc>(
+          create: (_) => LoginBloc(injector()),
+        ),
+        BlocProvider<VerifyOtpBloc>(
+          create: (_) => VerifyOtpBloc(injector()),
+        ),
+      ],
+      child: MaterialApp.router(
+        routerConfig: router,
       ),
     );
   }
