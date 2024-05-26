@@ -12,3 +12,5 @@ sealed class LoginEvent extends Equatable {
 final class LoginButtonTapped extends LoginEvent {
   const LoginButtonTapped({super.loginModel});
 }
+
+final class ApplicationStarted extends LoginEvent {}

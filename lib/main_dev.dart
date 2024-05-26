@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/app_confid.dart';
 import 'package:silab/core/router/router.dart';
+import 'package:silab/features/authentication/presentation/bloc/bloc/resend_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
@@ -30,10 +31,13 @@ class MainApp extends StatelessWidget {
           create: (_) => RegisterBloc(injector()),
         ),
         BlocProvider<LoginBloc>(
-          create: (_) => LoginBloc(injector()),
+          create: (_) => LoginBloc(injector(), injector()),
         ),
         BlocProvider<VerifyOtpBloc>(
           create: (_) => VerifyOtpBloc(injector()),
+        ),
+        BlocProvider<ResendOtpBloc>(
+          create: (_) => ResendOtpBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

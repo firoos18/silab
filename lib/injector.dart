@@ -39,7 +39,7 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<ResendEmailVerificationOtpUseCase>(
       ResendEmailVerificationOtpUseCase(injector()));
 
-  injector.registerFactory<LoginBloc>(() => LoginBloc(injector()));
+  injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
   injector.registerFactory<RegisterBloc>(() => RegisterBloc(injector()));
   injector.registerFactory<VerifyOtpBloc>(() => VerifyOtpBloc(injector()));
 }

@@ -25,16 +25,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
   @override
   Either<Failures, String> getUsertToken() {
-    try {
-      final token = _authenticationLocalDataSource.getUserToken();
+    final token = _authenticationLocalDataSource.getUserToken();
 
-      if (token != null) {
-        return Right(token);
-      } else {
-        throw "Token not Found";
-      }
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
+    if (token != null) {
+      return Right(token);
+    } else {
+      return Left(RequestFailures("No User Token Found"));
     }
   }
 
@@ -58,15 +54,16 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<Failures, String>> setUserToken(String? userToken) async {
     try {
       if (userToken != null) {
-        final result =
-            await _authenticationLocalDataSource.setUserToken(userToken);
+        await _authenticationLocalDataSource.setUserToken(userToken);
 
-        return Right(result);
+        return const Right("success");
       } else {
         throw "User Token is Empty";
       }
     } on RequestErrorException catch (e) {
       return Left(RequestFailures(e.message));
+    } catch (e) {
+      return Left(RequestFailures(e.toString()));
     }
   }
 

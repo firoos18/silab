@@ -36,10 +36,12 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
     return Form(
       key: widget.formKey,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: widget.formType == FormType.register
             ? [
                 TextFormField(
                   controller: widget.emailController,
+                  autofocus: false,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -58,6 +60,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: widget.passwordController,
+                  autofocus: false,
                   obscureText: !showPassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -92,6 +95,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: widget.repeatPasswordController,
+                  autofocus: false,
                   obscureText: !showRepeatPassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -107,7 +111,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                           ? const Icon(Icons.visibility)
                           : const Icon(Icons.visibility_off),
                     ),
-                    hintText: "Password",
+                    hintText: "Repeat Password",
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -121,6 +125,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: widget.fullnameController,
+                  autofocus: false,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -137,6 +142,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: widget.nimController,
+                  autofocus: false,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -156,6 +162,7 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
             : [
                 TextFormField(
                   controller: widget.emailController,
+                  autofocus: false,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -174,9 +181,21 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: widget.passwordController,
+                  autofocus: false,
+                  obscureText: !showPassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      icon: !showPassword
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
                     ),
                     hintText: "Password",
                   ),

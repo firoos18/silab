@@ -21,7 +21,7 @@ class AuthenticationApiService {
       headers: {
         'Content-Type': "application/json",
       },
-      body: loginData.toJson(),
+      body: jsonEncode(loginData.toJson()),
     );
 
     if (response.statusCode == 200) {
@@ -39,7 +39,7 @@ class AuthenticationApiService {
     final response = await http.post(
       Uri.parse("${AppConfig.shared.baseUrl}/auth/register"),
       headers: {'Content-Type': "application/json"},
-      body: registerData.toJson(),
+      body: jsonEncode(registerData.toJson()),
     );
 
     if (response.statusCode == 201 || response.statusCode == 200) {
@@ -56,7 +56,7 @@ class AuthenticationApiService {
     final response = await http.post(
       Uri.parse("${AppConfig.shared.baseUrl}/auth/verifyOtp"),
       headers: {"Content-Type": "application/json"},
-      body: verifyOtpData.toJson(),
+      body: jsonEncode(verifyOtpData.toJson()),
     );
 
     if (response.statusCode == 200) {
@@ -73,7 +73,7 @@ class AuthenticationApiService {
     final response = await http.post(
       Uri.parse('${AppConfig.shared.baseUrl}/auth/resendOtp'),
       headers: {"Content-Type": "application/json"},
-      body: resendOtpData.toJson(),
+      body: jsonEncode(resendOtpData.toJson()),
     );
 
     if (response.statusCode == 200) {

@@ -18,6 +18,8 @@ class VerifyOtpBloc extends Bloc<VerifyOtpEvent, VerifyOtpState> {
     VerifyOtpEvent event,
     Emitter<VerifyOtpState> emit,
   ) async {
+    emit(VerifyOtpLoading());
+
     if (event.verifyOtpData != null) {
       final data = await _verifyOtpUseCase.authenticationRepository
           .verifyOtp(event.verifyOtpData!);
