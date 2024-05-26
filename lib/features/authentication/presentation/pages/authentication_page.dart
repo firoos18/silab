@@ -31,8 +31,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   void initState() {
-    print(widget.formType);
-
     setState(() {
       formType = widget.formType;
     });

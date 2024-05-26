@@ -10,6 +10,6 @@ class GetUserTokenUseCase implements UseCase<Either<Failures, String>, Null> {
 
   @override
   Future<Either<Failures, String>> call({Null params}) async {
-    return authenticationRepository.getUsertToken();
+    return authenticationRepository.getUserToken();
   }
 }

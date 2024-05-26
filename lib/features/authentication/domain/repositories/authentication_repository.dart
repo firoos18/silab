@@ -27,5 +27,5 @@ abstract class AuthenticationRepository {
 
   Future<Either<Failures, String>> setUserToken(String? userToken);
 
-  Either<Failures, String> getUsertToken();
+  Either<Failures, String> getUserToken();
 }

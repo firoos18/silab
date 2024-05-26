@@ -37,7 +37,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   void onApplicationStarted(LoginEvent event, Emitter<LoginState> emit) {
     emit(LoginLoading());
 
-    final token = _getUserTokenUseCase.authenticationRepository.getUsertToken();
+    final token = _getUserTokenUseCase.authenticationRepository.getUserToken();
 
     token.fold(
       (left) => emit(LoginInitial()),

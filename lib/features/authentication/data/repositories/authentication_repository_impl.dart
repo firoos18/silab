@@ -24,7 +24,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   );
 
   @override
-  Either<Failures, String> getUsertToken() {
+  Either<Failures, String> getUserToken() {
     final token = _authenticationLocalDataSource.getUserToken();
 
     if (token != null) {
