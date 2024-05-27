@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/app_confid.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
+import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
 import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_otp_page.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_otp_page_extra.dart';
@@ -50,6 +51,13 @@ final GoRouter router = GoRouter(
         verifyResetPasswordOtpPageExtra:
             state.extra as VerifyResetPasswordOtpPageExtra,
       ),
+    ),
+    GoRoute(
+      path: '/reset-password',
+      name: 'reset-password',
+      parentNavigatorKey: _rootNavigator,
+      builder: (context, state) =>
+          ResetPasswordPage(userId: state.extra as String),
     ),
     GoRoute(
       path: '/home',

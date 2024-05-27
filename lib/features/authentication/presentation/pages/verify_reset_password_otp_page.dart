@@ -9,7 +9,6 @@ import 'package:silab/features/authentication/data/models/verify_reset_password_
 import 'package:silab/features/authentication/presentation/bloc/resend_reset_password_otp/resend_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
@@ -70,7 +69,10 @@ class _VerifyResetPasswordOtpPageState
                     snackBar("User Verifiend Successfully", AlertType.success),
                   );
 
-                  context.goNamed('authentication', extra: FormType.login);
+                  context.pushNamed(
+                    'reset-password',
+                    extra: widget.verifyResetPasswordOtpPageExtra.userId,
+                  );
                 }
               },
             ),
