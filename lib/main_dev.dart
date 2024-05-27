@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/app_confid.dart';
 import 'package:silab/core/router/router.dart';
-import 'package:silab/features/authentication/presentation/bloc/bloc/resend_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/resend_otp/resend_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/resend_reset_password_otp/resend_reset_password_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/reset_password/reset_password_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
 import 'package:silab/injector.dart';
 
 void main() async {
@@ -38,6 +42,18 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<ResendOtpBloc>(
           create: (_) => ResendOtpBloc(injector()),
+        ),
+        BlocProvider<ResetPasswordBloc>(
+          create: (_) => ResetPasswordBloc(injector()),
+        ),
+        BlocProvider<SendResetPasswordOtpBloc>(
+          create: (_) => SendResetPasswordOtpBloc(injector()),
+        ),
+        BlocProvider<ResendResetPasswordOtpBloc>(
+          create: (_) => ResendResetPasswordOtpBloc(injector()),
+        ),
+        BlocProvider<VerifyResetPasswordOtpBloc>(
+          create: (_) => VerifyResetPasswordOtpBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

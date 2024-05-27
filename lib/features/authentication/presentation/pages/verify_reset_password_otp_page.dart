@@ -4,25 +4,28 @@ import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
-import 'package:silab/features/authentication/data/models/resend_otp_model.dart';
-import 'package:silab/features/authentication/data/models/verify_otp_model.dart';
-import 'package:silab/features/authentication/presentation/bloc/resend_otp/resend_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_otp_page_extra.dart';
+import 'package:silab/features/authentication/data/models/send_reset_password_otp_model.dart';
+import 'package:silab/features/authentication/data/models/verify_reset_password_otp_model.dart';
+import 'package:silab/features/authentication/presentation/bloc/resend_reset_password_otp/resend_reset_password_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
-class VerifyOtpPage extends StatefulWidget {
-  final VerifyOtpPageExtra verifyOtpPageExtra;
+class VerifyResetPasswordOtpPage extends StatefulWidget {
+  final VerifyResetPasswordOtpPageExtra verifyResetPasswordOtpPageExtra;
 
-  const VerifyOtpPage({super.key, required this.verifyOtpPageExtra});
+  const VerifyResetPasswordOtpPage(
+      {super.key, required this.verifyResetPasswordOtpPageExtra});
 
   @override
-  State<VerifyOtpPage> createState() => _VerifyOtpPageState();
+  State<VerifyResetPasswordOtpPage> createState() =>
+      _VerifyResetPasswordOtpPageState();
 }
 
-class _VerifyOtpPageState extends State<VerifyOtpPage> {
+class _VerifyResetPasswordOtpPageState
+    extends State<VerifyResetPasswordOtpPage> {
   final TextEditingController _otpController = TextEditingController();
   final CountdownController _timerController =
       CountdownController(autoStart: true);
@@ -45,22 +48,23 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
       body: SafeArea(
         child: MultiBlocListener(
           listeners: [
-            BlocListener<VerifyOtpBloc, VerifyOtpState>(
+            BlocListener<VerifyResetPasswordOtpBloc,
+                VerifyResetPasswordOtpState>(
               listener: (context, state) {
-                if (state is VerifyOtpLoading) {
+                if (state is VerifyResetPasswordOtpLoading) {
                   showDialog(
                     context: context,
                     useRootNavigator: false,
                     builder: (context) => const CustomLoadingIndicator(),
                   );
-                } else if (state is VerifyOtpFailed) {
+                } else if (state is VerifyResetPasswordOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar(state.message, AlertType.error),
                   );
 
                   Navigator.of(context, rootNavigator: true).pop();
-                } else if (state is VerifyOtpSuccess) {
+                } else if (state is VerifyResetPasswordOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar("User Verifiend Successfully", AlertType.success),
@@ -70,21 +74,22 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                 }
               },
             ),
-            BlocListener<ResendOtpBloc, ResendOtpState>(
+            BlocListener<ResendResetPasswordOtpBloc,
+                ResendResetPasswordOtpState>(
               listener: (context, state) {
-                if (state is ResendOtpLoading) {
+                if (state is ResendResetPasswordOtpLoading) {
                   showDialog(
                     context: context,
                     useRootNavigator: true,
                     builder: (context) => const CustomLoadingIndicator(),
                   );
-                } else if (state is ResendOtpFailed) {
+                } else if (state is ResendResetPasswordOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context)
                       .showSnackBar(snackBar(state.message, AlertType.error));
 
                   Navigator.of(context, rootNavigator: true).pop();
-                } else if (state is ResendOtpSuccess) {
+                } else if (state is ResendResetPasswordOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar(
@@ -124,7 +129,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                       Column(
                         children: [
                           Countdown(
-                            seconds: 60 * 5,
+                            seconds: 10,
                             controller: _timerController,
                             onFinished: () {
                               setState(() {
@@ -151,15 +156,19 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                           InkWell(
                             onTap: !isTimerRunning
                                 ? () {
-                                    final ResendOtpModel resendOtpData =
-                                        ResendOtpModel(
-                                      email: widget.verifyOtpPageExtra.email,
-                                      userId: widget.verifyOtpPageExtra.userId,
+                                    final SendResetPasswordOtpModel
+                                        resendOtpData =
+                                        SendResetPasswordOtpModel(
+                                      email: widget
+                                          .verifyResetPasswordOtpPageExtra
+                                          .email,
                                     );
 
-                                    context.read<ResendOtpBloc>().add(
-                                        ResendOtpButtonTapped(
-                                            resendOtpData: resendOtpData));
+                                    context
+                                        .read<ResendResetPasswordOtpBloc>()
+                                        .add(ResendResetPasswordOtpButtonTapped(
+                                            sendResetPasswordOtpData:
+                                                resendOtpData));
                                   }
                                 : null,
                             child: Row(
@@ -190,14 +199,16 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                       const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: () {
-                          VerifyOtpModel verifyOtpData = VerifyOtpModel(
-                            userId: widget.verifyOtpPageExtra.userId,
+                          VerifyResetPasswordOtpModel verifyOtpData =
+                              VerifyResetPasswordOtpModel(
+                            userId:
+                                widget.verifyResetPasswordOtpPageExtra.userId,
                             otp: _otpController.text.trim(),
                           );
 
-                          context.read<VerifyOtpBloc>().add(
-                              VerifyOtpButtonTapped(
-                                  verifyOtpData: verifyOtpData));
+                          context.read<VerifyResetPasswordOtpBloc>().add(
+                              VerifyResetPasswordOtpButtonTapped(
+                                  verifyResetPasswordOtpData: verifyOtpData));
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(double.infinity, 48),
