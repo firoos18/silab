@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silab/core/common/entities/subject/subject_entity.dart';
+import 'package:silab/features/select_subjects/domain/entities/subject/selected_subject_subjects.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/subject_container.dart';
 
@@ -23,18 +23,46 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
     return BlocBuilder<SelectedSubjectByNimBloc, SelectedSubjectByNimState>(
       builder: (context, state) {
         if (state is SelectedSubjectByNimLoaded) {
-          final List<SubjectEntity> subjects =
+          final List<SelectedSubjectSubjectsEntity> subjects =
               state.selectedSubjectEntity!.subjects!;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Selected Subjects',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Registered Subjects',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        useRootNavigator: true,
+                        context: context,
+                        showDragHandle: true,
+                        clipBehavior: Clip.antiAlias,
+                        builder: (context) => Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(16),
+                              topRight: Radius.circular(16),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.add,
+                      size: 24,
+                    ),
+                  )
+                ],
               ),
               const SizedBox(height: 8),
               ListView.builder(
@@ -42,9 +70,14 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
                 shrinkWrap: true,
                 itemCount: subjects.length,
                 itemBuilder: (context, index) {
-                  return SubjectContainer(
-                    subjectTitle: subjects[index].name!,
-                    subjectLecturer: subjects[index].lecturer!,
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: SubjectContainer(
+                      subjectTitle: subjects[index].name!,
+                      subjectLecturer: subjects[index].lecturer!,
+                      classes: subjects[index].classes!.length.toString(),
+                      id: subjects[index].id!,
+                    ),
                   );
                 },
               ),

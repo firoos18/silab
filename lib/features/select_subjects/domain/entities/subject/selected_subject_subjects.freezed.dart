@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'subject_entity.dart';
+part of 'selected_subject_subjects.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,37 +14,41 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SubjectEntity _$SubjectEntityFromJson(Map<String, dynamic> json) {
-  return _SubjectEntity.fromJson(json);
+SelectedSubjectSubjectsEntity _$SelectedSubjectSubjectsEntityFromJson(
+    Map<String, dynamic> json) {
+  return _SelectedSubjectSubjectsEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SubjectEntity {
+mixin _$SelectedSubjectSubjectsEntity {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lecturer => throw _privateConstructorUsedError;
-  List<ClassEntity>? get classes => throw _privateConstructorUsedError;
+  List<String>? get classes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubjectEntityCopyWith<SubjectEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SelectedSubjectSubjectsEntityCopyWith<SelectedSubjectSubjectsEntity>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SubjectEntityCopyWith<$Res> {
-  factory $SubjectEntityCopyWith(
-          SubjectEntity value, $Res Function(SubjectEntity) then) =
-      _$SubjectEntityCopyWithImpl<$Res, SubjectEntity>;
+abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
+  factory $SelectedSubjectSubjectsEntityCopyWith(
+          SelectedSubjectSubjectsEntity value,
+          $Res Function(SelectedSubjectSubjectsEntity) then) =
+      _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
+          SelectedSubjectSubjectsEntity>;
   @useResult
   $Res call(
-      {String? id, String? name, String? lecturer, List<ClassEntity>? classes});
+      {String? id, String? name, String? lecturer, List<String>? classes});
 }
 
 /// @nodoc
-class _$SubjectEntityCopyWithImpl<$Res, $Val extends SubjectEntity>
-    implements $SubjectEntityCopyWith<$Res> {
-  _$SubjectEntityCopyWithImpl(this._value, this._then);
+class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
+        $Val extends SelectedSubjectSubjectsEntity>
+    implements $SelectedSubjectSubjectsEntityCopyWith<$Res> {
+  _$SelectedSubjectSubjectsEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -75,29 +79,32 @@ class _$SubjectEntityCopyWithImpl<$Res, $Val extends SubjectEntity>
       classes: freezed == classes
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<ClassEntity>?,
+              as List<String>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$SubjectEntityImplCopyWith<$Res>
-    implements $SubjectEntityCopyWith<$Res> {
-  factory _$$SubjectEntityImplCopyWith(
-          _$SubjectEntityImpl value, $Res Function(_$SubjectEntityImpl) then) =
-      __$$SubjectEntityImplCopyWithImpl<$Res>;
+abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
+    implements $SelectedSubjectSubjectsEntityCopyWith<$Res> {
+  factory _$$SelectedSubjectSubjectsEntityImplCopyWith(
+          _$SelectedSubjectSubjectsEntityImpl value,
+          $Res Function(_$SelectedSubjectSubjectsEntityImpl) then) =
+      __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String? id, String? name, String? lecturer, List<ClassEntity>? classes});
+      {String? id, String? name, String? lecturer, List<String>? classes});
 }
 
 /// @nodoc
-class __$$SubjectEntityImplCopyWithImpl<$Res>
-    extends _$SubjectEntityCopyWithImpl<$Res, _$SubjectEntityImpl>
-    implements _$$SubjectEntityImplCopyWith<$Res> {
-  __$$SubjectEntityImplCopyWithImpl(
-      _$SubjectEntityImpl _value, $Res Function(_$SubjectEntityImpl) _then)
+class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
+    extends _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
+        _$SelectedSubjectSubjectsEntityImpl>
+    implements _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res> {
+  __$$SelectedSubjectSubjectsEntityImplCopyWithImpl(
+      _$SelectedSubjectSubjectsEntityImpl _value,
+      $Res Function(_$SelectedSubjectSubjectsEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +115,7 @@ class __$$SubjectEntityImplCopyWithImpl<$Res>
     Object? lecturer = freezed,
     Object? classes = freezed,
   }) {
-    return _then(_$SubjectEntityImpl(
+    return _then(_$SelectedSubjectSubjectsEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -124,20 +131,22 @@ class __$$SubjectEntityImplCopyWithImpl<$Res>
       classes: freezed == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<ClassEntity>?,
+              as List<String>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SubjectEntityImpl implements _SubjectEntity {
-  const _$SubjectEntityImpl(
-      {this.id, this.name, this.lecturer, final List<ClassEntity>? classes})
+class _$SelectedSubjectSubjectsEntityImpl
+    implements _SelectedSubjectSubjectsEntity {
+  const _$SelectedSubjectSubjectsEntityImpl(
+      {this.id, this.name, this.lecturer, final List<String>? classes})
       : _classes = classes;
 
-  factory _$SubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SubjectEntityImplFromJson(json);
+  factory _$SelectedSubjectSubjectsEntityImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$SelectedSubjectSubjectsEntityImplFromJson(json);
 
   @override
   final String? id;
@@ -145,9 +154,9 @@ class _$SubjectEntityImpl implements _SubjectEntity {
   final String? name;
   @override
   final String? lecturer;
-  final List<ClassEntity>? _classes;
+  final List<String>? _classes;
   @override
-  List<ClassEntity>? get classes {
+  List<String>? get classes {
     final value = _classes;
     if (value == null) return null;
     if (_classes is EqualUnmodifiableListView) return _classes;
@@ -157,14 +166,14 @@ class _$SubjectEntityImpl implements _SubjectEntity {
 
   @override
   String toString() {
-    return 'SubjectEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes)';
+    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SubjectEntityImpl &&
+            other is _$SelectedSubjectSubjectsEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lecturer, lecturer) ||
@@ -180,26 +189,29 @@ class _$SubjectEntityImpl implements _SubjectEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SubjectEntityImplCopyWith<_$SubjectEntityImpl> get copyWith =>
-      __$$SubjectEntityImplCopyWithImpl<_$SubjectEntityImpl>(this, _$identity);
+  _$$SelectedSubjectSubjectsEntityImplCopyWith<
+          _$SelectedSubjectSubjectsEntityImpl>
+      get copyWith => __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<
+          _$SelectedSubjectSubjectsEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SubjectEntityImplToJson(
+    return _$$SelectedSubjectSubjectsEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _SubjectEntity implements SubjectEntity {
-  const factory _SubjectEntity(
+abstract class _SelectedSubjectSubjectsEntity
+    implements SelectedSubjectSubjectsEntity {
+  const factory _SelectedSubjectSubjectsEntity(
       {final String? id,
       final String? name,
       final String? lecturer,
-      final List<ClassEntity>? classes}) = _$SubjectEntityImpl;
+      final List<String>? classes}) = _$SelectedSubjectSubjectsEntityImpl;
 
-  factory _SubjectEntity.fromJson(Map<String, dynamic> json) =
-      _$SubjectEntityImpl.fromJson;
+  factory _SelectedSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =
+      _$SelectedSubjectSubjectsEntityImpl.fromJson;
 
   @override
   String? get id;
@@ -208,9 +220,10 @@ abstract class _SubjectEntity implements SubjectEntity {
   @override
   String? get lecturer;
   @override
-  List<ClassEntity>? get classes;
+  List<String>? get classes;
   @override
   @JsonKey(ignore: true)
-  _$$SubjectEntityImplCopyWith<_$SubjectEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SelectedSubjectSubjectsEntityImplCopyWith<
+          _$SelectedSubjectSubjectsEntityImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -21,11 +21,23 @@ import 'package:silab/features/authentication/presentation/bloc/reset_password/r
 import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/classes/data/data_sources/classes_api_service.dart';
+import 'package:silab/features/classes/data/repository/class_repository_impl.dart';
+import 'package:silab/features/classes/domain/repository/class_repository.dart';
+import 'package:silab/features/classes/domain/usecases/get_class_by_id_usecase.dart';
+import 'package:silab/features/classes/domain/usecases/get_class_list_usecase.dart';
+import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/select_subjects/data/data_sources/selected_subject_api_service.dart';
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
 import 'package:silab/features/select_subjects/domain/usecases/get_selected_subject_by_nim_usecase.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/subjects/data/data_sources/subject_api_service.dart';
+import 'package:silab/features/subjects/data/repository/subject_repository_impl.dart';
+import 'package:silab/features/subjects/domain/repository/subject_repository.dart';
+import 'package:silab/features/subjects/domain/usecases/get_subject_details_usecase.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_details_bloc.dart';
 import 'package:silab/features/user_details/data/data_sources/user_api_service.dart';
 import 'package:silab/features/user_details/data/repositories/user_repository_impl.dart';
 import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
@@ -47,6 +59,8 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<UserApiService>(UserApiService(injector()));
   injector.registerSingleton<SelectedSubjectApiService>(
       SelectedSubjectApiService(injector()));
+  injector.registerSingleton<ClassesApiService>(ClassesApiService(injector()));
+  injector.registerSingleton<SubjectApiService>(SubjectApiService(injector()));
 
   // Repositories
   injector.registerSingleton<AuthenticationRepository>(
@@ -54,6 +68,9 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<UserRepository>(UserRepositoryImpl(injector()));
   injector.registerSingleton<SelectedSubjectRepository>(
       SelectedSubjectRepositoryImpl(injector()));
+  injector.registerSingleton<ClassRepository>(ClassRepositoryImpl(injector()));
+  injector
+      .registerSingleton<SubjectRepository>(SubjectRepositoryImpl(injector()));
 
   // UseCases
   injector.registerSingleton<UserLoginUseCase>(UserLoginUseCase(injector()));
@@ -78,6 +95,12 @@ Future<void> initializeDependencies() async {
       GetUserDetailsUseCase(injector()));
   injector.registerSingleton<GetSelectedSubjectByNimUsecase>(
       GetSelectedSubjectByNimUsecase(injector()));
+  injector
+      .registerSingleton<GetClassByIdUseCase>(GetClassByIdUseCase(injector()));
+  injector
+      .registerSingleton<GetClassListUseCase>(GetClassListUseCase(injector()));
+  injector.registerSingleton<GetSubjectDetailsUseCase>(
+      GetSubjectDetailsUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -95,4 +118,8 @@ Future<void> initializeDependencies() async {
       () => UserDetailsBloc(injector(), injector()));
   injector.registerFactory<SelectedSubjectByNimBloc>(
       () => SelectedSubjectByNimBloc(injector(), injector()));
+  injector.registerFactory<ClassListBloc>(() => ClassListBloc(injector()));
+  injector.registerFactory<ClassByIdBloc>(() => ClassByIdBloc(injector()));
+  injector.registerFactory<SubjectDetailsBloc>(
+      () => SubjectDetailsBloc(injector()));
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'selected_subject_response_entity.dart';
+part of 'subject_response_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,41 +14,39 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-SelectedSubjectResponseEntity _$SelectedSubjectResponseEntityFromJson(
+SubjectResponseEntity _$SubjectResponseEntityFromJson(
     Map<String, dynamic> json) {
-  return _SelectedSubjectResponseEntity.fromJson(json);
+  return _SubjectResponseEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SelectedSubjectResponseEntity {
+mixin _$SubjectResponseEntity {
   int? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  SelectedSubjectEntity? get data => throw _privateConstructorUsedError;
+  SubjectEntity? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SelectedSubjectResponseEntityCopyWith<SelectedSubjectResponseEntity>
-      get copyWith => throw _privateConstructorUsedError;
+  $SubjectResponseEntityCopyWith<SubjectResponseEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelectedSubjectResponseEntityCopyWith<$Res> {
-  factory $SelectedSubjectResponseEntityCopyWith(
-          SelectedSubjectResponseEntity value,
-          $Res Function(SelectedSubjectResponseEntity) then) =
-      _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
-          SelectedSubjectResponseEntity>;
+abstract class $SubjectResponseEntityCopyWith<$Res> {
+  factory $SubjectResponseEntityCopyWith(SubjectResponseEntity value,
+          $Res Function(SubjectResponseEntity) then) =
+      _$SubjectResponseEntityCopyWithImpl<$Res, SubjectResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, SelectedSubjectEntity? data});
+  $Res call({int? status, String? message, SubjectEntity? data});
 
-  $SelectedSubjectEntityCopyWith<$Res>? get data;
+  $SubjectEntityCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
-        $Val extends SelectedSubjectResponseEntity>
-    implements $SelectedSubjectResponseEntityCopyWith<$Res> {
-  _$SelectedSubjectResponseEntityCopyWithImpl(this._value, this._then);
+class _$SubjectResponseEntityCopyWithImpl<$Res,
+        $Val extends SubjectResponseEntity>
+    implements $SubjectResponseEntityCopyWith<$Res> {
+  _$SubjectResponseEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -74,46 +72,45 @@ class _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SelectedSubjectEntity?,
+              as SubjectEntity?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectedSubjectEntityCopyWith<$Res>? get data {
+  $SubjectEntityCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $SelectedSubjectEntityCopyWith<$Res>(_value.data!, (value) {
+    return $SubjectEntityCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$SelectedSubjectResponseEntityImplCopyWith<$Res>
-    implements $SelectedSubjectResponseEntityCopyWith<$Res> {
-  factory _$$SelectedSubjectResponseEntityImplCopyWith(
-          _$SelectedSubjectResponseEntityImpl value,
-          $Res Function(_$SelectedSubjectResponseEntityImpl) then) =
-      __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>;
+abstract class _$$SubjectResponseEntityImplCopyWith<$Res>
+    implements $SubjectResponseEntityCopyWith<$Res> {
+  factory _$$SubjectResponseEntityImplCopyWith(
+          _$SubjectResponseEntityImpl value,
+          $Res Function(_$SubjectResponseEntityImpl) then) =
+      __$$SubjectResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, SelectedSubjectEntity? data});
+  $Res call({int? status, String? message, SubjectEntity? data});
 
   @override
-  $SelectedSubjectEntityCopyWith<$Res>? get data;
+  $SubjectEntityCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
-    extends _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
-        _$SelectedSubjectResponseEntityImpl>
-    implements _$$SelectedSubjectResponseEntityImplCopyWith<$Res> {
-  __$$SelectedSubjectResponseEntityImplCopyWithImpl(
-      _$SelectedSubjectResponseEntityImpl _value,
-      $Res Function(_$SelectedSubjectResponseEntityImpl) _then)
+class __$$SubjectResponseEntityImplCopyWithImpl<$Res>
+    extends _$SubjectResponseEntityCopyWithImpl<$Res,
+        _$SubjectResponseEntityImpl>
+    implements _$$SubjectResponseEntityImplCopyWith<$Res> {
+  __$$SubjectResponseEntityImplCopyWithImpl(_$SubjectResponseEntityImpl _value,
+      $Res Function(_$SubjectResponseEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +120,7 @@ class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
     Object? message = freezed,
     Object? data = freezed,
   }) {
-    return _then(_$SelectedSubjectResponseEntityImpl(
+    return _then(_$SubjectResponseEntityImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -135,39 +132,36 @@ class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SelectedSubjectEntity?,
+              as SubjectEntity?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$SelectedSubjectResponseEntityImpl
-    implements _SelectedSubjectResponseEntity {
-  const _$SelectedSubjectResponseEntityImpl(
-      {this.status, this.message, this.data});
+class _$SubjectResponseEntityImpl implements _SubjectResponseEntity {
+  const _$SubjectResponseEntityImpl({this.status, this.message, this.data});
 
-  factory _$SelectedSubjectResponseEntityImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$SelectedSubjectResponseEntityImplFromJson(json);
+  factory _$SubjectResponseEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SubjectResponseEntityImplFromJson(json);
 
   @override
   final int? status;
   @override
   final String? message;
   @override
-  final SelectedSubjectEntity? data;
+  final SubjectEntity? data;
 
   @override
   String toString() {
-    return 'SelectedSubjectResponseEntity(status: $status, message: $message, data: $data)';
+    return 'SubjectResponseEntity(status: $status, message: $message, data: $data)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectedSubjectResponseEntityImpl &&
+            other is _$SubjectResponseEntityImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
@@ -180,38 +174,35 @@ class _$SelectedSubjectResponseEntityImpl
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectedSubjectResponseEntityImplCopyWith<
-          _$SelectedSubjectResponseEntityImpl>
-      get copyWith => __$$SelectedSubjectResponseEntityImplCopyWithImpl<
-          _$SelectedSubjectResponseEntityImpl>(this, _$identity);
+  _$$SubjectResponseEntityImplCopyWith<_$SubjectResponseEntityImpl>
+      get copyWith => __$$SubjectResponseEntityImplCopyWithImpl<
+          _$SubjectResponseEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SelectedSubjectResponseEntityImplToJson(
+    return _$$SubjectResponseEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _SelectedSubjectResponseEntity
-    implements SelectedSubjectResponseEntity {
-  const factory _SelectedSubjectResponseEntity(
+abstract class _SubjectResponseEntity implements SubjectResponseEntity {
+  const factory _SubjectResponseEntity(
       {final int? status,
       final String? message,
-      final SelectedSubjectEntity? data}) = _$SelectedSubjectResponseEntityImpl;
+      final SubjectEntity? data}) = _$SubjectResponseEntityImpl;
 
-  factory _SelectedSubjectResponseEntity.fromJson(Map<String, dynamic> json) =
-      _$SelectedSubjectResponseEntityImpl.fromJson;
+  factory _SubjectResponseEntity.fromJson(Map<String, dynamic> json) =
+      _$SubjectResponseEntityImpl.fromJson;
 
   @override
   int? get status;
   @override
   String? get message;
   @override
-  SelectedSubjectEntity? get data;
+  SubjectEntity? get data;
   @override
   @JsonKey(ignore: true)
-  _$$SelectedSubjectResponseEntityImplCopyWith<
-          _$SelectedSubjectResponseEntityImpl>
+  _$$SubjectResponseEntityImplCopyWith<_$SubjectResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

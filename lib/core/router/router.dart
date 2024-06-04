@@ -10,6 +10,8 @@ import 'package:silab/features/authentication/presentation/pages/verify_reset_pa
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
+import 'package:silab/features/subjects/presentation/pages/subject_detail_page.dart';
+import 'package:silab/features/subjects/presentation/pages/subject_detail_page_extras.dart';
 import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
 import 'package:silab/scaffold_page.dart';
 import 'package:silab/splash_screen.dart';
@@ -70,6 +72,14 @@ final GoRouter router = GoRouter(
       name: 'splash',
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/subject-detail/:id',
+      name: 'subject-detail',
+      builder: (context, state) => SubjectDetailPage(
+        subjectDetailPageExtras: state.extra as SubjectDetailPageExtras,
+        id: state.pathParameters['id']!,
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>

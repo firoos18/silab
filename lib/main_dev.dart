@@ -10,7 +10,10 @@ import 'package:silab/features/authentication/presentation/bloc/reset_password/r
 import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/injector.dart';
 
@@ -62,6 +65,15 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<SelectedSubjectByNimBloc>(
           create: (_) => SelectedSubjectByNimBloc(injector(), injector()),
+        ),
+        BlocProvider<ClassByIdBloc>(
+          create: (_) => ClassByIdBloc(injector()),
+        ),
+        BlocProvider<ClassListBloc>(
+          create: (_) => ClassListBloc(injector()),
+        ),
+        BlocProvider<SubjectDetailsBloc>(
+          create: (_) => SubjectDetailsBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

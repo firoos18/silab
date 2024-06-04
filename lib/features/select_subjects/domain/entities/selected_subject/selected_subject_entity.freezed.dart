@@ -23,7 +23,8 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 mixin _$SelectedSubjectEntity {
   String? get id => throw _privateConstructorUsedError;
   String? get userId => throw _privateConstructorUsedError;
-  List<SubjectEntity>? get subjects => throw _privateConstructorUsedError;
+  List<SelectedSubjectSubjectsEntity>? get subjects =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,10 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
           $Res Function(SelectedSubjectEntity) then) =
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
-  $Res call({String? id, String? userId, List<SubjectEntity>? subjects});
+  $Res call(
+      {String? id,
+      String? userId,
+      List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
 /// @nodoc
@@ -70,7 +74,7 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
       subjects: freezed == subjects
           ? _value.subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<SubjectEntity>?,
+              as List<SelectedSubjectSubjectsEntity>?,
     ) as $Val);
   }
 }
@@ -84,7 +88,10 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
       __$$SelectedSubjectEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? userId, List<SubjectEntity>? subjects});
+  $Res call(
+      {String? id,
+      String? userId,
+      List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
 /// @nodoc
@@ -115,7 +122,7 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
       subjects: freezed == subjects
           ? _value._subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<SubjectEntity>?,
+              as List<SelectedSubjectSubjectsEntity>?,
     ));
   }
 }
@@ -124,7 +131,9 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.id, this.userId, final List<SubjectEntity>? subjects})
+      {this.id,
+      this.userId,
+      final List<SelectedSubjectSubjectsEntity>? subjects})
       : _subjects = subjects;
 
   factory _$SelectedSubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -134,9 +143,9 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   final String? id;
   @override
   final String? userId;
-  final List<SubjectEntity>? _subjects;
+  final List<SelectedSubjectSubjectsEntity>? _subjects;
   @override
-  List<SubjectEntity>? get subjects {
+  List<SelectedSubjectSubjectsEntity>? get subjects {
     final value = _subjects;
     if (value == null) return null;
     if (_subjects is EqualUnmodifiableListView) return _subjects;
@@ -181,9 +190,10 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
-      {final String? id,
-      final String? userId,
-      final List<SubjectEntity>? subjects}) = _$SelectedSubjectEntityImpl;
+          {final String? id,
+          final String? userId,
+          final List<SelectedSubjectSubjectsEntity>? subjects}) =
+      _$SelectedSubjectEntityImpl;
 
   factory _SelectedSubjectEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectEntityImpl.fromJson;
@@ -193,7 +203,7 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   @override
   String? get userId;
   @override
-  List<SubjectEntity>? get subjects;
+  List<SelectedSubjectSubjectsEntity>? get subjects;
   @override
   @JsonKey(ignore: true)
   _$$SelectedSubjectEntityImplCopyWith<_$SelectedSubjectEntityImpl>
