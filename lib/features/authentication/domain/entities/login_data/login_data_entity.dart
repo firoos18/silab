@@ -7,6 +7,7 @@ part 'login_data_entity.g.dart';
 class LoginDataEntity with _$LoginDataEntity {
   const factory LoginDataEntity({
     final String? email,
+    final String? nim,
     final String? token,
   }) = _LoginDataEntity;
 

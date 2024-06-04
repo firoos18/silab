@@ -10,6 +10,8 @@ import 'package:silab/features/authentication/presentation/bloc/reset_password/r
 import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/injector.dart';
 
 void main() async {
@@ -54,6 +56,12 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<VerifyResetPasswordOtpBloc>(
           create: (_) => VerifyResetPasswordOtpBloc(injector()),
+        ),
+        BlocProvider<UserDetailsBloc>(
+          create: (_) => UserDetailsBloc(injector(), injector()),
+        ),
+        BlocProvider<SelectedSubjectByNimBloc>(
+          create: (_) => SelectedSubjectByNimBloc(injector(), injector()),
         ),
       ],
       child: MaterialApp.router(

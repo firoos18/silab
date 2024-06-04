@@ -21,6 +21,7 @@ LoginDataEntity _$LoginDataEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LoginDataEntity {
   String? get email => throw _privateConstructorUsedError;
+  String? get nim => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +36,7 @@ abstract class $LoginDataEntityCopyWith<$Res> {
           LoginDataEntity value, $Res Function(LoginDataEntity) then) =
       _$LoginDataEntityCopyWithImpl<$Res, LoginDataEntity>;
   @useResult
-  $Res call({String? email, String? token});
+  $Res call({String? email, String? nim, String? token});
 }
 
 /// @nodoc
@@ -52,12 +53,17 @@ class _$LoginDataEntityCopyWithImpl<$Res, $Val extends LoginDataEntity>
   @override
   $Res call({
     Object? email = freezed,
+    Object? nim = freezed,
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nim: freezed == nim
+          ? _value.nim
+          : nim // ignore: cast_nullable_to_non_nullable
               as String?,
       token: freezed == token
           ? _value.token
@@ -75,7 +81,7 @@ abstract class _$$LoginDataEntityImplCopyWith<$Res>
       __$$LoginDataEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? email, String? token});
+  $Res call({String? email, String? nim, String? token});
 }
 
 /// @nodoc
@@ -90,12 +96,17 @@ class __$$LoginDataEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = freezed,
+    Object? nim = freezed,
     Object? token = freezed,
   }) {
     return _then(_$LoginDataEntityImpl(
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      nim: freezed == nim
+          ? _value.nim
+          : nim // ignore: cast_nullable_to_non_nullable
               as String?,
       token: freezed == token
           ? _value.token
@@ -108,7 +119,7 @@ class __$$LoginDataEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginDataEntityImpl implements _LoginDataEntity {
-  const _$LoginDataEntityImpl({this.email, this.token});
+  const _$LoginDataEntityImpl({this.email, this.nim, this.token});
 
   factory _$LoginDataEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginDataEntityImplFromJson(json);
@@ -116,11 +127,13 @@ class _$LoginDataEntityImpl implements _LoginDataEntity {
   @override
   final String? email;
   @override
+  final String? nim;
+  @override
   final String? token;
 
   @override
   String toString() {
-    return 'LoginDataEntity(email: $email, token: $token)';
+    return 'LoginDataEntity(email: $email, nim: $nim, token: $token)';
   }
 
   @override
@@ -129,12 +142,13 @@ class _$LoginDataEntityImpl implements _LoginDataEntity {
         (other.runtimeType == runtimeType &&
             other is _$LoginDataEntityImpl &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.nim, nim) || other.nim == nim) &&
             (identical(other.token, token) || other.token == token));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, token);
+  int get hashCode => Object.hash(runtimeType, email, nim, token);
 
   @JsonKey(ignore: true)
   @override
@@ -152,14 +166,18 @@ class _$LoginDataEntityImpl implements _LoginDataEntity {
 }
 
 abstract class _LoginDataEntity implements LoginDataEntity {
-  const factory _LoginDataEntity({final String? email, final String? token}) =
-      _$LoginDataEntityImpl;
+  const factory _LoginDataEntity(
+      {final String? email,
+      final String? nim,
+      final String? token}) = _$LoginDataEntityImpl;
 
   factory _LoginDataEntity.fromJson(Map<String, dynamic> json) =
       _$LoginDataEntityImpl.fromJson;
 
   @override
   String? get email;
+  @override
+  String? get nim;
   @override
   String? get token;
   @override

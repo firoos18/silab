@@ -10,6 +10,7 @@ _$LoginDataEntityImpl _$$LoginDataEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$LoginDataEntityImpl(
       email: json['email'] as String?,
+      nim: json['nim'] as String?,
       token: json['token'] as String?,
     );
 
@@ -17,5 +18,6 @@ Map<String, dynamic> _$$LoginDataEntityImplToJson(
         _$LoginDataEntityImpl instance) =>
     <String, dynamic>{
       'email': instance.email,
+      'nim': instance.nim,
       'token': instance.token,
     };

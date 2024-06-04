@@ -9,7 +9,17 @@ class SetUserTokenUseCase implements UseCase<Either<Failures, String>, String> {
   const SetUserTokenUseCase(this.authenticationRepository);
 
   @override
-  Future<Either<Failures, String>> call({String? params}) async {
-    return await authenticationRepository.setUserToken(params);
+  Future<Either<Failures, String>> call({
+    String? params,
+    String? token,
+    String? email,
+    String? role,
+    String? nim,
+  }) async {
+    return await authenticationRepository.setUserData(
+      email: email,
+      userToken: token,
+      nim: nim,
+    );
   }
 }

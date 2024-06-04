@@ -10,10 +10,16 @@ import 'package:silab/features/authentication/presentation/pages/verify_reset_pa
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
+import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
+import 'package:silab/scaffold_page.dart';
 import 'package:silab/splash_screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigator = GlobalKey(debugLabel: 'root');
-final GlobalKey<NavigatorState> _shellNavigator =
+final GlobalKey<NavigatorState> _shellNavigatorHome =
+    GlobalKey(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _shellNavigatorProfile =
+    GlobalKey(debugLabel: 'shell');
+final GlobalKey<NavigatorState> _shellNavigatorFind =
     GlobalKey(debugLabel: 'shell');
 
 final GoRouter router = GoRouter(
@@ -60,16 +66,46 @@ final GoRouter router = GoRouter(
           ResetPasswordPage(userId: state.extra as String),
     ),
     GoRoute(
-      path: '/home',
-      name: 'home',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => const HomePage(),
-    ),
-    GoRoute(
       path: '/splash',
       name: 'splash',
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          ScaffoldPage(navigationShell: navigationShell),
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(
+          navigatorKey: _shellNavigatorHome,
+          routes: [
+            GoRoute(
+              path: '/home',
+              name: 'home',
+              builder: (context, state) => const HomePage(),
+            )
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _shellNavigatorFind,
+          routes: [
+            GoRoute(
+              path: '/find',
+              name: 'find',
+              builder: (context, state) => const HomePage(),
+            )
+          ],
+        ),
+        StatefulShellBranch(
+          navigatorKey: _shellNavigatorProfile,
+          routes: [
+            GoRoute(
+              path: '/profile',
+              name: 'profile',
+              builder: (context, state) => const ProfilePage(),
+            )
+          ],
+        )
+      ],
     ),
   ],
 );

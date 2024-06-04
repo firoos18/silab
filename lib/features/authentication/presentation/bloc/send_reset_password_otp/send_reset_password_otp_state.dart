@@ -1,6 +1,5 @@
 part of 'send_reset_password_otp_bloc.dart';
 
-@freezed
 class SendResetPasswordOtpState extends Equatable {
   final SendResetPasswordOtpResponseEntity? sendResetPasswordOtpResponseEntity;
   final String? message;

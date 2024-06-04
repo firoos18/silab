@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:silab/features/authentication/data/models/send_reset_password_otp_model.dart';
 import 'package:silab/features/authentication/domain/entities/send_reset_password_otp/send_reset_password_otp_response_entity.dart';
 import 'package:silab/features/authentication/domain/usecases/send_reset_password_otp_usecase.dart';

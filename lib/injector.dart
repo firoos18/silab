@@ -21,6 +21,16 @@ import 'package:silab/features/authentication/presentation/bloc/reset_password/r
 import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/select_subjects/data/data_sources/selected_subject_api_service.dart';
+import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
+import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
+import 'package:silab/features/select_subjects/domain/usecases/get_selected_subject_by_nim_usecase.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/user_details/data/data_sources/user_api_service.dart';
+import 'package:silab/features/user_details/data/repositories/user_repository_impl.dart';
+import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
+import 'package:silab/features/user_details/domain/usecases/get_user_details_usecase.dart';
+import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 
 final injector = GetIt.instance;
 
@@ -34,10 +44,16 @@ Future<void> initializeDependencies() async {
       .registerSingleton<AuthenticationApiService>(AuthenticationApiService());
   injector.registerSingleton<AuthenticationLocalDataSource>(
       AuthenticationLocalDataSource(injector()));
+  injector.registerSingleton<UserApiService>(UserApiService(injector()));
+  injector.registerSingleton<SelectedSubjectApiService>(
+      SelectedSubjectApiService(injector()));
 
   // Repositories
   injector.registerSingleton<AuthenticationRepository>(
       AuthenticationRepositoryImpl(injector(), injector()));
+  injector.registerSingleton<UserRepository>(UserRepositoryImpl(injector()));
+  injector.registerSingleton<SelectedSubjectRepository>(
+      SelectedSubjectRepositoryImpl(injector()));
 
   // UseCases
   injector.registerSingleton<UserLoginUseCase>(UserLoginUseCase(injector()));
@@ -58,6 +74,10 @@ Future<void> initializeDependencies() async {
       ResendResetPasswordOtpUseCase(injector()));
   injector.registerSingleton<VerifyResetPasswordOtpUseCase>(
       VerifyResetPasswordOtpUseCase(injector()));
+  injector.registerSingleton<GetUserDetailsUseCase>(
+      GetUserDetailsUseCase(injector()));
+  injector.registerSingleton<GetSelectedSubjectByNimUsecase>(
+      GetSelectedSubjectByNimUsecase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -71,4 +91,8 @@ Future<void> initializeDependencies() async {
       () => ResendResetPasswordOtpBloc(injector()));
   injector.registerFactory<VerifyResetPasswordOtpBloc>(
       () => VerifyResetPasswordOtpBloc(injector()));
+  injector.registerFactory<UserDetailsBloc>(
+      () => UserDetailsBloc(injector(), injector()));
+  injector.registerFactory<SelectedSubjectByNimBloc>(
+      () => SelectedSubjectByNimBloc(injector(), injector()));
 }

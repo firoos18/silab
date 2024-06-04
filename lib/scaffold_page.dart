@@ -18,8 +18,8 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
 
   List<BottomNavigationBarItem> items = [
     const BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOME"),
-    const BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOME"),
-    const BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOME"),
+    const BottomNavigationBarItem(icon: Icon(Icons.search), label: "FIND"),
+    const BottomNavigationBarItem(icon: Icon(Icons.person), label: "PROFILE"),
   ];
 
   void _goBranch(int index) {
@@ -32,8 +32,20 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(
-        child: Text('Home'),
+      appBar: AppBar(
+        title: Text(
+          currentIndex == 0
+              ? "Home"
+              : currentIndex == 1
+                  ? "Find"
+                  : "Profile",
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: widget.navigationShell,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: items,

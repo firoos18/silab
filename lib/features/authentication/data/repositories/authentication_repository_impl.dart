@@ -57,10 +57,18 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<Failures, String>> setUserToken(String? userToken) async {
+  Future<Either<Failures, String>> setUserData({
+    String? userToken,
+    String? email,
+    String? nim,
+  }) async {
     try {
-      if (userToken != null) {
-        await _authenticationLocalDataSource.setUserToken(userToken);
+      if (userToken != null && email != null && nim != null) {
+        await _authenticationLocalDataSource.setUserData(
+          userToken: userToken,
+          email: email,
+          nim: nim,
+        );
 
         return const Right("success");
       } else {
@@ -80,7 +88,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       final result = await _authenticationApiService.userLogin(loginData);
 
-      setUserToken(result.data!.token);
+      setUserData(
+        userToken: result.data!.token,
+        email: result.data!.email,
+        nim: result.data!.nim,
+      );
 
       return Right(result);
     } on RequestErrorException catch (e) {
