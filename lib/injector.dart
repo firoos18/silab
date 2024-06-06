@@ -10,11 +10,13 @@ import 'package:silab/features/authentication/domain/usecases/resend_reset_passw
 import 'package:silab/features/authentication/domain/usecases/reset_password_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/send_reset_password_otp_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/set_user_token_usecase.dart';
+import 'package:silab/features/authentication/domain/usecases/user_log_out_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/user_login_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/user_register_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/verify_otp_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/verify_reset_password_otp_usecase.dart';
 import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/resend_reset_password_otp/resend_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/reset_password/reset_password_bloc.dart';
@@ -37,7 +39,9 @@ import 'package:silab/features/subjects/data/data_sources/subject_api_service.da
 import 'package:silab/features/subjects/data/repository/subject_repository_impl.dart';
 import 'package:silab/features/subjects/domain/repository/subject_repository.dart';
 import 'package:silab/features/subjects/domain/usecases/get_subject_details_usecase.dart';
-import 'package:silab/features/subjects/presentation/bloc/subject_details_bloc.dart';
+import 'package:silab/features/subjects/domain/usecases/get_subject_list_usecase.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 import 'package:silab/features/user_details/data/data_sources/user_api_service.dart';
 import 'package:silab/features/user_details/data/repositories/user_repository_impl.dart';
 import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
@@ -64,7 +68,7 @@ Future<void> initializeDependencies() async {
 
   // Repositories
   injector.registerSingleton<AuthenticationRepository>(
-      AuthenticationRepositoryImpl(injector(), injector()));
+      AuthenticationRepositoryImpl(injector(), injector(), injector()));
   injector.registerSingleton<UserRepository>(UserRepositoryImpl(injector()));
   injector.registerSingleton<SelectedSubjectRepository>(
       SelectedSubjectRepositoryImpl(injector()));
@@ -101,6 +105,9 @@ Future<void> initializeDependencies() async {
       .registerSingleton<GetClassListUseCase>(GetClassListUseCase(injector()));
   injector.registerSingleton<GetSubjectDetailsUseCase>(
       GetSubjectDetailsUseCase(injector()));
+  injector.registerSingleton<UserLogOutUseCase>(UserLogOutUseCase(injector()));
+  injector.registerSingleton<GetSubjectListUseCase>(
+      GetSubjectListUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -122,4 +129,6 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<ClassByIdBloc>(() => ClassByIdBloc(injector()));
   injector.registerFactory<SubjectDetailsBloc>(
       () => SubjectDetailsBloc(injector()));
+  injector.registerFactory<LogoutBloc>(() => LogoutBloc(injector()));
+  injector.registerFactory<SubjectListBloc>(() => SubjectListBloc(injector()));
 }

@@ -31,6 +31,8 @@ abstract class AuthenticationRepository {
     ResendOtpModel resendOtpData,
   );
 
+  Future<Either<Failures, bool>> userLogOut();
+
   Future<Either<Failures, String>> setUserData({
     String? userToken,
     String? email,

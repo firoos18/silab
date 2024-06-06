@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/features/select_subjects/domain/entities/subject/selected_subject_subjects.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/subjects/presentation/widgets/add_subject_bottom_sheet.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/subject_container.dart';
 
 class SelectedSubjectListView extends StatefulWidget {
@@ -45,16 +46,9 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
                         useRootNavigator: true,
                         context: context,
                         showDragHandle: true,
+                        isScrollControlled: true,
                         clipBehavior: Clip.antiAlias,
-                        builder: (context) => Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(16),
-                              topRight: Radius.circular(16),
-                            ),
-                          ),
-                        ),
+                        builder: (context) => const AddSubjectBottomSheet(),
                       );
                     },
                     icon: const Icon(
@@ -65,22 +59,27 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
                 ],
               ),
               const SizedBox(height: 8),
-              ListView.builder(
-                physics: const ClampingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: subjects.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: SubjectContainer(
-                      subjectTitle: subjects[index].name!,
-                      subjectLecturer: subjects[index].lecturer!,
-                      classes: subjects[index].classes!.length.toString(),
-                      id: subjects[index].id!,
-                    ),
-                  );
-                },
-              ),
+              if (subjects.isNotEmpty)
+                ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: subjects.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: SubjectContainer(
+                        subjectTitle: subjects[index].name!,
+                        subjectLecturer: subjects[index].lecturer!,
+                        classes: subjects[index].classes!.length.toString(),
+                        id: subjects[index].id!,
+                      ),
+                    );
+                  },
+                )
+              else
+                const Center(
+                  child: Text('No Subject Registered'),
+                ),
             ],
           );
         } else {

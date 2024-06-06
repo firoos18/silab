@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
+import 'package:silab/features/authentication/presentation/widgets/log_out_button.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/selected_subject_list_view.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
@@ -65,6 +66,8 @@ class _ProfilePageState extends State<ProfilePage> {
           children: const [
             UserCard(),
             SelectedSubjectListView(),
+            SizedBox(height: 24),
+            LogOutButton()
           ],
         ),
       ),

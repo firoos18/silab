@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:either_dart/either.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/core/failures/failures.dart';
 import 'package:silab/features/authentication/data/data_sources/local/authentication_local_datasource.dart';
@@ -23,10 +24,12 @@ import 'package:silab/features/authentication/domain/repositories/authentication
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final AuthenticationApiService _authenticationApiService;
   final AuthenticationLocalDataSource _authenticationLocalDataSource;
+  final SharedPreferences _sharedPreferences;
 
   const AuthenticationRepositoryImpl(
     this._authenticationApiService,
     this._authenticationLocalDataSource,
+    this._sharedPreferences,
   );
 
   @override
@@ -195,6 +198,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return Left(RequestFailures(e.message));
     } on SocketException catch (e) {
       return Left(RequestFailures(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failures, bool>> userLogOut() async {
+    try {
+      final isLogOut = await _sharedPreferences.remove('token');
+
+      return Right(isLogOut);
+    } on RequestErrorException catch (e) {
+      throw Left(RequestFailures(e.message));
     }
   }
 }

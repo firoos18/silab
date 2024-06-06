@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/app_confid.dart';
 import 'package:silab/core/router/router.dart';
+import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/resend_otp/resend_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
@@ -13,7 +14,8 @@ import 'package:silab/features/authentication/presentation/bloc/verify_reset_pas
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
-import 'package:silab/features/subjects/presentation/bloc/subject_details_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/injector.dart';
 
@@ -74,6 +76,12 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<SubjectDetailsBloc>(
           create: (_) => SubjectDetailsBloc(injector()),
+        ),
+        BlocProvider<LogoutBloc>(
+          create: (_) => LogoutBloc(injector()),
+        ),
+        BlocProvider<SubjectListBloc>(
+          create: (_) => SubjectListBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

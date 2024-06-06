@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silab/features/subjects/presentation/bloc/subject_details_bloc.dart';
+import 'package:silab/features/classes/presentation/widgets/class_card.dart';
+import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
 import 'package:silab/features/subjects/presentation/pages/subject_detail_page_extras.dart';
 
 class SubjectDetailPage extends StatefulWidget {
@@ -35,13 +36,54 @@ class _SubjectDetailPageState extends State<SubjectDetailPage> {
       ),
       body: BlocBuilder<SubjectDetailsBloc, SubjectDetailsState>(
         builder: (context, state) {
-          if (state is SubjectDetailLoaded) {
-            return Center(
-              child: Text(state.subjectEntity!.name!),
-            );
-          } else if (state is SubjectDetailLoading) {
+          if (state is SubjectDetailLoading) {
             return const Center(
               child: CupertinoActivityIndicator(),
+            );
+          } else if (state is SubjectDetailLoaded) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    state.subjectEntity!.name!,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    state.subjectEntity!.lecturer!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    'Available Classes',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.subjectEntity!.classes!.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        child: ClassCard(
+                          classEntity: state.subjectEntity!.classes![index],
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
             );
           }
 
