@@ -52,7 +52,9 @@ class _UserCardState extends State<UserCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(state.userDetailEntity!.fullname!),
+                    Text(
+                      state.userDetailEntity!.fullname!,
+                    ),
                     Text(state.userDetailEntity!.nim!),
                     const SizedBox(height: 8),
                     PaymentStatusPill(

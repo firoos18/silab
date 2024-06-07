@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/features/select_subjects/domain/entities/subject/selected_subject_subjects.dart';
-import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/subjects/presentation/widgets/add_subject_bottom_sheet.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/subject_container.dart';
 
@@ -48,7 +48,9 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
                         showDragHandle: true,
                         isScrollControlled: true,
                         clipBehavior: Clip.antiAlias,
-                        builder: (context) => const AddSubjectBottomSheet(),
+                        builder: (context) => AddSubjectBottomSheet(
+                          userId: state.selectedSubjectEntity!.userId,
+                        ),
                       );
                     },
                     icon: const Icon(

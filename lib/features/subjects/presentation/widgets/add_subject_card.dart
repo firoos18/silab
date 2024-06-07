@@ -3,10 +3,13 @@ import 'package:silab/core/common/entities/subject/subject_entity.dart';
 
 class AddSubjectCard extends StatefulWidget {
   final SubjectEntity subject;
-  final ValueChanged<String> onChecked;
+  final ValueChanged<String?> subjectId;
 
-  const AddSubjectCard(
-      {super.key, required this.onChecked, required this.subject});
+  const AddSubjectCard({
+    super.key,
+    required this.subjectId,
+    required this.subject,
+  });
 
   @override
   State<AddSubjectCard> createState() => _AddSubjectCardState();
@@ -51,7 +54,11 @@ class _AddSubjectCardState extends State<AddSubjectCard> {
               setState(() {
                 isChecked = value;
               });
-              widget.onChecked(widget.subject.id!);
+              if (value!) {
+                widget.subjectId(widget.subject.id!);
+              } else {
+                widget.subjectId(null);
+              }
             },
           ),
         ],
