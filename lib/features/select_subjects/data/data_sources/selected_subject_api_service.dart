@@ -49,8 +49,6 @@ class SelectedSubjectApiService {
       body: jsonEncode(selectedSubjectData.toJson()),
     );
 
-    print(response.body);
-
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 

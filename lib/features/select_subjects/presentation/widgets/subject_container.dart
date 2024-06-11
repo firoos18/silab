@@ -96,7 +96,9 @@ class SubjectContainer extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            registeredClass!,
+                            state.userDetailEntity!.paid!
+                                ? registeredClass!
+                                : 'Continue Payment to Choose Class',
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,

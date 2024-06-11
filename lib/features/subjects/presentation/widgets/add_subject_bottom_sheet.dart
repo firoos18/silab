@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
+import 'package:silab/core/common/widgets/custom_pop_up.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/select_subjects/data/models/add_selected_subject_model.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
@@ -122,16 +124,40 @@ class _AddSubjectBottomSheetState extends State<AddSubjectBottomSheet> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      final AddSelectedSubjectModel addSelectedSubjectData =
-                          AddSelectedSubjectModel(
-                        subjects: userSelectedSubjectsId,
-                        userId: widget.userId!,
-                      );
+                      final state =
+                          BlocProvider.of<AddSelectedSubjectBloc>(context)
+                              .state;
 
-                      context.read<AddSelectedSubjectBloc>().add(
-                            AddSelectedSubjectButtonTapped(
-                                addSelectedSubjectData: addSelectedSubjectData),
-                          );
+                      if (state is AddSelectedSubjectLoading) {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const CustomLoadingIndicator(),
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          useRootNavigator: false,
+                          builder: (context) => CustomPopUp(
+                            action: () {
+                              final AddSelectedSubjectModel
+                                  addSelectedSubjectData =
+                                  AddSelectedSubjectModel(
+                                subjects: userSelectedSubjectsId,
+                                userId: widget.userId!,
+                              );
+
+                              context.read<AddSelectedSubjectBloc>().add(
+                                    AddSelectedSubjectButtonTapped(
+                                        addSelectedSubjectData:
+                                            addSelectedSubjectData),
+                                  );
+                            },
+                            body:
+                                'Please make sure the subject you pick match your KRS',
+                            title: 'Confirm Subject Selection',
+                          ),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 48),
@@ -141,18 +167,7 @@ class _AddSubjectBottomSheetState extends State<AddSubjectBottomSheet> {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
-                    child: BlocBuilder<AddSelectedSubjectBloc,
-                        AddSelectedSubjectState>(
-                      builder: (context, state) {
-                        if (state is AddSelectedSubjectLoading) {
-                          return const Center(
-                            child: CupertinoActivityIndicator(),
-                          );
-                        } else {
-                          return const Text('Add Subjects');
-                        }
-                      },
-                    ),
+                    child: const Text('Add Subjects'),
                   ),
                 ],
               ),
