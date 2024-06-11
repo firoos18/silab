@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/authentication/presentation/widgets/log_out_button.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/selected_subject_list_view.dart';
@@ -35,6 +36,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 useRootNavigator: true,
                 builder: (context) => const CustomLoadingIndicator(),
               );
+            } else if (state is SelectedSubjectByNimFailed) {
+              context.pop();
+
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(snackBar(state.message, AlertType.error));
             } else {
               context.pop();
             }
@@ -48,6 +55,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 useRootNavigator: true,
                 builder: (context) => const CustomLoadingIndicator(),
               );
+            } else if (state is UserDetailFailed) {
+              context.pop();
+
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(snackBar(state.message, AlertType.error));
             } else {
               context.pop();
             }

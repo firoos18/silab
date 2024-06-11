@@ -37,8 +37,6 @@ class SelectedSubjectRepositoryImpl implements SelectedSubjectRepository {
       final result = await _selectedSubjectApiService
           .addSelectedSubject(addSelectedSubjectData);
 
-      print(result);
-
       return Right(result);
     } on RequestErrorException catch (e) {
       return Left(RequestFailures(e.message));
