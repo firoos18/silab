@@ -5,19 +5,10 @@ import 'package:silab/features/select_subjects/presentation/bloc/selected_subjec
 import 'package:silab/features/subjects/presentation/widgets/add_subject_bottom_sheet.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/subject_container.dart';
 
-class SelectedSubjectListView extends StatefulWidget {
-  const SelectedSubjectListView({super.key});
-
-  @override
-  State<SelectedSubjectListView> createState() =>
-      _SelectedSubjectListViewState();
-}
-
-class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class SelectedSubjectListView extends StatelessWidget {
+  const SelectedSubjectListView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +65,9 @@ class _SelectedSubjectListViewState extends State<SelectedSubjectListView> {
                         subjectLecturer: subjects[index].lecturer!,
                         classes: subjects[index].classes!.length.toString(),
                         id: subjects[index].id!,
+                        registeredClass: subjects[index].registeredClass != null
+                            ? subjects[index].registeredClass!.name
+                            : "No Class Registered Yet",
                       ),
                     );
                   },

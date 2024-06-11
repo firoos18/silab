@@ -15,6 +15,10 @@ _$SelectedSubjectSubjectsEntityImpl
           classes: (json['classes'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList(),
+          registeredClass: json['registeredClass'] == null
+              ? null
+              : ClassEntity.fromJson(
+                  json['registeredClass'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$$SelectedSubjectSubjectsEntityImplToJson(
@@ -24,4 +28,5 @@ Map<String, dynamic> _$$SelectedSubjectSubjectsEntityImplToJson(
       'name': instance.name,
       'lecturer': instance.lecturer,
       'classes': instance.classes,
+      'registeredClass': instance.registeredClass,
     };

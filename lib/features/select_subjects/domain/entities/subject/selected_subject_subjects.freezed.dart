@@ -25,6 +25,7 @@ mixin _$SelectedSubjectSubjectsEntity {
   String? get name => throw _privateConstructorUsedError;
   String? get lecturer => throw _privateConstructorUsedError;
   List<String>? get classes => throw _privateConstructorUsedError;
+  ClassEntity? get registeredClass => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,13 @@ abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
           SelectedSubjectSubjectsEntity>;
   @useResult
   $Res call(
-      {String? id, String? name, String? lecturer, List<String>? classes});
+      {String? id,
+      String? name,
+      String? lecturer,
+      List<String>? classes,
+      ClassEntity? registeredClass});
+
+  $ClassEntityCopyWith<$Res>? get registeredClass;
 }
 
 /// @nodoc
@@ -62,6 +69,7 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
     Object? name = freezed,
     Object? lecturer = freezed,
     Object? classes = freezed,
+    Object? registeredClass = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -80,7 +88,23 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      registeredClass: freezed == registeredClass
+          ? _value.registeredClass
+          : registeredClass // ignore: cast_nullable_to_non_nullable
+              as ClassEntity?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClassEntityCopyWith<$Res>? get registeredClass {
+    if (_value.registeredClass == null) {
+      return null;
+    }
+
+    return $ClassEntityCopyWith<$Res>(_value.registeredClass!, (value) {
+      return _then(_value.copyWith(registeredClass: value) as $Val);
+    });
   }
 }
 
@@ -94,7 +118,14 @@ abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id, String? name, String? lecturer, List<String>? classes});
+      {String? id,
+      String? name,
+      String? lecturer,
+      List<String>? classes,
+      ClassEntity? registeredClass});
+
+  @override
+  $ClassEntityCopyWith<$Res>? get registeredClass;
 }
 
 /// @nodoc
@@ -114,6 +145,7 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? lecturer = freezed,
     Object? classes = freezed,
+    Object? registeredClass = freezed,
   }) {
     return _then(_$SelectedSubjectSubjectsEntityImpl(
       id: freezed == id
@@ -132,6 +164,10 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      registeredClass: freezed == registeredClass
+          ? _value.registeredClass
+          : registeredClass // ignore: cast_nullable_to_non_nullable
+              as ClassEntity?,
     ));
   }
 }
@@ -141,7 +177,11 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
 class _$SelectedSubjectSubjectsEntityImpl
     implements _SelectedSubjectSubjectsEntity {
   const _$SelectedSubjectSubjectsEntityImpl(
-      {this.id, this.name, this.lecturer, final List<String>? classes})
+      {this.id,
+      this.name,
+      this.lecturer,
+      final List<String>? classes,
+      required this.registeredClass})
       : _classes = classes;
 
   factory _$SelectedSubjectSubjectsEntityImpl.fromJson(
@@ -165,8 +205,11 @@ class _$SelectedSubjectSubjectsEntityImpl
   }
 
   @override
+  final ClassEntity? registeredClass;
+
+  @override
   String toString() {
-    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes)';
+    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes, registeredClass: $registeredClass)';
   }
 
   @override
@@ -178,13 +221,15 @@ class _$SelectedSubjectSubjectsEntityImpl
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lecturer, lecturer) ||
                 other.lecturer == lecturer) &&
-            const DeepCollectionEquality().equals(other._classes, _classes));
+            const DeepCollectionEquality().equals(other._classes, _classes) &&
+            (identical(other.registeredClass, registeredClass) ||
+                other.registeredClass == registeredClass));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, lecturer,
-      const DeepCollectionEquality().hash(_classes));
+      const DeepCollectionEquality().hash(_classes), registeredClass);
 
   @JsonKey(ignore: true)
   @override
@@ -205,10 +250,12 @@ class _$SelectedSubjectSubjectsEntityImpl
 abstract class _SelectedSubjectSubjectsEntity
     implements SelectedSubjectSubjectsEntity {
   const factory _SelectedSubjectSubjectsEntity(
-      {final String? id,
-      final String? name,
-      final String? lecturer,
-      final List<String>? classes}) = _$SelectedSubjectSubjectsEntityImpl;
+          {final String? id,
+          final String? name,
+          final String? lecturer,
+          final List<String>? classes,
+          required final ClassEntity? registeredClass}) =
+      _$SelectedSubjectSubjectsEntityImpl;
 
   factory _SelectedSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectSubjectsEntityImpl.fromJson;
@@ -221,6 +268,8 @@ abstract class _SelectedSubjectSubjectsEntity
   String? get lecturer;
   @override
   List<String>? get classes;
+  @override
+  ClassEntity? get registeredClass;
   @override
   @JsonKey(ignore: true)
   _$$SelectedSubjectSubjectsEntityImplCopyWith<
