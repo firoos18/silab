@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/widgets/payment_status_pill.dart';
 
@@ -25,45 +26,48 @@ class _UserCardState extends State<UserCard> {
 
           textAvatar = firstName + lastName;
 
-          return Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
-            decoration: BoxDecoration(
-              color: const Color(0xfff8f8f8),
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 32,
-                  child: Text(
-                    textAvatar,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+          return GestureDetector(
+            onTap: () => context.pushNamed('user-detail'),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              decoration: BoxDecoration(
+                color: const Color(0xfff8f8f8),
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 32,
+                    child: Text(
+                      textAvatar,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                const Spacer(flex: 1),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      state.userDetailEntity!.fullname!,
-                    ),
-                    Text(state.userDetailEntity!.nim!),
-                    const SizedBox(height: 8),
-                    PaymentStatusPill(
-                        paymentStatus: state.userDetailEntity!.paid!),
-                  ],
-                ),
-                const Spacer(flex: 6),
-                const Icon(Icons.chevron_right)
-              ],
+                  const Spacer(flex: 1),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        state.userDetailEntity!.fullname!,
+                      ),
+                      Text(state.userDetailEntity!.nim!),
+                      const SizedBox(height: 8),
+                      PaymentStatusPill(
+                          paymentStatus: state.userDetailEntity!.paid!),
+                    ],
+                  ),
+                  const Spacer(flex: 6),
+                  const Icon(Icons.chevron_right)
+                ],
+              ),
             ),
           );
         } else {

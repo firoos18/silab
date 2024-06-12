@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_pop_up.dart';
 import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 
@@ -18,7 +19,16 @@ class LogOutButton extends StatelessWidget {
       },
       child: ElevatedButton(
         onPressed: () {
-          context.read<LogoutBloc>().add(LogOutButtonTapped());
+          showDialog(
+            context: context,
+            builder: (context) => CustomPopUp(
+              action: () {
+                context.read<LogoutBloc>().add(LogOutButtonTapped());
+              },
+              body: 'Are you sure you want to Log Out?',
+              title: 'Log Out',
+            ),
+          );
         },
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
