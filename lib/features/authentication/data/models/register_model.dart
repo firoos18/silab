@@ -9,6 +9,7 @@ class RegisterModel {
   final String? repeatPassword;
   final String? fullname;
   final String? nim;
+  final String? phoneNumber;
 
   RegisterModel({
     this.email,
@@ -16,6 +17,7 @@ class RegisterModel {
     this.nim,
     this.password,
     this.repeatPassword,
+    this.phoneNumber,
   });
 
   Map<String, dynamic> toJson() => _$RegisterModelToJson(this);

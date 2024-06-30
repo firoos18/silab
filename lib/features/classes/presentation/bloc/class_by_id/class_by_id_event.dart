@@ -9,4 +9,6 @@ class ClassByIdEvent extends Equatable {
   List<Object?> get props => [classId];
 }
 
-final class ClassDetailPageOpened extends ClassByIdEvent {}
+final class ClassDetailPageOpened extends ClassByIdEvent {
+  const ClassDetailPageOpened({super.classId});
+}

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silab/core/common/entities/class/class_entity.dart';
+import 'package:silab/features/classes/domain/entities/class/class_entity.dart';
 import 'package:silab/features/classes/domain/usecases/get_class_by_id_usecase.dart';
 
 part 'class_by_id_event.dart';

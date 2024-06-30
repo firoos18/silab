@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:silab/app_confid.dart';
 import 'package:silab/core/router/router.dart';
 import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
@@ -89,6 +90,10 @@ class MainApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp.router(
+        theme: ThemeData(
+          textTheme: GoogleFonts.manropeTextTheme(),
+          scaffoldBackgroundColor: Colors.white,
+        ),
         routerConfig: router,
       ),
     );

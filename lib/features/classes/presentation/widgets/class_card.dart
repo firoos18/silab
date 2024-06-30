@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
 
 class ClassCard extends StatelessWidget {
@@ -9,7 +10,10 @@ class ClassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => context.pushNamed(
+        'class',
+        pathParameters: {'id': classEntity.id!},
+      ),
       borderRadius: BorderRadius.circular(8),
       radius: 150,
       child: Container(

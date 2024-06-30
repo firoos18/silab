@@ -4,11 +4,14 @@ import 'package:silab/app_confid.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
 import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
 import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
+import 'package:silab/features/authentication/presentation/pages/user_info_page.dart';
+import 'package:silab/features/authentication/presentation/pages/user_info_page_extra.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_otp_page.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_otp_page_extra.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
+import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
 import 'package:silab/features/subjects/presentation/pages/subject_detail_page.dart';
 import 'package:silab/features/subjects/presentation/pages/subject_detail_page_extras.dart';
@@ -36,6 +39,13 @@ final GoRouter router = GoRouter(
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => AuthenticationPage(
         formType: state.extra as FormType,
+      ),
+    ),
+    GoRoute(
+      path: '/user-info',
+      name: 'user-info',
+      builder: (context, state) => UserInfoPage(
+        userInfoPageExtra: state.extra as UserInfoPageExtra,
       ),
     ),
     GoRoute(
@@ -80,6 +90,13 @@ final GoRouter router = GoRouter(
       builder: (context, state) => SubjectDetailPage(
         subjectDetailPageExtras: state.extra as SubjectDetailPageExtras,
         id: state.pathParameters['id']!,
+      ),
+    ),
+    GoRoute(
+      path: '/class/:id',
+      name: 'class',
+      builder: (context, state) => ClassDetailPage(
+        classId: state.pathParameters['id'],
       ),
     ),
     StatefulShellRoute.indexedStack(

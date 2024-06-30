@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
+import 'package:silab/core/common/widgets/custom_textformfield.dart';
 
 enum FormType { login, register }
 
@@ -9,6 +11,7 @@ class AuthenticationForm extends StatefulWidget {
   final TextEditingController? repeatPasswordController;
   final TextEditingController? fullnameController;
   final TextEditingController? nimController;
+  final TextEditingController? waController;
   final GlobalKey<FormState> formKey;
 
   const AuthenticationForm({
@@ -20,6 +23,7 @@ class AuthenticationForm extends StatefulWidget {
     this.nimController,
     this.passwordController,
     this.repeatPasswordController,
+    this.waController,
   });
 
   @override
@@ -28,8 +32,6 @@ class AuthenticationForm extends StatefulWidget {
 
 class _AuthenticationFormState extends State<AuthenticationForm> {
   String? password = "";
-  bool showPassword = false;
-  bool showRepeatPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +41,10 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
         mainAxisSize: MainAxisSize.min,
         children: widget.formType == FormType.register
             ? [
-                TextFormField(
-                  controller: widget.emailController,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    hintText: "Email",
-                  ),
+                CustomTextFormField(
+                  controller: widget.emailController!,
+                  hintText: 'Email',
+                  isObscure: false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Email Cannot be Empty!";
@@ -56,28 +53,15 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                     }
                     return null;
                   },
+                  prefixIcon: Boxicons.bx_envelope,
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
-                  controller: widget.passwordController,
-                  autofocus: false,
-                  obscureText: !showPassword,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          showPassword = !showPassword;
-                        });
-                      },
-                      icon: !showPassword
-                          ? const Icon(Icons.visibility)
-                          : const Icon(Icons.visibility_off),
-                    ),
-                    hintText: "Password",
-                  ),
+                CustomTextFormField(
+                  hintText: 'Password',
+                  controller: widget.passwordController!,
+                  isObscure: true,
+                  prefixIcon: Boxicons.bx_lock,
+                  suffixIcon: Boxicons.bx_show,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Password Cannot be Empty!";
@@ -86,33 +70,17 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                     }
                     return null;
                   },
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
+                  onChanged: (value) => setState(() {
+                    password = value;
+                  }),
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
-                  controller: widget.repeatPasswordController,
-                  autofocus: false,
-                  obscureText: !showRepeatPassword,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          showRepeatPassword = !showRepeatPassword;
-                        });
-                      },
-                      icon: !showRepeatPassword
-                          ? const Icon(Icons.visibility)
-                          : const Icon(Icons.visibility_off),
-                    ),
-                    hintText: "Repeat Password",
-                  ),
+                CustomTextFormField(
+                  hintText: 'Repeat Password',
+                  controller: widget.repeatPasswordController!,
+                  isObscure: true,
+                  prefixIcon: Boxicons.bx_lock,
+                  suffixIcon: Boxicons.bx_show,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Email Cannot be Empty!";
@@ -123,15 +91,11 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                   },
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
-                  controller: widget.fullnameController,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    hintText: "Fullname",
-                  ),
+                CustomTextFormField(
+                  hintText: 'Fullname',
+                  controller: widget.fullnameController!,
+                  isObscure: false,
+                  prefixIcon: Boxicons.bx_user,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Fullname Cannot be Empty!";
@@ -140,35 +104,39 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                   },
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
-                  controller: widget.nimController,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    hintText: "NIM",
-                  ),
+                CustomTextFormField(
+                  hintText: 'NIM',
+                  controller: widget.nimController!,
+                  isObscure: false,
+                  prefixIcon: Boxicons.bx_id_card,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "NIM Cannot be Empty";
+                      return "NIM Cannot be Empty!";
                     } else if (value.length < 10) {
                       return "Please Provide a Valid NIM";
                     }
                     return null;
                   },
                 ),
+                const SizedBox(height: 8),
+                CustomTextFormField(
+                  hintText: 'WhatsApp Number',
+                  controller: widget.waController!,
+                  isObscure: false,
+                  prefixIcon: Boxicons.bx_phone,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "NIM Cannot be Empty!";
+                    }
+                    return null;
+                  },
+                ),
               ]
             : [
-                TextFormField(
-                  controller: widget.emailController,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    hintText: "Email",
-                  ),
+                CustomTextFormField(
+                  controller: widget.emailController!,
+                  hintText: 'Email',
+                  isObscure: false,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Email Cannot be Empty!";
@@ -177,28 +145,15 @@ class _AuthenticationFormState extends State<AuthenticationForm> {
                     }
                     return null;
                   },
+                  prefixIcon: Boxicons.bx_envelope,
                 ),
                 const SizedBox(height: 8),
-                TextFormField(
-                  controller: widget.passwordController,
-                  autofocus: false,
-                  obscureText: !showPassword,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          showPassword = !showPassword;
-                        });
-                      },
-                      icon: !showPassword
-                          ? const Icon(Icons.visibility)
-                          : const Icon(Icons.visibility_off),
-                    ),
-                    hintText: "Password",
-                  ),
+                CustomTextFormField(
+                  hintText: 'Password',
+                  controller: widget.passwordController!,
+                  isObscure: true,
+                  prefixIcon: Boxicons.bx_lock,
+                  suffixIcon: Boxicons.bx_show,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Password Cannot be Empty!";
