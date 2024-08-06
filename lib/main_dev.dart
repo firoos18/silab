@@ -93,6 +93,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           textTheme: GoogleFonts.manropeTextTheme(),
           scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
         ),
         routerConfig: router,
       ),

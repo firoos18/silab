@@ -55,7 +55,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
             Navigator.of(context, rootNavigator: true).pop();
           } else if (state is RegisterSuccess) {
-            context.goNamed(
+            context.pushNamed(
               'verify-otp',
               extra: VerifyOtpPageExtra(
                 email: state.registerData!.email,

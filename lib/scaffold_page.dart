@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/entities/bottom_navbar/bottom_navbar_entity.dart';
+import 'package:silab/core/common/widgets/custom_bottom_navbar.dart';
+import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
+import 'package:silab/features/user_details/presentation/widgets/user_welcome_widget.dart';
 
 class ScaffoldPage extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -16,10 +22,13 @@ class ScaffoldPage extends StatefulWidget {
 class _ScaffoldPageState extends State<ScaffoldPage> {
   int currentIndex = 0;
 
-  List<BottomNavigationBarItem> items = [
-    const BottomNavigationBarItem(icon: Icon(Icons.home), label: "HOME"),
-    const BottomNavigationBarItem(icon: Icon(Icons.search), label: "FIND"),
-    const BottomNavigationBarItem(icon: Icon(Icons.person), label: "PROFILE"),
+  List<BottomNavbarEntity> items = [
+    BottomNavbarEntity(
+        icon: SvgPicture.asset('assets/image/home.svg'), label: 'Beranda'),
+    BottomNavbarEntity(
+        icon: SvgPicture.asset('assets/image/schedule.svg'), label: 'Jadwal'),
+    BottomNavbarEntity(
+        icon: SvgPicture.asset('assets/image/profile.svg'), label: 'Profil'),
   ];
 
   void _goBranch(int index) {
@@ -30,16 +39,35 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
   }
 
   @override
+  void initState() {
+    context.read<UserDetailsBloc>().add(GetUserDetails());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          currentIndex == 0
-              ? "Home"
-              : currentIndex == 1
-                  ? "Find"
-                  : "Profile",
-        ),
+        title: currentIndex != 0
+            ? Text(
+                currentIndex == 1 ? "Find" : "Profile",
+              )
+            : const UserWelcomeWidget(),
+        actions: currentIndex == 0
+            ? [
+                Container(
+                  margin: const EdgeInsets.only(right: 15),
+                  padding: const EdgeInsets.all(8),
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xffFFBF01).withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: SvgPicture.asset('assets/image/notification.svg'),
+                )
+              ]
+            : null,
       ),
       body: SafeArea(
         child: Padding(
@@ -47,17 +75,16 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
           child: widget.navigationShell,
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: items,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
+      bottomNavigationBar: CustomBottomNavbar(
+          currentIndex: currentIndex,
+          items: items,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
 
-          _goBranch(index);
-        },
-      ),
+            _goBranch(index);
+          }),
     );
   }
 }

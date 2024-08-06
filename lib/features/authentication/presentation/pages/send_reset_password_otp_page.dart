@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_large_button.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
+import 'package:silab/core/common/widgets/custom_textformfield.dart';
 import 'package:silab/features/authentication/data/models/send_reset_password_otp_model.dart';
 import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
@@ -29,6 +32,7 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Reset Password"),
+        backgroundColor: const Color(0xfff4f4f9),
       ),
       body: SafeArea(
         child:
@@ -63,48 +67,48 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
               );
             }
           },
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    "Please provide email and a verification OTP Code will be sent to your email",
-                    textAlign: TextAlign.center,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 95),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  'assets/image/sisinfo-blue.png',
+                  width: 160,
+                  fit: BoxFit.fitWidth,
+                ),
+                const SizedBox(height: 64),
+                const Text(
+                  "Please provide email and a verification OTP Code will be sent to your email",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xff1d1d1d),
                   ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      hintText: "Email Address",
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(double.infinity, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {
-                      final email = _emailController.text.trim();
+                ),
+                const SizedBox(height: 16),
+                CustomTextFormField(
+                  hintText: 'Email Address',
+                  controller: _emailController,
+                  isObscure: false,
+                  prefixIcon: Boxicons.bx_envelope,
+                ),
+                const SizedBox(height: 90),
+                CustomLargeButton(
+                  onPressed: () {
+                    final email = _emailController.text.trim();
 
-                      context.read<SendResetPasswordOtpBloc>().add(
-                            SendResetPasswordOtpButtonTapped(
-                                sendResetPasswordData:
-                                    SendResetPasswordOtpModel(email: email)),
-                          );
-                    },
-                    child: const Text("Confirm"),
-                  ),
-                ],
-              ),
+                    context.read<SendResetPasswordOtpBloc>().add(
+                          SendResetPasswordOtpButtonTapped(
+                              sendResetPasswordData:
+                                  SendResetPasswordOtpModel(email: email)),
+                        );
+                  },
+                  text: 'Confirm',
+                ),
+              ],
             ),
           ),
         ),
