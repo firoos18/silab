@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class UserWelcomeWidget extends StatefulWidget {
   const UserWelcomeWidget({super.key});
@@ -14,10 +15,10 @@ class _UserWelcomeState extends State<UserWelcomeWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<UserDetailsBloc, UserDetailsState>(
       builder: (context, state) {
-        if (state is UserDetailLoading) {
-          return const CupertinoActivityIndicator();
-        } else if (state is UserDetailLoaded) {
-          return Column(
+        return Skeletonizer(
+          enabled: state is UserDetailLoading ? true : false,
+          enableSwitchAnimation: true,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
@@ -28,17 +29,15 @@ class _UserWelcomeState extends State<UserWelcomeWidget> {
                 ),
               ),
               Text(
-                state.userDetailEntity!.fullname!,
+                state.userDetailEntity?.fullname ?? 'User Fullname',
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
               )
             ],
-          );
-        } else {
-          return const SizedBox();
-        }
+          ),
+        );
       },
     );
   }

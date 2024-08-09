@@ -13,6 +13,7 @@ import 'package:silab/features/authentication/presentation/pages/verify_reset_pa
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
+import 'package:silab/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:silab/features/subjects/presentation/pages/subject_detail_page.dart';
 import 'package:silab/features/subjects/presentation/pages/subject_detail_page_extras.dart';
 import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
@@ -119,7 +120,7 @@ final GoRouter router = GoRouter(
             GoRoute(
               path: '/find',
               name: 'find',
-              builder: (context, state) => const HomePage(),
+              builder: (context, state) => const SchedulePage(),
             )
           ],
         ),

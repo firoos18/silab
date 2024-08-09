@@ -24,11 +24,17 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
 
   List<BottomNavbarEntity> items = [
     BottomNavbarEntity(
-        icon: SvgPicture.asset('assets/image/home.svg'), label: 'Beranda'),
+        icon: SvgPicture.asset('assets/image/home.svg'),
+        iconActive: SvgPicture.asset('assets/image/home_active.svg'),
+        label: 'Beranda'),
     BottomNavbarEntity(
-        icon: SvgPicture.asset('assets/image/schedule.svg'), label: 'Jadwal'),
+        icon: SvgPicture.asset('assets/image/schedule.svg'),
+        iconActive: SvgPicture.asset('assets/image/schedule_active.svg'),
+        label: 'Jadwal'),
     BottomNavbarEntity(
-        icon: SvgPicture.asset('assets/image/profile.svg'), label: 'Profil'),
+        icon: SvgPicture.asset('assets/image/profile.svg'),
+        iconActive: SvgPicture.asset('assets/image/profile_active.svg'),
+        label: 'Profil'),
   ];
 
   void _goBranch(int index) {

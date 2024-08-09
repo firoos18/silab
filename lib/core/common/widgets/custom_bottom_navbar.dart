@@ -45,24 +45,28 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      item.icon,
+                      widget.currentIndex == widget.items.indexOf(item)
+                          ? item.iconActive
+                          : item.icon,
                       const SizedBox(height: 2),
-                      Visibility(
-                        visible:
-                            widget.currentIndex == widget.items.indexOf(item)
-                                ? true
-                                : false,
-                        child: Text(
-                          item.label,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.white,
-                            fontWeight: widget.currentIndex ==
-                                    widget.items.indexOf(item)
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
+                      AnimatedDefaultTextStyle(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        style: TextStyle(
+                          fontSize:
+                              widget.currentIndex == widget.items.indexOf(item)
+                                  ? 14
+                                  : 12,
+                          color:
+                              widget.currentIndex == widget.items.indexOf(item)
+                                  ? Colors.white
+                                  : Colors.white70,
+                          fontWeight:
+                              widget.currentIndex == widget.items.indexOf(item)
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
                         ),
+                        child: Text(item.label),
                       ),
                     ],
                   ),

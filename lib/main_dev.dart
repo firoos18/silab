@@ -91,9 +91,16 @@ class MainApp extends StatelessWidget {
       ],
       child: MaterialApp.router(
         theme: ThemeData(
-          textTheme: GoogleFonts.manropeTextTheme(),
+          textTheme: GoogleFonts.manropeTextTheme().apply(
+            bodyColor: const Color(0xff1d1d1d),
+          ),
           scaffoldBackgroundColor: Colors.white,
-          appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.white,
+            titleTextStyle: TextStyle(
+              color: Color(0xff1d1d1d),
+            ),
+          ),
         ),
         routerConfig: router,
       ),
