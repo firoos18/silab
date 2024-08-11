@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:silab/app_confid.dart';
+import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/user_details/domain/entities/user_detail_response/user_detail_response_entity.dart';
 import 'package:http/http.dart' as http;

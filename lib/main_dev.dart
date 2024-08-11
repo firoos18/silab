@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:silab/app_confid.dart';
+import 'package:silab/app_config.dart';
 import 'package:silab/core/router/router.dart';
+import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
+import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/resend_otp/resend_otp_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
@@ -87,6 +89,12 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<AddSelectedSubjectBloc>(
           create: (_) => AddSelectedSubjectBloc(injector()),
+        ),
+        BlocProvider<GetAllAnnouncementsBloc>(
+          create: (_) => GetAllAnnouncementsBloc(injector()),
+        ),
+        BlocProvider<GetAnnouncementBloc>(
+          create: (_) => GetAnnouncementBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

@@ -1,5 +1,12 @@
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:silab/features/announcement/data/data_sources/announcement_api_service.dart';
+import 'package:silab/features/announcement/data/repository/announcement_repository_impl.dart';
+import 'package:silab/features/announcement/domain/repository/announcement_repository.dart';
+import 'package:silab/features/announcement/domain/usecases/get_all_announcements_usecase.dart';
+import 'package:silab/features/announcement/domain/usecases/get_announcement_usecase.dart';
+import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
+import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
 import 'package:silab/features/authentication/data/data_sources/local/authentication_local_datasource.dart';
 import 'package:silab/features/authentication/data/data_sources/remote/authentication_api_service.dart';
 import 'package:silab/features/authentication/data/repositories/authentication_repository_impl.dart';
@@ -67,6 +74,8 @@ Future<void> initializeDependencies() async {
       SelectedSubjectApiService(injector()));
   injector.registerSingleton<ClassesApiService>(ClassesApiService(injector()));
   injector.registerSingleton<SubjectApiService>(SubjectApiService(injector()));
+  injector.registerSingleton<AnnouncementApiService>(
+      AnnouncementApiService(injector()));
 
   // Repositories
   injector.registerSingleton<AuthenticationRepository>(
@@ -77,6 +86,8 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<ClassRepository>(ClassRepositoryImpl(injector()));
   injector
       .registerSingleton<SubjectRepository>(SubjectRepositoryImpl(injector()));
+  injector.registerSingleton<AnnouncementRepository>(
+      AnnouncementRepositoryImpl(injector()));
 
   // UseCases
   injector.registerSingleton<UserLoginUseCase>(UserLoginUseCase(injector()));
@@ -112,6 +123,10 @@ Future<void> initializeDependencies() async {
       GetSubjectListUseCase(injector()));
   injector.registerSingleton<AddSelectedSubjectUseCase>(
       AddSelectedSubjectUseCase(injector()));
+  injector.registerSingleton<GetAllAnnouncementsUseCase>(
+      GetAllAnnouncementsUseCase(injector()));
+  injector.registerSingleton<GetAnnouncementUseCase>(
+      GetAnnouncementUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -137,4 +152,8 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<SubjectListBloc>(() => SubjectListBloc(injector()));
   injector.registerFactory<AddSelectedSubjectBloc>(
       () => AddSelectedSubjectBloc(injector()));
+  injector.registerFactory<GetAnnouncementBloc>(
+      () => GetAnnouncementBloc(injector()));
+  injector.registerFactory<GetAllAnnouncementsBloc>(
+      () => GetAllAnnouncementsBloc(injector()));
 }

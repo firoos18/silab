@@ -76,10 +76,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
             : null,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: widget.navigationShell,
-        ),
+        child: widget.navigationShell,
       ),
       bottomNavigationBar: CustomBottomNavbar(
           currentIndex: currentIndex,

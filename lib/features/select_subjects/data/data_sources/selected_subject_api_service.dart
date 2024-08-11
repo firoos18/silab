@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:silab/app_confid.dart';
+import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/select_subjects/data/models/add_selected_subject_model.dart';
 import 'package:silab/features/select_subjects/domain/entities/add_selected_subject_response/add_selected_subject_response_entity.dart';

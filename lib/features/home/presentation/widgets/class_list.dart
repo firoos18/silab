@@ -15,6 +15,7 @@ class _ClassListState extends State<ClassList> {
     return Flexible(
       child: Container(
         margin: const EdgeInsets.only(top: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

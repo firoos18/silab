@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silab/app_confid.dart';
+import 'package:silab/app_config.dart';
+import 'package:silab/features/announcement/presentation/pages/daftar_praktikum_page.dart';
+import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
 import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
 import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
@@ -98,6 +100,18 @@ final GoRouter router = GoRouter(
       name: 'class',
       builder: (context, state) => ClassDetailPage(
         classId: state.pathParameters['id'],
+      ),
+    ),
+    GoRoute(
+      path: '/daftar-praktikum',
+      name: 'daftar-praktikum',
+      builder: (context, state) => const DaftarPraktikumPage(),
+    ),
+    GoRoute(
+      path: '/pengumuman',
+      name: 'pengumuman',
+      builder: (context, state) => PengumumanPage(
+        pengumumanPageExtra: state.extra as PengumumanPageExtra,
       ),
     ),
     StatefulShellRoute.indexedStack(

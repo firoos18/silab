@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:silab/app_confid.dart';
+import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/authentication/data/models/login_model.dart';
 import 'package:silab/features/authentication/data/models/register_model.dart';
