@@ -24,7 +24,7 @@ class _AddSubjectBottomSheetState extends State<AddSubjectBottomSheet> {
 
   @override
   void initState() {
-    context.read<SubjectListBloc>().add(GetSubjectList());
+    context.read<SubjectListBloc>().add(const GetSubjectList());
     context.read<SelectedSubjectByNimBloc>().add(GetUserSelectedSubjects());
     super.initState();
   }
@@ -143,13 +143,13 @@ class _AddSubjectBottomSheetState extends State<AddSubjectBottomSheet> {
                                   addSelectedSubjectData =
                                   AddSelectedSubjectModel(
                                 subjects: userSelectedSubjectsId,
-                                userId: widget.userId!,
+                                nim: widget.userId!,
                               );
 
                               context.read<AddSelectedSubjectBloc>().add(
                                     AddSelectedSubjectButtonTapped(
-                                        addSelectedSubjectData:
-                                            addSelectedSubjectData),
+                                        subjects:
+                                            addSelectedSubjectData.subjects),
                                   );
                             },
                             body:

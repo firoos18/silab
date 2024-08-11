@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
-import 'package:silab/features/select_subjects/data/models/add_selected_subject_model.dart';
 import 'package:silab/features/select_subjects/domain/entities/add_selected_subject_response/add_selected_subject_response_entity.dart';
 import 'package:silab/features/select_subjects/domain/entities/selected_subject_response/selected_subject_response_entity.dart';
 import 'package:http/http.dart' as http;
@@ -36,9 +35,14 @@ class SelectedSubjectApiService {
   }
 
   Future<AddSelectedSubjectResponseEntity> addSelectedSubject(
-    AddSelectedSubjectModel selectedSubjectData,
+    List<String>? subjects,
   ) async {
     final token = _sharedPreferences.getString('token');
+    final nim = _sharedPreferences.getString('nim');
+    final requestBody = {
+      "nim": nim,
+      "subjects": subjects,
+    };
 
     final response = await http.patch(
       Uri.parse('${AppConfig.shared.baseUrl}/selected-subject/'),
@@ -46,7 +50,7 @@ class SelectedSubjectApiService {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
       },
-      body: jsonEncode(selectedSubjectData.toJson()),
+      body: jsonEncode(requestBody),
     );
 
     if (response.statusCode == 200) {

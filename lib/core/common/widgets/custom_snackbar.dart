@@ -9,11 +9,11 @@ SnackBar snackBar(
   late Color backgroundColor;
 
   if (type == AlertType.error) {
-    backgroundColor = Colors.redAccent;
+    backgroundColor = const Color(0xffFF0000);
   } else if (type == AlertType.info) {
-    backgroundColor = Colors.blueAccent;
+    backgroundColor = const Color(0xffFAC730);
   } else {
-    backgroundColor = Colors.greenAccent;
+    backgroundColor = const Color(0xff27A149);
   }
 
   return SnackBar(

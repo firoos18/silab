@@ -25,6 +25,7 @@ mixin _$SelectedSubjectSubjectsEntity {
   String? get name => throw _privateConstructorUsedError;
   String? get lecturer => throw _privateConstructorUsedError;
   List<String>? get classes => throw _privateConstructorUsedError;
+  int? get semester => throw _privateConstructorUsedError;
   ClassEntity? get registeredClass => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
       String? name,
       String? lecturer,
       List<String>? classes,
+      int? semester,
       ClassEntity? registeredClass});
 
   $ClassEntityCopyWith<$Res>? get registeredClass;
@@ -69,6 +71,7 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
     Object? name = freezed,
     Object? lecturer = freezed,
     Object? classes = freezed,
+    Object? semester = freezed,
     Object? registeredClass = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,6 +91,10 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      semester: freezed == semester
+          ? _value.semester
+          : semester // ignore: cast_nullable_to_non_nullable
+              as int?,
       registeredClass: freezed == registeredClass
           ? _value.registeredClass
           : registeredClass // ignore: cast_nullable_to_non_nullable
@@ -122,6 +129,7 @@ abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
       String? name,
       String? lecturer,
       List<String>? classes,
+      int? semester,
       ClassEntity? registeredClass});
 
   @override
@@ -145,6 +153,7 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? lecturer = freezed,
     Object? classes = freezed,
+    Object? semester = freezed,
     Object? registeredClass = freezed,
   }) {
     return _then(_$SelectedSubjectSubjectsEntityImpl(
@@ -164,6 +173,10 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<String>?,
+      semester: freezed == semester
+          ? _value.semester
+          : semester // ignore: cast_nullable_to_non_nullable
+              as int?,
       registeredClass: freezed == registeredClass
           ? _value.registeredClass
           : registeredClass // ignore: cast_nullable_to_non_nullable
@@ -181,6 +194,7 @@ class _$SelectedSubjectSubjectsEntityImpl
       this.name,
       this.lecturer,
       final List<String>? classes,
+      this.semester,
       required this.registeredClass})
       : _classes = classes;
 
@@ -205,11 +219,13 @@ class _$SelectedSubjectSubjectsEntityImpl
   }
 
   @override
+  final int? semester;
+  @override
   final ClassEntity? registeredClass;
 
   @override
   String toString() {
-    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes, registeredClass: $registeredClass)';
+    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes, semester: $semester, registeredClass: $registeredClass)';
   }
 
   @override
@@ -222,6 +238,8 @@ class _$SelectedSubjectSubjectsEntityImpl
             (identical(other.lecturer, lecturer) ||
                 other.lecturer == lecturer) &&
             const DeepCollectionEquality().equals(other._classes, _classes) &&
+            (identical(other.semester, semester) ||
+                other.semester == semester) &&
             (identical(other.registeredClass, registeredClass) ||
                 other.registeredClass == registeredClass));
   }
@@ -229,7 +247,7 @@ class _$SelectedSubjectSubjectsEntityImpl
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, lecturer,
-      const DeepCollectionEquality().hash(_classes), registeredClass);
+      const DeepCollectionEquality().hash(_classes), semester, registeredClass);
 
   @JsonKey(ignore: true)
   @override
@@ -254,6 +272,7 @@ abstract class _SelectedSubjectSubjectsEntity
           final String? name,
           final String? lecturer,
           final List<String>? classes,
+          final int? semester,
           required final ClassEntity? registeredClass}) =
       _$SelectedSubjectSubjectsEntityImpl;
 
@@ -268,6 +287,8 @@ abstract class _SelectedSubjectSubjectsEntity
   String? get lecturer;
   @override
   List<String>? get classes;
+  @override
+  int? get semester;
   @override
   ClassEntity? get registeredClass;
   @override

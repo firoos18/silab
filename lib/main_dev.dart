@@ -20,6 +20,7 @@ import 'package:silab/features/select_subjects/presentation/bloc/add_selected_su
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/user_selected_subjects_details/bloc/user_selected_subjects_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/injector.dart';
 
@@ -96,6 +97,9 @@ class MainApp extends StatelessWidget {
         BlocProvider<GetAnnouncementBloc>(
           create: (_) => GetAnnouncementBloc(injector()),
         ),
+        BlocProvider<UserSelectedSubjectsDetailsBloc>(
+          create: (_) => UserSelectedSubjectsDetailsBloc(injector()),
+        ),
       ],
       child: MaterialApp.router(
         theme: ThemeData(
@@ -107,6 +111,15 @@ class MainApp extends StatelessWidget {
             backgroundColor: Colors.white,
             titleTextStyle: TextStyle(
               color: Color(0xff1d1d1d),
+            ),
+          ),
+          canvasColor: const Color(0xfff4f4f9),
+          progressIndicatorTheme: const ProgressIndicatorThemeData(
+            color: Color(0xff3272CA),
+          ),
+          checkboxTheme: const CheckboxThemeData(
+            checkColor: MaterialStatePropertyAll(
+              Color(0xfff4f4f9),
             ),
           ),
         ),

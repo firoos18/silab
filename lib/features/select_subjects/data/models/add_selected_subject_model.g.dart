@@ -11,12 +11,12 @@ AddSelectedSubjectModel _$AddSelectedSubjectModelFromJson(
     AddSelectedSubjectModel(
       subjects:
           (json['subjects'] as List<dynamic>).map((e) => e as String).toList(),
-      userId: json['userId'] as String,
+      nim: json['nim'] as String,
     );
 
 Map<String, dynamic> _$AddSelectedSubjectModelToJson(
         AddSelectedSubjectModel instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
+      'nim': instance.nim,
       'subjects': instance.subjects,
     };

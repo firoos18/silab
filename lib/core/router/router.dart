@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/features/announcement/presentation/pages/daftar_praktikum_page.dart';
 import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
+import 'package:silab/features/announcement/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
 import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
 import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
@@ -102,18 +103,6 @@ final GoRouter router = GoRouter(
         classId: state.pathParameters['id'],
       ),
     ),
-    GoRoute(
-      path: '/daftar-praktikum',
-      name: 'daftar-praktikum',
-      builder: (context, state) => const DaftarPraktikumPage(),
-    ),
-    GoRoute(
-      path: '/pengumuman',
-      name: 'pengumuman',
-      builder: (context, state) => PengumumanPage(
-        pengumumanPageExtra: state.extra as PengumumanPageExtra,
-      ),
-    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           ScaffoldPage(navigationShell: navigationShell),
@@ -125,6 +114,28 @@ final GoRouter router = GoRouter(
               path: '/home',
               name: 'home',
               builder: (context, state) => const HomePage(),
+              routes: [
+                GoRoute(
+                  path: 'daftar-praktikum',
+                  name: 'daftar-praktikum',
+                  builder: (context, state) => const DaftarPraktikumPage(),
+                ),
+                GoRoute(
+                  path: 'ringkasan-praktikum',
+                  name: 'ringkasan-praktikum',
+                  builder: (context, state) => RingkasanDaftarPage(
+                    ringkasanDaftarPageExtra:
+                        state.extra as RingkasanDaftarPageExtra,
+                  ),
+                ),
+                GoRoute(
+                  path: 'pengumuman',
+                  name: 'pengumuman',
+                  builder: (context, state) => PengumumanPage(
+                    pengumumanPageExtra: state.extra as PengumumanPageExtra,
+                  ),
+                ),
+              ],
             )
           ],
         ),
@@ -132,8 +143,8 @@ final GoRouter router = GoRouter(
           navigatorKey: _shellNavigatorFind,
           routes: [
             GoRoute(
-              path: '/find',
-              name: 'find',
+              path: '/schedule',
+              name: 'schedule',
               builder: (context, state) => const SchedulePage(),
             )
           ],

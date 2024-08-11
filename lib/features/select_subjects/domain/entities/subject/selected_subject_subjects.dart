@@ -11,6 +11,7 @@ class SelectedSubjectSubjectsEntity with _$SelectedSubjectSubjectsEntity {
     final String? name,
     final String? lecturer,
     final List<String>? classes,
+    final int? semester,
     required ClassEntity? registeredClass,
   }) = _SelectedSubjectSubjectsEntity;
 

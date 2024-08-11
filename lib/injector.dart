@@ -49,8 +49,10 @@ import 'package:silab/features/subjects/data/repository/subject_repository_impl.
 import 'package:silab/features/subjects/domain/repository/subject_repository.dart';
 import 'package:silab/features/subjects/domain/usecases/get_subject_details_usecase.dart';
 import 'package:silab/features/subjects/domain/usecases/get_subject_list_usecase.dart';
+import 'package:silab/features/subjects/domain/usecases/get_user_selected_subjects_details_usecase.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
+import 'package:silab/features/subjects/presentation/bloc/user_selected_subjects_details/bloc/user_selected_subjects_details_bloc.dart';
 import 'package:silab/features/user_details/data/data_sources/user_api_service.dart';
 import 'package:silab/features/user_details/data/repositories/user_repository_impl.dart';
 import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
@@ -127,6 +129,8 @@ Future<void> initializeDependencies() async {
       GetAllAnnouncementsUseCase(injector()));
   injector.registerSingleton<GetAnnouncementUseCase>(
       GetAnnouncementUseCase(injector()));
+  injector.registerSingleton<GetUserSelectedSubjectsDetailsUseCase>(
+      GetUserSelectedSubjectsDetailsUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -156,4 +160,6 @@ Future<void> initializeDependencies() async {
       () => GetAnnouncementBloc(injector()));
   injector.registerFactory<GetAllAnnouncementsBloc>(
       () => GetAllAnnouncementsBloc(injector()));
+  injector.registerFactory<UserSelectedSubjectsDetailsBloc>(
+      () => UserSelectedSubjectsDetailsBloc(injector()));
 }

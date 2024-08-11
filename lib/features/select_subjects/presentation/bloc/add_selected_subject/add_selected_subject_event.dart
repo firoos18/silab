@@ -1,14 +1,14 @@
 part of 'add_selected_subject_bloc.dart';
 
 class AddSelectedSubjectEvent extends Equatable {
-  final AddSelectedSubjectModel? addSelectedSubjectData;
+  final List<String>? subjects;
 
-  const AddSelectedSubjectEvent({this.addSelectedSubjectData});
+  const AddSelectedSubjectEvent({this.subjects});
 
   @override
-  List<Object?> get props => [addSelectedSubjectData];
+  List<Object?> get props => [subjects];
 }
 
 final class AddSelectedSubjectButtonTapped extends AddSelectedSubjectEvent {
-  const AddSelectedSubjectButtonTapped({super.addSelectedSubjectData});
+  const AddSelectedSubjectButtonTapped({super.subjects});
 }

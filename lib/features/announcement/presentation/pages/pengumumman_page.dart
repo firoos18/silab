@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class PengumumanPageExtra {
   final String? posterUrl;
@@ -19,25 +18,7 @@ class PengumumanPage extends StatefulWidget {
 class _PengumumanPageState extends State<PengumumanPage> {
   @override
   Widget build(BuildContext context) {
-    print(widget.pengumumanPageExtra.posterUrl);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Pengumuman',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        leading: InkWell(
-          onTap: () => context.pop(),
-          borderRadius: BorderRadius.circular(100),
-          child: const Icon(
-            Icons.chevron_left,
-            size: 32,
-          ),
-        ),
-      ),
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,

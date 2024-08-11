@@ -19,8 +19,8 @@ class SubjectListBloc extends Bloc<SubjectListEvent, SubjectListState> {
   ) async {
     emit(SubjectListLoading());
 
-    final data =
-        await _getSubjectListUseCase.subjectRepository.getSubjectList();
+    final data = await _getSubjectListUseCase.subjectRepository
+        .getSubjectList(semester: event.semester);
 
     data.fold(
       (left) => emit(SubjectListFailed(message: left.message)),

@@ -10,6 +10,7 @@ class SubjectEntity with _$SubjectEntity {
     final String? id,
     final String? name,
     final String? lecturer,
+    final int? semester,
     final List<ClassEntity>? classes,
   }) = _SubjectEntity;
 

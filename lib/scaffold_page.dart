@@ -50,31 +50,76 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
     super.initState();
   }
 
+  var appBarTitle = '';
+
   @override
   Widget build(BuildContext context) {
+    var currentRoute = GoRouterState.of(context).uri.toString();
+
+    switch (currentRoute) {
+      case '/home/daftar-praktikum':
+        setState(() {
+          appBarTitle = 'Pendaftaran Praktikum';
+        });
+        break;
+      case '/home/pengumuman':
+        setState(() {
+          appBarTitle = 'Pengumuman';
+        });
+        break;
+      case '/home/ringkasan-praktikum':
+        setState(() {
+          appBarTitle = 'Ringkasan Pendaftaran';
+        });
+        break;
+      default:
+        break;
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        title: currentIndex != 0
-            ? Text(
-                currentIndex == 1 ? "Find" : "Profile",
-              )
-            : const UserWelcomeWidget(),
-        actions: currentIndex == 0
-            ? [
-                Container(
-                  margin: const EdgeInsets.only(right: 15),
-                  padding: const EdgeInsets.all(8),
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xffFFBF01).withOpacity(0.7),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: SvgPicture.asset('assets/image/notification.svg'),
-                )
-              ]
-            : null,
-      ),
+      appBar: currentRoute == '/home' ||
+              currentRoute == '/schedule' ||
+              currentRoute == '/profile'
+          ? AppBar(
+              title: currentIndex != 0
+                  ? Text(
+                      currentIndex == 1 ? "Find" : "Profile",
+                    )
+                  : const UserWelcomeWidget(),
+              actions: currentIndex == 0
+                  ? [
+                      Container(
+                        margin: const EdgeInsets.only(right: 15),
+                        padding: const EdgeInsets.all(8),
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffFFBF01).withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child:
+                            SvgPicture.asset('assets/image/notification.svg'),
+                      )
+                    ]
+                  : null,
+            )
+          : AppBar(
+              title: Text(
+                appBarTitle,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              leading: InkWell(
+                onTap: () => context.pop(),
+                borderRadius: BorderRadius.circular(100),
+                child: const Icon(
+                  Icons.chevron_left,
+                  size: 32,
+                ),
+              ),
+            ),
       body: SafeArea(
         child: widget.navigationShell,
       ),

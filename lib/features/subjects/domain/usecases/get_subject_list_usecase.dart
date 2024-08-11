@@ -5,14 +5,14 @@ import 'package:silab/features/subjects/domain/entities/subject_list_response/su
 import 'package:silab/features/subjects/domain/repository/subject_repository.dart';
 
 class GetSubjectListUseCase
-    implements UseCase<Either<Failures, SubjectListResponseEntity>, Null> {
+    implements UseCase<Either<Failures, SubjectListResponseEntity>, int?> {
   final SubjectRepository subjectRepository;
 
   const GetSubjectListUseCase(this.subjectRepository);
 
   @override
   Future<Either<Failures, SubjectListResponseEntity>> call(
-      {Null params}) async {
-    return await subjectRepository.getSubjectList();
+      {int? params}) async {
+    return await subjectRepository.getSubjectList(semester: params);
   }
 }
