@@ -27,7 +27,7 @@ import 'package:silab/features/subjects/presentation/bloc/subject_details/subjec
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/user_selected_subjects_details/bloc/user_selected_subjects_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
-import 'package:silab/firebase_options.dart';
+import 'package:silab/firebase_options_dev.dart';
 import 'package:silab/injector.dart';
 
 void main() async {

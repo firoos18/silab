@@ -1,5 +1,9 @@
 ### Flutter Generated
 
+## Firebase Options
+lib/firebase_options_dev.dart
+lib/firebase_options_prod.dart
+
 ## Env
 .env
 
