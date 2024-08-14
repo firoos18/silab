@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/app_config.dart';
-import 'package:silab/features/announcement/presentation/pages/daftar_praktikum_page.dart';
+import 'package:silab/features/select_subjects/presentation/pages/daftar_praktikum_page.dart';
 import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
-import 'package:silab/features/announcement/presentation/pages/ringkasan_daftar_page.dart';
+import 'package:silab/features/select_subjects/presentation/pages/payment_status_page.dart';
+import 'package:silab/features/select_subjects/presentation/pages/pilih_kelas_page.dart';
+import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
 import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
 import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
@@ -129,11 +131,21 @@ final GoRouter router = GoRouter(
                   ),
                 ),
                 GoRoute(
+                  path: 'payment-status',
+                  name: 'payment-status',
+                  builder: (context, state) => const PaymentStatusPage(),
+                ),
+                GoRoute(
                   path: 'pengumuman',
                   name: 'pengumuman',
                   builder: (context, state) => PengumumanPage(
                     pengumumanPageExtra: state.extra as PengumumanPageExtra,
                   ),
+                ),
+                GoRoute(
+                  path: 'pilih-kelas',
+                  name: 'pilih-kelas',
+                  builder: (context, state) => const PilihKelasPage(),
                 ),
               ],
             )

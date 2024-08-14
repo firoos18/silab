@@ -9,4 +9,6 @@ abstract class SelectedSubjectRepository {
 
   Future<Either<Failures, AddSelectedSubjectResponseEntity>> addSelectedSubject(
       {List<String>? subjects});
+
+  Either<Failures, Map<String, dynamic>> getUserPaymentStatus();
 }

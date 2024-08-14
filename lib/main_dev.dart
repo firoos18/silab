@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/core/router/router.dart';
+import 'package:silab/core/services/notification_service.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
@@ -17,16 +21,30 @@ import 'package:silab/features/authentication/presentation/bloc/verify_reset_pas
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/get_payment_status/get_payment_status_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/user_selected_subjects_details/bloc/user_selected_subjects_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
+import 'package:silab/firebase_options.dart';
 import 'package:silab/injector.dart';
 
 void main() async {
+  await dotenv.load(fileName: '.env');
+
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final notificationService = NotificationService(router);
+  await notificationService.initialize();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await initializeDependencies();
+
   runApp(const MainApp());
 
   AppConfig.create(
@@ -34,6 +52,11 @@ void main() async {
     baseUrl: "https://silab-dev.vercel.app",
     flavor: Flavor.dev,
   );
+}
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message: ${message.messageId}');
 }
 
 class MainApp extends StatelessWidget {
@@ -99,6 +122,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<UserSelectedSubjectsDetailsBloc>(
           create: (_) => UserSelectedSubjectsDetailsBloc(injector()),
+        ),
+        BlocProvider<GetPaymentStatusBloc>(
+          create: (_) => GetPaymentStatusBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

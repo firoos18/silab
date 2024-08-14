@@ -1,3 +1,5 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silab/features/announcement/data/data_sources/announcement_api_service.dart';
@@ -41,8 +43,10 @@ import 'package:silab/features/select_subjects/data/data_sources/selected_subjec
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
 import 'package:silab/features/select_subjects/domain/usecases/add_selected_subject_usecase.dart';
+import 'package:silab/features/select_subjects/domain/usecases/get_payment_status_usecase.dart';
 import 'package:silab/features/select_subjects/domain/usecases/get_selected_subject_by_nim_usecase.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/get_payment_status/get_payment_status_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/subjects/data/data_sources/subject_api_service.dart';
 import 'package:silab/features/subjects/data/repository/subject_repository_impl.dart';
@@ -58,22 +62,32 @@ import 'package:silab/features/user_details/data/repositories/user_repository_im
 import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
 import 'package:silab/features/user_details/domain/usecases/get_user_details_usecase.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final injector = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // Supabase
+  injector.registerSingleton<Supabase>(await Supabase.initialize(
+    url: dotenv.get('SUPABASE_URL'),
+    anonKey: dotenv.get('SUPABASE_KEY'),
+  ));
+
+  // Firebase Messaging
+  injector.registerSingleton<FirebaseMessaging>(FirebaseMessaging.instance);
+
   // Shared Preferences
   injector.registerSingleton<SharedPreferences>(
       await SharedPreferences.getInstance());
 
   // Data Sources
-  injector
-      .registerSingleton<AuthenticationApiService>(AuthenticationApiService());
+  injector.registerSingleton<AuthenticationApiService>(
+      AuthenticationApiService(injector(), injector()));
   injector.registerSingleton<AuthenticationLocalDataSource>(
       AuthenticationLocalDataSource(injector()));
   injector.registerSingleton<UserApiService>(UserApiService(injector()));
   injector.registerSingleton<SelectedSubjectApiService>(
-      SelectedSubjectApiService(injector()));
+      SelectedSubjectApiService(injector(), injector()));
   injector.registerSingleton<ClassesApiService>(ClassesApiService(injector()));
   injector.registerSingleton<SubjectApiService>(SubjectApiService(injector()));
   injector.registerSingleton<AnnouncementApiService>(
@@ -131,6 +145,8 @@ Future<void> initializeDependencies() async {
       GetAnnouncementUseCase(injector()));
   injector.registerSingleton<GetUserSelectedSubjectsDetailsUseCase>(
       GetUserSelectedSubjectsDetailsUseCase(injector()));
+  injector.registerSingleton<GetPaymentStatusUseCase>(
+      GetPaymentStatusUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -162,4 +178,6 @@ Future<void> initializeDependencies() async {
       () => GetAllAnnouncementsBloc(injector()));
   injector.registerFactory<UserSelectedSubjectsDetailsBloc>(
       () => UserSelectedSubjectsDetailsBloc(injector()));
+  injector.registerFactory<GetPaymentStatusBloc>(
+      () => GetPaymentStatusBloc(injector()));
 }

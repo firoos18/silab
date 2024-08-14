@@ -72,6 +72,16 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
           appBarTitle = 'Ringkasan Pendaftaran';
         });
         break;
+      case '/home/payment-status':
+        setState(() {
+          appBarTitle = 'Status Pembayaran';
+        });
+        break;
+      case '/home/pilih-kelas':
+        setState(() {
+          appBarTitle = 'Pilih Kelas';
+        });
+        break;
       default:
         break;
     }

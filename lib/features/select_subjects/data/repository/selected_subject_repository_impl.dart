@@ -44,4 +44,15 @@ class SelectedSubjectRepositoryImpl implements SelectedSubjectRepository {
       return Left(RequestFailures(e.message));
     }
   }
+
+  @override
+  Either<Failures, Map<String, dynamic>> getUserPaymentStatus() {
+    try {
+      final result = _selectedSubjectApiService.getUserPaymentStatus();
+
+      return Right(result);
+    } catch (e) {
+      return Left(RequestFailures('Something Went Wrong'));
+    }
+  }
 }

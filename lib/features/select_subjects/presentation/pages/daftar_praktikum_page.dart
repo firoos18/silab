@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silab/features/announcement/presentation/pages/ringkasan_daftar_page.dart';
+import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/subjects/data/models/user_selected_subjects/user_selected_subjects_model.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 

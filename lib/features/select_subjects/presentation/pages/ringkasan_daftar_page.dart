@@ -198,7 +198,7 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                                 if (state is AddSelectedSubjectSuccess) {
                                   Navigator.of(context, rootNavigator: true)
                                       .pop();
-                                  context.goNamed('home');
+                                  context.goNamed('payment-status');
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
                                   ScaffoldMessenger.of(context).showSnackBar(

@@ -6,11 +6,13 @@ import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/select_subjects/domain/entities/add_selected_subject_response/add_selected_subject_response_entity.dart';
 import 'package:silab/features/select_subjects/domain/entities/selected_subject_response/selected_subject_response_entity.dart';
 import 'package:http/http.dart' as http;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SelectedSubjectApiService {
   final SharedPreferences _sharedPreferences;
+  final Supabase supabase;
 
-  const SelectedSubjectApiService(this._sharedPreferences);
+  const SelectedSubjectApiService(this._sharedPreferences, this.supabase);
 
   Future<SelectedSubjectResponseEntity> getSelectedSubjectByNim(
     String? nim,
@@ -62,5 +64,23 @@ class SelectedSubjectApiService {
 
       throw RequestErrorException(data['message']);
     }
+  }
+
+  Map<String, dynamic> getUserPaymentStatus() {
+    final String? nim = _sharedPreferences.getString('nim');
+
+    Map<String, dynamic> payloadData = {};
+
+    supabase.client
+        .channel(nim!)
+        .onBroadcast(
+          event: 'payment-status',
+          callback: (payload) {
+            payloadData = payload;
+          },
+        )
+        .subscribe();
+
+    return payloadData;
   }
 }

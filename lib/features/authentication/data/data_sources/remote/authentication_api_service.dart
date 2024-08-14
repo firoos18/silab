@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/authentication/data/models/login_model.dart';
@@ -17,8 +18,14 @@ import 'package:silab/features/authentication/domain/entities/reset_password/res
 import 'package:silab/features/authentication/domain/entities/send_reset_password_otp/send_reset_password_otp_response_entity.dart';
 import 'package:silab/features/authentication/domain/entities/verify_otp/verify_otp_response_entity.dart';
 import 'package:silab/features/authentication/domain/entities/verify_reset_password_otp/verify_reset_password_otp_response_entity.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthenticationApiService {
+  final FirebaseMessaging _firebaseMessaging;
+  final Supabase _supabase;
+
+  const AuthenticationApiService(this._firebaseMessaging, this._supabase);
+
   Future<LoginResponseEntity> userLogin(
     LoginModel loginData,
   ) async {
@@ -32,6 +39,7 @@ class AuthenticationApiService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      await setupFCM(nim: data['data']['nim']);
       return LoginResponseEntity.fromJson(data);
     } else {
       final data = jsonDecode(response.body);
@@ -154,5 +162,21 @@ class AuthenticationApiService {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
     }
+  }
+
+  Future<void> setupFCM({String? nim}) async {
+    await _firebaseMessaging.requestPermission();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {});
+    String? token = await _firebaseMessaging.getToken();
+
+    if (token != null) {
+      await _supabase.client
+          .from('users')
+          .update({'fcm_token': token}).eq('nim', nim!);
+    }
+
+    _firebaseMessaging.onTokenRefresh.listen((newToken) async {
+      await _supabase.client.from('users').update({'fcm_token': token});
+    });
   }
 }
