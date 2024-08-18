@@ -7,7 +7,7 @@ class SelectedSubjectByNimState extends Equatable {
   const SelectedSubjectByNimState({this.selectedSubjectEntity, this.message});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [selectedSubjectEntity, message];
 }
 
 final class SelectedSubjectByNimInitial extends SelectedSubjectByNimState {}

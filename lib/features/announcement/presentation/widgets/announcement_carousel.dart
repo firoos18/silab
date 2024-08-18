@@ -45,6 +45,7 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
                 state.announcements != null ? state.announcements!.length : 0,
             scrollDirection: Axis.horizontal,
             physics: const PageScrollPhysics(),
+            shrinkWrap: true,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               margin: const EdgeInsets.only(top: 40),

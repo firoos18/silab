@@ -13,7 +13,7 @@ _$SelectedSubjectSubjectsEntityImpl
           name: json['name'] as String?,
           lecturer: json['lecturer'] as String?,
           classes: (json['classes'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => ClassEntity.fromJson(e as Map<String, dynamic>))
               .toList(),
           semester: (json['semester'] as num?)?.toInt(),
           registeredClass: json['registeredClass'] == null

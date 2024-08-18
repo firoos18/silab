@@ -112,6 +112,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                       )
                     ]
                   : null,
+              forceMaterialTransparency: true,
             )
           : AppBar(
               title: Text(
@@ -129,10 +130,12 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                   size: 32,
                 ),
               ),
+              forceMaterialTransparency: true,
             ),
       body: SafeArea(
         child: widget.navigationShell,
       ),
+      extendBody: false,
       bottomNavigationBar: CustomBottomNavbar(
           currentIndex: currentIndex,
           items: items,

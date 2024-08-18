@@ -24,7 +24,7 @@ mixin _$SelectedSubjectSubjectsEntity {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lecturer => throw _privateConstructorUsedError;
-  List<String>? get classes => throw _privateConstructorUsedError;
+  List<ClassEntity>? get classes => throw _privateConstructorUsedError;
   int? get semester => throw _privateConstructorUsedError;
   ClassEntity? get registeredClass => throw _privateConstructorUsedError;
 
@@ -46,7 +46,7 @@ abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
       {String? id,
       String? name,
       String? lecturer,
-      List<String>? classes,
+      List<ClassEntity>? classes,
       int? semester,
       ClassEntity? registeredClass});
 
@@ -90,7 +90,7 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
       classes: freezed == classes
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ClassEntity>?,
       semester: freezed == semester
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
       {String? id,
       String? name,
       String? lecturer,
-      List<String>? classes,
+      List<ClassEntity>? classes,
       int? semester,
       ClassEntity? registeredClass});
 
@@ -172,7 +172,7 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
       classes: freezed == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ClassEntity>?,
       semester: freezed == semester
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
@@ -193,7 +193,7 @@ class _$SelectedSubjectSubjectsEntityImpl
       {this.id,
       this.name,
       this.lecturer,
-      final List<String>? classes,
+      final List<ClassEntity>? classes,
       this.semester,
       required this.registeredClass})
       : _classes = classes;
@@ -208,9 +208,9 @@ class _$SelectedSubjectSubjectsEntityImpl
   final String? name;
   @override
   final String? lecturer;
-  final List<String>? _classes;
+  final List<ClassEntity>? _classes;
   @override
-  List<String>? get classes {
+  List<ClassEntity>? get classes {
     final value = _classes;
     if (value == null) return null;
     if (_classes is EqualUnmodifiableListView) return _classes;
@@ -271,7 +271,7 @@ abstract class _SelectedSubjectSubjectsEntity
           {final String? id,
           final String? name,
           final String? lecturer,
-          final List<String>? classes,
+          final List<ClassEntity>? classes,
           final int? semester,
           required final ClassEntity? registeredClass}) =
       _$SelectedSubjectSubjectsEntityImpl;
@@ -286,7 +286,7 @@ abstract class _SelectedSubjectSubjectsEntity
   @override
   String? get lecturer;
   @override
-  List<String>? get classes;
+  List<ClassEntity>? get classes;
   @override
   int? get semester;
   @override

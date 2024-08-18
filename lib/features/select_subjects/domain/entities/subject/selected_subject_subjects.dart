@@ -10,7 +10,7 @@ class SelectedSubjectSubjectsEntity with _$SelectedSubjectSubjectsEntity {
     final String? id,
     final String? name,
     final String? lecturer,
-    final List<String>? classes,
+    final List<ClassEntity>? classes,
     final int? semester,
     required ClassEntity? registeredClass,
   }) = _SelectedSubjectSubjectsEntity;
