@@ -122,10 +122,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return "Email Cannot be Empty!";
+                                                  return "Email tidak boleh kosong!";
                                                 } else if (!value.contains(
                                                     "@webmail.uad.ac.id")) {
-                                                  return "Please Use Email Provided by Campus!";
+                                                  return "Gunakan Email kampus yang sesuai!";
                                                 }
                                                 return null;
                                               },
@@ -140,7 +140,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return "Password Cannot be Empty!";
+                                                  return "Password tidak boleh kosong!";
                                                 }
                                                 return null;
                                               },
@@ -157,10 +157,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return "Email Cannot be Empty!";
+                                                  return "Email tidak boleh kosong!";
                                                 } else if (!value.contains(
                                                     "@webmail.uad.ac.id")) {
-                                                  return "Please Use Email Provided by Campus!";
+                                                  return "Gunakan Email kampus yang sesuai!";
                                                 }
                                                 return null;
                                               },
@@ -176,9 +176,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return "Password Cannot be Empty!";
+                                                  return "Password tidak boleh kosong!";
                                                 } else if (value.length < 8) {
-                                                  return "Password Must be At Least 8 Characters!";
+                                                  return "Password minimal berjumlah 8 karakter!";
                                                 }
                                                 return null;
                                               },
@@ -189,7 +189,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                             ),
                                             const SizedBox(height: 8),
                                             CustomTextFormField(
-                                              hintText: 'Repeat Password',
+                                              hintText: 'Ulangi Password',
                                               controller:
                                                   _repeatPasswordController,
                                               isObscure: true,
@@ -198,9 +198,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                               validator: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return "Password Cannot be Empty!";
+                                                  return "Password tidak boleh kosong!";
                                                 } else if (value != password) {
-                                                  return "Password Combination is not Match!";
+                                                  return "Kombinasi password tidak sesuai!";
                                                 }
                                                 return null;
                                               },
@@ -285,8 +285,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                                     }
                                   },
                                   text: formType == FormType.register
-                                      ? "Next"
-                                      : "Login",
+                                      ? "Selanjutnya"
+                                      : "Masuk",
                                 ),
                               ),
                             ],

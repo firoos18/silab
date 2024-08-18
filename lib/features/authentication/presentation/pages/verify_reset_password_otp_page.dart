@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
+import 'package:silab/core/common/widgets/custom_large_button.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/authentication/data/models/send_reset_password_otp_model.dart';
@@ -39,10 +40,31 @@ class _VerifyResetPasswordOtpPageState
   }
 
   @override
+  void dispose() {
+    _otpController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Verify OTP Code"),
+        title: const Text(
+          "Verifikasi Kode OTP",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        leading: InkWell(
+          onTap: () => context.pop(),
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(
+            Icons.chevron_left,
+            size: 32,
+          ),
+        ),
+        forceMaterialTransparency: false,
       ),
       body: SafeArea(
         child: MultiBlocListener(
@@ -69,6 +91,7 @@ class _VerifyResetPasswordOtpPageState
                     snackBar("User Verifiend Successfully", AlertType.success),
                   );
 
+                  Navigator.of(context, rootNavigator: true).pop();
                   context.pushNamed(
                     'reset-password',
                     extra: widget.verifyResetPasswordOtpPageExtra.userId,
@@ -117,7 +140,7 @@ class _VerifyResetPasswordOtpPageState
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Input the OTP Code that has been sent to your email.",
+                    "Masukkan kode OTP yang sudah dikirimkan ke Email anda.",
                   ),
                   const SizedBox(height: 16),
                   Column(
@@ -131,7 +154,7 @@ class _VerifyResetPasswordOtpPageState
                       Column(
                         children: [
                           Countdown(
-                            seconds: 10,
+                            seconds: 60 * 3,
                             controller: _timerController,
                             onFinished: () {
                               setState(() {
@@ -146,7 +169,7 @@ class _VerifyResetPasswordOtpPageState
                                       60;
 
                               return Text(
-                                "$minutes:$seconds",
+                                "$minutes:${seconds >= 10 ? seconds : '0$seconds'}",
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -186,7 +209,7 @@ class _VerifyResetPasswordOtpPageState
                                 ),
                                 const SizedBox(width: 4),
                                 Text(
-                                  "Resend OTP Code",
+                                  "Kirim ulang kode OTP",
                                   style: TextStyle(
                                     color: !isTimerRunning
                                         ? Colors.black
@@ -199,7 +222,7 @@ class _VerifyResetPasswordOtpPageState
                         ],
                       ),
                       const SizedBox(height: 24),
-                      ElevatedButton(
+                      CustomLargeButton(
                         onPressed: () {
                           VerifyResetPasswordOtpModel verifyOtpData =
                               VerifyResetPasswordOtpModel(
@@ -212,13 +235,7 @@ class _VerifyResetPasswordOtpPageState
                               VerifyResetPasswordOtpButtonTapped(
                                   verifyResetPasswordOtpData: verifyOtpData));
                         },
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        child: const Text("Verify OTP Code"),
+                        text: 'Verifikasi Kode OTP',
                       ),
                     ],
                   ),

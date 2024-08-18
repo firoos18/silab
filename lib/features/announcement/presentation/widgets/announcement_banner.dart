@@ -33,7 +33,7 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width - 100,
       height: 240,
       decoration: BoxDecoration(
         color: const Color(0xfff4f4f9),

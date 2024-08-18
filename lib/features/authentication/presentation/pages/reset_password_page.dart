@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_large_button.dart';
 import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
+import 'package:silab/core/common/widgets/custom_textformfield.dart';
 import 'package:silab/features/authentication/data/models/reset_password_model.dart';
 import 'package:silab/features/authentication/presentation/bloc/reset_password/reset_password_bloc.dart';
 import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
@@ -31,7 +34,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reset Password"),
+        title: const Text(
+          "Reset Password",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        leading: InkWell(
+          onTap: () => context.pop(),
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(
+            Icons.chevron_left,
+            size: 32,
+          ),
+        ),
+        forceMaterialTransparency: true,
       ),
       body: SafeArea(
         child: BlocListener<ResetPasswordBloc, ResetPasswordState>(
@@ -51,92 +69,71 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             } else if (state is ResetPasswordSuccess) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
-                  snackBar("Password Reset Successfuly", AlertType.success));
+                  snackBar("Password Berhasil Diubah", AlertType.success));
 
               Navigator.of(context, rootNavigator: true).pop();
               context.goNamed('authentication', extra: FormType.login);
             }
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.only(right: 16, left: 16, top: 95),
             child: Form(
               key: formKey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text("Enter a new password combination"),
+                  Image.asset(
+                    'assets/image/sisinfo-blue.png',
+                    width: 160,
+                    fit: BoxFit.fitWidth,
+                  ),
+                  const SizedBox(height: 64),
+                  const Row(
+                    children: [
+                      Text("Masukkan Kombinasi Password Baru"),
+                    ],
+                  ),
                   const SizedBox(height: 16),
-                  TextFormField(
+                  CustomTextFormField(
+                    hintText: "Password Baru",
                     controller: _newPasswordController,
-                    obscureText: showPassword,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showPassword = !showPassword;
-                          });
-                        },
-                        icon: !showPassword
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off),
-                      ),
-                      hintText: "New Password",
-                    ),
+                    isObscure: true,
+                    prefixIcon: Boxicons.bx_lock,
+                    suffixIcon: Boxicons.bx_show,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Password tidak boleh kosong";
+                      } else if (value.length < 8) {
+                        return "Password minimal berjumlah 8 karakter";
+                      }
+                      return null;
+                    },
                     onChanged: (value) {
                       setState(() {
                         newPassword = value;
                       });
                     },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Password cannot be empty";
-                      } else if (value.length < 8) {
-                        return "Password must be at least 8 characters";
-                      }
-                      return null;
-                    },
                   ),
                   const SizedBox(height: 8),
-                  TextFormField(
+                  CustomTextFormField(
+                    hintText: "Ulangi Password Baru",
                     controller: _repeatNewPasswordController,
-                    obscureText: showRepeatPassword,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            showRepeatPassword = !showRepeatPassword;
-                          });
-                        },
-                        icon: !showRepeatPassword
-                            ? const Icon(Icons.visibility)
-                            : const Icon(Icons.visibility_off),
-                      ),
-                      hintText: "Repeat New Password",
-                    ),
+                    isObscure: true,
+                    prefixIcon: Boxicons.bx_lock,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Password cannot be empty";
+                        return "Password tidak boleh kosong";
                       } else if (value.length < 8) {
-                        return "Password must be at least 8 characters";
+                        return "Password minimal berjumlah 8 karakter";
                       } else if (value != newPassword) {
-                        return "Password combination is not matched";
+                        return "Kombinasi password tidak sesuai";
                       }
                       return null;
                     },
+                    suffixIcon: Boxicons.bx_show,
                   ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                  CustomLargeButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
                         final String newPassword =
@@ -156,8 +153,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                                 resetPasswordData: resetPasswordData));
                       }
                     },
-                    child: const Text('Confirm'),
-                  ),
+                    text: 'Konfirmasi',
+                  )
                 ],
               ),
             ),

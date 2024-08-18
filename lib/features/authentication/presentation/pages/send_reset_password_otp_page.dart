@@ -31,8 +31,22 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Reset Password"),
-        backgroundColor: const Color(0xfff4f4f9),
+        title: const Text(
+          "Reset Password",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        forceMaterialTransparency: true,
+        leading: InkWell(
+          onTap: () => context.pop(),
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(
+            Icons.chevron_left,
+            size: 32,
+          ),
+        ),
       ),
       body: SafeArea(
         child:
@@ -53,7 +67,7 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
             } else if (state is SendResetPasswordOtpSuccess) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar("OTP Code Sent", AlertType.info));
+                  .showSnackBar(snackBar("Kode OTP Terkirim", AlertType.info));
 
               Navigator.of(context, rootNavigator: true).pop();
 
@@ -67,48 +81,55 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
               );
             }
           },
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 95),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/image/sisinfo-blue.png',
-                  width: 160,
-                  fit: BoxFit.fitWidth,
-                ),
-                const SizedBox(height: 64),
-                const Text(
-                  "Please provide email and a verification OTP Code will be sent to your email",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xff1d1d1d),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 95),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/image/sisinfo-blue.png',
+                    width: 160,
+                    fit: BoxFit.fitWidth,
                   ),
-                ),
-                const SizedBox(height: 16),
-                CustomTextFormField(
-                  hintText: 'Email Address',
-                  controller: _emailController,
-                  isObscure: false,
-                  prefixIcon: Boxicons.bx_envelope,
-                ),
-                const SizedBox(height: 90),
-                CustomLargeButton(
-                  onPressed: () {
-                    final email = _emailController.text.trim();
+                  const SizedBox(height: 64),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Isikan Email anda, kode OTP akan dikirimkan melalui Email.",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xff1d1d1d),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  CustomTextFormField(
+                    hintText: 'Email Address',
+                    controller: _emailController,
+                    isObscure: false,
+                    prefixIcon: Boxicons.bx_envelope,
+                  ),
+                  const SizedBox(height: 90),
+                  CustomLargeButton(
+                    onPressed: () {
+                      final email = _emailController.text.trim();
 
-                    context.read<SendResetPasswordOtpBloc>().add(
-                          SendResetPasswordOtpButtonTapped(
-                              sendResetPasswordData:
-                                  SendResetPasswordOtpModel(email: email)),
-                        );
-                  },
-                  text: 'Confirm',
-                ),
-              ],
+                      context.read<SendResetPasswordOtpBloc>().add(
+                            SendResetPasswordOtpButtonTapped(
+                                sendResetPasswordData:
+                                    SendResetPasswordOtpModel(email: email)),
+                          );
+                    },
+                    text: 'Selanjutnya',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

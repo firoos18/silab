@@ -27,7 +27,7 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
     final nim = sharedPrefs.getString('nim');
     setState(() {
       _stream = Supabase.instance.client
-          .from('payment')
+          .from('users')
           .stream(primaryKey: ['nim']).eq('nim', nim!);
     });
   }

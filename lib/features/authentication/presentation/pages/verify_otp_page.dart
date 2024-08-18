@@ -41,8 +41,22 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Verify OTP Code"),
-        backgroundColor: const Color(0xfff4f4f9),
+        title: const Text(
+          "Verifikasi Kode OTP",
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        leading: InkWell(
+          onTap: () => context.pop(),
+          borderRadius: BorderRadius.circular(100),
+          child: const Icon(
+            Icons.chevron_left,
+            size: 32,
+          ),
+        ),
+        forceMaterialTransparency: true,
       ),
       body: SafeArea(
         child: MultiBlocListener(
@@ -65,7 +79,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                 } else if (state is VerifyOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    snackBar("User Verifiend Successfully", AlertType.success),
+                    snackBar("User Berhasil Terverifikasi", AlertType.success),
                   );
 
                   context.goNamed('authentication', extra: FormType.login);
@@ -90,7 +104,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar(
-                      "New OTP Code has been Sent to Your Email",
+                      "Kode OTP baru telah dikirim",
                       AlertType.success,
                     ),
                   );
@@ -110,7 +124,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
             child: Column(
               children: [
                 const Text(
-                  "Input the OTP Code that has been sent to your email.",
+                  "Masukkan kode OTP yang sudah dikirimkan ke Email anda.",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -129,7 +143,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                     Column(
                       children: [
                         Countdown(
-                          seconds: 60 * 5,
+                          seconds: 60 * 3,
                           controller: _timerController,
                           onFinished: () {
                             setState(() {
@@ -179,7 +193,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                "Resend OTP Code",
+                                "Kirim ulang kode OTP",
                                 style: TextStyle(
                                   color: !isTimerRunning
                                       ? Colors.black
@@ -202,7 +216,7 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                         context.read<VerifyOtpBloc>().add(VerifyOtpButtonTapped(
                             verifyOtpData: verifyOtpData));
                       },
-                      text: 'Verify OTP Code',
+                      text: 'Verifikasi Kode OTP',
                     ),
                   ],
                 ),

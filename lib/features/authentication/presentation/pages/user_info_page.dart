@@ -84,13 +84,13 @@ class _UserInfoPageState extends State<UserInfoPage> {
                       child: Column(
                         children: [
                           CustomTextFormField(
-                            hintText: 'Fullname',
+                            hintText: 'Nama Lengkap',
                             controller: _fullnameController,
                             isObscure: false,
                             prefixIcon: Boxicons.bx_user,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Fullname Cannot be Empty!";
+                                return "Nama lengkap tidak boleh kosong!";
                               }
                               return null;
                             },
@@ -103,22 +103,22 @@ class _UserInfoPageState extends State<UserInfoPage> {
                             prefixIcon: Boxicons.bx_id_card,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "NIM Cannot be Empty!";
+                                return "NIM tidak boleh kosong!";
                               } else if (value.length < 10) {
-                                return "Please Provide a Valid NIM";
+                                return "Isikan dengan NIM yang sesuai";
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 8),
                           CustomTextFormField(
-                            hintText: 'Phone Number (WA)',
+                            hintText: 'Nomor Telepon (WA)',
                             controller: _waController,
                             isObscure: false,
                             prefixIcon: Boxicons.bx_phone,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Phone Number Cannot be Empty!";
+                                return "Nomor Telepon tidak boleh kosong!";
                               }
                               return null;
                             },
@@ -151,7 +151,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
                                     registerData: registerModel),
                               );
                         },
-                        text: 'Register',
+                        text: 'Daftar',
                       ),
                     ),
                   ],

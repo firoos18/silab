@@ -29,7 +29,9 @@ class _UserWelcomeState extends State<UserWelcomeWidget> {
                 ),
               ),
               Text(
-                state.userDetailEntity?.fullname ?? 'User Fullname',
+                (state is UserDetailLoaded && state.userDetailEntity != null)
+                    ? state.userDetailEntity!.fullname!
+                    : 'User Fullname',
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

@@ -158,6 +158,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return VerifyResetPasswordOtpResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occured');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
