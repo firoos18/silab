@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 enum AlertType { info, success, error }
 
-SnackBar snackBar(
+SnackBar snackBar({
   String? message,
-  AlertType type,
-) {
+  AlertType? type,
+  String? actionLabel,
+  void Function()? action,
+}) {
   late Color backgroundColor;
 
   if (type == AlertType.error) {
@@ -17,10 +19,18 @@ SnackBar snackBar(
   }
 
   return SnackBar(
+    duration: const Duration(seconds: 5),
     content: Text(message!),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     backgroundColor: backgroundColor,
     behavior: SnackBarBehavior.floating,
     margin: const EdgeInsets.only(left: 8, right: 8, bottom: 16),
+    action: (action != null && actionLabel != null)
+        ? SnackBarAction(
+            label: actionLabel,
+            onPressed: action,
+            textColor: Colors.white,
+          )
+        : null,
   );
 }

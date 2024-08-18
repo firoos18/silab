@@ -30,6 +30,8 @@ class SelectedSubjectApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return SelectedSubjectResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -57,30 +59,12 @@ class SelectedSubjectApiService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-
       return AddSelectedSubjectResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
-
       throw RequestErrorException(data['message']);
     }
-  }
-
-  Map<String, dynamic> getUserPaymentStatus() {
-    final String? nim = _sharedPreferences.getString('nim');
-
-    Map<String, dynamic> payloadData = {};
-
-    supabase.client
-        .channel(nim!)
-        .onBroadcast(
-          event: 'payment-status',
-          callback: (payload) {
-            payloadData = payload;
-          },
-        )
-        .subscribe();
-
-    return payloadData;
   }
 }

@@ -81,14 +81,17 @@ class _VerifyResetPasswordOtpPageState
                 } else if (state is VerifyResetPasswordOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    snackBar(state.message, AlertType.error),
+                    snackBar(message: state.message, type: AlertType.error),
                   );
 
                   Navigator.of(context, rootNavigator: true).pop();
                 } else if (state is VerifyResetPasswordOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    snackBar("User Verifiend Successfully", AlertType.success),
+                    snackBar(
+                      message: "User Verifiend Successfully",
+                      type: AlertType.success,
+                    ),
                   );
 
                   Navigator.of(context, rootNavigator: true).pop();
@@ -110,16 +113,20 @@ class _VerifyResetPasswordOtpPageState
                   );
                 } else if (state is ResendResetPasswordOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackBar(state.message, AlertType.error));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    snackBar(
+                      message: state.message,
+                      type: AlertType.error,
+                    ),
+                  );
 
                   Navigator.of(context, rootNavigator: true).pop();
                 } else if (state is ResendResetPasswordOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar(
-                      "New OTP Code has been Sent to Your Email",
-                      AlertType.success,
+                      message: "New OTP Code has been Sent to Your Email",
+                      type: AlertType.success,
                     ),
                   );
 

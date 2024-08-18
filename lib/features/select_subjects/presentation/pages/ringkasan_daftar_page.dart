@@ -202,8 +202,10 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                                   ScaffoldMessenger.of(context)
                                       .hideCurrentSnackBar();
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    snackBar('Pendaftaran Praktikum Sukses',
-                                        AlertType.success),
+                                    snackBar(
+                                      message: 'Pendaftaran Praktikum Sukses',
+                                      type: AlertType.success,
+                                    ),
                                   );
                                 }
                               },

@@ -25,6 +25,8 @@ class ClassesApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return ClassesResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -44,6 +46,8 @@ class ClassesApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return ClassResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);

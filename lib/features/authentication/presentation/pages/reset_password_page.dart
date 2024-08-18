@@ -62,14 +62,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               );
             } else if (state is ResetPasswordFailed) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar(state.message, AlertType.error));
+              ScaffoldMessenger.of(context).showSnackBar(
+                snackBar(
+                  message: state.message,
+                  type: AlertType.error,
+                ),
+              );
 
               Navigator.of(context, rootNavigator: true).pop();
             } else if (state is ResetPasswordSuccess) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
-                  snackBar("Password Berhasil Diubah", AlertType.success));
+                snackBar(
+                  message: "Password Berhasil Diubah",
+                  type: AlertType.success,
+                ),
+              );
 
               Navigator.of(context, rootNavigator: true).pop();
               context.goNamed('authentication', extra: FormType.login);

@@ -72,14 +72,17 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                 } else if (state is VerifyOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    snackBar(state.message, AlertType.error),
+                    snackBar(message: state.message, type: AlertType.error),
                   );
 
                   Navigator.of(context, rootNavigator: true).pop();
                 } else if (state is VerifyOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    snackBar("User Berhasil Terverifikasi", AlertType.success),
+                    snackBar(
+                      message: "User Berhasil Terverifikasi",
+                      type: AlertType.success,
+                    ),
                   );
 
                   context.goNamed('authentication', extra: FormType.login);
@@ -96,16 +99,20 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   );
                 } else if (state is ResendOtpFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(snackBar(state.message, AlertType.error));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    snackBar(
+                      message: state.message,
+                      type: AlertType.error,
+                    ),
+                  );
 
                   Navigator.of(context, rootNavigator: true).pop();
                 } else if (state is ResendOtpSuccess) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
                   ScaffoldMessenger.of(context).showSnackBar(
                     snackBar(
-                      "Kode OTP baru telah dikirim",
-                      AlertType.success,
+                      message: "Kode OTP baru telah dikirim",
+                      type: AlertType.success,
                     ),
                   );
 

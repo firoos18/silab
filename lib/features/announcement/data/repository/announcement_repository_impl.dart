@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:either_dart/either.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/core/failures/failures.dart';
@@ -19,6 +22,8 @@ class AnnouncementRepositoryImpl extends AnnouncementRepository {
       return Right(result.data!);
     } on RequestErrorException catch (e) {
       return Left(RequestFailures(e.message));
+    } on SocketException catch (e) {
+      return Left(RequestFailures(e.message));
     }
   }
 
@@ -30,6 +35,8 @@ class AnnouncementRepositoryImpl extends AnnouncementRepository {
       return Right(result.data!);
     } on RequestErrorException catch (e) {
       return Left(RequestFailures(e.message));
+    } on SocketException {
+      return Left(RequestFailures('A network error occurred'));
     }
   }
 }

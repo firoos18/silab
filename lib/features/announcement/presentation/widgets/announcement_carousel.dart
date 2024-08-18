@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/widgets/announcement_banner.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -23,6 +24,7 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               margin: const EdgeInsets.only(top: 40),
+              width: MediaQuery.of(context).size.width - 100,
               child: const AnnouncementBanner(
                 desc: 'Deskripsi Pengumuman',
                 title: 'Judul Pengumuman',
@@ -51,6 +53,28 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
                 title: state.announcements![index].title!,
                 type: state.announcements![index].type!,
                 posterUrl: state.announcements![index].posterUrl,
+              ),
+            ),
+          );
+        } else if (state is GetAllAnnouncementsFailed) {
+          return Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            margin: const EdgeInsets.only(top: 40),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    'An Error Occurred!',
+                  ),
+                  IconButton(
+                    onPressed: () => context
+                        .read<GetAllAnnouncementsBloc>()
+                        .add(GetAllAnnouncements()),
+                    icon: const Icon(Boxicons.bx_refresh),
+                  ),
+                ],
               ),
             ),
           );

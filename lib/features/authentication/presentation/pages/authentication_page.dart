@@ -70,8 +70,12 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                 );
               } else if (state is LoginFailed) {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(snackBar(state.message, AlertType.error));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  snackBar(
+                    message: state.message,
+                    type: AlertType.error,
+                  ),
+                );
 
                 Navigator.of(context, rootNavigator: true).pop();
               } else if (state is LoginSuccess) {

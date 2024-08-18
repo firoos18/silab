@@ -1,11 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
-import 'package:silab/core/common/widgets/custom_snackbar.dart';
-import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
-import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
-import 'package:silab/features/user_details/presentation/widgets/user_card.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -16,70 +9,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
-  void initState() {
-    context.read<UserDetailsBloc>().add(GetUserDetails());
-    context.read<SelectedSubjectByNimBloc>().add(GetUserSelectedSubjects());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<SelectedSubjectByNimBloc, SelectedSubjectByNimState>(
-          listener: (context, state) {
-            if (state is SelectedSubjectByNimLoading) {
-              showDialog(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => const CustomLoadingIndicator(),
-              );
-            } else if (state is SelectedSubjectByNimFailed) {
-              context.pop();
-
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar(state.message, AlertType.error));
-            } else {
-              context.pop();
-            }
-          },
-        ),
-        BlocListener<UserDetailsBloc, UserDetailsState>(
-          listener: (context, state) {
-            if (state is UserDetailLoading) {
-              showDialog(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => const CustomLoadingIndicator(),
-              );
-            } else if (state is UserDetailFailed) {
-              context.pop();
-
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar(state.message, AlertType.error));
-            } else {
-              context.pop();
-            }
-          },
-        ),
-      ],
-      child: RefreshIndicator(
-        onRefresh: () async {
-          context.read<UserDetailsBloc>().add(GetUserDetails());
-          context
-              .read<SelectedSubjectByNimBloc>()
-              .add(GetUserSelectedSubjects());
-        },
-        child: ListView(
-          padding: const EdgeInsets.only(top: 16),
-          children: const [
-            UserCard(),
-            SizedBox(height: 24),
-          ],
-        ),
-      ),
-    );
+    return const Placeholder();
   }
 }

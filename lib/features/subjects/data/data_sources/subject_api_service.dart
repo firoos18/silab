@@ -29,11 +29,11 @@ class SubjectApiService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-
       return SubjectListResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
-
       throw RequestErrorException(data['message']);
     }
   }
@@ -50,11 +50,11 @@ class SubjectApiService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-
       return SubjectResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
-
       throw RequestErrorException(data['message']);
     }
   }
@@ -76,11 +76,11 @@ class SubjectApiService {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-
       return SubjectListResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
-
       throw RequestErrorException(data['message']);
     }
   }

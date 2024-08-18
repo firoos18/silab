@@ -19,8 +19,6 @@ import 'package:silab/features/authentication/presentation/widgets/authenticatio
 import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
 import 'package:silab/features/schedule/presentation/pages/schedule_page.dart';
-import 'package:silab/features/subjects/presentation/pages/subject_detail_page.dart';
-import 'package:silab/features/subjects/presentation/pages/subject_detail_page_extras.dart';
 import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
 import 'package:silab/features/user_details/presentation/pages/user_detail_page.dart';
 import 'package:silab/scaffold_page.dart';
@@ -89,14 +87,6 @@ final GoRouter router = GoRouter(
       name: 'splash',
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
-    ),
-    GoRoute(
-      path: '/subject-detail/:id',
-      name: 'subject-detail',
-      builder: (context, state) => SubjectDetailPage(
-        subjectDetailPageExtras: state.extra as SubjectDetailPageExtras,
-        id: state.pathParameters['id']!,
-      ),
     ),
     GoRoute(
       path: '/class/:id',

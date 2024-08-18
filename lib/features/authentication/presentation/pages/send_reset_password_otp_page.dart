@@ -60,14 +60,22 @@ class _SendResetPasswordOtpPageState extends State<SendResetPasswordOtpPage> {
               );
             } else if (state is SendResetPasswordOtpFailed) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar(state.message, AlertType.error));
+              ScaffoldMessenger.of(context).showSnackBar(
+                snackBar(
+                  message: state.message,
+                  type: AlertType.error,
+                ),
+              );
 
               Navigator.of(context, rootNavigator: true).pop();
             } else if (state is SendResetPasswordOtpSuccess) {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(snackBar("Kode OTP Terkirim", AlertType.info));
+              ScaffoldMessenger.of(context).showSnackBar(
+                snackBar(
+                  message: "Kode OTP Terkirim",
+                  type: AlertType.info,
+                ),
+              );
 
               Navigator.of(context, rootNavigator: true).pop();
 

@@ -41,6 +41,8 @@ class AuthenticationApiService {
       final data = jsonDecode(response.body);
       await setupFCM(nim: data['data']['nim']);
       return LoginResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -59,6 +61,8 @@ class AuthenticationApiService {
     if (response.statusCode == 201 || response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return RegisterResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -76,6 +80,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return VerifyOtpResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -93,6 +99,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return ResendOtpResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -109,6 +117,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return ResetPasswordResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -125,6 +135,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return SendResetPasswordOtpResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -141,6 +153,8 @@ class AuthenticationApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return SendResetPasswordOtpResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
@@ -159,7 +173,7 @@ class AuthenticationApiService {
       final data = jsonDecode(response.body);
       return VerifyResetPasswordOtpResponseEntity.fromJson(data);
     } else if (response.statusCode == 504) {
-      throw RequestErrorException('An Internal Server Error Occured');
+      throw RequestErrorException('An Internal Server Error Occurred');
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
