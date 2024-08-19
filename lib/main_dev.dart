@@ -20,6 +20,7 @@ import 'package:silab/features/authentication/presentation/bloc/verify_otp/verif
 import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/subject_details/subject_details_bloc.dart';
@@ -121,6 +122,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<UserSelectedSubjectsDetailsBloc>(
           create: (_) => UserSelectedSubjectsDetailsBloc(injector()),
+        ),
+        BlocProvider<AddSelectedClassBloc>(
+          create: (_) => AddSelectedClassBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

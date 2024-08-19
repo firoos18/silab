@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomSmallButton extends StatelessWidget {
   final void Function()? onPressed;
-  final String label;
+  final Widget label;
 
   const CustomSmallButton({
     super.key,
@@ -13,22 +13,15 @@ class CustomSmallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        fixedSize: const Size(130, 40),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          fixedSize: const Size(130, 40),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          backgroundColor: const Color(0xff3272CA),
+          foregroundColor: const Color(0xfff4f4f9),
         ),
-        backgroundColor: const Color(0xff3272CA),
-        foregroundColor: const Color(0xfff4f4f9),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 14,
-        ),
-      ),
-    );
+        child: label);
   }
 }

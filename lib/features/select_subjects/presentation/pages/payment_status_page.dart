@@ -203,7 +203,13 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                         ),
                                         const SizedBox(height: 16),
                                         CustomSmallButton(
-                                          label: 'Selanjutnya',
+                                          label: const Text(
+                                            'Selanjutnya',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
                                           onPressed: snapshot.data![0]
                                                   ['payment_status']
                                               ? () {
@@ -247,7 +253,13 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                         ),
                                         SizedBox(height: 16),
                                         CustomSmallButton(
-                                          label: 'Selanjutnya',
+                                          label: Text(
+                                            'Selanjutnya',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
                                           onPressed: null,
                                         )
                                       ],

@@ -20,7 +20,12 @@ SnackBar snackBar({
 
   return SnackBar(
     duration: const Duration(seconds: 5),
-    content: Text(message!),
+    content: Text(
+      message!,
+      style: const TextStyle(
+        color: Color(0xfff4f4f9),
+      ),
+    ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     backgroundColor: backgroundColor,
     behavior: SnackBarBehavior.floating,
