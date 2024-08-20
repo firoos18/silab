@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silab/core/common/entities/subject/subject_entity.dart';
 import 'package:silab/features/subjects/data/models/user_selected_subjects/user_selected_subjects_model.dart';
+import 'package:silab/features/subjects/domain/entities/subject/subject_entity.dart';
 import 'package:silab/features/subjects/domain/usecases/get_user_selected_subjects_details_usecase.dart';
 
 part 'user_selected_subjects_details_event.dart';

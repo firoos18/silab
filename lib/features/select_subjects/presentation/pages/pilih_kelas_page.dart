@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/subject/subject_entity.dart';
 import 'package:silab/core/common/widgets/custom_small_button.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
+import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/class_listview.dart';
@@ -53,6 +54,9 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
             ScaffoldMessenger.of(context).showSnackBar(
                 snackBar(message: 'Kelas Terdaftar', type: AlertType.success));
 
+            context
+                .read<UserRegisteredClassBloc>()
+                .add(GetUserRegisteredClass());
             context.goNamed('home');
           } else if (state is AddSelectedClassFailed) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -129,13 +133,24 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
                                         ? state.selectedSubjectEntity!
                                             .subjects![index].classes
                                         : [],
+                                    isRegistered: state
+                                                .selectedSubjectEntity!
+                                                .subjects![index]
+                                                .registeredClass !=
+                                            null
+                                        ? true
+                                        : false,
                                     selectedClass:
                                         state.selectedSubjectEntity != null
                                             ? selectedClasses[state
                                                 .selectedSubjectEntity!
                                                 .subjects![index]
                                                 .id]
-                                            : '',
+                                            : state
+                                                .selectedSubjectEntity!
+                                                .subjects![index]
+                                                .registeredClass!
+                                                .id,
                                     onClassChanged: (value) {
                                       onSelectedClassChanged(
                                         subjectId: state.selectedSubjectEntity!
@@ -178,6 +193,7 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
                     );
                   },
                 ),
+                const SizedBox(height: 16),
                 CustomSmallButton(
                   label:
                       BlocBuilder<AddSelectedClassBloc, AddSelectedClassState>(
@@ -196,9 +212,11 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
                       );
                     },
                   ),
-                  onPressed: () => context
-                      .read<AddSelectedClassBloc>()
-                      .add(AddSelectedClass(selectedClass: selectedClasses)),
+                  onPressed: selectedClasses.isNotEmpty
+                      ? () => context
+                          .read<AddSelectedClassBloc>()
+                          .add(AddSelectedClass(selectedClass: selectedClasses))
+                      : null,
                 )
               ],
             ),

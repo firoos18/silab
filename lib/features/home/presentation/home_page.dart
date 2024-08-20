@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/widgets/announcement_carousel.dart';
-import 'package:silab/features/home/presentation/widgets/class_list.dart';
+import 'package:silab/features/classes/presentation/widgets/registered_class_listview.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,7 +30,11 @@ class _HomePageState extends State<HomePage> {
             width: 500,
             child: AnnouncementCarousel(),
           ),
-          ClassList(),
+          SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: RegisteredClassListView(),
+          ),
         ],
       ),
     );

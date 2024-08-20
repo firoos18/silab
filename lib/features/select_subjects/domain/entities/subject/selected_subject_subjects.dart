@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
+import 'package:silab/features/select_subjects/domain/entities/registered_class/registered_class_entity.dart';
 
 part 'selected_subject_subjects.freezed.dart';
 part 'selected_subject_subjects.g.dart';
@@ -12,7 +13,7 @@ class SelectedSubjectSubjectsEntity with _$SelectedSubjectSubjectsEntity {
     final String? lecturer,
     final List<ClassEntity>? classes,
     final int? semester,
-    required ClassEntity? registeredClass,
+    required RegisteredClassEntity? registeredClass,
   }) = _SelectedSubjectSubjectsEntity;
 
   factory SelectedSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =>

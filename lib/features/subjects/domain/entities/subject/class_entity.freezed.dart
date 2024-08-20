@@ -21,7 +21,7 @@ ClassEntity _$ClassEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ClassEntity {
   String? get id => throw _privateConstructorUsedError;
-  SubjectEntity? get subject => throw _privateConstructorUsedError;
+  String? get subject => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get quota => throw _privateConstructorUsedError;
   bool? get isFull => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $ClassEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      SubjectEntity? subject,
+      String? subject,
       String? name,
       int? quota,
       bool? isFull,
@@ -56,8 +56,6 @@ abstract class $ClassEntityCopyWith<$Res> {
       String? ruang,
       List<String>? participants,
       List<String>? learningModule});
-
-  $SubjectEntityCopyWith<$Res>? get subject;
 }
 
 /// @nodoc
@@ -93,7 +91,7 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
       subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -132,18 +130,6 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
               as List<String>?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SubjectEntityCopyWith<$Res>? get subject {
-    if (_value.subject == null) {
-      return null;
-    }
-
-    return $SubjectEntityCopyWith<$Res>(_value.subject!, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -156,7 +142,7 @@ abstract class _$$ClassEntityImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      SubjectEntity? subject,
+      String? subject,
       String? name,
       int? quota,
       bool? isFull,
@@ -166,9 +152,6 @@ abstract class _$$ClassEntityImplCopyWith<$Res>
       String? ruang,
       List<String>? participants,
       List<String>? learningModule});
-
-  @override
-  $SubjectEntityCopyWith<$Res>? get subject;
 }
 
 /// @nodoc
@@ -202,7 +185,7 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
       subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -267,7 +250,7 @@ class _$ClassEntityImpl implements _ClassEntity {
   @override
   final String? id;
   @override
-  final SubjectEntity? subject;
+  final String? subject;
   @override
   final String? name;
   @override
@@ -360,7 +343,7 @@ class _$ClassEntityImpl implements _ClassEntity {
 abstract class _ClassEntity implements ClassEntity {
   const factory _ClassEntity(
       {final String? id,
-      final SubjectEntity? subject,
+      final String? subject,
       final String? name,
       final int? quota,
       final bool? isFull,
@@ -377,7 +360,7 @@ abstract class _ClassEntity implements ClassEntity {
   @override
   String? get id;
   @override
-  SubjectEntity? get subject;
+  String? get subject;
   @override
   String? get name;
   @override

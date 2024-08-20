@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'class_entity.dart';
+part of 'registered_class_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,15 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ClassEntity _$ClassEntityFromJson(Map<String, dynamic> json) {
-  return _ClassEntity.fromJson(json);
+RegisteredClassEntity _$RegisteredClassEntityFromJson(
+    Map<String, dynamic> json) {
+  return _RegisteredClassEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ClassEntity {
+mixin _$RegisteredClassEntity {
   String? get id => throw _privateConstructorUsedError;
-  SubjectEntity? get subject => throw _privateConstructorUsedError;
+  String? get subject => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int? get quota => throw _privateConstructorUsedError;
   bool? get isFull => throw _privateConstructorUsedError;
@@ -34,19 +35,19 @@ mixin _$ClassEntity {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ClassEntityCopyWith<ClassEntity> get copyWith =>
+  $RegisteredClassEntityCopyWith<RegisteredClassEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClassEntityCopyWith<$Res> {
-  factory $ClassEntityCopyWith(
-          ClassEntity value, $Res Function(ClassEntity) then) =
-      _$ClassEntityCopyWithImpl<$Res, ClassEntity>;
+abstract class $RegisteredClassEntityCopyWith<$Res> {
+  factory $RegisteredClassEntityCopyWith(RegisteredClassEntity value,
+          $Res Function(RegisteredClassEntity) then) =
+      _$RegisteredClassEntityCopyWithImpl<$Res, RegisteredClassEntity>;
   @useResult
   $Res call(
       {String? id,
-      SubjectEntity? subject,
+      String? subject,
       String? name,
       int? quota,
       bool? isFull,
@@ -56,14 +57,13 @@ abstract class $ClassEntityCopyWith<$Res> {
       String? ruang,
       List<String>? participants,
       List<String>? learningModule});
-
-  $SubjectEntityCopyWith<$Res>? get subject;
 }
 
 /// @nodoc
-class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
-    implements $ClassEntityCopyWith<$Res> {
-  _$ClassEntityCopyWithImpl(this._value, this._then);
+class _$RegisteredClassEntityCopyWithImpl<$Res,
+        $Val extends RegisteredClassEntity>
+    implements $RegisteredClassEntityCopyWith<$Res> {
+  _$RegisteredClassEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,7 +93,7 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
       subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -132,31 +132,20 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
               as List<String>?,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $SubjectEntityCopyWith<$Res>? get subject {
-    if (_value.subject == null) {
-      return null;
-    }
-
-    return $SubjectEntityCopyWith<$Res>(_value.subject!, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$ClassEntityImplCopyWith<$Res>
-    implements $ClassEntityCopyWith<$Res> {
-  factory _$$ClassEntityImplCopyWith(
-          _$ClassEntityImpl value, $Res Function(_$ClassEntityImpl) then) =
-      __$$ClassEntityImplCopyWithImpl<$Res>;
+abstract class _$$RegisteredClassEntityImplCopyWith<$Res>
+    implements $RegisteredClassEntityCopyWith<$Res> {
+  factory _$$RegisteredClassEntityImplCopyWith(
+          _$RegisteredClassEntityImpl value,
+          $Res Function(_$RegisteredClassEntityImpl) then) =
+      __$$RegisteredClassEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
-      SubjectEntity? subject,
+      String? subject,
       String? name,
       int? quota,
       bool? isFull,
@@ -166,17 +155,15 @@ abstract class _$$ClassEntityImplCopyWith<$Res>
       String? ruang,
       List<String>? participants,
       List<String>? learningModule});
-
-  @override
-  $SubjectEntityCopyWith<$Res>? get subject;
 }
 
 /// @nodoc
-class __$$ClassEntityImplCopyWithImpl<$Res>
-    extends _$ClassEntityCopyWithImpl<$Res, _$ClassEntityImpl>
-    implements _$$ClassEntityImplCopyWith<$Res> {
-  __$$ClassEntityImplCopyWithImpl(
-      _$ClassEntityImpl _value, $Res Function(_$ClassEntityImpl) _then)
+class __$$RegisteredClassEntityImplCopyWithImpl<$Res>
+    extends _$RegisteredClassEntityCopyWithImpl<$Res,
+        _$RegisteredClassEntityImpl>
+    implements _$$RegisteredClassEntityImplCopyWith<$Res> {
+  __$$RegisteredClassEntityImplCopyWithImpl(_$RegisteredClassEntityImpl _value,
+      $Res Function(_$RegisteredClassEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -194,7 +181,7 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
     Object? participants = freezed,
     Object? learningModule = freezed,
   }) {
-    return _then(_$ClassEntityImpl(
+    return _then(_$RegisteredClassEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -202,7 +189,7 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
       subject: freezed == subject
           ? _value.subject
           : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -245,8 +232,8 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ClassEntityImpl implements _ClassEntity {
-  const _$ClassEntityImpl(
+class _$RegisteredClassEntityImpl implements _RegisteredClassEntity {
+  const _$RegisteredClassEntityImpl(
       {this.id,
       this.subject,
       this.name,
@@ -261,13 +248,13 @@ class _$ClassEntityImpl implements _ClassEntity {
       : _participants = participants,
         _learningModule = learningModule;
 
-  factory _$ClassEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ClassEntityImplFromJson(json);
+  factory _$RegisteredClassEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegisteredClassEntityImplFromJson(json);
 
   @override
   final String? id;
   @override
-  final SubjectEntity? subject;
+  final String? subject;
   @override
   final String? name;
   @override
@@ -304,14 +291,14 @@ class _$ClassEntityImpl implements _ClassEntity {
 
   @override
   String toString() {
-    return 'ClassEntity(id: $id, subject: $subject, name: $name, quota: $quota, isFull: $isFull, day: $day, startAt: $startAt, endAt: $endAt, ruang: $ruang, participants: $participants, learningModule: $learningModule)';
+    return 'RegisteredClassEntity(id: $id, subject: $subject, name: $name, quota: $quota, isFull: $isFull, day: $day, startAt: $startAt, endAt: $endAt, ruang: $ruang, participants: $participants, learningModule: $learningModule)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ClassEntityImpl &&
+            other is _$RegisteredClassEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.subject, subject) || other.subject == subject) &&
             (identical(other.name, name) || other.name == name) &&
@@ -346,21 +333,22 @@ class _$ClassEntityImpl implements _ClassEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClassEntityImplCopyWith<_$ClassEntityImpl> get copyWith =>
-      __$$ClassEntityImplCopyWithImpl<_$ClassEntityImpl>(this, _$identity);
+  _$$RegisteredClassEntityImplCopyWith<_$RegisteredClassEntityImpl>
+      get copyWith => __$$RegisteredClassEntityImplCopyWithImpl<
+          _$RegisteredClassEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ClassEntityImplToJson(
+    return _$$RegisteredClassEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _ClassEntity implements ClassEntity {
-  const factory _ClassEntity(
+abstract class _RegisteredClassEntity implements RegisteredClassEntity {
+  const factory _RegisteredClassEntity(
       {final String? id,
-      final SubjectEntity? subject,
+      final String? subject,
       final String? name,
       final int? quota,
       final bool? isFull,
@@ -369,15 +357,15 @@ abstract class _ClassEntity implements ClassEntity {
       final String? endAt,
       final String? ruang,
       final List<String>? participants,
-      final List<String>? learningModule}) = _$ClassEntityImpl;
+      final List<String>? learningModule}) = _$RegisteredClassEntityImpl;
 
-  factory _ClassEntity.fromJson(Map<String, dynamic> json) =
-      _$ClassEntityImpl.fromJson;
+  factory _RegisteredClassEntity.fromJson(Map<String, dynamic> json) =
+      _$RegisteredClassEntityImpl.fromJson;
 
   @override
   String? get id;
   @override
-  SubjectEntity? get subject;
+  String? get subject;
   @override
   String? get name;
   @override
@@ -398,6 +386,6 @@ abstract class _ClassEntity implements ClassEntity {
   List<String>? get learningModule;
   @override
   @JsonKey(ignore: true)
-  _$$ClassEntityImplCopyWith<_$ClassEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$RegisteredClassEntityImplCopyWith<_$RegisteredClassEntityImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

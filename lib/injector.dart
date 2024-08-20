@@ -37,8 +37,10 @@ import 'package:silab/features/classes/data/repository/class_repository_impl.dar
 import 'package:silab/features/classes/domain/repository/class_repository.dart';
 import 'package:silab/features/classes/domain/usecases/get_class_by_id_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_class_list_usecase.dart';
+import 'package:silab/features/classes/domain/usecases/get_user_registered_classes_usecase.dart';
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/data/data_sources/selected_subject_api_service.dart';
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
@@ -147,6 +149,8 @@ Future<void> initializeDependencies() async {
       GetUserSelectedSubjectsDetailsUseCase(injector()));
   injector.registerSingleton<AddSelectedClassUseCase>(
       AddSelectedClassUseCase(injector()));
+  injector.registerSingleton<GetUserRegisteredClassesUseCase>(
+      GetUserRegisteredClassesUseCase(injector()));
 
   // BLoCs
   injector.registerFactory<LoginBloc>(() => LoginBloc(injector(), injector()));
@@ -180,4 +184,6 @@ Future<void> initializeDependencies() async {
       () => UserSelectedSubjectsDetailsBloc(injector()));
   injector.registerFactory<AddSelectedClassBloc>(
       () => AddSelectedClassBloc(injector()));
+  injector.registerFactory<UserRegisteredClassBloc>(
+      () => UserRegisteredClassBloc(injector()));
 }

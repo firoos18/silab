@@ -53,4 +53,26 @@ class ClassesApiService {
       throw RequestErrorException(data['message']);
     }
   }
+
+  Future<ClassesResponseEntity> getUserRegisteredClasses() async {
+    final token = _sharedPreferences.getString('token');
+    final nim = _sharedPreferences.getString('nim');
+
+    final response = await http.get(
+      Uri.parse('${AppConfig.shared.baseUrl}/class/register/$nim'),
+      headers: {
+        'Authorization': "Bearer $token",
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return ClassesResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
+    } else {
+      final data = jsonDecode(response.body);
+      throw RequestErrorException(data['message']);
+    }
+  }
 }

@@ -7,4 +7,6 @@ abstract class ClassRepository {
   Future<Either<Failures, ClassesResponseEntity>> getClasses();
 
   Future<Either<Failures, ClassResponseEntity>> getClassById(String? classId);
+
+  Future<Either<Failures, ClassesResponseEntity>> getUserRegisteredClasses();
 }

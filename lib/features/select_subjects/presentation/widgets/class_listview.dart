@@ -9,6 +9,7 @@ class ClassListView extends StatefulWidget {
   final List<ClassEntity>? classes;
   final ValueChanged<String?> onClassChanged;
   final String? selectedClass;
+  final bool? isRegistered;
 
   const ClassListView({
     super.key,
@@ -16,6 +17,7 @@ class ClassListView extends StatefulWidget {
     required this.classes,
     required this.onClassChanged,
     required this.selectedClass,
+    required this.isRegistered,
   });
 
   @override
@@ -28,7 +30,11 @@ class _ClassListViewState extends State<ClassListView> {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: widget.classes != null ? widget.classes!.length : 1,
+      itemCount: widget.classes != null &&
+              widget.classes!.isNotEmpty &&
+              !widget.isRegistered!
+          ? widget.classes!.length
+          : 1,
       itemBuilder: (context, index) {
         if (widget.classes != null) {
           return Skeletonizer(
@@ -36,17 +42,26 @@ class _ClassListViewState extends State<ClassListView> {
                     widget.classes == null)
                 ? true
                 : false,
-            child: ClassContainer(
-              classEntity: widget.classes != null
-                  ? widget.classes![index]
-                  : const ClassEntity(),
-              classes: widget.classes != null ? widget.classes! : [],
-              index: index,
-              selectedClass: widget.classes != null ? widget.selectedClass : '',
-              onSelectedClassChanged: widget.classes != null
-                  ? (value) => widget.onClassChanged(value)
-                  : (value) {},
-            ),
+            child: widget.classes!.isNotEmpty && !widget.isRegistered!
+                ? ClassContainer(
+                    classEntity: widget.classes != null
+                        ? widget.classes![index]
+                        : const ClassEntity(),
+                    classes: widget.classes != null ? widget.classes! : [],
+                    index: index,
+                    selectedClass:
+                        widget.classes != null ? widget.selectedClass : '',
+                    onSelectedClassChanged: widget.classes != null
+                        ? (value) => widget.onClassChanged(value)
+                        : (value) {},
+                  )
+                : widget.isRegistered!
+                    ? const Text(
+                        'Anda sudah mendaftar kelas pada Mata Kuliah ini.',
+                      )
+                    : const Text(
+                        'Kelas belum tersedia',
+                      ),
           );
         } else {
           return const SizedBox();

@@ -24,7 +24,7 @@ mixin _$SubjectEntity {
   String? get name => throw _privateConstructorUsedError;
   String? get lecturer => throw _privateConstructorUsedError;
   int? get semester => throw _privateConstructorUsedError;
-  List<String>? get classes => throw _privateConstructorUsedError;
+  List<ClassEntity>? get classes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $SubjectEntityCopyWith<$Res> {
       String? name,
       String? lecturer,
       int? semester,
-      List<String>? classes});
+      List<ClassEntity>? classes});
 }
 
 /// @nodoc
@@ -85,7 +85,7 @@ class _$SubjectEntityCopyWithImpl<$Res, $Val extends SubjectEntity>
       classes: freezed == classes
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ClassEntity>?,
     ) as $Val);
   }
 }
@@ -103,7 +103,7 @@ abstract class _$$SubjectEntityImplCopyWith<$Res>
       String? name,
       String? lecturer,
       int? semester,
-      List<String>? classes});
+      List<ClassEntity>? classes});
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class __$$SubjectEntityImplCopyWithImpl<$Res>
       classes: freezed == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<ClassEntity>?,
     ));
   }
 }
@@ -156,7 +156,7 @@ class _$SubjectEntityImpl implements _SubjectEntity {
       this.name,
       this.lecturer,
       this.semester,
-      final List<String>? classes})
+      final List<ClassEntity>? classes})
       : _classes = classes;
 
   factory _$SubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -170,9 +170,9 @@ class _$SubjectEntityImpl implements _SubjectEntity {
   final String? lecturer;
   @override
   final int? semester;
-  final List<String>? _classes;
+  final List<ClassEntity>? _classes;
   @override
-  List<String>? get classes {
+  List<ClassEntity>? get classes {
     final value = _classes;
     if (value == null) return null;
     if (_classes is EqualUnmodifiableListView) return _classes;
@@ -224,7 +224,7 @@ abstract class _SubjectEntity implements SubjectEntity {
       final String? name,
       final String? lecturer,
       final int? semester,
-      final List<String>? classes}) = _$SubjectEntityImpl;
+      final List<ClassEntity>? classes}) = _$SubjectEntityImpl;
 
   factory _SubjectEntity.fromJson(Map<String, dynamic> json) =
       _$SubjectEntityImpl.fromJson;
@@ -238,7 +238,7 @@ abstract class _SubjectEntity implements SubjectEntity {
   @override
   int? get semester;
   @override
-  List<String>? get classes;
+  List<ClassEntity>? get classes;
   @override
   @JsonKey(ignore: true)
   _$$SubjectEntityImplCopyWith<_$SubjectEntityImpl> get copyWith =>

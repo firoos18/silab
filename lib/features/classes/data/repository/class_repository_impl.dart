@@ -39,4 +39,18 @@ class ClassRepositoryImpl implements ClassRepository {
       return Left(RequestFailures(e.message));
     }
   }
+
+  @override
+  Future<Either<Failures, ClassesResponseEntity>>
+      getUserRegisteredClasses() async {
+    try {
+      final result = await _classesApiService.getUserRegisteredClasses();
+
+      return Right(result);
+    } on RequestErrorException catch (e) {
+      return Left(RequestFailures(e.message));
+    } on SocketException catch (e) {
+      return Left(RequestFailures(e.message));
+    }
+  }
 }

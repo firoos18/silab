@@ -1,17 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class_entity.dart';
+part of 'registered_class_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ClassEntityImpl _$$ClassEntityImplFromJson(Map<String, dynamic> json) =>
-    _$ClassEntityImpl(
+_$RegisteredClassEntityImpl _$$RegisteredClassEntityImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RegisteredClassEntityImpl(
       id: json['id'] as String?,
-      subject: json['subject'] == null
-          ? null
-          : SubjectEntity.fromJson(json['subject'] as Map<String, dynamic>),
+      subject: json['subject'] as String?,
       name: json['name'] as String?,
       quota: (json['quota'] as num?)?.toInt(),
       isFull: json['isFull'] as bool?,
@@ -27,7 +26,8 @@ _$ClassEntityImpl _$$ClassEntityImplFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$ClassEntityImplToJson(_$ClassEntityImpl instance) =>
+Map<String, dynamic> _$$RegisteredClassEntityImplToJson(
+        _$RegisteredClassEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'subject': instance.subject,

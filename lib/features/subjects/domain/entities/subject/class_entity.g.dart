@@ -9,9 +9,7 @@ part of 'class_entity.dart';
 _$ClassEntityImpl _$$ClassEntityImplFromJson(Map<String, dynamic> json) =>
     _$ClassEntityImpl(
       id: json['id'] as String?,
-      subject: json['subject'] == null
-          ? null
-          : SubjectEntity.fromJson(json['subject'] as Map<String, dynamic>),
+      subject: json['subject'] as String?,
       name: json['name'] as String?,
       quota: (json['quota'] as num?)?.toInt(),
       isFull: json['isFull'] as bool?,

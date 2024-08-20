@@ -26,7 +26,8 @@ mixin _$SelectedSubjectSubjectsEntity {
   String? get lecturer => throw _privateConstructorUsedError;
   List<ClassEntity>? get classes => throw _privateConstructorUsedError;
   int? get semester => throw _privateConstructorUsedError;
-  ClassEntity? get registeredClass => throw _privateConstructorUsedError;
+  RegisteredClassEntity? get registeredClass =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,9 +49,9 @@ abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
       String? lecturer,
       List<ClassEntity>? classes,
       int? semester,
-      ClassEntity? registeredClass});
+      RegisteredClassEntity? registeredClass});
 
-  $ClassEntityCopyWith<$Res>? get registeredClass;
+  $RegisteredClassEntityCopyWith<$Res>? get registeredClass;
 }
 
 /// @nodoc
@@ -98,18 +99,19 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
       registeredClass: freezed == registeredClass
           ? _value.registeredClass
           : registeredClass // ignore: cast_nullable_to_non_nullable
-              as ClassEntity?,
+              as RegisteredClassEntity?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ClassEntityCopyWith<$Res>? get registeredClass {
+  $RegisteredClassEntityCopyWith<$Res>? get registeredClass {
     if (_value.registeredClass == null) {
       return null;
     }
 
-    return $ClassEntityCopyWith<$Res>(_value.registeredClass!, (value) {
+    return $RegisteredClassEntityCopyWith<$Res>(_value.registeredClass!,
+        (value) {
       return _then(_value.copyWith(registeredClass: value) as $Val);
     });
   }
@@ -130,10 +132,10 @@ abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
       String? lecturer,
       List<ClassEntity>? classes,
       int? semester,
-      ClassEntity? registeredClass});
+      RegisteredClassEntity? registeredClass});
 
   @override
-  $ClassEntityCopyWith<$Res>? get registeredClass;
+  $RegisteredClassEntityCopyWith<$Res>? get registeredClass;
 }
 
 /// @nodoc
@@ -180,7 +182,7 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
       registeredClass: freezed == registeredClass
           ? _value.registeredClass
           : registeredClass // ignore: cast_nullable_to_non_nullable
-              as ClassEntity?,
+              as RegisteredClassEntity?,
     ));
   }
 }
@@ -221,7 +223,7 @@ class _$SelectedSubjectSubjectsEntityImpl
   @override
   final int? semester;
   @override
-  final ClassEntity? registeredClass;
+  final RegisteredClassEntity? registeredClass;
 
   @override
   String toString() {
@@ -273,7 +275,7 @@ abstract class _SelectedSubjectSubjectsEntity
           final String? lecturer,
           final List<ClassEntity>? classes,
           final int? semester,
-          required final ClassEntity? registeredClass}) =
+          required final RegisteredClassEntity? registeredClass}) =
       _$SelectedSubjectSubjectsEntityImpl;
 
   factory _SelectedSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =
@@ -290,7 +292,7 @@ abstract class _SelectedSubjectSubjectsEntity
   @override
   int? get semester;
   @override
-  ClassEntity? get registeredClass;
+  RegisteredClassEntity? get registeredClass;
   @override
   @JsonKey(ignore: true)
   _$$SelectedSubjectSubjectsEntityImplCopyWith<

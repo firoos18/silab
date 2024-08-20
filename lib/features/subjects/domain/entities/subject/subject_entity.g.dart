@@ -12,8 +12,9 @@ _$SubjectEntityImpl _$$SubjectEntityImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       lecturer: json['lecturer'] as String?,
       semester: (json['semester'] as num?)?.toInt(),
-      classes:
-          (json['classes'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      classes: (json['classes'] as List<dynamic>?)
+          ?.map((e) => ClassEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$SubjectEntityImplToJson(_$SubjectEntityImpl instance) =>

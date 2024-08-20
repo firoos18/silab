@@ -18,7 +18,7 @@ _$SelectedSubjectSubjectsEntityImpl
           semester: (json['semester'] as num?)?.toInt(),
           registeredClass: json['registeredClass'] == null
               ? null
-              : ClassEntity.fromJson(
+              : RegisteredClassEntity.fromJson(
                   json['registeredClass'] as Map<String, dynamic>),
         );
 
