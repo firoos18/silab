@@ -87,9 +87,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
     }
 
     return Scaffold(
-      appBar: currentRoute == '/home' ||
-              currentRoute == '/schedule' ||
-              currentRoute == '/profile'
+      appBar: currentRoute == '/home' || currentRoute == '/schedule'
           ? AppBar(
               title: currentIndex != 0
                   ? Text(
@@ -114,24 +112,26 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                   : null,
               forceMaterialTransparency: true,
             )
-          : AppBar(
-              title: Text(
-                appBarTitle,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              leading: InkWell(
-                onTap: () => context.pop(),
-                borderRadius: BorderRadius.circular(100),
-                child: const Icon(
-                  Icons.chevron_left,
-                  size: 32,
-                ),
-              ),
-              forceMaterialTransparency: true,
-            ),
+          : currentRoute.contains('/home')
+              ? AppBar(
+                  title: Text(
+                    appBarTitle,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  leading: InkWell(
+                    onTap: () => context.pop(),
+                    borderRadius: BorderRadius.circular(100),
+                    child: const Icon(
+                      Icons.chevron_left,
+                      size: 32,
+                    ),
+                  ),
+                  forceMaterialTransparency: true,
+                )
+              : null,
       body: SafeArea(
         child: widget.navigationShell,
       ),
