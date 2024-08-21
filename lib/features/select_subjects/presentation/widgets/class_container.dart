@@ -9,6 +9,7 @@ class ClassContainer extends StatefulWidget {
   final List<ClassEntity> classes;
   final String? selectedClass;
   final ValueChanged<String?> onSelectedClassChanged;
+  final bool? isFull;
 
   const ClassContainer({
     super.key,
@@ -17,6 +18,7 @@ class ClassContainer extends StatefulWidget {
     required this.classes,
     required this.selectedClass,
     required this.onSelectedClassChanged,
+    required this.isFull,
   });
 
   @override
@@ -49,7 +51,9 @@ class _ClassContainerState extends State<ClassContainer> {
             widget.index != widget.classes.indexOf(widget.classEntity) ? 0 : 16,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xfff4f4f9),
+        color: widget.isFull!
+            ? const Color(0xfff4f4f9).withOpacity(0.5)
+            : const Color(0xfff4f4f9),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -57,7 +61,8 @@ class _ClassContainerState extends State<ClassContainer> {
           Radio(
             value: widget.classEntity.id,
             groupValue: widget.selectedClass,
-            onChanged: (value) => widget.onSelectedClassChanged(value),
+            onChanged: (value) =>
+                widget.isFull! ? null : widget.onSelectedClassChanged(value),
           ),
           const SizedBox(width: 24),
           Expanded(
@@ -66,9 +71,19 @@ class _ClassContainerState extends State<ClassContainer> {
               children: [
                 Text(
                   widget.classEntity.name!,
+                  style: TextStyle(
+                    color: widget.isFull!
+                        ? const Color(0xff1d1d1d).withOpacity(0.5)
+                        : const Color(0xff1d1d1d),
+                  ),
                 ),
                 Text(
                   '${widget.classEntity.day}, ${widget.classEntity.startAt} - ${widget.classEntity.endAt}',
+                  style: TextStyle(
+                    color: widget.isFull!
+                        ? const Color(0xff1d1d1d).withOpacity(0.5)
+                        : const Color(0xff1d1d1d),
+                  ),
                 ),
                 StreamBuilder(
                   stream: _stream,

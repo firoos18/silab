@@ -152,6 +152,8 @@ class MainApp extends StatelessWidget {
               Color(0xfff4f4f9),
             ),
           ),
+          radioTheme: const RadioThemeData(
+              fillColor: MaterialStatePropertyAll(Color(0xff3272CA))),
         ),
         routerConfig: router,
       ),

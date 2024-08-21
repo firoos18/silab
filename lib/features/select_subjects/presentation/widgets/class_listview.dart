@@ -54,6 +54,9 @@ class _ClassListViewState extends State<ClassListView> {
                     onSelectedClassChanged: widget.classes != null
                         ? (value) => widget.onClassChanged(value)
                         : (value) {},
+                    isFull: widget.classes != null
+                        ? widget.classes![index].isFull
+                        : false,
                   )
                 : widget.isRegistered!
                     ? const Text(
