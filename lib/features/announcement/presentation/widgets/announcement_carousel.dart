@@ -81,9 +81,11 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
                             state.announcements != null
                         ? state.announcements!.length
                         : 1,
-                    itemBuilder: (context, index) => Container(
-                      width: 6,
-                      height: 6,
+                    itemBuilder: (context, index) => AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      width: currentPage != index ? 4 : 6,
+                      height: currentPage != index ? 4 : 6,
                       margin: const EdgeInsets.only(right: 4),
                       decoration: BoxDecoration(
                         color: currentPage == index
