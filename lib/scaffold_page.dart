@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/bottom_navbar/bottom_navbar_entity.dart';
 import 'package:silab/core/common/widgets/custom_bottom_navbar.dart';
-import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/widgets/user_welcome_widget.dart';
 
 class ScaffoldPage extends StatefulWidget {
@@ -21,6 +19,7 @@ class ScaffoldPage extends StatefulWidget {
 
 class _ScaffoldPageState extends State<ScaffoldPage> {
   int currentIndex = 0;
+  ScrollController _scrollController = ScrollController();
 
   List<BottomNavbarEntity> items = [
     BottomNavbarEntity(
@@ -45,8 +44,14 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
-    context.read<UserDetailsBloc>().add(GetUserDetails());
+    _scrollController = ScrollController();
     super.initState();
   }
 
@@ -87,6 +92,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: currentRoute == '/home' || currentRoute == '/schedule'
           ? AppBar(
               title: currentIndex != 0
@@ -133,12 +139,16 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                 )
               : null,
       body: SafeArea(
-        child: widget.navigationShell,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: widget.navigationShell,
+        ),
       ),
-      extendBody: false,
-      bottomNavigationBar: CustomBottomNavbar(
+      extendBody: true,
+      floatingActionButton: CustomBottomNavbar(
           currentIndex: currentIndex,
           items: items,
+          scrollController: _scrollController,
           onTap: (index) {
             setState(() {
               currentIndex = index;
@@ -146,6 +156,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
 
             _goBranch(index);
           }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

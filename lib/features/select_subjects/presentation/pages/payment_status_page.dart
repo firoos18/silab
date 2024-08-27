@@ -37,246 +37,253 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Selesaikan pembayaran anda. Status pembayaran anda akan diubah secara otomatis.',
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 14,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: Material(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
+          child: Column(
+            children: [
+              const Text(
+                'Selesaikan pembayaran anda. Status pembayaran anda akan diubah secara otomatis.',
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 14,
+                ),
               ),
-            ),
-            const SizedBox(height: 48),
-            SizedBox(
-              width: double.infinity,
-              height: 360,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Daftar Praktikum',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
+              const SizedBox(height: 48),
+              SizedBox(
+                width: double.infinity,
+                height: 360,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Daftar Praktikum',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: BlocBuilder<SelectedSubjectByNimBloc,
-                        SelectedSubjectByNimState>(
-                      builder: (context, state) {
-                        return Skeletonizer(
-                          enabled: state is SelectedSubjectByNimLoading
-                              ? true
-                              : false,
-                          enableSwitchAnimation: true,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: const EdgeInsets.only(top: 16),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xfff4f4f9),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    padding: const EdgeInsets.all(12),
-                                    itemExtent: 32,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount:
-                                        state.selectedSubjectEntity != null
-                                            ? state.selectedSubjectEntity!
-                                                .subjects!.length
-                                            : 0,
-                                    itemBuilder: (context, index) => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
+                      ],
+                    ),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: BlocBuilder<SelectedSubjectByNimBloc,
+                          SelectedSubjectByNimState>(
+                        builder: (context, state) {
+                          return Skeletonizer(
+                            enabled: state is SelectedSubjectByNimLoading
+                                ? true
+                                : false,
+                            enableSwitchAnimation: true,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  fit: FlexFit.loose,
+                                  child: Container(
+                                    margin: const EdgeInsets.only(top: 16),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xfff4f4f9),
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      padding: const EdgeInsets.all(12),
+                                      itemExtent: 32,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount:
                                           state.selectedSubjectEntity != null
                                               ? state.selectedSubjectEntity!
-                                                  .subjects![index].name!
-                                              : 'Subject Name',
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
+                                                  .subjects!.length
+                                              : 0,
+                                      itemBuilder: (context, index) => Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            state.selectedSubjectEntity != null
+                                                ? state.selectedSubjectEntity!
+                                                    .subjects![index].name!
+                                                : 'Subject Name',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          state.selectedSubjectEntity != null
-                                              ? 'Semester ${state.selectedSubjectEntity!.subjects![index].semester!}'
-                                              : 'Semester 0',
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        )
-                                      ],
+                                          Text(
+                                            state.selectedSubjectEntity != null
+                                                ? 'Semester ${state.selectedSubjectEntity!.subjects![index].semester!}'
+                                                : 'Semester 0',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 8),
-                              Skeletonizer(
-                                enabled: state is SelectedSubjectByNimLoading
-                                    ? true
-                                    : false,
-                                enableSwitchAnimation: true,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'Total',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal,
+                                const SizedBox(height: 8),
+                                Skeletonizer(
+                                  enabled: state is SelectedSubjectByNimLoading
+                                      ? true
+                                      : false,
+                                  enableSwitchAnimation: true,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        'Total',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      state.selectedSubjectEntity != null
-                                          ? 'Rp${state.selectedSubjectEntity!.subjects!.length * 5000}'
-                                          : '0000',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
+                                      Text(
+                                        state.selectedSubjectEntity != null
+                                            ? 'Rp${state.selectedSubjectEntity!.subjects!.length * 5000}'
+                                            : '0000',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              StreamBuilder(
-                                stream: _stream,
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            const Text(
-                                              'Status Pembayaran',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                            ),
-                                            Skeletonizer(
-                                              enabled:
-                                                  snapshot.connectionState !=
-                                                          ConnectionState.active
-                                                      ? true
-                                                      : false,
-                                              enableSwitchAnimation: true,
-                                              child: Text(
-                                                snapshot.data![0]
-                                                        ['payment_status']
-                                                    ? 'Berhasil'
-                                                    : 'Pending',
+                                StreamBuilder(
+                                  stream: _stream,
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              const Text(
+                                                'Status Pembayaran',
                                                 style: TextStyle(
                                                   fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: snapshot.data!.first[
-                                                          'payment_status']
-                                                      ? const Color(0xff27A149)
-                                                      : const Color(0xffFAC730),
+                                                  fontWeight: FontWeight.normal,
                                                 ),
-                                                textAlign: TextAlign.end,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 16),
-                                        CustomSmallButton(
-                                          label: const Text(
-                                            'Selanjutnya',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                              Skeletonizer(
+                                                enabled: snapshot
+                                                            .connectionState !=
+                                                        ConnectionState.active
+                                                    ? true
+                                                    : false,
+                                                enableSwitchAnimation: true,
+                                                child: Text(
+                                                  snapshot.data![0]
+                                                          ['payment_status']
+                                                      ? 'Berhasil'
+                                                      : 'Pending',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: snapshot.data!.first[
+                                                            'payment_status']
+                                                        ? const Color(
+                                                            0xff27A149)
+                                                        : const Color(
+                                                            0xffFAC730),
+                                                  ),
+                                                  textAlign: TextAlign.end,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          onPressed: snapshot.data![0]
-                                                  ['payment_status']
-                                              ? () {
-                                                  context.goNamed(
-                                                    'pilih-kelas',
-                                                  );
-                                                }
-                                              : null,
-                                        )
-                                      ],
-                                    );
-                                  } else {
-                                    return const Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Status Pembayaran',
+                                          const SizedBox(height: 16),
+                                          CustomSmallButton(
+                                            label: const Text(
+                                              'Selanjutnya',
                                               style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.normal,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            Skeletonizer(
-                                              enabled: true,
-                                              enableSwitchAnimation: true,
-                                              child: Text(
-                                                'Pending',
+                                            onPressed: snapshot.data![0]
+                                                    ['payment_status']
+                                                ? () {
+                                                    context.goNamed(
+                                                      'pilih-kelas',
+                                                    );
+                                                  }
+                                                : null,
+                                          )
+                                        ],
+                                      );
+                                    } else {
+                                      return const Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Status Pembayaran',
                                                 style: TextStyle(
                                                   fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
+                                                  fontWeight: FontWeight.normal,
                                                 ),
-                                                textAlign: TextAlign.end,
+                                              ),
+                                              Skeletonizer(
+                                                enabled: true,
+                                                enableSwitchAnimation: true,
+                                                child: Text(
+                                                  'Pending',
+                                                  style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  textAlign: TextAlign.end,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 16),
+                                          CustomSmallButton(
+                                            label: Text(
+                                              'Selanjutnya',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 16),
-                                        CustomSmallButton(
-                                          label: Text(
-                                            'Selanjutnya',
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          onPressed: null,
-                                        )
-                                      ],
-                                    );
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+                                            onPressed: null,
+                                          )
+                                        ],
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

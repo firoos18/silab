@@ -1,5 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/classes/presentation/widgets/registered_class_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -14,15 +15,32 @@ class RegisteredClassListView extends StatefulWidget {
 
 class _RegisteredClassListViewState extends State<RegisteredClassListView> {
   @override
-  void initState() {
-    context.read<UserRegisteredClassBloc>().add(GetUserRegisteredClass());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserRegisteredClassBloc, UserRegisteredClassState>(
       builder: (context, state) {
+        if (state is UserRegisteredClassFailed) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height / 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Oops sebuah kesalahan terjadi!',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => context
+                      .read<UserRegisteredClassBloc>()
+                      .add(GetUserRegisteredClass()),
+                  icon: const Icon(Boxicons.bx_refresh),
+                ),
+              ],
+            ),
+          );
+        }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

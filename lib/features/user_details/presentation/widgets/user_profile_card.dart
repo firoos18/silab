@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,10 +50,13 @@ class _UserProfileCardState extends State<UserProfileCard> {
     return BlocBuilder<UserDetailsBloc, UserDetailsState>(
         builder: (context, state) {
       String? initials = '';
-      List<String> fullname = state.userDetailEntity!.fullname!.split(' ');
-      String firstName = fullname[0];
-      String secondName = fullname[1];
-      initials = (firstName[0] + secondName[0]).toUpperCase();
+
+      if (state is UserDetailLoaded) {
+        List<String> fullname = state.userDetailEntity!.fullname!.split(' ');
+        String? firstName = fullname[0];
+        String? secondName = fullname[1];
+        initials = (firstName[0] + secondName[0]).toUpperCase();
+      }
 
       return Skeletonizer(
         enabled: state is UserDetailLoading ? true : false,
@@ -247,7 +249,8 @@ class _UserProfileCardState extends State<UserProfileCard> {
                           BlocBuilder<SelectedSubjectByNimBloc,
                               SelectedSubjectByNimState>(
                             builder: (context, state) => Skeletonizer(
-                              enabled: state is SelectedSubjectByNimLoading
+                              enabled: state is SelectedSubjectByNimLoading &&
+                                      state.selectedSubjectEntity == null
                                   ? true
                                   : false,
                               enableSwitchAnimation: true,
@@ -261,9 +264,11 @@ class _UserProfileCardState extends State<UserProfileCard> {
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: state.selectedSubjectEntity!.subjects!
-                                          .isNotEmpty
-                                      ? const Color(0xff27A149)
+                                  color: state.selectedSubjectEntity != null
+                                      ? state.selectedSubjectEntity!.subjects!
+                                              .isNotEmpty
+                                          ? const Color(0xff27A149)
+                                          : const Color(0xffFAC730)
                                       : const Color(0xffFAC730),
                                 ),
                               ),

@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/widgets/announcement_banner.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -13,85 +13,76 @@ class AnnouncementCarousel extends StatefulWidget {
 }
 
 class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
+  int currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllAnnouncementsBloc, GetAllAnnouncementsState>(
-      builder: (context, state) {
-        if (state is GetAllAnnouncementsLoading) {
-          return Skeletonizer(
-            enabled: true,
-            enableSwitchAnimation: true,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              margin: const EdgeInsets.only(top: 40),
-              width: MediaQuery.of(context).size.width - 100,
-              child: const AnnouncementBanner(
-                desc: 'Deskripsi Pengumuman',
-                title: 'Judul Pengumuman',
-                type: 'Tipe Pengumuman',
-                posterUrl: 'Poster Pengumuman',
-              ),
-            ),
-          );
-        } else if (state is GetAllAnnouncementsLoaded) {
-          if (state.announcements != null && state.announcements!.isEmpty) {
-            return const Center(
-              child: Text('Belum ada pengumuman untuk saat ini. Stay tuned!'),
-            );
-          }
-
-          return ListView.builder(
-            itemCount:
-                state.announcements != null ? state.announcements!.length : 0,
-            scrollDirection: Axis.horizontal,
-            physics: const PageScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              margin: const EdgeInsets.only(top: 40),
-              child: AnnouncementBanner(
-                desc: state.announcements![index].desc!,
-                title: state.announcements![index].title!,
-                type: state.announcements![index].type!,
-                posterUrl: state.announcements![index].posterUrl,
-              ),
-            ),
-          );
-        } else if (state is GetAllAnnouncementsFailed) {
-          return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            margin: const EdgeInsets.only(top: 40),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'An Error Occurred!',
+        builder: (context, state) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+        child: SizedBox(
+          width: double.infinity,
+          height: 119,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PageView.builder(
+                onPageChanged: (value) => setState(() {
+                  currentPage = value;
+                }),
+                itemCount: state is GetAllAnnouncementsLoaded &&
+                        state.announcements != null
+                    ? state.announcements!.length
+                    : 1,
+                itemBuilder: (context, index) => Skeletonizer(
+                  enabled: state is GetAllAnnouncementsLoading ? true : false,
+                  enableSwitchAnimation: true,
+                  child: AnnouncementBanner(
+                    desc: state.announcements != null &&
+                            state is GetAllAnnouncementsLoaded
+                        ? state.announcements![index].desc!
+                        : 'Deskripsi',
+                    title: state.announcements != null &&
+                            state is GetAllAnnouncementsLoaded
+                        ? state.announcements![index].title!
+                        : 'Judul',
+                    type: state.announcements != null &&
+                            state is GetAllAnnouncementsLoaded
+                        ? state.announcements![index].type!
+                        : 'Tipe',
                   ),
-                  IconButton(
-                    onPressed: () => context
-                        .read<GetAllAnnouncementsBloc>()
-                        .add(GetAllAnnouncements()),
-                    icon: const Icon(Boxicons.bx_refresh),
-                  ),
-                ],
+                ),
               ),
-            ),
-          );
-        } else {
-          return const Skeletonizer(
-            enabled: true,
-            enableSwitchAnimation: true,
-            child: AnnouncementBanner(
-              desc: 'Deskripsi Pengumuman',
-              title: 'Judul Pengumuman',
-              type: 'Tipe Pengumuman',
-              posterUrl: 'Poster Pengumuman',
-            ),
-          );
-        }
-      },
-    );
+              Positioned(
+                bottom: 20,
+                child: SizedBox(
+                  height: 12,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: state is GetAllAnnouncementsLoaded &&
+                            state.announcements != null
+                        ? state.announcements!.length
+                        : 1,
+                    itemBuilder: (context, index) => Container(
+                      width: 6,
+                      height: 6,
+                      margin: const EdgeInsets.only(right: 4),
+                      decoration: BoxDecoration(
+                        color: currentPage == index
+                            ? const Color(0xffFFBF01)
+                            : const Color(0xffFFBF01).withOpacity(0.45),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

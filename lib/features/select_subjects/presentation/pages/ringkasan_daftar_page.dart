@@ -39,219 +39,230 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              'Berikut adalah mata praktikum yang anda pilih. Sesuaikan dengan Mata Kuliah yang anda ambil di KRS.',
-              style: TextStyle(
-                fontWeight: FontWeight.w300,
-                fontSize: 14,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height,
+      child: Material(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Berikut adalah mata praktikum yang anda pilih. Sesuaikan dengan Mata Kuliah yang anda ambil di KRS.',
+                style: TextStyle(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 14,
+                ),
               ),
-            ),
-            const SizedBox(height: 48),
-            SizedBox(
-              width: double.infinity,
-              height: 360,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Daftar Praktikum',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: BlocBuilder<UserSelectedSubjectsDetailsBloc,
-                        UserSelectedSubjectsDetailsState>(
-                      builder: (context, state) {
-                        return Skeletonizer(
-                          enabled: state is UserSelectedSubjectsDetailsLoading
-                              ? true
-                              : false,
-                          enableSwitchAnimation: true,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: const EdgeInsets.only(top: 16),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xfff4f4f9),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: ListView.builder(
-                                    padding: const EdgeInsets.all(12),
-                                    itemExtent: 32,
-                                    itemCount: state.subjectDetails != null
-                                        ? state.subjectDetails!.length
-                                        : 0,
-                                    itemBuilder: (context, index) => Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          state.subjectDetails != null
-                                              ? state
-                                                  .subjectDetails![index].name!
-                                              : 'Subject Name',
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        Text(
-                                          state.subjectDetails != null
-                                              ? 'Semester ${state.subjectDetails![index].semester!}'
-                                              : 'Semester 0',
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Skeletonizer(
-                                enabled:
-                                    state is UserSelectedSubjectsDetailsLoading
-                                        ? true
-                                        : false,
-                                enableSwitchAnimation: true,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'Total',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                    Text(
-                                      state.subjectDetails != null
-                                          ? 'Rp${state.subjectDetails!.length * 5000}'
-                                          : '0000',
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+              const SizedBox(height: 48),
+              SizedBox(
+                width: double.infinity,
+                height: 360,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Daftar Praktikum',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => showAdaptiveDialog(
-                      useRootNavigator: true,
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Simpan Pendaftaran'),
-                        content: const Text(
-                          'Apakah anda yakin untuk menyimpan pendaftaran praktikum dan lanjutkan proses pembayaran?',
-                        ),
-                        actions: [
-                          InkWell(
-                            onTap: () =>
-                                Navigator.of(context, rootNavigator: true)
-                                    .pop(),
-                            child: const Text(
-                              'Kembali',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffFF0000),
-                              ),
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () =>
-                                context.read<AddSelectedSubjectBloc>().add(
-                                      AddSelectedSubjectButtonTapped(
-                                          subjects: widget
-                                              .ringkasanDaftarPageExtra
-                                              .userSelectedSubjectsId
-                                              .subjects),
+                    Flexible(
+                      fit: FlexFit.loose,
+                      child: BlocBuilder<UserSelectedSubjectsDetailsBloc,
+                          UserSelectedSubjectsDetailsState>(
+                        builder: (context, state) {
+                          return Skeletonizer(
+                            enabled: state is UserSelectedSubjectsDetailsLoading
+                                ? true
+                                : false,
+                            enableSwitchAnimation: true,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Flexible(
+                                  fit: FlexFit.loose,
+                                  child: Container(
+                                    margin: const EdgeInsets.only(top: 16),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xfff4f4f9),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                            child: BlocConsumer<AddSelectedSubjectBloc,
-                                AddSelectedSubjectState>(
-                              listener: (context, state) {
-                                if (state is AddSelectedSubjectSuccess) {
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop();
-                                  context.goNamed('payment-status');
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackBar(
-                                      message: 'Pendaftaran Praktikum Sukses',
-                                      type: AlertType.success,
+                                    child: ListView.builder(
+                                      padding: const EdgeInsets.all(12),
+                                      itemExtent: 32,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: state.subjectDetails != null
+                                          ? state.subjectDetails!.length
+                                          : 0,
+                                      itemBuilder: (context, index) => Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            state.subjectDetails != null
+                                                ? state.subjectDetails![index]
+                                                    .name!
+                                                : 'Subject Name',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            state.subjectDetails != null
+                                                ? 'Semester ${state.subjectDetails![index].semester!}'
+                                                : 'Semester 0',
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  );
-                                }
-                              },
-                              builder: (context, state) {
-                                return Skeletonizer(
-                                  enabled: state is AddSelectedSubjectLoading
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Skeletonizer(
+                                  enabled: state
+                                          is UserSelectedSubjectsDetailsLoading
                                       ? true
                                       : false,
                                   enableSwitchAnimation: true,
-                                  child: const Text(
-                                    'Simpan',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        'Total',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                      ),
+                                      Text(
+                                        state.subjectDetails != null
+                                            ? 'Rp${state.subjectDetails!.length * 5000}'
+                                            : '0000',
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                );
-                              },
+                                ),
+                              ],
                             ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () => showAdaptiveDialog(
+                        useRootNavigator: true,
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Simpan Pendaftaran'),
+                          content: const Text(
+                            'Apakah anda yakin untuk menyimpan pendaftaran praktikum dan lanjutkan proses pembayaran?',
                           ),
-                        ],
-                        alignment: Alignment.center,
-                        icon: const Icon(Boxicons.bx_info_circle),
-                        actionsAlignment: MainAxisAlignment.spaceEvenly,
+                          actions: [
+                            InkWell(
+                              onTap: () =>
+                                  Navigator.of(context, rootNavigator: true)
+                                      .pop(),
+                              child: const Text(
+                                'Kembali',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xffFF0000),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () =>
+                                  context.read<AddSelectedSubjectBloc>().add(
+                                        AddSelectedSubjectButtonTapped(
+                                            subjects: widget
+                                                .ringkasanDaftarPageExtra
+                                                .userSelectedSubjectsId
+                                                .subjects),
+                                      ),
+                              child: BlocConsumer<AddSelectedSubjectBloc,
+                                  AddSelectedSubjectState>(
+                                listener: (context, state) {
+                                  if (state is AddSelectedSubjectSuccess) {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                    context.goNamed('payment-status');
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      snackBar(
+                                        message: 'Pendaftaran Praktikum Sukses',
+                                        type: AlertType.success,
+                                      ),
+                                    );
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return Skeletonizer(
+                                    enabled: state is AddSelectedSubjectLoading
+                                        ? true
+                                        : false,
+                                    enableSwitchAnimation: true,
+                                    child: const Text(
+                                      'Simpan',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                          alignment: Alignment.center,
+                          icon: const Icon(Boxicons.bx_info_circle),
+                          actionsAlignment: MainAxisAlignment.spaceEvenly,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(130, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        backgroundColor: const Color(0xff3272CA),
+                        foregroundColor: const Color(0xfff4f4f9),
+                      ),
+                      child: const Text(
+                        'Simpan',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                        ),
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(130, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      backgroundColor: const Color(0xff3272CA),
-                      foregroundColor: const Color(0xfff4f4f9),
-                    ),
-                    child: const Text(
-                      'Simpan',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
