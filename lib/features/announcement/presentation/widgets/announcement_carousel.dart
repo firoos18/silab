@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/widgets/announcement_banner.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -19,6 +19,22 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllAnnouncementsBloc, GetAllAnnouncementsState>(
         builder: (context, state) {
+      if (state is GetAllAnnouncementsFailed) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('Oops, terjadi suatu kesalahan!'),
+              IconButton(
+                onPressed: () => context
+                    .read<GetAllAnnouncementsBloc>()
+                    .add(GetAllAnnouncements()),
+                icon: const Icon(Boxicons.bx_refresh),
+              ),
+            ],
+          ),
+        );
+      }
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
         child: SizedBox(

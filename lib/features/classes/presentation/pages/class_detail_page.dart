@@ -49,13 +49,6 @@ class _ClassDetailPageState extends State<ClassDetailPage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.classEntity!.participants!.length,
-                    itemBuilder: (context, index) => Text(
-                      state.classEntity!.participants![index].fullname!,
-                    ),
-                  ),
                 ],
               ),
             );

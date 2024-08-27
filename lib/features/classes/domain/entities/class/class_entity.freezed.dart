@@ -28,8 +28,7 @@ mixin _$ClassEntity {
   String? get day => throw _privateConstructorUsedError;
   String? get startAt => throw _privateConstructorUsedError;
   String? get endAt => throw _privateConstructorUsedError;
-  List<ClassParticipantsEntity>? get participants =>
-      throw _privateConstructorUsedError;
+  List<String>? get participants => throw _privateConstructorUsedError;
   List<String>? get learningModule => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,7 +52,7 @@ abstract class $ClassEntityCopyWith<$Res> {
       String? day,
       String? startAt,
       String? endAt,
-      List<ClassParticipantsEntity>? participants,
+      List<String>? participants,
       List<String>? learningModule});
 
   $SubjectOfClassEntityCopyWith<$Res>? get subject;
@@ -119,7 +118,7 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
       participants: freezed == participants
           ? _value.participants
           : participants // ignore: cast_nullable_to_non_nullable
-              as List<ClassParticipantsEntity>?,
+              as List<String>?,
       learningModule: freezed == learningModule
           ? _value.learningModule
           : learningModule // ignore: cast_nullable_to_non_nullable
@@ -157,7 +156,7 @@ abstract class _$$ClassEntityImplCopyWith<$Res>
       String? day,
       String? startAt,
       String? endAt,
-      List<ClassParticipantsEntity>? participants,
+      List<String>? participants,
       List<String>? learningModule});
 
   @override
@@ -222,7 +221,7 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
       participants: freezed == participants
           ? _value._participants
           : participants // ignore: cast_nullable_to_non_nullable
-              as List<ClassParticipantsEntity>?,
+              as List<String>?,
       learningModule: freezed == learningModule
           ? _value._learningModule
           : learningModule // ignore: cast_nullable_to_non_nullable
@@ -243,7 +242,7 @@ class _$ClassEntityImpl implements _ClassEntity {
       this.day,
       this.startAt,
       this.endAt,
-      final List<ClassParticipantsEntity>? participants,
+      final List<String>? participants,
       final List<String>? learningModule})
       : _participants = participants,
         _learningModule = learningModule;
@@ -267,9 +266,9 @@ class _$ClassEntityImpl implements _ClassEntity {
   final String? startAt;
   @override
   final String? endAt;
-  final List<ClassParticipantsEntity>? _participants;
+  final List<String>? _participants;
   @override
-  List<ClassParticipantsEntity>? get participants {
+  List<String>? get participants {
     final value = _participants;
     if (value == null) return null;
     if (_participants is EqualUnmodifiableListView) return _participants;
@@ -350,7 +349,7 @@ abstract class _ClassEntity implements ClassEntity {
       final String? day,
       final String? startAt,
       final String? endAt,
-      final List<ClassParticipantsEntity>? participants,
+      final List<String>? participants,
       final List<String>? learningModule}) = _$ClassEntityImpl;
 
   factory _ClassEntity.fromJson(Map<String, dynamic> json) =
@@ -373,7 +372,7 @@ abstract class _ClassEntity implements ClassEntity {
   @override
   String? get endAt;
   @override
-  List<ClassParticipantsEntity>? get participants;
+  List<String>? get participants;
   @override
   List<String>? get learningModule;
   @override

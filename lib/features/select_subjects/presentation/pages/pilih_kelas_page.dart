@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/subject/subject_entity.dart';
 import 'package:silab/core/common/widgets/custom_small_button.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
+import 'package:silab/features/classes/presentation/bloc/bloc/user_selected_classes_details_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/class_listview.dart';
+import 'package:silab/features/select_subjects/presentation/widgets/class_selection_confirmation_dialog.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PilihKelasPageExtra {
@@ -195,10 +197,13 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
               ),
               const SizedBox(height: 16),
               CustomSmallButton(
-                label: BlocBuilder<AddSelectedClassBloc, AddSelectedClassState>(
+                label: BlocBuilder<UserSelectedClassesDetailsBloc,
+                    UserSelectedClassesDetailsState>(
                   builder: (context, state) {
                     return Skeletonizer(
-                      enabled: state is AddSelectedClassLoading ? true : false,
+                      enabled: state is UserSelectedClassesDetailsLoading
+                          ? true
+                          : false,
                       enableSwitchAnimation: true,
                       child: const Text(
                         'Simpan',
@@ -211,9 +216,20 @@ class _PilihKelasPageState extends State<PilihKelasPage> {
                   },
                 ),
                 onPressed: selectedClasses.isNotEmpty
-                    ? () => context
-                        .read<AddSelectedClassBloc>()
-                        .add(AddSelectedClass(selectedClass: selectedClasses))
+                    ? () {
+                        context.read<UserSelectedClassesDetailsBloc>().add(
+                              SimpanKelasButtonTapped(
+                                  classes: selectedClasses.values.toList()),
+                            );
+                        showDialog(
+                          context: context,
+                          useRootNavigator: true,
+                          builder: (context) =>
+                              ClassSelectionConfirmationDialog(
+                            selectedClasses: selectedClasses,
+                          ),
+                        );
+                      }
                     : null,
               )
             ],

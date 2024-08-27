@@ -5,6 +5,7 @@ import 'package:silab/core/failures/failures.dart';
 import 'package:silab/features/classes/data/data_sources/classes_api_service.dart';
 import 'package:silab/features/classes/domain/entities/class_list_response/classes_response_entity.dart';
 import 'package:silab/features/classes/domain/entities/class_response/class_response_entity.dart';
+import 'package:silab/features/classes/domain/entities/classes_details_response/classes_details_response_entity.dart';
 import 'package:silab/features/classes/domain/repository/class_repository.dart';
 
 class ClassRepositoryImpl implements ClassRepository {
@@ -45,6 +46,21 @@ class ClassRepositoryImpl implements ClassRepository {
       getUserRegisteredClasses() async {
     try {
       final result = await _classesApiService.getUserRegisteredClasses();
+
+      return Right(result);
+    } on RequestErrorException catch (e) {
+      return Left(RequestFailures(e.message));
+    } on SocketException catch (e) {
+      return Left(RequestFailures(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failures, ClassesDetailsResponseEntity>>
+      getUserSelectedClassesDetails({List<String>? classes}) async {
+    try {
+      final result = await _classesApiService.getUserSelectedClassesDetails(
+          classes: classes);
 
       return Right(result);
     } on RequestErrorException catch (e) {

@@ -6,6 +6,7 @@ import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/features/classes/domain/entities/class_list_response/classes_response_entity.dart';
 import 'package:http/http.dart' as http;
 import 'package:silab/features/classes/domain/entities/class_response/class_response_entity.dart';
+import 'package:silab/features/classes/domain/entities/classes_details_response/classes_details_response_entity.dart';
 
 class ClassesApiService {
   final SharedPreferences _sharedPreferences;
@@ -68,6 +69,30 @@ class ClassesApiService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return ClassesResponseEntity.fromJson(data);
+    } else if (response.statusCode == 504) {
+      throw RequestErrorException('An Internal Server Error Occurred');
+    } else {
+      final data = jsonDecode(response.body);
+      throw RequestErrorException(data['message']);
+    }
+  }
+
+  Future<ClassesDetailsResponseEntity> getUserSelectedClassesDetails(
+      {List<String>? classes}) async {
+    final token = _sharedPreferences.getString('token');
+
+    final response = await http.post(
+      Uri.parse('${AppConfig.shared.baseUrl}/class/details'),
+      headers: {
+        'Authorization': "Bearer $token",
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({'classes': classes}),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return ClassesDetailsResponseEntity.fromJson(data);
     } else if (response.statusCode == 504) {
       throw RequestErrorException('An Internal Server Error Occurred');
     } else {

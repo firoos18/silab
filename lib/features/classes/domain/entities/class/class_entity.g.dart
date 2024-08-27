@@ -20,8 +20,7 @@ _$ClassEntityImpl _$$ClassEntityImplFromJson(Map<String, dynamic> json) =>
       startAt: json['startAt'] as String?,
       endAt: json['endAt'] as String?,
       participants: (json['participants'] as List<dynamic>?)
-          ?.map((e) =>
-              ClassParticipantsEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e as String)
           .toList(),
       learningModule: (json['learningModule'] as List<dynamic>?)
           ?.map((e) => e as String)
