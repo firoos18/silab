@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           SizedBox(
             height: 175,
-            width: 500,
+            width: double.infinity,
             child: AnnouncementCarousel(),
           ),
           SizedBox(height: 16),

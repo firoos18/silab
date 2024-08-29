@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/app_config.dart';
@@ -89,13 +88,6 @@ final GoRouter router = GoRouter(
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
     ),
-    GoRoute(
-      path: '/class/:id',
-      name: 'class',
-      builder: (context, state) => ClassDetailPage(
-        classId: state.pathParameters['id'],
-      ),
-    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           ScaffoldPage(navigationShell: navigationShell),
@@ -137,6 +129,13 @@ final GoRouter router = GoRouter(
                   path: 'pilih-kelas',
                   name: 'pilih-kelas',
                   builder: (context, state) => const PilihKelasPage(),
+                ),
+                GoRoute(
+                  path: 'class/:id',
+                  name: 'class',
+                  builder: (context, state) => ClassDetailPage(
+                    classDetailPageExtra: state.extra as ClassDetailPageExtra,
+                  ),
                 ),
               ],
             )

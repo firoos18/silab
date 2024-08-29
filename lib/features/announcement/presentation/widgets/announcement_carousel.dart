@@ -20,18 +20,22 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
     return BlocBuilder<GetAllAnnouncementsBloc, GetAllAnnouncementsState>(
         builder: (context, state) {
       if (state is GetAllAnnouncementsFailed) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Oops, terjadi suatu kesalahan!'),
-              IconButton(
-                onPressed: () => context
-                    .read<GetAllAnnouncementsBloc>()
-                    .add(GetAllAnnouncements()),
-                icon: const Icon(Boxicons.bx_refresh),
-              ),
-            ],
+        return SizedBox(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Oops, terjadi suatu kesalahan!'),
+                IconButton(
+                  onPressed: () => context
+                      .read<GetAllAnnouncementsBloc>()
+                      .add(GetAllAnnouncements()),
+                  icon: const Icon(Boxicons.bx_refresh),
+                ),
+              ],
+            ),
           ),
         );
       }
@@ -39,7 +43,7 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
         child: SizedBox(
           width: double.infinity,
-          height: 119,
+          height: double.maxFinite,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [

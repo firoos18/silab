@@ -1,12 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
+import 'package:silab/core/common/entities/class/class_entity.dart';
+import 'package:silab/features/classes/presentation/widgets/class_card.dart';
+import 'package:silab/features/classes/presentation/widgets/class_details_tabview.dart';
+
+class ClassDetailPageExtra {
+  final ClassEntity classEntity;
+
+  const ClassDetailPageExtra({required this.classEntity});
+}
 
 class ClassDetailPage extends StatefulWidget {
-  final String? classId;
+  final ClassDetailPageExtra classDetailPageExtra;
 
-  const ClassDetailPage({super.key, required this.classId});
+  const ClassDetailPage({super.key, required this.classDetailPageExtra});
 
   @override
   State<ClassDetailPage> createState() => _ClassDetailPageState();
@@ -14,52 +20,23 @@ class ClassDetailPage extends StatefulWidget {
 
 class _ClassDetailPageState extends State<ClassDetailPage> {
   @override
-  void initState() {
-    context
-        .read<ClassByIdBloc>()
-        .add(ClassDetailPageOpened(classId: widget.classId));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Class Details'),
-      ),
-      body: BlocBuilder<ClassByIdBloc, ClassByIdState>(
-        builder: (context, state) {
-          if (state is ClassByIdLoaded) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 24, left: 16, right: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    state.classEntity!.name!,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '${state.classEntity!.day!}, ${state.classEntity!.startAt!} - ${state.classEntity!.endAt!}',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          } else if (state is ClassByIdLoading) {
-            return const Center(
-              child: CupertinoActivityIndicator(),
-            );
-          }
-
-          return const SizedBox();
-        },
+    return Material(
+      color: Colors.white,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClassCard(classEntity: widget.classDetailPageExtra.classEntity),
+              const SizedBox(height: 24),
+              const ClassDetailTabView()
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
 
 class ClassCard extends StatelessWidget {
@@ -9,59 +8,111 @@ class ClassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context.pushNamed(
-        'class',
-        pathParameters: {'id': classEntity.id!},
+    return Container(
+      width: double.infinity,
+      height: 140,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        color: const Color(0xfff4f4f9),
       ),
-      borderRadius: BorderRadius.circular(8),
-      radius: 150,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white70,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(1, 2),
-              blurRadius: 1,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: const Color(0xff1d1d1d),
+                radius: 24,
+                child: Text(
                   classEntity.name!,
                   style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  '${classEntity.day!}, ${classEntity.startAt!} - ${classEntity.startAt!}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w200,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '${classEntity.participants!.length} / ${classEntity.quota}',
-                  style: const TextStyle(
-                    fontSize: 12,
+                    color: Color(0xfff4f4f9),
                     fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    classEntity.subject!.name!,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    classEntity.subject!.lecturer!,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ruang',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: const Color(0xff1d1d1d).withOpacity(0.5),
+                        ),
+                      ),
+                      Text(
+                        classEntity.ruang!,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                VerticalDivider(
+                  color: const Color(0xff1d1d1d).withOpacity(0.5),
+                  thickness: 1,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Jadwal',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: const Color(0xff1d1d1d).withOpacity(0.5),
+                        ),
+                      ),
+                      Text(
+                        '${classEntity.day!}, ${classEntity.startAt!} - ${classEntity.endAt!}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],
             ),
-            const Icon(Icons.chevron_right),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

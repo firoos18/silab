@@ -34,7 +34,7 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 240,
+      height: double.maxFinite,
       decoration: BoxDecoration(
         color: const Color(0xfff4f4f9),
         borderRadius: BorderRadius.circular(15),
