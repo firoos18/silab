@@ -20,12 +20,15 @@ LoginDataEntity _$LoginDataEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginDataEntity {
-  String? get email => throw _privateConstructorUsedError;
-  String? get nim => throw _privateConstructorUsedError;
-  String? get token => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
 
+  /// Serializes this LoginDataEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoginDataEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginDataEntityCopyWith<LoginDataEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,7 +39,7 @@ abstract class $LoginDataEntityCopyWith<$Res> {
           LoginDataEntity value, $Res Function(LoginDataEntity) then) =
       _$LoginDataEntityCopyWithImpl<$Res, LoginDataEntity>;
   @useResult
-  $Res call({String? email, String? nim, String? token});
+  $Res call({String? accessToken, String? refreshToken});
 }
 
 /// @nodoc
@@ -49,25 +52,22 @@ class _$LoginDataEntityCopyWithImpl<$Res, $Val extends LoginDataEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginDataEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? nim = freezed,
-    Object? token = freezed,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_value.copyWith(
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      nim: freezed == nim
-          ? _value.nim
-          : nim // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -81,7 +81,7 @@ abstract class _$$LoginDataEntityImplCopyWith<$Res>
       __$$LoginDataEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? email, String? nim, String? token});
+  $Res call({String? accessToken, String? refreshToken});
 }
 
 /// @nodoc
@@ -92,25 +92,22 @@ class __$$LoginDataEntityImplCopyWithImpl<$Res>
       _$LoginDataEntityImpl _value, $Res Function(_$LoginDataEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginDataEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? email = freezed,
-    Object? nim = freezed,
-    Object? token = freezed,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
   }) {
     return _then(_$LoginDataEntityImpl(
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      accessToken: freezed == accessToken
+          ? _value.accessToken
+          : accessToken // ignore: cast_nullable_to_non_nullable
               as String?,
-      nim: freezed == nim
-          ? _value.nim
-          : nim // ignore: cast_nullable_to_non_nullable
-              as String?,
-      token: freezed == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
+      refreshToken: freezed == refreshToken
+          ? _value.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -119,21 +116,19 @@ class __$$LoginDataEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LoginDataEntityImpl implements _LoginDataEntity {
-  const _$LoginDataEntityImpl({this.email, this.nim, this.token});
+  const _$LoginDataEntityImpl({this.accessToken, this.refreshToken});
 
   factory _$LoginDataEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$LoginDataEntityImplFromJson(json);
 
   @override
-  final String? email;
+  final String? accessToken;
   @override
-  final String? nim;
-  @override
-  final String? token;
+  final String? refreshToken;
 
   @override
   String toString() {
-    return 'LoginDataEntity(email: $email, nim: $nim, token: $token)';
+    return 'LoginDataEntity(accessToken: $accessToken, refreshToken: $refreshToken)';
   }
 
   @override
@@ -141,16 +136,19 @@ class _$LoginDataEntityImpl implements _LoginDataEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginDataEntityImpl &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.nim, nim) || other.nim == nim) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.accessToken, accessToken) ||
+                other.accessToken == accessToken) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, email, nim, token);
+  int get hashCode => Object.hash(runtimeType, accessToken, refreshToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginDataEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginDataEntityImplCopyWith<_$LoginDataEntityImpl> get copyWith =>
@@ -167,21 +165,21 @@ class _$LoginDataEntityImpl implements _LoginDataEntity {
 
 abstract class _LoginDataEntity implements LoginDataEntity {
   const factory _LoginDataEntity(
-      {final String? email,
-      final String? nim,
-      final String? token}) = _$LoginDataEntityImpl;
+      {final String? accessToken,
+      final String? refreshToken}) = _$LoginDataEntityImpl;
 
   factory _LoginDataEntity.fromJson(Map<String, dynamic> json) =
       _$LoginDataEntityImpl.fromJson;
 
   @override
-  String? get email;
+  String? get accessToken;
   @override
-  String? get nim;
+  String? get refreshToken;
+
+  /// Create a copy of LoginDataEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String? get token;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginDataEntityImplCopyWith<_$LoginDataEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -29,8 +29,12 @@ mixin _$SelectedSubjectSubjectsEntity {
   RegisteredClassEntity? get registeredClass =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SelectedSubjectSubjectsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedSubjectSubjectsEntityCopyWith<SelectedSubjectSubjectsEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -65,6 +69,8 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +109,8 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RegisteredClassEntityCopyWith<$Res>? get registeredClass {
@@ -148,6 +156,8 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
       $Res Function(_$SelectedSubjectSubjectsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,12 +256,14 @@ class _$SelectedSubjectSubjectsEntityImpl
                 other.registeredClass == registeredClass));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, lecturer,
       const DeepCollectionEquality().hash(_classes), semester, registeredClass);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedSubjectSubjectsEntityImplCopyWith<
@@ -293,8 +305,11 @@ abstract class _SelectedSubjectSubjectsEntity
   int? get semester;
   @override
   RegisteredClassEntity? get registeredClass;
+
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedSubjectSubjectsEntityImplCopyWith<
           _$SelectedSubjectSubjectsEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

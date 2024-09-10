@@ -32,8 +32,12 @@ mixin _$ClassEntity {
   List<String>? get participants => throw _privateConstructorUsedError;
   List<String>? get learningModule => throw _privateConstructorUsedError;
 
+  /// Serializes this ClassEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClassEntityCopyWith<ClassEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -70,6 +74,8 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -133,6 +139,8 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
     ) as $Val);
   }
 
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SubjectEntityCopyWith<$Res>? get subject {
@@ -179,6 +187,8 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
       _$ClassEntityImpl _value, $Res Function(_$ClassEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -327,7 +337,7 @@ class _$ClassEntityImpl implements _ClassEntity {
                 .equals(other._learningModule, _learningModule));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -343,7 +353,9 @@ class _$ClassEntityImpl implements _ClassEntity {
       const DeepCollectionEquality().hash(_participants),
       const DeepCollectionEquality().hash(_learningModule));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClassEntityImplCopyWith<_$ClassEntityImpl> get copyWith =>
@@ -396,8 +408,11 @@ abstract class _ClassEntity implements ClassEntity {
   List<String>? get participants;
   @override
   List<String>? get learningModule;
+
+  /// Create a copy of ClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClassEntityImplCopyWith<_$ClassEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

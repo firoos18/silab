@@ -33,8 +33,12 @@ mixin _$RegisteredClassEntity {
   List<String>? get participants => throw _privateConstructorUsedError;
   List<String>? get learningModule => throw _privateConstructorUsedError;
 
+  /// Serializes this RegisteredClassEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RegisteredClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RegisteredClassEntityCopyWith<RegisteredClassEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -70,6 +74,8 @@ class _$RegisteredClassEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RegisteredClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,6 +172,8 @@ class __$$RegisteredClassEntityImplCopyWithImpl<$Res>
       $Res Function(_$RegisteredClassEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RegisteredClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -314,7 +322,7 @@ class _$RegisteredClassEntityImpl implements _RegisteredClassEntity {
                 .equals(other._learningModule, _learningModule));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -330,7 +338,9 @@ class _$RegisteredClassEntityImpl implements _RegisteredClassEntity {
       const DeepCollectionEquality().hash(_participants),
       const DeepCollectionEquality().hash(_learningModule));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RegisteredClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisteredClassEntityImplCopyWith<_$RegisteredClassEntityImpl>
@@ -384,8 +394,11 @@ abstract class _RegisteredClassEntity implements RegisteredClassEntity {
   List<String>? get participants;
   @override
   List<String>? get learningModule;
+
+  /// Create a copy of RegisteredClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RegisteredClassEntityImplCopyWith<_$RegisteredClassEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

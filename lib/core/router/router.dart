@@ -7,15 +7,6 @@ import 'package:silab/features/select_subjects/presentation/pages/payment_status
 import 'package:silab/features/select_subjects/presentation/pages/pilih_kelas_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
-import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
-import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/user_info_page.dart';
-import 'package:silab/features/authentication/presentation/pages/user_info_page_extra.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
 import 'package:silab/features/schedule/presentation/pages/schedule_page.dart';
@@ -41,46 +32,7 @@ final GoRouter router = GoRouter(
       path: '/authentication',
       name: 'authentication',
       parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => AuthenticationPage(
-        formType: state.extra as FormType,
-      ),
-    ),
-    GoRoute(
-      path: '/user-info',
-      name: 'user-info',
-      builder: (context, state) => UserInfoPage(
-        userInfoPageExtra: state.extra as UserInfoPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/verify-otp',
-      name: 'verify-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => VerifyOtpPage(
-        verifyOtpPageExtra: state.extra as VerifyOtpPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/send-reset-password-otp',
-      name: 'send-reset-password-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => const SendResetPasswordOtpPage(),
-    ),
-    GoRoute(
-      path: '/verify-reset-password-otp',
-      name: 'verify-reset-password-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => VerifyResetPasswordOtpPage(
-        verifyResetPasswordOtpPageExtra:
-            state.extra as VerifyResetPasswordOtpPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/reset-password',
-      name: 'reset-password',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) =>
-          ResetPasswordPage(userId: state.extra as String),
+      builder: (context, state) => const AuthenticationPage(),
     ),
     GoRoute(
       path: '/splash',

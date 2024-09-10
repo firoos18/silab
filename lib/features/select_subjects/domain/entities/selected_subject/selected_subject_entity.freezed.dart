@@ -26,8 +26,12 @@ mixin _$SelectedSubjectEntity {
   List<SelectedSubjectSubjectsEntity>? get subjects =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SelectedSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedSubjectEntityCopyWith<SelectedSubjectEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -55,6 +59,8 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -103,6 +109,8 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
       $Res Function(_$SelectedSubjectEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,12 +176,14 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, userId, const DeepCollectionEquality().hash(_subjects));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedSubjectEntityImplCopyWith<_$SelectedSubjectEntityImpl>
@@ -204,8 +214,11 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   String? get userId;
   @override
   List<SelectedSubjectSubjectsEntity>? get subjects;
+
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedSubjectEntityImplCopyWith<_$SelectedSubjectEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

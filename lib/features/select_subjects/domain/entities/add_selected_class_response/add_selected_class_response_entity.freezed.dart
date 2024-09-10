@@ -25,8 +25,12 @@ mixin _$AddSelectedClassResponseEntity {
   String? get message => throw _privateConstructorUsedError;
   List<SelectedClassEntity>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AddSelectedClassResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AddSelectedClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddSelectedClassResponseEntityCopyWith<AddSelectedClassResponseEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$AddSelectedClassResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AddSelectedClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$AddSelectedClassResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$AddSelectedClassResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AddSelectedClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,12 +172,14 @@ class _$AddSelectedClassResponseEntityImpl
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AddSelectedClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddSelectedClassResponseEntityImplCopyWith<
@@ -202,8 +212,11 @@ abstract class _AddSelectedClassResponseEntity
   String? get message;
   @override
   List<SelectedClassEntity>? get data;
+
+  /// Create a copy of AddSelectedClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddSelectedClassResponseEntityImplCopyWith<
           _$AddSelectedClassResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

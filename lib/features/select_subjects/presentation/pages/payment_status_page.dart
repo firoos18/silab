@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:silab/core/common/widgets/custom_small_button.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PaymentStatusPage extends StatefulWidget {
   const PaymentStatusPage({super.key});
@@ -15,24 +11,12 @@ class PaymentStatusPage extends StatefulWidget {
 }
 
 class _PaymentStatusPageState extends State<PaymentStatusPage> {
-  SupabaseStreamBuilder? _stream;
   bool? isVerified = false;
 
   @override
   void initState() {
-    getUserPaymentStatus();
     context.read<SelectedSubjectByNimBloc>().add(GetUserSelectedSubjects());
     super.initState();
-  }
-
-  Future<void> getUserPaymentStatus() async {
-    final sharedPrefs = await SharedPreferences.getInstance();
-    final nim = sharedPrefs.getString('nim');
-    setState(() {
-      _stream = Supabase.instance.client
-          .from('users')
-          .stream(primaryKey: ['nim']).eq('nim', nim!);
-    });
   }
 
   @override
@@ -160,118 +144,6 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                       ),
                                     ],
                                   ),
-                                ),
-                                StreamBuilder(
-                                  stream: _stream,
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              const Text(
-                                                'Status Pembayaran',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                              ),
-                                              Skeletonizer(
-                                                enabled: snapshot
-                                                            .connectionState !=
-                                                        ConnectionState.active
-                                                    ? true
-                                                    : false,
-                                                enableSwitchAnimation: true,
-                                                child: Text(
-                                                  snapshot.data![0]
-                                                          ['payment_status']
-                                                      ? 'Berhasil'
-                                                      : 'Pending',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: snapshot.data!.first[
-                                                            'payment_status']
-                                                        ? const Color(
-                                                            0xff27A149)
-                                                        : const Color(
-                                                            0xffFAC730),
-                                                  ),
-                                                  textAlign: TextAlign.end,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 16),
-                                          CustomSmallButton(
-                                            label: const Text(
-                                              'Selanjutnya',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            onPressed: snapshot.data![0]
-                                                    ['payment_status']
-                                                ? () {
-                                                    context.goNamed(
-                                                      'pilih-kelas',
-                                                    );
-                                                  }
-                                                : null,
-                                          )
-                                        ],
-                                      );
-                                    } else {
-                                      return const Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                'Status Pembayaran',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                              ),
-                                              Skeletonizer(
-                                                enabled: true,
-                                                enableSwitchAnimation: true,
-                                                child: Text(
-                                                  'Pending',
-                                                  style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  textAlign: TextAlign.end,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(height: 16),
-                                          CustomSmallButton(
-                                            label: Text(
-                                              'Selanjutnya',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            onPressed: null,
-                                          )
-                                        ],
-                                      );
-                                    }
-                                  },
                                 ),
                               ],
                             ),

@@ -23,8 +23,12 @@ mixin _$SelectedClassEntity {
   String? get subjectName => throw _privateConstructorUsedError;
   String? get className => throw _privateConstructorUsedError;
 
+  /// Serializes this SelectedClassEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectedClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedClassEntityCopyWith<SelectedClassEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SelectedClassEntityCopyWithImpl<$Res, $Val extends SelectedClassEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SelectedClassEntityImplCopyWithImpl<$Res>
       $Res Function(_$SelectedClassEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,11 +142,13 @@ class _$SelectedClassEntityImpl implements _SelectedClassEntity {
                 other.className == className));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, subjectName, className);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedClassEntityImplCopyWith<_$SelectedClassEntityImpl> get copyWith =>
@@ -165,8 +175,11 @@ abstract class _SelectedClassEntity implements SelectedClassEntity {
   String? get subjectName;
   @override
   String? get className;
+
+  /// Create a copy of SelectedClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedClassEntityImplCopyWith<_$SelectedClassEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

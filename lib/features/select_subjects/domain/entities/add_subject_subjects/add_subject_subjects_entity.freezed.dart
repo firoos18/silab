@@ -25,8 +25,12 @@ mixin _$AddSubjectSubjectsEntity {
   String? get userId => throw _privateConstructorUsedError;
   List<String>? get subjects => throw _privateConstructorUsedError;
 
+  /// Serializes this AddSubjectSubjectsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddSubjectSubjectsEntityCopyWith<AddSubjectSubjectsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$AddSubjectSubjectsEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,6 +103,8 @@ class __$$AddSubjectSubjectsEntityImplCopyWithImpl<$Res>
       $Res Function(_$AddSubjectSubjectsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -160,12 +168,14 @@ class _$AddSubjectSubjectsEntityImpl implements _AddSubjectSubjectsEntity {
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, userId, const DeepCollectionEquality().hash(_subjects));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddSubjectSubjectsEntityImplCopyWith<_$AddSubjectSubjectsEntityImpl>
@@ -195,8 +205,11 @@ abstract class _AddSubjectSubjectsEntity implements AddSubjectSubjectsEntity {
   String? get userId;
   @override
   List<String>? get subjects;
+
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddSubjectSubjectsEntityImplCopyWith<_$AddSubjectSubjectsEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

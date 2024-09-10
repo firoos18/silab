@@ -26,8 +26,12 @@ mixin _$AnnouncementEntity {
   String? get desc => throw _privateConstructorUsedError;
   String? get posterUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this AnnouncementEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnnouncementEntityCopyWith<AnnouncementEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$AnnouncementEntityCopyWithImpl<$Res, $Val extends AnnouncementEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$AnnouncementEntityImplCopyWithImpl<$Res>
       $Res Function(_$AnnouncementEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -186,12 +194,14 @@ class _$AnnouncementEntityImpl implements _AnnouncementEntity {
                 other.posterUrl == posterUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, title, type, desc, posterUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnnouncementEntityImplCopyWith<_$AnnouncementEntityImpl> get copyWith =>
@@ -227,8 +237,11 @@ abstract class _AnnouncementEntity implements AnnouncementEntity {
   String? get desc;
   @override
   String? get posterUrl;
+
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnnouncementEntityImplCopyWith<_$AnnouncementEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

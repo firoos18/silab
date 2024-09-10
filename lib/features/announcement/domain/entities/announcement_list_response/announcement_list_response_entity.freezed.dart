@@ -25,8 +25,12 @@ mixin _$AnnouncementListResponseEntity {
   String? get message => throw _privateConstructorUsedError;
   List<AnnouncementEntity>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AnnouncementListResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnnouncementListResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnnouncementListResponseEntityCopyWith<AnnouncementListResponseEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$AnnouncementListResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnnouncementListResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$AnnouncementListResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$AnnouncementListResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnnouncementListResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,12 +172,14 @@ class _$AnnouncementListResponseEntityImpl
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnnouncementListResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnnouncementListResponseEntityImplCopyWith<
@@ -202,8 +212,11 @@ abstract class _AnnouncementListResponseEntity
   String? get message;
   @override
   List<AnnouncementEntity>? get data;
+
+  /// Create a copy of AnnouncementListResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnnouncementListResponseEntityImplCopyWith<
           _$AnnouncementListResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

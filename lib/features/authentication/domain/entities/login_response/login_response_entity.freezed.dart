@@ -20,12 +20,16 @@ LoginResponseEntity _$LoginResponseEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   LoginDataEntity? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this LoginResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoginResponseEntityCopyWith<LoginResponseEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,7 +40,7 @@ abstract class $LoginResponseEntityCopyWith<$Res> {
           LoginResponseEntity value, $Res Function(LoginResponseEntity) then) =
       _$LoginResponseEntityCopyWithImpl<$Res, LoginResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, LoginDataEntity? data});
+  $Res call({String? status, String? message, LoginDataEntity? data});
 
   $LoginDataEntityCopyWith<$Res>? get data;
 }
@@ -51,6 +55,8 @@ class _$LoginResponseEntityCopyWithImpl<$Res, $Val extends LoginResponseEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,7 +68,7 @@ class _$LoginResponseEntityCopyWithImpl<$Res, $Val extends LoginResponseEntity>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -74,6 +80,8 @@ class _$LoginResponseEntityCopyWithImpl<$Res, $Val extends LoginResponseEntity>
     ) as $Val);
   }
 
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LoginDataEntityCopyWith<$Res>? get data {
@@ -95,7 +103,7 @@ abstract class _$$LoginResponseEntityImplCopyWith<$Res>
       __$$LoginResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, LoginDataEntity? data});
+  $Res call({String? status, String? message, LoginDataEntity? data});
 
   @override
   $LoginDataEntityCopyWith<$Res>? get data;
@@ -109,6 +117,8 @@ class __$$LoginResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$LoginResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,7 +130,7 @@ class __$$LoginResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -142,7 +152,7 @@ class _$LoginResponseEntityImpl implements _LoginResponseEntity {
       _$$LoginResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   @override
@@ -163,11 +173,13 @@ class _$LoginResponseEntityImpl implements _LoginResponseEntity {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginResponseEntityImplCopyWith<_$LoginResponseEntityImpl> get copyWith =>
@@ -184,7 +196,7 @@ class _$LoginResponseEntityImpl implements _LoginResponseEntity {
 
 abstract class _LoginResponseEntity implements LoginResponseEntity {
   const factory _LoginResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final LoginDataEntity? data}) = _$LoginResponseEntityImpl;
 
@@ -192,13 +204,16 @@ abstract class _LoginResponseEntity implements LoginResponseEntity {
       _$LoginResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
   LoginDataEntity? get data;
+
+  /// Create a copy of LoginResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoginResponseEntityImplCopyWith<_$LoginResponseEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ClassContainer extends StatefulWidget {
   final int index;
@@ -26,15 +24,8 @@ class ClassContainer extends StatefulWidget {
 }
 
 class _ClassContainerState extends State<ClassContainer> {
-  late final SupabaseStreamBuilder _stream;
-
   @override
   void initState() {
-    _stream =
-        Supabase.instance.client.from('class').stream(primaryKey: ['id']).eq(
-      'id',
-      widget.classEntity.id!,
-    );
     super.initState();
   }
 
@@ -84,39 +75,6 @@ class _ClassContainerState extends State<ClassContainer> {
                         ? const Color(0xff1d1d1d).withOpacity(0.5)
                         : const Color(0xff1d1d1d),
                   ),
-                ),
-                StreamBuilder(
-                  stream: _stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Skeletonizer(
-                        enabled:
-                            snapshot.connectionState != ConnectionState.active
-                                ? true
-                                : false,
-                        enableSwitchAnimation: true,
-                        child: Text(
-                          '${snapshot.data![0]['participants']}/${snapshot.data![0]['quota']}',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: snapshot.data![0]['quota'] -
-                                        snapshot.data![0]['participants'] ==
-                                    5
-                                ? const Color(0xffFAC730)
-                                : snapshot.data![0]['participants'] ==
-                                        snapshot.data![0]['quota']
-                                    ? const Color(0xffFF0000)
-                                    : const Color(0xff1d1d1d),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      );
-                    } else {
-                      return const Text(
-                        '0/0',
-                      );
-                    }
-                  },
                 ),
               ],
             ),

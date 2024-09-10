@@ -9,15 +9,13 @@ part of 'login_data_entity.dart';
 _$LoginDataEntityImpl _$$LoginDataEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$LoginDataEntityImpl(
-      email: json['email'] as String?,
-      nim: json['nim'] as String?,
-      token: json['token'] as String?,
+      accessToken: json['accessToken'] as String?,
+      refreshToken: json['refreshToken'] as String?,
     );
 
 Map<String, dynamic> _$$LoginDataEntityImplToJson(
         _$LoginDataEntityImpl instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'nim': instance.nim,
-      'token': instance.token,
+      'accessToken': instance.accessToken,
+      'refreshToken': instance.refreshToken,
     };

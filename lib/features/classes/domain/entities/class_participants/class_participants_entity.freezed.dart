@@ -28,8 +28,12 @@ mixin _$ClassParticipantsEntity {
   List<String>? get role => throw _privateConstructorUsedError;
   bool? get paid => throw _privateConstructorUsedError;
 
+  /// Serializes this ClassParticipantsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClassParticipantsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClassParticipantsEntityCopyWith<ClassParticipantsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$ClassParticipantsEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClassParticipantsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,6 +133,8 @@ class __$$ClassParticipantsEntityImplCopyWithImpl<$Res>
       $Res Function(_$ClassParticipantsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClassParticipantsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -221,12 +229,14 @@ class _$ClassParticipantsEntityImpl implements _ClassParticipantsEntity {
             (identical(other.paid, paid) || other.paid == paid));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, email, fullname, nim,
       const DeepCollectionEquality().hash(_role), paid);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClassParticipantsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClassParticipantsEntityImplCopyWith<_$ClassParticipantsEntityImpl>
@@ -265,8 +275,11 @@ abstract class _ClassParticipantsEntity implements ClassParticipantsEntity {
   List<String>? get role;
   @override
   bool? get paid;
+
+  /// Create a copy of ClassParticipantsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClassParticipantsEntityImplCopyWith<_$ClassParticipantsEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

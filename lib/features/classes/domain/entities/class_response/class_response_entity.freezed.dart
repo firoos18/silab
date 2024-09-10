@@ -24,8 +24,12 @@ mixin _$ClassResponseEntity {
   String? get message => throw _privateConstructorUsedError;
   ClassEntity? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ClassResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClassResponseEntityCopyWith<ClassResponseEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +55,8 @@ class _$ClassResponseEntityCopyWithImpl<$Res, $Val extends ClassResponseEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +80,8 @@ class _$ClassResponseEntityCopyWithImpl<$Res, $Val extends ClassResponseEntity>
     ) as $Val);
   }
 
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ClassEntityCopyWith<$Res>? get data {
@@ -109,6 +117,8 @@ class __$$ClassResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$ClassResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -163,11 +173,13 @@ class _$ClassResponseEntityImpl implements _ClassResponseEntity {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClassResponseEntityImplCopyWith<_$ClassResponseEntityImpl> get copyWith =>
@@ -197,8 +209,11 @@ abstract class _ClassResponseEntity implements ClassResponseEntity {
   String? get message;
   @override
   ClassEntity? get data;
+
+  /// Create a copy of ClassResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClassResponseEntityImplCopyWith<_$ClassResponseEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

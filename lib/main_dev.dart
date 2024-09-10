@@ -1,23 +1,11 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/core/router/router.dart';
-import 'package:silab/core/services/notification_service.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/logout/logout_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/resend_otp/resend_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/register/register_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/resend_reset_password_otp/resend_reset_password_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/reset_password/reset_password_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/send_reset_password_otp/send_reset_password_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/verify_otp/verify_otp_bloc.dart';
-import 'package:silab/features/authentication/presentation/bloc/verify_reset_password_otp/verify_reset_password_otp_bloc.dart';
+import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/bloc/user_selected_classes_details_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
@@ -29,36 +17,21 @@ import 'package:silab/features/subjects/presentation/bloc/subject_details/subjec
 import 'package:silab/features/subjects/presentation/bloc/subject_list/subject_list_bloc.dart';
 import 'package:silab/features/subjects/presentation/bloc/user_selected_subjects_details/bloc/user_selected_subjects_details_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
-import 'package:silab/firebase_options_dev.dart';
 import 'package:silab/injector.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
-
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  final notificationService = NotificationService(router);
-  await notificationService.initialize();
-
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await initializeDependencies();
+  setPathUrlStrategy();
 
   runApp(const MainApp());
 
   AppConfig.create(
     appName: "SILAB Dev",
-    baseUrl: "https://silab-dev.vercel.app",
+    baseUrl: "http://10.4.52.201:3001",
     flavor: Flavor.dev,
   );
-}
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print('Handling a background message: ${message.messageId}');
 }
 
 class MainApp extends StatelessWidget {
@@ -68,29 +41,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<RegisterBloc>(
-          create: (_) => RegisterBloc(injector()),
-        ),
-        BlocProvider<LoginBloc>(
-          create: (_) => LoginBloc(injector(), injector()),
-        ),
-        BlocProvider<VerifyOtpBloc>(
-          create: (_) => VerifyOtpBloc(injector()),
-        ),
-        BlocProvider<ResendOtpBloc>(
-          create: (_) => ResendOtpBloc(injector()),
-        ),
-        BlocProvider<ResetPasswordBloc>(
-          create: (_) => ResetPasswordBloc(injector()),
-        ),
-        BlocProvider<SendResetPasswordOtpBloc>(
-          create: (_) => SendResetPasswordOtpBloc(injector()),
-        ),
-        BlocProvider<ResendResetPasswordOtpBloc>(
-          create: (_) => ResendResetPasswordOtpBloc(injector()),
-        ),
-        BlocProvider<VerifyResetPasswordOtpBloc>(
-          create: (_) => VerifyResetPasswordOtpBloc(injector()),
+        BlocProvider<AuthenticationBloc>(
+          create: (_) => AuthenticationBloc(injector(), injector()),
         ),
         BlocProvider<UserDetailsBloc>(
           create: (_) => UserDetailsBloc(injector(), injector()),
@@ -106,9 +58,6 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<SubjectDetailsBloc>(
           create: (_) => SubjectDetailsBloc(injector()),
-        ),
-        BlocProvider<LogoutBloc>(
-          create: (_) => LogoutBloc(injector()),
         ),
         BlocProvider<SubjectListBloc>(
           create: (_) => SubjectListBloc(injector()),
@@ -149,15 +98,15 @@ class MainApp extends StatelessWidget {
           ),
           canvasColor: const Color(0xfff4f4f9),
           progressIndicatorTheme: const ProgressIndicatorThemeData(
-            color: Color(0xff3272CA),
+            color: Color(0xffFFBF01),
           ),
           checkboxTheme: const CheckboxThemeData(
-            checkColor: MaterialStatePropertyAll(
+            checkColor: WidgetStatePropertyAll(
               Color(0xfff4f4f9),
             ),
           ),
           radioTheme: const RadioThemeData(
-              fillColor: MaterialStatePropertyAll(Color(0xff3272CA))),
+              fillColor: WidgetStatePropertyAll(Color(0xff3272CA))),
           dialogBackgroundColor: Colors.white,
         ),
         routerConfig: router,

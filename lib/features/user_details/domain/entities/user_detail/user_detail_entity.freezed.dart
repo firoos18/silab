@@ -27,8 +27,12 @@ mixin _$UserDetailEntity {
   List<String>? get role => throw _privateConstructorUsedError;
   bool? get paid => throw _privateConstructorUsedError;
 
+  /// Serializes this UserDetailEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserDetailEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserDetailEntityCopyWith<UserDetailEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$UserDetailEntityCopyWithImpl<$Res, $Val extends UserDetailEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserDetailEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$UserDetailEntityImplCopyWithImpl<$Res>
       $Res Function(_$UserDetailEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserDetailEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -216,12 +224,14 @@ class _$UserDetailEntityImpl implements _UserDetailEntity {
             (identical(other.paid, paid) || other.paid == paid));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, email, nim, fullname,
       const DeepCollectionEquality().hash(_role), paid);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserDetailEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserDetailEntityImplCopyWith<_$UserDetailEntityImpl> get copyWith =>
@@ -260,8 +270,11 @@ abstract class _UserDetailEntity implements UserDetailEntity {
   List<String>? get role;
   @override
   bool? get paid;
+
+  /// Create a copy of UserDetailEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserDetailEntityImplCopyWith<_$UserDetailEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
