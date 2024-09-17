@@ -48,7 +48,7 @@ class MainApp extends StatelessWidget {
           create: (_) => UserDetailsBloc(injector(), injector()),
         ),
         BlocProvider<SelectedSubjectByNimBloc>(
-          create: (_) => SelectedSubjectByNimBloc(injector(), injector()),
+          create: (_) => SelectedSubjectByNimBloc(injector()),
         ),
         BlocProvider<ClassByIdBloc>(
           create: (_) => ClassByIdBloc(injector()),

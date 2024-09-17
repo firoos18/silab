@@ -9,7 +9,7 @@ part of 'selected_subject_response_entity.dart';
 _$SelectedSubjectResponseEntityImpl
     _$$SelectedSubjectResponseEntityImplFromJson(Map<String, dynamic> json) =>
         _$SelectedSubjectResponseEntityImpl(
-          status: (json['status'] as num?)?.toInt(),
+          status: json['status'] as String?,
           message: json['message'] as String?,
           data: json['data'] == null
               ? null

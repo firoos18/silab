@@ -95,7 +95,7 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                           Text(
                                             state.selectedSubjectEntity != null
                                                 ? state.selectedSubjectEntity!
-                                                    .subjects![index].name!
+                                                    .subjects![index]
                                                 : 'Subject Name',
                                             style: const TextStyle(
                                               fontSize: 14,
@@ -104,7 +104,7 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                           ),
                                           Text(
                                             state.selectedSubjectEntity != null
-                                                ? 'Semester ${state.selectedSubjectEntity!.subjects![index].semester!}'
+                                                ? 'Semester ${state.selectedSubjectEntity!.subjects![index]}'
                                                 : 'Semester 0',
                                             style: const TextStyle(
                                               fontSize: 14,

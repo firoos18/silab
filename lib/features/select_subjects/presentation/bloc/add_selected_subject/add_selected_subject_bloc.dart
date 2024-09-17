@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/features/select_subjects/domain/entities/add_subject_subjects/add_subject_subjects_entity.dart';
-import 'package:silab/features/select_subjects/domain/usecases/add_selected_subject_usecase.dart';
+import 'package:silab/features/select_subjects/domain/usecases/add_user_selected_subject_usecase.dart';
 
 part 'add_selected_subject_event.dart';
 part 'add_selected_subject_state.dart';
@@ -21,7 +21,7 @@ class AddSelectedSubjectBloc
 
     if (event.subjects != null) {
       final data = await _addSelectedSubjectUseCase.selectedSubjectRepository
-          .addSelectedSubject(subjects: event.subjects);
+          .addUserSelectedSubject(subjects: event.subjects);
 
       data.fold(
         (left) => emit(AddSelectedSubjectFailed(message: left.message)),

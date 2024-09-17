@@ -6,10 +6,10 @@ import 'package:silab/features/select_subjects/domain/entities/selected_subject_
 
 abstract class SelectedSubjectRepository {
   Future<Either<Failures, SelectedSubjectResponseEntity>>
-      getSelectedSubjectByNim(String? nim);
+      getUserSelectedSubjects();
 
-  Future<Either<Failures, AddSelectedSubjectResponseEntity>> addSelectedSubject(
-      {List<String>? subjects});
+  Future<Either<Failures, AddSelectedSubjectResponseEntity>>
+      addUserSelectedSubject({List<String>? subjects});
 
   Future<Either<Failures, AddSelectedClassResponseEntity>> addSelectedClass(
       {Map<String, String>? selectedClass});

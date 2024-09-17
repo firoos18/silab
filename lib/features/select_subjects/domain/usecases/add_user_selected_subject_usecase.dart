@@ -15,6 +15,7 @@ class AddSelectedSubjectUseCase
   @override
   Future<Either<Failures, AddSelectedSubjectResponseEntity>> call(
       {List<String>? params}) async {
-    return await selectedSubjectRepository.addSelectedSubject(subjects: params);
+    return await selectedSubjectRepository.addUserSelectedSubject(
+        subjects: params);
   }
 }

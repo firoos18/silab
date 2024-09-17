@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:either_dart/either.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/core/failures/failures.dart';
@@ -16,10 +15,9 @@ class SelectedSubjectRepositoryImpl implements SelectedSubjectRepository {
 
   @override
   Future<Either<Failures, SelectedSubjectResponseEntity>>
-      getSelectedSubjectByNim(String? nim) async {
+      getUserSelectedSubjects() async {
     try {
-      final result =
-          await _selectedSubjectApiService.getSelectedSubjectByNim(nim);
+      final result = await _selectedSubjectApiService.getUserSelectedSubject();
 
       return Right(result);
     } on RequestErrorException catch (e) {
@@ -31,12 +29,12 @@ class SelectedSubjectRepositoryImpl implements SelectedSubjectRepository {
 
   @override
   Future<Either<Failures, AddSelectedSubjectResponseEntity>>
-      addSelectedSubject({
+      addUserSelectedSubject({
     List<String>? subjects,
   }) async {
     try {
       final result =
-          await _selectedSubjectApiService.addSelectedSubject(subjects);
+          await _selectedSubjectApiService.addUserSelectedSubject(subjects);
 
       return Right(result);
     } on RequestErrorException catch (e) {

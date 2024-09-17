@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_form_field.dart';
 import 'package:silab/core/common/widgets/custom_large_button.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
@@ -36,6 +37,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               snackBar(message: 'Sign In Success', type: AlertType.success),
             );
+
+            context.goNamed('home');
           } else if (state is AuthenticationFailed) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(

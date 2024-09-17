@@ -26,6 +26,7 @@ dependencies:
   pinput: ^4.0.0
   shared_preferences: ^2.2.3
   skeletonizer: ^1.4.2
+  timeago: ^3.7.0
   timer_count_down: ^2.2.2
   url_strategy: ^0.3.0
 

@@ -21,7 +21,7 @@ SelectedSubjectResponseEntity _$SelectedSubjectResponseEntityFromJson(
 
 /// @nodoc
 mixin _$SelectedSubjectResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   SelectedSubjectEntity? get data => throw _privateConstructorUsedError;
 
@@ -43,7 +43,7 @@ abstract class $SelectedSubjectResponseEntityCopyWith<$Res> {
       _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
           SelectedSubjectResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, SelectedSubjectEntity? data});
+  $Res call({String? status, String? message, SelectedSubjectEntity? data});
 
   $SelectedSubjectEntityCopyWith<$Res>? get data;
 }
@@ -72,7 +72,7 @@ class _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$SelectedSubjectResponseEntityImplCopyWith<$Res>
       __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, SelectedSubjectEntity? data});
+  $Res call({String? status, String? message, SelectedSubjectEntity? data});
 
   @override
   $SelectedSubjectEntityCopyWith<$Res>? get data;
@@ -137,7 +137,7 @@ class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$SelectedSubjectResponseEntityImpl
       _$$SelectedSubjectResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   @override
@@ -208,7 +208,7 @@ class _$SelectedSubjectResponseEntityImpl
 abstract class _SelectedSubjectResponseEntity
     implements SelectedSubjectResponseEntity {
   const factory _SelectedSubjectResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final SelectedSubjectEntity? data}) = _$SelectedSubjectResponseEntityImpl;
 
@@ -216,7 +216,7 @@ abstract class _SelectedSubjectResponseEntity
       _$SelectedSubjectResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override

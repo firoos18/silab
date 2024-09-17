@@ -5,8 +5,7 @@ import 'package:silab/features/select_subjects/domain/entities/selected_subject_
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
 
 class GetSelectedSubjectByNimUsecase
-    implements
-        UseCase<Either<Failures, SelectedSubjectResponseEntity>, String> {
+    implements UseCase<Either<Failures, SelectedSubjectResponseEntity>, Null> {
   final SelectedSubjectRepository selectedSubjectRepository;
 
   const GetSelectedSubjectByNimUsecase(this.selectedSubjectRepository);
@@ -14,6 +13,6 @@ class GetSelectedSubjectByNimUsecase
   @override
   Future<Either<Failures, SelectedSubjectResponseEntity>> call(
       {String? params}) async {
-    return await selectedSubjectRepository.getSelectedSubjectByNim(params);
+    return await selectedSubjectRepository.getUserSelectedSubjects();
   }
 }

@@ -40,44 +40,57 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
         );
       }
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 15),
+        padding: const EdgeInsets.only(top: 16),
         child: SizedBox(
           width: double.infinity,
           height: double.maxFinite,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
+          child: Column(
             children: [
-              PageView.builder(
-                onPageChanged: (value) => setState(() {
-                  currentPage = value;
-                }),
-                itemCount: state is GetAllAnnouncementsLoaded &&
-                        state.announcements != null
-                    ? state.announcements!.length
-                    : 1,
-                itemBuilder: (context, index) => Skeletonizer(
-                  enabled: state is GetAllAnnouncementsLoading ? true : false,
-                  enableSwitchAnimation: true,
-                  child: AnnouncementBanner(
-                    desc: state.announcements != null &&
-                            state is GetAllAnnouncementsLoaded
-                        ? state.announcements![index].desc!
-                        : 'Deskripsi',
-                    title: state.announcements != null &&
-                            state is GetAllAnnouncementsLoaded
-                        ? state.announcements![index].title!
-                        : 'Judul',
-                    type: state.announcements != null &&
-                            state is GetAllAnnouncementsLoaded
-                        ? state.announcements![index].type!
-                        : 'Tipe',
+              Flexible(
+                child: PageView.builder(
+                  pageSnapping: true,
+                  onPageChanged: (value) => setState(() {
+                    currentPage = value;
+                  }),
+                  itemCount: state is GetAllAnnouncementsLoaded &&
+                          state.announcements != null
+                      ? state.announcements!.length
+                      : 1,
+                  itemBuilder: (context, index) => Skeletonizer(
+                    enabled: state is GetAllAnnouncementsLoading ? true : false,
+                    enableSwitchAnimation: true,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
+                      child: AnnouncementBanner(
+                        createdAt: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].created_at!
+                            : 'Created At',
+                        author: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].author!
+                            : 'Author',
+                        body: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].body!
+                            : 'Deskripsi',
+                        title: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].title!
+                            : 'Judul',
+                        type: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].type!
+                            : 'Tipe',
+                      ),
+                    ),
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 20,
-                child: SizedBox(
-                  height: 12,
+              SizedBox(
+                height: 24,
+                width: double.maxFinite,
+                child: Center(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
@@ -94,13 +107,13 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
                       decoration: BoxDecoration(
                         color: currentPage == index
                             ? const Color(0xffFFBF01)
-                            : const Color(0xffFFBF01).withOpacity(0.45),
+                            : const Color(0xffFFBF01).withValues(alpha: 0.45),
                         shape: BoxShape.circle,
                       ),
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

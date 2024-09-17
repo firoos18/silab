@@ -21,10 +21,8 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 
 /// @nodoc
 mixin _$SelectedSubjectEntity {
-  String? get id => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  List<SelectedSubjectSubjectsEntity>? get subjects =>
-      throw _privateConstructorUsedError;
+  String? get activationId => throw _privateConstructorUsedError;
+  List<String>? get subjects => throw _privateConstructorUsedError;
 
   /// Serializes this SelectedSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +40,7 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
           $Res Function(SelectedSubjectEntity) then) =
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
-  $Res call(
-      {String? id,
-      String? userId,
-      List<SelectedSubjectSubjectsEntity>? subjects});
+  $Res call({String? activationId, List<String>? subjects});
 }
 
 /// @nodoc
@@ -64,23 +59,18 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? activationId = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      activationId: freezed == activationId
+          ? _value.activationId
+          : activationId // ignore: cast_nullable_to_non_nullable
               as String?,
       subjects: freezed == subjects
           ? _value.subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<SelectedSubjectSubjectsEntity>?,
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -94,10 +84,7 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
       __$$SelectedSubjectEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String? userId,
-      List<SelectedSubjectSubjectsEntity>? subjects});
+  $Res call({String? activationId, List<String>? subjects});
 }
 
 /// @nodoc
@@ -114,23 +101,18 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? activationId = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_$SelectedSubjectEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      activationId: freezed == activationId
+          ? _value.activationId
+          : activationId // ignore: cast_nullable_to_non_nullable
               as String?,
       subjects: freezed == subjects
           ? _value._subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<SelectedSubjectSubjectsEntity>?,
+              as List<String>?,
     ));
   }
 }
@@ -139,21 +121,17 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.id,
-      this.userId,
-      final List<SelectedSubjectSubjectsEntity>? subjects})
+      {this.activationId, final List<String>? subjects})
       : _subjects = subjects;
 
   factory _$SelectedSubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$SelectedSubjectEntityImplFromJson(json);
 
   @override
-  final String? id;
+  final String? activationId;
+  final List<String>? _subjects;
   @override
-  final String? userId;
-  final List<SelectedSubjectSubjectsEntity>? _subjects;
-  @override
-  List<SelectedSubjectSubjectsEntity>? get subjects {
+  List<String>? get subjects {
     final value = _subjects;
     if (value == null) return null;
     if (_subjects is EqualUnmodifiableListView) return _subjects;
@@ -163,7 +141,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   String toString() {
-    return 'SelectedSubjectEntity(id: $id, userId: $userId, subjects: $subjects)';
+    return 'SelectedSubjectEntity(activationId: $activationId, subjects: $subjects)';
   }
 
   @override
@@ -171,15 +149,15 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectedSubjectEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.activationId, activationId) ||
+                other.activationId == activationId) &&
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, const DeepCollectionEquality().hash(_subjects));
+  int get hashCode => Object.hash(runtimeType, activationId,
+      const DeepCollectionEquality().hash(_subjects));
 
   /// Create a copy of SelectedSubjectEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -200,20 +178,16 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
-          {final String? id,
-          final String? userId,
-          final List<SelectedSubjectSubjectsEntity>? subjects}) =
-      _$SelectedSubjectEntityImpl;
+      {final String? activationId,
+      final List<String>? subjects}) = _$SelectedSubjectEntityImpl;
 
   factory _SelectedSubjectEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectEntityImpl.fromJson;
 
   @override
-  String? get id;
+  String? get activationId;
   @override
-  String? get userId;
-  @override
-  List<SelectedSubjectSubjectsEntity>? get subjects;
+  List<String>? get subjects;
 
   /// Create a copy of SelectedSubjectEntity
   /// with the given fields replaced by the non-null parameter values.

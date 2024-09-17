@@ -29,8 +29,8 @@ import 'package:silab/features/select_subjects/data/data_sources/selected_subjec
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
 import 'package:silab/features/select_subjects/domain/usecases/add_selected_class_usecase.dart';
-import 'package:silab/features/select_subjects/domain/usecases/add_selected_subject_usecase.dart';
-import 'package:silab/features/select_subjects/domain/usecases/get_selected_subject_by_nim_usecase.dart';
+import 'package:silab/features/select_subjects/domain/usecases/add_user_selected_subject_usecase.dart';
+import 'package:silab/features/select_subjects/domain/usecases/get_user_selected_subject_usecase.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
@@ -122,7 +122,7 @@ Future<void> initializeDependencies() async {
   injector.registerFactory<UserDetailsBloc>(
       () => UserDetailsBloc(injector(), injector()));
   injector.registerFactory<SelectedSubjectByNimBloc>(
-      () => SelectedSubjectByNimBloc(injector(), injector()));
+      () => SelectedSubjectByNimBloc(injector()));
   injector.registerFactory<ClassListBloc>(() => ClassListBloc(injector()));
   injector.registerFactory<ClassByIdBloc>(() => ClassByIdBloc(injector()));
   injector.registerFactory<SubjectDetailsBloc>(
