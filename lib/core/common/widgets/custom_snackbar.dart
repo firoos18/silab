@@ -19,7 +19,7 @@ SnackBar snackBar({
   }
 
   return SnackBar(
-    duration: const Duration(seconds: 5),
+    duration: const Duration(seconds: 3),
     content: Text(
       message!,
       style: const TextStyle(

@@ -48,17 +48,21 @@ import 'package:silab/features/user_details/data/repositories/user_repository_im
 import 'package:silab/features/user_details/domain/repositories/user_repository.dart';
 import 'package:silab/features/user_details/domain/usecases/get_user_details_usecase.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
+import 'package:http/http.dart' as http;
 
 final injector = GetIt.instance;
 
 Future<void> initializeDependencies() async {
+  // Http
+  injector.registerSingleton<http.Client>(http.Client());
+
   // Shared Preferences
   injector.registerSingleton<SharedPreferences>(
       await SharedPreferences.getInstance());
 
   // Data Sources
-  injector
-      .registerSingleton<AuthenticationApiService>(AuthenticationApiService());
+  injector.registerSingleton<AuthenticationApiService>(
+      AuthenticationApiService(client: injector()));
   injector.registerSingleton<AuthenticationLocalDataSource>(
       AuthenticationLocalDataSource(injector()));
   injector.registerSingleton<UserApiService>(UserApiService(injector()));
