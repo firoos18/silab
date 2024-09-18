@@ -47,12 +47,12 @@ class AnnouncementApiService {
     }
   }
 
-  Future<AnnouncementResponseEntity> getAnnouncement() async {
+  Future<AnnouncementResponseEntity> getAnnouncement({String? id}) async {
     try {
-      final token = _sharedPreferences.getString('token');
+      final token = _sharedPreferences.getString('accessToken');
 
       final response = await http.get(
-        Uri.parse('${AppConfig.shared.baseUrl}/announcement'),
+        Uri.parse('${AppConfig.shared.baseUrl}/announcements/$id'),
         headers: {
           'Authorization': 'Bearer $token',
         },
@@ -61,8 +61,6 @@ class AnnouncementApiService {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         return AnnouncementResponseEntity.fromJson(data);
-      } else if (response.statusCode == 504) {
-        throw RequestErrorException(response.body);
       } else {
         final data = jsonDecode(response.body);
         throw RequestErrorException(data['message']);
@@ -77,8 +75,6 @@ class AnnouncementApiService {
     } on HttpException {
       throw RequestErrorException(
           "Http error, check your internet connections");
-    } catch (e) {
-      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 }

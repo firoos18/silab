@@ -56,8 +56,7 @@ class AuthenticationBloc
         emit(AuthenticationFailed(message: left.message));
       },
       (right) {
-        final expiryTime =
-            DateTime.fromMillisecondsSinceEpoch(int.parse(right) * 1000);
+        final expiryTime = DateTime.fromMillisecondsSinceEpoch(right * 1000);
         if (expiryTime.isBefore(DateTime.now())) {
           emit(AccessTokenExpired());
         } else {

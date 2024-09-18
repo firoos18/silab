@@ -10,6 +10,7 @@ class AnnouncementBanner extends StatefulWidget {
   final String type;
   final String author;
   final String createdAt;
+  final String id;
 
   const AnnouncementBanner({
     super.key,
@@ -18,6 +19,7 @@ class AnnouncementBanner extends StatefulWidget {
     required this.title,
     required this.type,
     required this.createdAt,
+    required this.id,
   });
 
   @override
@@ -83,16 +85,17 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
                         .add(GetUserSelectedSubjects());
                     break;
                   case 'Basic':
-                    context.pushNamed(
-                      'pengumuman',
-                      extra: PengumumanPageExtra(
-                        author: widget.author,
-                        body: widget.body,
-                        title: widget.title,
-                        type: widget.type,
-                        createdAt: widget.createdAt,
-                      ),
-                    );
+                    context.goNamed('pengumuman',
+                        extra: PengumumanPageExtra(
+                          author: widget.author,
+                          body: widget.body,
+                          title: widget.title,
+                          type: widget.type,
+                          createdAt: widget.createdAt,
+                        ),
+                        pathParameters: {
+                          'id': widget.id,
+                        });
                   default:
                     break;
                 }
@@ -101,11 +104,11 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
                   SelectedSubjectByNimState>(
                 listener: (context, state) {
                   if (state is SelectedSubjectByNimLoaded) {
-                    if (state.selectedSubjectEntity!.activationId != '' &&
-                        state.selectedSubjectEntity!.subjects!.isNotEmpty) {
-                      context.pushNamed('daftar-praktikum');
+                    if (state.selectedSubjectEntity!.activationId == '' &&
+                        state.selectedSubjectEntity!.subjects!.isEmpty) {
+                      context.goNamed('daftar-praktikum');
                     } else {
-                      context.pushNamed('payment-status');
+                      context.goNamed('payment-status');
                     }
                   }
                 },

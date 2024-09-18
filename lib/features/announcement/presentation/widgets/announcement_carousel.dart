@@ -62,6 +62,10 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
                     child: Container(
                       margin: const EdgeInsets.symmetric(horizontal: 15),
                       child: AnnouncementBanner(
+                        id: state.announcements != null &&
+                                state is GetAllAnnouncementsLoaded
+                            ? state.announcements![index].id!
+                            : 'id',
                         createdAt: state.announcements != null &&
                                 state is GetAllAnnouncementsLoaded
                             ? state.announcements![index].created_at!

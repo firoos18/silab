@@ -72,7 +72,9 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                 Flexible(
                                   fit: FlexFit.loose,
                                   child: Container(
-                                    margin: const EdgeInsets.only(top: 16),
+                                    margin: const EdgeInsets.symmetric(
+                                      vertical: 16,
+                                    ),
                                     decoration: BoxDecoration(
                                       color: const Color(0xfff4f4f9),
                                       borderRadius: BorderRadius.circular(12),
@@ -92,16 +94,22 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
-                                            'Subject Name',
-                                            style: TextStyle(
+                                          Text(
+                                            state.selectedSubjectEntity != null
+                                                ? state
+                                                    .selectedSubjectEntity!
+                                                    .subjects![index]
+                                                    .values
+                                                    .single
+                                                : 'Subject Name',
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                           Text(
                                             state.selectedSubjectEntity != null
-                                                ? 'Semester ${state.selectedSubjectEntity!.subjects![index]}'
+                                                ? 'Semester'
                                                 : 'Semester 0',
                                             style: const TextStyle(
                                               fontSize: 14,

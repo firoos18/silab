@@ -41,8 +41,6 @@ class AuthenticationApiService {
     } on HttpException {
       throw RequestErrorException(
           "Http error, check your internet connections");
-    } catch (e) {
-      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 }

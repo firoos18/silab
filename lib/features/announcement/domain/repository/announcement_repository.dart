@@ -5,5 +5,5 @@ import 'package:silab/features/announcement/domain/entities/announcement/announc
 abstract class AnnouncementRepository {
   Future<Either<Failures, List<AnnouncementEntity>>> getAllAnnouncement();
 
-  Future<Either<Failures, AnnouncementEntity>> getAnnouncement();
+  Future<Either<Failures, AnnouncementEntity>> getAnnouncement({String id});
 }

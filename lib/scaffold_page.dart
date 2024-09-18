@@ -64,34 +64,37 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
   Widget build(BuildContext context) {
     var currentRoute = GoRouterState.of(context).uri.toString();
 
-    switch (currentRoute) {
-      case '/home/daftar-praktikum':
-        setState(() {
-          appBarTitle = 'Pendaftaran Praktikum';
-        });
-        break;
-      case '/home/pengumuman':
-        setState(() {
-          appBarTitle = 'Pengumuman';
-        });
-        break;
-      case '/home/ringkasan-praktikum':
-        setState(() {
-          appBarTitle = 'Ringkasan Pendaftaran';
-        });
-        break;
-      case '/home/payment-status':
-        setState(() {
-          appBarTitle = 'Status Pembayaran';
-        });
-        break;
-      case '/home/pilih-kelas':
-        setState(() {
-          appBarTitle = 'Pilih Kelas';
-        });
-        break;
-      default:
-        break;
+    if (currentRoute.startsWith('/home/pengumuman')) {
+      setState(() {
+        appBarTitle = 'Pengumuman';
+      });
+    } else {
+      switch (currentRoute) {
+        case '/home/daftar-praktikum':
+          setState(() {
+            appBarTitle = 'Pendaftaran Praktikum';
+          });
+          break;
+        case '/home/pengumuman':
+          break;
+        case '/home/ringkasan-praktikum':
+          setState(() {
+            appBarTitle = 'Ringkasan Pendaftaran';
+          });
+          break;
+        case '/home/payment-status':
+          setState(() {
+            appBarTitle = 'Status Pembayaran';
+          });
+          break;
+        case '/home/pilih-kelas':
+          setState(() {
+            appBarTitle = 'Pilih Kelas';
+          });
+          break;
+        default:
+          break;
+      }
     }
 
     return Scaffold(

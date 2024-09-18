@@ -28,9 +28,10 @@ class AnnouncementRepositoryImpl extends AnnouncementRepository {
   }
 
   @override
-  Future<Either<Failures, AnnouncementEntity>> getAnnouncement() async {
+  Future<Either<Failures, AnnouncementEntity>> getAnnouncement(
+      {String? id}) async {
     try {
-      final result = await announcementApiService.getAnnouncement();
+      final result = await announcementApiService.getAnnouncement(id: id);
 
       return Right(result.data!);
     } on RequestErrorException catch (e) {

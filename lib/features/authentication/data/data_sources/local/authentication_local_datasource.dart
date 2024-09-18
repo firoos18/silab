@@ -40,7 +40,7 @@ class AuthenticationLocalDataSource {
     }
   }
 
-  String? getAccessTokenExpiry() {
+  int? getAccessTokenExpiry() {
     final String? accessToken = _sharedPreferences.getString('accessToken');
 
     if (accessToken != null) {

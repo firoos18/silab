@@ -71,12 +71,15 @@ final GoRouter router = GoRouter(
                   builder: (context, state) => const PaymentStatusPage(),
                 ),
                 GoRoute(
-                  path: 'pengumuman',
-                  name: 'pengumuman',
-                  builder: (context, state) => PengumumanPage(
-                    pengumumanPageExtra: state.extra as PengumumanPageExtra,
-                  ),
-                ),
+                    path: 'pengumuman/:id',
+                    name: 'pengumuman',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return PengumumanPage(
+                        id: id,
+                        // pengumumanPageExtra: state.extra as PengumumanPageExtra,
+                      );
+                    }),
                 GoRoute(
                   path: 'pilih-kelas',
                   name: 'pilih-kelas',
