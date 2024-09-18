@@ -27,8 +27,9 @@ class AnnouncementApiService {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         return AnnouncementListResponseEntity.fromJson(data);
-      } else if (response.statusCode == 504) {
-        throw RequestErrorException(response.body);
+      } else if (response.statusCode == 401) {
+        final data = jsonDecode(response.body);
+        throw RequestErrorException(data['message']);
       } else {
         final data = jsonDecode(response.body);
         throw RequestErrorException(data['message']);
@@ -43,8 +44,6 @@ class AnnouncementApiService {
     } on HttpException {
       throw RequestErrorException(
           "Http error, check your internet connections");
-    } catch (e) {
-      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 

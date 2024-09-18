@@ -92,12 +92,9 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
-                                            state.selectedSubjectEntity != null
-                                                ? state.selectedSubjectEntity!
-                                                    .subjects![index]
-                                                : 'Subject Name',
-                                            style: const TextStyle(
+                                          const Text(
+                                            'Subject Name',
+                                            style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),

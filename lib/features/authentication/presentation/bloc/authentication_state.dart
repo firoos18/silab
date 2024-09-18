@@ -24,3 +24,5 @@ final class AuthenticationSuccess extends AuthenticationState {
 final class AuthenticationFailed extends AuthenticationState {
   const AuthenticationFailed({super.message});
 }
+
+class AccessTokenExpired extends AuthenticationState {}

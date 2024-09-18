@@ -11,7 +11,7 @@ _$SelectedSubjectEntityImpl _$$SelectedSubjectEntityImplFromJson(
     _$SelectedSubjectEntityImpl(
       activationId: json['activationId'] as String?,
       subjects: (json['subjects'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => Map<String, String>.from(e as Map))
           .toList(),
     );
 

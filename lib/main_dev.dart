@@ -42,7 +42,7 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(
-          create: (_) => AuthenticationBloc(injector(), injector()),
+          create: (_) => AuthenticationBloc(injector(), injector(), injector()),
         ),
         BlocProvider<UserDetailsBloc>(
           create: (_) => UserDetailsBloc(injector(), injector()),

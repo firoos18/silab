@@ -105,4 +105,20 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       return Left(RequestFailures('An Error Occurred!'));
     }
   }
+
+  @override
+  Either<Failures, String> getAccessTokenExpiry() {
+    try {
+      final String? accessTokenExpiry =
+          _authenticationLocalDataSource.getAccessTokenExpiry();
+
+      if (accessTokenExpiry != null) {
+        return Right(accessTokenExpiry);
+      } else {
+        return Left(RequestFailures('An Error Occurred!'));
+      }
+    } catch (e) {
+      return Left(RequestFailures('An Error Occurred!'));
+    }
+  }
 }

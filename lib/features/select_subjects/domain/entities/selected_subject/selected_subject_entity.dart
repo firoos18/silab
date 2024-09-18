@@ -7,7 +7,7 @@ part 'selected_subject_entity.g.dart';
 class SelectedSubjectEntity with _$SelectedSubjectEntity {
   const factory SelectedSubjectEntity({
     final String? activationId,
-    final List<String>? subjects,
+    final List<Map<String, String>>? subjects,
   }) = _SelectedSubjectEntity;
 
   factory SelectedSubjectEntity.fromJson(Map<String, dynamic> json) =>

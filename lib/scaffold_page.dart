@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/bottom_navbar/bottom_navbar_entity.dart';
 import 'package:silab/core/common/widgets/custom_bottom_navbar.dart';
+import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:silab/features/user_details/presentation/widgets/user_welcome_widget.dart';
 
 class ScaffoldPage extends StatefulWidget {
@@ -51,6 +53,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
 
   @override
   void initState() {
+    context.read<AuthenticationBloc>().add(CheckAccessTokenExpiry());
     _scrollController = ScrollController();
     super.initState();
   }
@@ -138,10 +141,17 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                   forceMaterialTransparency: true,
                 )
               : null,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: widget.navigationShell,
+      body: BlocListener<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) {
+          if (state is AccessTokenExpired) {
+            context.goNamed('authentication');
+          }
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: widget.navigationShell,
+          ),
         ),
       ),
       extendBody: true,

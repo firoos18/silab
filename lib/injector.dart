@@ -11,6 +11,7 @@ import 'package:silab/features/authentication/data/data_sources/local/authentica
 import 'package:silab/features/authentication/data/data_sources/remote/authentication_api_service.dart';
 import 'package:silab/features/authentication/data/repositories/authentication_repository_impl.dart';
 import 'package:silab/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:silab/features/authentication/domain/usecases/get_access_token_expiry.dart';
 import 'package:silab/features/authentication/domain/usecases/get_user_access_token_usecase.dart';
 import 'package:silab/features/authentication/domain/usecases/user_login_usecase.dart';
 import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
@@ -89,6 +90,8 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<UserLoginUsecase>(UserLoginUsecase(injector()));
   injector.registerSingleton<GetUserAccessTokenUsecase>(
       GetUserAccessTokenUsecase(injector()));
+  injector.registerSingleton<GetAccessTokenExpiry>(
+      GetAccessTokenExpiry(injector()));
   injector.registerSingleton<GetUserDetailsUseCase>(
       GetUserDetailsUseCase(injector()));
   injector.registerSingleton<GetSelectedSubjectByNimUsecase>(
@@ -118,7 +121,7 @@ Future<void> initializeDependencies() async {
 
   // BLoCs
   injector.registerFactory<AuthenticationBloc>(
-      () => AuthenticationBloc(injector(), injector()));
+      () => AuthenticationBloc(injector(), injector(), injector()));
   injector.registerFactory<UserDetailsBloc>(
       () => UserDetailsBloc(injector(), injector()));
   injector.registerFactory<SelectedSubjectByNimBloc>(

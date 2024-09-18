@@ -21,7 +21,7 @@ SubjectListResponseEntity _$SubjectListResponseEntityFromJson(
 
 /// @nodoc
 mixin _$SubjectListResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   List<SubjectEntity>? get data => throw _privateConstructorUsedError;
 
@@ -41,7 +41,7 @@ abstract class $SubjectListResponseEntityCopyWith<$Res> {
           $Res Function(SubjectListResponseEntity) then) =
       _$SubjectListResponseEntityCopyWithImpl<$Res, SubjectListResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, List<SubjectEntity>? data});
+  $Res call({String? status, String? message, List<SubjectEntity>? data});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$SubjectListResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -90,7 +90,7 @@ abstract class _$$SubjectListResponseEntityImplCopyWith<$Res>
       __$$SubjectListResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, List<SubjectEntity>? data});
+  $Res call({String? status, String? message, List<SubjectEntity>? data});
 }
 
 /// @nodoc
@@ -116,7 +116,7 @@ class __$$SubjectListResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ class _$SubjectListResponseEntityImpl implements _SubjectListResponseEntity {
       _$$SubjectListResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   final List<SubjectEntity>? _data;
@@ -192,7 +192,7 @@ class _$SubjectListResponseEntityImpl implements _SubjectListResponseEntity {
 
 abstract class _SubjectListResponseEntity implements SubjectListResponseEntity {
   const factory _SubjectListResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final List<SubjectEntity>? data}) = _$SubjectListResponseEntityImpl;
 
@@ -200,7 +200,7 @@ abstract class _SubjectListResponseEntity implements SubjectListResponseEntity {
       _$SubjectListResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override

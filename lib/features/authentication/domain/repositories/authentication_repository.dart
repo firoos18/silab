@@ -18,4 +18,6 @@ abstract class AuthenticationRepository {
   Either<Failures, String> getUserId();
 
   Either<Failures, String> getUserRole();
+
+  Either<Failures, String> getAccessTokenExpiry();
 }

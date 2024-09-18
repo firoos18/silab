@@ -22,7 +22,7 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 /// @nodoc
 mixin _$SelectedSubjectEntity {
   String? get activationId => throw _privateConstructorUsedError;
-  List<String>? get subjects => throw _privateConstructorUsedError;
+  List<Map<String, String>>? get subjects => throw _privateConstructorUsedError;
 
   /// Serializes this SelectedSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
           $Res Function(SelectedSubjectEntity) then) =
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
-  $Res call({String? activationId, List<String>? subjects});
+  $Res call({String? activationId, List<Map<String, String>>? subjects});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
       subjects: freezed == subjects
           ? _value.subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Map<String, String>>?,
     ) as $Val);
   }
 }
@@ -84,7 +84,7 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
       __$$SelectedSubjectEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? activationId, List<String>? subjects});
+  $Res call({String? activationId, List<Map<String, String>>? subjects});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
       subjects: freezed == subjects
           ? _value._subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<Map<String, String>>?,
     ));
   }
 }
@@ -121,7 +121,7 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.activationId, final List<String>? subjects})
+      {this.activationId, final List<Map<String, String>>? subjects})
       : _subjects = subjects;
 
   factory _$SelectedSubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -129,9 +129,9 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   final String? activationId;
-  final List<String>? _subjects;
+  final List<Map<String, String>>? _subjects;
   @override
-  List<String>? get subjects {
+  List<Map<String, String>>? get subjects {
     final value = _subjects;
     if (value == null) return null;
     if (_subjects is EqualUnmodifiableListView) return _subjects;
@@ -179,7 +179,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
       {final String? activationId,
-      final List<String>? subjects}) = _$SelectedSubjectEntityImpl;
+      final List<Map<String, String>>? subjects}) = _$SelectedSubjectEntityImpl;
 
   factory _SelectedSubjectEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectEntityImpl.fromJson;
@@ -187,7 +187,7 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   @override
   String? get activationId;
   @override
-  List<String>? get subjects;
+  List<Map<String, String>>? get subjects;
 
   /// Create a copy of SelectedSubjectEntity
   /// with the given fields replaced by the non-null parameter values.

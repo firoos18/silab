@@ -28,8 +28,6 @@ class SelectedSubjectApiService {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         return SelectedSubjectResponseEntity.fromJson(data);
-      } else if (response.statusCode == 504) {
-        throw RequestErrorException('An Internal Server Error Occurred');
       } else {
         final data = jsonDecode(response.body);
         throw RequestErrorException(data['message']);
@@ -44,8 +42,6 @@ class SelectedSubjectApiService {
     } on HttpException {
       throw RequestErrorException(
           "Http error, check your internet connections");
-    } catch (e) {
-      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 
@@ -57,7 +53,7 @@ class SelectedSubjectApiService {
 
       final requestBody = {"subjectIds": subjects};
 
-      final response = await http.patch(
+      final response = await http.post(
         Uri.parse('${AppConfig.shared.baseUrl}/activations'),
         headers: {
           'Authorization': 'Bearer $token',
@@ -66,7 +62,7 @@ class SelectedSubjectApiService {
         body: jsonEncode(requestBody),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
         return AddSelectedSubjectResponseEntity.fromJson(data);
       } else if (response.statusCode == 504) {
@@ -85,8 +81,6 @@ class SelectedSubjectApiService {
     } on HttpException {
       throw RequestErrorException(
           "Http error, check your internet connections");
-    } catch (e) {
-      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 
@@ -110,7 +104,7 @@ class SelectedSubjectApiService {
       body: jsonEncode(requestBody),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
       return AddSelectedClassResponseEntity.fromJson(data);
     } else if (response.statusCode == 504) {

@@ -15,11 +15,9 @@ class SubjectRepositoryImpl implements SubjectRepository {
   const SubjectRepositoryImpl(this._subjectApiService);
 
   @override
-  Future<Either<Failures, SubjectListResponseEntity>> getSubjectList(
-      {int? semester}) async {
+  Future<Either<Failures, SubjectListResponseEntity>> getSubjectList() async {
     try {
-      final result =
-          await _subjectApiService.getSubjectList(semester: semester);
+      final result = await _subjectApiService.getSubjectList();
 
       return Right(result);
     } on RequestErrorException catch (e) {

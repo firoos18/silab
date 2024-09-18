@@ -14,3 +14,5 @@ final class UserLogin extends AuthenticationEvent {
 }
 
 final class AppOpened extends AuthenticationEvent {}
+
+class CheckAccessTokenExpiry extends AuthenticationEvent {}

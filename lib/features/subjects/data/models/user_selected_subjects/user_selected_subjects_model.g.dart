@@ -9,7 +9,9 @@ part of 'user_selected_subjects_model.dart';
 UserSelectedSubjectsModel _$UserSelectedSubjectsModelFromJson(
         Map<String, dynamic> json) =>
     UserSelectedSubjectsModel(
-      (json['subjects'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      (json['subjects'] as List<dynamic>?)
+          ?.map((e) => SubjectEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserSelectedSubjectsModelToJson(

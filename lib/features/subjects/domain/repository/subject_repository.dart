@@ -5,8 +5,7 @@ import 'package:silab/features/subjects/domain/entities/subject_list_response/su
 import 'package:silab/features/subjects/domain/entities/subject_response/subject_response_entity.dart';
 
 abstract class SubjectRepository {
-  Future<Either<Failures, SubjectListResponseEntity>> getSubjectList(
-      {int? semester});
+  Future<Either<Failures, SubjectListResponseEntity>> getSubjectList();
 
   Future<Either<Failures, SubjectResponseEntity>> getSubjectDetails(
     String? subjectId,

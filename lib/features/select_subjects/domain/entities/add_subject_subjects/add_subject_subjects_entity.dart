@@ -7,8 +7,6 @@ part 'add_subject_subjects_entity.g.dart';
 class AddSubjectSubjectsEntity with _$AddSubjectSubjectsEntity {
   const factory AddSubjectSubjectsEntity({
     final String? id,
-    final String? userId,
-    final List<String>? subjects,
   }) = _AddSubjectSubjectsEntity;
 
   factory AddSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =>

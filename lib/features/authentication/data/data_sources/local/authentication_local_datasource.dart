@@ -39,4 +39,14 @@ class AuthenticationLocalDataSource {
       return null;
     }
   }
+
+  String? getAccessTokenExpiry() {
+    final String? accessToken = _sharedPreferences.getString('accessToken');
+
+    if (accessToken != null) {
+      return JwtDecoder.decode(accessToken)['exp'];
+    } else {
+      return null;
+    }
+  }
 }

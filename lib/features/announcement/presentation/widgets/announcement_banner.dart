@@ -101,8 +101,8 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
                   SelectedSubjectByNimState>(
                 listener: (context, state) {
                   if (state is SelectedSubjectByNimLoaded) {
-                    if (state.selectedSubjectEntity!.activationId == '' &&
-                        state.selectedSubjectEntity!.subjects!.isEmpty) {
+                    if (state.selectedSubjectEntity!.activationId != '' &&
+                        state.selectedSubjectEntity!.subjects!.isNotEmpty) {
                       context.pushNamed('daftar-praktikum');
                     } else {
                       context.pushNamed('payment-status');
