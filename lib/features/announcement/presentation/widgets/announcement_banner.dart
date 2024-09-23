@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
-import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 
 class AnnouncementBanner extends StatefulWidget {
   final String title;
@@ -80,9 +78,7 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
               onTap: () {
                 switch (widget.type) {
                   case 'Practicum':
-                    context
-                        .read<SelectedSubjectByNimBloc>()
-                        .add(GetUserSelectedSubjects());
+                    context.goNamed('daftar-praktikum');
                     break;
                   case 'Basic':
                     context.goNamed('pengumuman',
@@ -100,32 +96,13 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
                     break;
                 }
               },
-              child: BlocConsumer<SelectedSubjectByNimBloc,
-                  SelectedSubjectByNimState>(
-                listener: (context, state) {
-                  if (state is SelectedSubjectByNimLoaded) {
-                    if (state.selectedSubjectEntity!.activationId == '' &&
-                        state.selectedSubjectEntity!.subjects!.isEmpty) {
-                      context.goNamed('daftar-praktikum');
-                    } else {
-                      context.goNamed('payment-status');
-                    }
-                  }
-                },
-                builder: (context, state) {
-                  if (state is SelectedSubjectByNimLoading) {
-                    return const CircularProgressIndicator();
-                  }
-
-                  return const Text(
-                    'Pelajari lebih lanjut',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: Color(0xff1d1d1d),
-                    ),
-                  );
-                },
+              child: const Text(
+                'Pelajari lebih lanjut',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  color: Color(0xff1d1d1d),
+                ),
               ),
             ),
           ),

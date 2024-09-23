@@ -8,6 +8,7 @@ import 'package:silab/features/select_subjects/domain/entities/add_selected_clas
 import 'package:silab/features/select_subjects/domain/entities/add_selected_subject_response/add_selected_subject_response_entity.dart';
 import 'package:silab/features/select_subjects/domain/entities/selected_subject_response/selected_subject_response_entity.dart';
 import 'package:http/http.dart' as http;
+import 'package:silab/features/select_subjects/domain/entities/user_class_option_by_paid_subject_response/user_class_option_by_paid_subject_response_entity.dart';
 
 class SelectedSubjectApiService {
   final SharedPreferences _sharedPreferences;
@@ -84,34 +85,78 @@ class SelectedSubjectApiService {
     }
   }
 
+  Future<UserClassOptionByPaidSubjectResponseEntity>
+      getUserClassOptionbyPaidSubjects() async {
+    try {
+      final token = _sharedPreferences.getString('accessToken');
+
+      final response = await http.get(
+        Uri.parse('${AppConfig.shared.baseUrl}/registrations/select-class'),
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return UserClassOptionByPaidSubjectResponseEntity.fromJson(data);
+      } else if (response.statusCode == 504) {
+        throw RequestErrorException('An Internal Server Error Occurred');
+      } else {
+        final data = jsonDecode(response.body);
+        throw RequestErrorException(data['message']);
+      }
+    } on SocketException catch (e) {
+      throw RequestErrorException(e.message);
+    } on TimeoutException catch (e) {
+      throw RequestErrorException(e.message!);
+    } on http.ClientException {
+      throw RequestErrorException(
+          "Client error, check your internet connections.");
+    } on HttpException {
+      throw RequestErrorException(
+          "Http error, check your internet connections");
+    }
+  }
+
   Future<AddSelectedClassResponseEntity> addSelectedClass({
-    Map<String, dynamic>? selectedClass,
+    List<String>? selectedClass,
   }) async {
-    final token = _sharedPreferences.getString('accessToken');
-    final nim = _sharedPreferences.getString('nim');
+    try {
+      final token = _sharedPreferences.getString('accessToken');
 
-    final requestBody = {
-      "nim": nim,
-      "selectedClasses": selectedClass,
-    };
+      final requestBody = {"practicum_class": selectedClass};
 
-    final response = await http.patch(
-      Uri.parse('${AppConfig.shared.baseUrl}/class/register'),
-      headers: {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(requestBody),
-    );
+      final response = await http.post(
+        Uri.parse('${AppConfig.shared.baseUrl}/registrations'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(requestBody),
+      );
 
-    if (response.statusCode == 201) {
-      final data = jsonDecode(response.body);
-      return AddSelectedClassResponseEntity.fromJson(data);
-    } else if (response.statusCode == 504) {
-      throw RequestErrorException('An Internal Server Error Occurred');
-    } else {
-      final data = jsonDecode(response.body);
-      throw RequestErrorException(data['message']);
+      print(response.body);
+
+      if (response.statusCode == 201) {
+        final data = jsonDecode(response.body);
+        return AddSelectedClassResponseEntity.fromJson(data);
+      } else if (response.statusCode == 504) {
+        throw RequestErrorException('An Internal Server Error Occurred');
+      } else {
+        final data = jsonDecode(response.body);
+        throw RequestErrorException(data['message']);
+      }
+    } on SocketException catch (e) {
+      throw RequestErrorException(e.message);
+    } on TimeoutException catch (e) {
+      throw RequestErrorException(e.message!);
+    } on http.ClientException {
+      throw RequestErrorException(
+          "Client error, check your internet connections.");
+    } on HttpException {
+      throw RequestErrorException(
+          "Http error, check your internet connections");
     }
   }
 }

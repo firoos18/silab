@@ -31,10 +31,12 @@ import 'package:silab/features/select_subjects/data/repository/selected_subject_
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
 import 'package:silab/features/select_subjects/domain/usecases/add_selected_class_usecase.dart';
 import 'package:silab/features/select_subjects/domain/usecases/add_user_selected_subject_usecase.dart';
+import 'package:silab/features/select_subjects/domain/usecases/get_user_class_option_by_paid_subject_usecase.dart';
 import 'package:silab/features/select_subjects/domain/usecases/get_user_selected_subject_usecase.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_bloc.dart';
 import 'package:silab/features/subjects/data/data_sources/subject_api_service.dart';
 import 'package:silab/features/subjects/data/repository/subject_repository_impl.dart';
 import 'package:silab/features/subjects/domain/repository/subject_repository.dart';
@@ -118,6 +120,8 @@ Future<void> initializeDependencies() async {
       GetUserRegisteredClassesUseCase(injector()));
   injector.registerSingleton<GetUserSelectedClassesDetailsUseCase>(
       GetUserSelectedClassesDetailsUseCase(injector()));
+  injector.registerSingleton<GetUserClassOptionByPaidSubjectUsecase>(
+      GetUserClassOptionByPaidSubjectUsecase(injector()));
 
   // BLoCs
   injector.registerFactory<AuthenticationBloc>(
@@ -145,4 +149,6 @@ Future<void> initializeDependencies() async {
       () => UserRegisteredClassBloc(injector()));
   injector.registerFactory<UserSelectedClassesDetailsBloc>(
       () => UserSelectedClassesDetailsBloc(injector()));
+  injector.registerFactory<UserClassOptionByPaidSubjectBloc>(
+      () => UserClassOptionByPaidSubjectBloc(injector()));
 }

@@ -20,17 +20,11 @@ ClassEntity _$ClassEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClassEntity {
-  String? get id => throw _privateConstructorUsedError;
-  SubjectEntity? get subject => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  int? get quota => throw _privateConstructorUsedError;
-  bool? get isFull => throw _privateConstructorUsedError;
+  String? get subject_name => throw _privateConstructorUsedError;
+  String? get subject_class => throw _privateConstructorUsedError;
   String? get day => throw _privateConstructorUsedError;
-  String? get startAt => throw _privateConstructorUsedError;
-  String? get endAt => throw _privateConstructorUsedError;
-  String? get ruang => throw _privateConstructorUsedError;
-  List<String>? get participants => throw _privateConstructorUsedError;
-  List<String>? get learningModule => throw _privateConstructorUsedError;
+  String? get lecturer => throw _privateConstructorUsedError;
+  String? get session_time => throw _privateConstructorUsedError;
 
   /// Serializes this ClassEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,19 +43,11 @@ abstract class $ClassEntityCopyWith<$Res> {
       _$ClassEntityCopyWithImpl<$Res, ClassEntity>;
   @useResult
   $Res call(
-      {String? id,
-      SubjectEntity? subject,
-      String? name,
-      int? quota,
-      bool? isFull,
+      {String? subject_name,
+      String? subject_class,
       String? day,
-      String? startAt,
-      String? endAt,
-      String? ruang,
-      List<String>? participants,
-      List<String>? learningModule});
-
-  $SubjectEntityCopyWith<$Res>? get subject;
+      String? lecturer,
+      String? session_time});
 }
 
 /// @nodoc
@@ -79,78 +65,34 @@ class _$ClassEntityCopyWithImpl<$Res, $Val extends ClassEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? subject = freezed,
-    Object? name = freezed,
-    Object? quota = freezed,
-    Object? isFull = freezed,
+    Object? subject_name = freezed,
+    Object? subject_class = freezed,
     Object? day = freezed,
-    Object? startAt = freezed,
-    Object? endAt = freezed,
-    Object? ruang = freezed,
-    Object? participants = freezed,
-    Object? learningModule = freezed,
+    Object? lecturer = freezed,
+    Object? session_time = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      subject_name: freezed == subject_name
+          ? _value.subject_name
+          : subject_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      subject: freezed == subject
-          ? _value.subject
-          : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      subject_class: freezed == subject_class
+          ? _value.subject_class
+          : subject_class // ignore: cast_nullable_to_non_nullable
               as String?,
-      quota: freezed == quota
-          ? _value.quota
-          : quota // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isFull: freezed == isFull
-          ? _value.isFull
-          : isFull // ignore: cast_nullable_to_non_nullable
-              as bool?,
       day: freezed == day
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
               as String?,
-      startAt: freezed == startAt
-          ? _value.startAt
-          : startAt // ignore: cast_nullable_to_non_nullable
+      lecturer: freezed == lecturer
+          ? _value.lecturer
+          : lecturer // ignore: cast_nullable_to_non_nullable
               as String?,
-      endAt: freezed == endAt
-          ? _value.endAt
-          : endAt // ignore: cast_nullable_to_non_nullable
+      session_time: freezed == session_time
+          ? _value.session_time
+          : session_time // ignore: cast_nullable_to_non_nullable
               as String?,
-      ruang: freezed == ruang
-          ? _value.ruang
-          : ruang // ignore: cast_nullable_to_non_nullable
-              as String?,
-      participants: freezed == participants
-          ? _value.participants
-          : participants // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      learningModule: freezed == learningModule
-          ? _value.learningModule
-          : learningModule // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ) as $Val);
-  }
-
-  /// Create a copy of ClassEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SubjectEntityCopyWith<$Res>? get subject {
-    if (_value.subject == null) {
-      return null;
-    }
-
-    return $SubjectEntityCopyWith<$Res>(_value.subject!, (value) {
-      return _then(_value.copyWith(subject: value) as $Val);
-    });
   }
 }
 
@@ -163,20 +105,11 @@ abstract class _$$ClassEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
-      SubjectEntity? subject,
-      String? name,
-      int? quota,
-      bool? isFull,
+      {String? subject_name,
+      String? subject_class,
       String? day,
-      String? startAt,
-      String? endAt,
-      String? ruang,
-      List<String>? participants,
-      List<String>? learningModule});
-
-  @override
-  $SubjectEntityCopyWith<$Res>? get subject;
+      String? lecturer,
+      String? session_time});
 }
 
 /// @nodoc
@@ -192,63 +125,33 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? subject = freezed,
-    Object? name = freezed,
-    Object? quota = freezed,
-    Object? isFull = freezed,
+    Object? subject_name = freezed,
+    Object? subject_class = freezed,
     Object? day = freezed,
-    Object? startAt = freezed,
-    Object? endAt = freezed,
-    Object? ruang = freezed,
-    Object? participants = freezed,
-    Object? learningModule = freezed,
+    Object? lecturer = freezed,
+    Object? session_time = freezed,
   }) {
     return _then(_$ClassEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      subject_name: freezed == subject_name
+          ? _value.subject_name
+          : subject_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      subject: freezed == subject
-          ? _value.subject
-          : subject // ignore: cast_nullable_to_non_nullable
-              as SubjectEntity?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      subject_class: freezed == subject_class
+          ? _value.subject_class
+          : subject_class // ignore: cast_nullable_to_non_nullable
               as String?,
-      quota: freezed == quota
-          ? _value.quota
-          : quota // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isFull: freezed == isFull
-          ? _value.isFull
-          : isFull // ignore: cast_nullable_to_non_nullable
-              as bool?,
       day: freezed == day
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
               as String?,
-      startAt: freezed == startAt
-          ? _value.startAt
-          : startAt // ignore: cast_nullable_to_non_nullable
+      lecturer: freezed == lecturer
+          ? _value.lecturer
+          : lecturer // ignore: cast_nullable_to_non_nullable
               as String?,
-      endAt: freezed == endAt
-          ? _value.endAt
-          : endAt // ignore: cast_nullable_to_non_nullable
+      session_time: freezed == session_time
+          ? _value.session_time
+          : session_time // ignore: cast_nullable_to_non_nullable
               as String?,
-      ruang: freezed == ruang
-          ? _value.ruang
-          : ruang // ignore: cast_nullable_to_non_nullable
-              as String?,
-      participants: freezed == participants
-          ? _value._participants
-          : participants // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      learningModule: freezed == learningModule
-          ? _value._learningModule
-          : learningModule // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ));
   }
 }
@@ -257,64 +160,29 @@ class __$$ClassEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClassEntityImpl implements _ClassEntity {
   const _$ClassEntityImpl(
-      {this.id,
-      this.subject,
-      this.name,
-      this.quota,
-      this.isFull,
+      {this.subject_name,
+      this.subject_class,
       this.day,
-      this.startAt,
-      this.endAt,
-      this.ruang,
-      final List<String>? participants,
-      final List<String>? learningModule})
-      : _participants = participants,
-        _learningModule = learningModule;
+      this.lecturer,
+      this.session_time});
 
   factory _$ClassEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClassEntityImplFromJson(json);
 
   @override
-  final String? id;
+  final String? subject_name;
   @override
-  final SubjectEntity? subject;
-  @override
-  final String? name;
-  @override
-  final int? quota;
-  @override
-  final bool? isFull;
+  final String? subject_class;
   @override
   final String? day;
   @override
-  final String? startAt;
+  final String? lecturer;
   @override
-  final String? endAt;
-  @override
-  final String? ruang;
-  final List<String>? _participants;
-  @override
-  List<String>? get participants {
-    final value = _participants;
-    if (value == null) return null;
-    if (_participants is EqualUnmodifiableListView) return _participants;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<String>? _learningModule;
-  @override
-  List<String>? get learningModule {
-    final value = _learningModule;
-    if (value == null) return null;
-    if (_learningModule is EqualUnmodifiableListView) return _learningModule;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final String? session_time;
 
   @override
   String toString() {
-    return 'ClassEntity(id: $id, subject: $subject, name: $name, quota: $quota, isFull: $isFull, day: $day, startAt: $startAt, endAt: $endAt, ruang: $ruang, participants: $participants, learningModule: $learningModule)';
+    return 'ClassEntity(subject_name: $subject_name, subject_class: $subject_class, day: $day, lecturer: $lecturer, session_time: $session_time)';
   }
 
   @override
@@ -322,36 +190,21 @@ class _$ClassEntityImpl implements _ClassEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClassEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.quota, quota) || other.quota == quota) &&
-            (identical(other.isFull, isFull) || other.isFull == isFull) &&
+            (identical(other.subject_name, subject_name) ||
+                other.subject_name == subject_name) &&
+            (identical(other.subject_class, subject_class) ||
+                other.subject_class == subject_class) &&
             (identical(other.day, day) || other.day == day) &&
-            (identical(other.startAt, startAt) || other.startAt == startAt) &&
-            (identical(other.endAt, endAt) || other.endAt == endAt) &&
-            (identical(other.ruang, ruang) || other.ruang == ruang) &&
-            const DeepCollectionEquality()
-                .equals(other._participants, _participants) &&
-            const DeepCollectionEquality()
-                .equals(other._learningModule, _learningModule));
+            (identical(other.lecturer, lecturer) ||
+                other.lecturer == lecturer) &&
+            (identical(other.session_time, session_time) ||
+                other.session_time == session_time));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      subject,
-      name,
-      quota,
-      isFull,
-      day,
-      startAt,
-      endAt,
-      ruang,
-      const DeepCollectionEquality().hash(_participants),
-      const DeepCollectionEquality().hash(_learningModule));
+      runtimeType, subject_name, subject_class, day, lecturer, session_time);
 
   /// Create a copy of ClassEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -371,43 +224,25 @@ class _$ClassEntityImpl implements _ClassEntity {
 
 abstract class _ClassEntity implements ClassEntity {
   const factory _ClassEntity(
-      {final String? id,
-      final SubjectEntity? subject,
-      final String? name,
-      final int? quota,
-      final bool? isFull,
+      {final String? subject_name,
+      final String? subject_class,
       final String? day,
-      final String? startAt,
-      final String? endAt,
-      final String? ruang,
-      final List<String>? participants,
-      final List<String>? learningModule}) = _$ClassEntityImpl;
+      final String? lecturer,
+      final String? session_time}) = _$ClassEntityImpl;
 
   factory _ClassEntity.fromJson(Map<String, dynamic> json) =
       _$ClassEntityImpl.fromJson;
 
   @override
-  String? get id;
+  String? get subject_name;
   @override
-  SubjectEntity? get subject;
-  @override
-  String? get name;
-  @override
-  int? get quota;
-  @override
-  bool? get isFull;
+  String? get subject_class;
   @override
   String? get day;
   @override
-  String? get startAt;
+  String? get lecturer;
   @override
-  String? get endAt;
-  @override
-  String? get ruang;
-  @override
-  List<String>? get participants;
-  @override
-  List<String>? get learningModule;
+  String? get session_time;
 
   /// Create a copy of ClassEntity
   /// with the given fields replaced by the non-null parameter values.

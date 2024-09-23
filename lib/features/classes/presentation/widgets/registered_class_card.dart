@@ -17,7 +17,7 @@ class RegisteredClassCard extends StatelessWidget {
     return InkWell(
       onTap: () => context.pushNamed(
         'class',
-        pathParameters: {'id': classEntity!.id!},
+        pathParameters: {'id': classEntity!.subject_class!},
         extra: ClassDetailPageExtra(classEntity: classEntity!),
       ),
       borderRadius: BorderRadius.circular(16),
@@ -47,7 +47,9 @@ class RegisteredClassCard extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          classEntity != null ? classEntity!.name! : 'A',
+                          classEntity != null
+                              ? classEntity!.subject_class!
+                              : 'A',
                           style: const TextStyle(
                             color: Color(0xfff4f4f9),
                             fontSize: 14,
@@ -62,7 +64,7 @@ class RegisteredClassCard extends StatelessWidget {
                       children: [
                         Text(
                           classEntity != null
-                              ? classEntity!.subject!.name!
+                              ? classEntity!.subject_name!
                               : 'Subject Name',
                           style: const TextStyle(
                             fontSize: 14,
@@ -71,7 +73,7 @@ class RegisteredClassCard extends StatelessWidget {
                         ),
                         Text(
                           classEntity != null
-                              ? classEntity!.subject!.lecturer!
+                              ? classEntity!.lecturer!
                               : 'Lecturer Name',
                           style: const TextStyle(
                             fontSize: 12,
@@ -107,16 +109,16 @@ class RegisteredClassCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Ruang',
+                          'Hari',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
                             color: const Color(0xff1d1d1d).withOpacity(0.5),
                           ),
                         ),
-                        Text(classEntity != null
-                            ? classEntity!.ruang!
-                            : 'Ruang'),
+                        Text(
+                          classEntity != null ? classEntity!.day! : 'Hari',
+                        ),
                       ],
                     ),
                   ),
@@ -125,12 +127,12 @@ class RegisteredClassCard extends StatelessWidget {
                     thickness: 1,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 3,
+                    width: MediaQuery.of(context).size.width / 2.5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Jadwal',
+                          'Sesi',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
@@ -139,7 +141,7 @@ class RegisteredClassCard extends StatelessWidget {
                         ),
                         Text(
                           classEntity != null
-                              ? '${classEntity!.day}, ${classEntity!.startAt} - ${classEntity!.endAt}'
+                              ? classEntity!.session_time!
                               : 'Jadwal',
                         ),
                       ],

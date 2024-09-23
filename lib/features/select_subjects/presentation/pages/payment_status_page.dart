@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:silab/core/helpers/currency_formatter.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -96,11 +97,8 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                         children: [
                                           Text(
                                             state.selectedSubjectEntity != null
-                                                ? state
-                                                    .selectedSubjectEntity!
-                                                    .subjects![index]
-                                                    .values
-                                                    .single
+                                                ? state.selectedSubjectEntity!
+                                                    .subjects![index].subject!
                                                 : 'Subject Name',
                                             style: const TextStyle(
                                               fontSize: 14,
@@ -109,7 +107,8 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                           ),
                                           Text(
                                             state.selectedSubjectEntity != null
-                                                ? 'Semester'
+                                                ? state.selectedSubjectEntity!
+                                                    .subjects![index].subject!
                                                 : 'Semester 0',
                                             style: const TextStyle(
                                               fontSize: 14,
@@ -122,34 +121,87 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                Skeletonizer(
-                                  enabled: state is SelectedSubjectByNimLoading
-                                      ? true
-                                      : false,
-                                  enableSwitchAnimation: true,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Text(
-                                        'Total',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.normal,
-                                        ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Total',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
                                       ),
-                                      Text(
+                                    ),
+                                    Text(
+                                      state.selectedSubjectEntity != null
+                                          ? localedPrice.format(state
+                                                  .selectedSubjectEntity!
+                                                  .subjects!
+                                                  .length *
+                                              5000)
+                                          : '0000',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'Status Pembayaran',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: state.selectedSubjectEntity !=
+                                                    null &&
+                                                state.selectedSubjectEntity!
+                                                        .status! !=
+                                                    'Pending'
+                                            ? const Color(0xffE8FFF3)
+                                            : const Color(0xffFFBF01),
+                                        borderRadius: BorderRadius.circular(30),
+                                        border: state.selectedSubjectEntity !=
+                                                    null &&
+                                                state.selectedSubjectEntity!
+                                                        .status! !=
+                                                    'Pending'
+                                            ? Border.all(
+                                                color: const Color(0xff50CD89),
+                                              )
+                                            : null,
+                                      ),
+                                      child: Text(
                                         state.selectedSubjectEntity != null
-                                            ? 'Rp${state.selectedSubjectEntity!.subjects!.length * 5000}'
-                                            : '0000',
-                                        style: const TextStyle(
-                                          fontSize: 16,
+                                            ? state
+                                                .selectedSubjectEntity!.status!
+                                            : 'Status Pembayaran',
+                                        style: TextStyle(
+                                          color: state.selectedSubjectEntity !=
+                                                      null &&
+                                                  state.selectedSubjectEntity!
+                                                          .status! !=
+                                                      'Pending'
+                                              ? const Color(0xff27A149)
+                                              : const Color(0xff1d1d1d),
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           );

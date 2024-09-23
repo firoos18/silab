@@ -164,8 +164,9 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                                   .toList();
 
                               context.read<AddSelectedSubjectBloc>().add(
-                                  AddSelectedSubjectButtonTapped(
-                                      subjects: userSelectedSubjectIds));
+                                    AddSelectedSubjectButtonTapped(
+                                        subjects: userSelectedSubjectIds),
+                                  );
                             },
                             child: BlocConsumer<AddSelectedSubjectBloc,
                                 AddSelectedSubjectState>(

@@ -9,13 +9,8 @@ part of 'selected_subject_subjects.dart';
 _$SelectedSubjectSubjectsEntityImpl
     _$$SelectedSubjectSubjectsEntityImplFromJson(Map<String, dynamic> json) =>
         _$SelectedSubjectSubjectsEntityImpl(
-          id: json['id'] as String?,
-          name: json['name'] as String?,
-          lecturer: json['lecturer'] as String?,
-          classes: (json['classes'] as List<dynamic>?)
-              ?.map((e) => ClassEntity.fromJson(e as Map<String, dynamic>))
-              .toList(),
-          semester: (json['semester'] as num?)?.toInt(),
+          subject: json['subject'] as String?,
+          semester: json['semester'] as String?,
           registeredClass: json['registeredClass'] == null
               ? null
               : RegisteredClassEntity.fromJson(
@@ -25,10 +20,7 @@ _$SelectedSubjectSubjectsEntityImpl
 Map<String, dynamic> _$$SelectedSubjectSubjectsEntityImplToJson(
         _$SelectedSubjectSubjectsEntityImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'lecturer': instance.lecturer,
-      'classes': instance.classes,
+      'subject': instance.subject,
       'semester': instance.semester,
       'registeredClass': instance.registeredClass,
     };

@@ -82,7 +82,8 @@ class _RegisteredClassListViewState extends State<RegisteredClassListView> {
                             ),
                             child: RegisteredClassCard(
                               classEntity: state.registeredClasses![index],
-                            ))
+                            ),
+                          )
                         : Container(
                             margin: const EdgeInsets.only(top: 120),
                             child: const Center(

@@ -97,79 +97,79 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
       }
     }
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: currentRoute == '/home' || currentRoute == '/schedule'
-          ? AppBar(
-              title: currentIndex != 0
-                  ? Text(
-                      currentIndex == 1 ? "Find" : "Profile",
-                    )
-                  : const UserWelcomeWidget(),
-              actions: currentIndex == 0
-                  ? [
-                      Container(
-                        margin: const EdgeInsets.only(right: 15),
-                        padding: const EdgeInsets.all(8),
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffFFBF01).withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child:
-                            SvgPicture.asset('assets/image/notification.svg'),
+    return BlocListener<AuthenticationBloc, AuthenticationState>(
+      listener: (context, state) {
+        if (state is AccessTokenExpired) {
+          context.goNamed('authentication');
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: currentRoute == '/home' || currentRoute == '/schedule'
+            ? AppBar(
+                title: currentIndex != 0
+                    ? Text(
+                        currentIndex == 1 ? "Find" : "Profile",
                       )
-                    ]
-                  : null,
-              forceMaterialTransparency: true,
-            )
-          : currentRoute.contains('/home')
-              ? AppBar(
-                  title: Text(
-                    appBarTitle,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                    : const UserWelcomeWidget(),
+                actions: currentIndex == 0
+                    ? [
+                        Container(
+                          margin: const EdgeInsets.only(right: 15),
+                          padding: const EdgeInsets.all(8),
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: const Color(0xffFFBF01).withOpacity(0.7),
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          child:
+                              SvgPicture.asset('assets/image/notification.svg'),
+                        )
+                      ]
+                    : null,
+                forceMaterialTransparency: true,
+              )
+            : currentRoute.contains('/home')
+                ? AppBar(
+                    title: Text(
+                      appBarTitle,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  leading: InkWell(
-                    onTap: () => context.pop(),
-                    borderRadius: BorderRadius.circular(100),
-                    child: const Icon(
-                      Icons.chevron_left,
-                      size: 32,
+                    leading: InkWell(
+                      onTap: () => context.pop(),
+                      borderRadius: BorderRadius.circular(100),
+                      child: const Icon(
+                        Icons.chevron_left,
+                        size: 32,
+                      ),
                     ),
-                  ),
-                  forceMaterialTransparency: true,
-                )
-              : null,
-      body: BlocListener<AuthenticationBloc, AuthenticationState>(
-        listener: (context, state) {
-          if (state is AccessTokenExpired) {
-            context.goNamed('authentication');
-          }
-        },
-        child: SafeArea(
+                    forceMaterialTransparency: true,
+                  )
+                : null,
+        body: SafeArea(
           child: SingleChildScrollView(
             controller: _scrollController,
             child: widget.navigationShell,
           ),
         ),
-      ),
-      extendBody: true,
-      floatingActionButton: CustomBottomNavbar(
-          currentIndex: currentIndex,
-          items: items,
-          scrollController: _scrollController,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index;
-            });
+        extendBody: true,
+        floatingActionButton: CustomBottomNavbar(
+            currentIndex: currentIndex,
+            items: items,
+            scrollController: _scrollController,
+            onTap: (index) {
+              setState(() {
+                currentIndex = index;
+              });
 
-            _goBranch(index);
-          }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              _goBranch(index);
+            }),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
     );
   }
 }

@@ -9,7 +9,7 @@ part of 'classes_response_entity.dart';
 _$ClassesResponseEntityImpl _$$ClassesResponseEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$ClassesResponseEntityImpl(
-      status: (json['status'] as num?)?.toInt(),
+      status: json['status'] as String?,
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => ClassEntity.fromJson(e as Map<String, dynamic>))

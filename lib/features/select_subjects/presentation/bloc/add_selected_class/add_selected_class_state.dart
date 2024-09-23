@@ -14,9 +14,7 @@ final class AddSelectedClassInitial extends AddSelectedClassState {}
 
 final class AddSelectedClassLoading extends AddSelectedClassState {}
 
-final class AddSelectedClassSuccess extends AddSelectedClassState {
-  const AddSelectedClassSuccess({super.selectedClass});
-}
+final class AddSelectedClassSuccess extends AddSelectedClassState {}
 
 final class AddSelectedClassFailed extends AddSelectedClassState {
   const AddSelectedClassFailed({super.message});

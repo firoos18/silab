@@ -9,21 +9,24 @@ SnackBar snackBar({
   void Function()? action,
 }) {
   late Color backgroundColor;
+  late Color textColor;
 
   if (type == AlertType.error) {
-    backgroundColor = const Color(0xffFF0000);
+    textColor = const Color(0xffFE2f60);
+    backgroundColor = const Color(0xffFfD9D9);
   } else if (type == AlertType.info) {
     backgroundColor = const Color(0xffFAC730);
   } else {
-    backgroundColor = const Color(0xff27A149);
+    textColor = const Color(0xff50cd89);
+    backgroundColor = const Color(0xffE8fff3);
   }
 
   return SnackBar(
     duration: const Duration(seconds: 3),
     content: Text(
       message!,
-      style: const TextStyle(
-        color: Color(0xfff4f4f9),
+      style: TextStyle(
+        color: textColor,
       ),
     ),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

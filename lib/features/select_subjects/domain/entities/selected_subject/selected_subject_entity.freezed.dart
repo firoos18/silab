@@ -22,7 +22,9 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 /// @nodoc
 mixin _$SelectedSubjectEntity {
   String? get activationId => throw _privateConstructorUsedError;
-  List<Map<String, String>>? get subjects => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  List<SelectedSubjectSubjectsEntity>? get subjects =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this SelectedSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,10 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
           $Res Function(SelectedSubjectEntity) then) =
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
-  $Res call({String? activationId, List<Map<String, String>>? subjects});
+  $Res call(
+      {String? activationId,
+      String? status,
+      List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
 /// @nodoc
@@ -60,6 +65,7 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
   @override
   $Res call({
     Object? activationId = freezed,
+    Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_value.copyWith(
@@ -67,10 +73,14 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
           ? _value.activationId
           : activationId // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
       subjects: freezed == subjects
           ? _value.subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, String>>?,
+              as List<SelectedSubjectSubjectsEntity>?,
     ) as $Val);
   }
 }
@@ -84,7 +94,10 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
       __$$SelectedSubjectEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? activationId, List<Map<String, String>>? subjects});
+  $Res call(
+      {String? activationId,
+      String? status,
+      List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
 /// @nodoc
@@ -102,6 +115,7 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? activationId = freezed,
+    Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_$SelectedSubjectEntityImpl(
@@ -109,10 +123,14 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
           ? _value.activationId
           : activationId // ignore: cast_nullable_to_non_nullable
               as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
       subjects: freezed == subjects
           ? _value._subjects
           : subjects // ignore: cast_nullable_to_non_nullable
-              as List<Map<String, String>>?,
+              as List<SelectedSubjectSubjectsEntity>?,
     ));
   }
 }
@@ -121,7 +139,9 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.activationId, final List<Map<String, String>>? subjects})
+      {this.activationId,
+      this.status,
+      final List<SelectedSubjectSubjectsEntity>? subjects})
       : _subjects = subjects;
 
   factory _$SelectedSubjectEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -129,9 +149,11 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   final String? activationId;
-  final List<Map<String, String>>? _subjects;
   @override
-  List<Map<String, String>>? get subjects {
+  final String? status;
+  final List<SelectedSubjectSubjectsEntity>? _subjects;
+  @override
+  List<SelectedSubjectSubjectsEntity>? get subjects {
     final value = _subjects;
     if (value == null) return null;
     if (_subjects is EqualUnmodifiableListView) return _subjects;
@@ -141,7 +163,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   String toString() {
-    return 'SelectedSubjectEntity(activationId: $activationId, subjects: $subjects)';
+    return 'SelectedSubjectEntity(activationId: $activationId, status: $status, subjects: $subjects)';
   }
 
   @override
@@ -151,12 +173,13 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
             other is _$SelectedSubjectEntityImpl &&
             (identical(other.activationId, activationId) ||
                 other.activationId == activationId) &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, activationId,
+  int get hashCode => Object.hash(runtimeType, activationId, status,
       const DeepCollectionEquality().hash(_subjects));
 
   /// Create a copy of SelectedSubjectEntity
@@ -178,8 +201,10 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
-      {final String? activationId,
-      final List<Map<String, String>>? subjects}) = _$SelectedSubjectEntityImpl;
+          {final String? activationId,
+          final String? status,
+          final List<SelectedSubjectSubjectsEntity>? subjects}) =
+      _$SelectedSubjectEntityImpl;
 
   factory _SelectedSubjectEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectEntityImpl.fromJson;
@@ -187,7 +212,9 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   @override
   String? get activationId;
   @override
-  List<Map<String, String>>? get subjects;
+  String? get status;
+  @override
+  List<SelectedSubjectSubjectsEntity>? get subjects;
 
   /// Create a copy of SelectedSubjectEntity
   /// with the given fields replaced by the non-null parameter values.

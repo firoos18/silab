@@ -6,7 +6,7 @@ import 'package:silab/features/select_subjects/presentation/bloc/add_selected_cl
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ClassSelectionConfirmationDialog extends StatelessWidget {
-  final Map<String, String> selectedClasses;
+  final List<String> selectedClasses;
 
   const ClassSelectionConfirmationDialog({
     super.key,

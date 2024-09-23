@@ -21,9 +21,8 @@ AddSelectedClassResponseEntity _$AddSelectedClassResponseEntityFromJson(
 
 /// @nodoc
 mixin _$AddSelectedClassResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  List<SelectedClassEntity>? get data => throw _privateConstructorUsedError;
 
   /// Serializes this AddSelectedClassResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,7 +42,7 @@ abstract class $AddSelectedClassResponseEntityCopyWith<$Res> {
       _$AddSelectedClassResponseEntityCopyWithImpl<$Res,
           AddSelectedClassResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, List<SelectedClassEntity>? data});
+  $Res call({String? status, String? message});
 }
 
 /// @nodoc
@@ -64,21 +63,16 @@ class _$AddSelectedClassResponseEntityCopyWithImpl<$Res,
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: freezed == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<SelectedClassEntity>?,
     ) as $Val);
   }
 }
@@ -92,7 +86,7 @@ abstract class _$$AddSelectedClassResponseEntityImplCopyWith<$Res>
       __$$AddSelectedClassResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, List<SelectedClassEntity>? data});
+  $Res call({String? status, String? message});
 }
 
 /// @nodoc
@@ -112,21 +106,16 @@ class __$$AddSelectedClassResponseEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? status = freezed,
     Object? message = freezed,
-    Object? data = freezed,
   }) {
     return _then(_$AddSelectedClassResponseEntityImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-      data: freezed == data
-          ? _value._data
-          : data // ignore: cast_nullable_to_non_nullable
-              as List<SelectedClassEntity>?,
     ));
   }
 }
@@ -135,31 +124,20 @@ class __$$AddSelectedClassResponseEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddSelectedClassResponseEntityImpl
     implements _AddSelectedClassResponseEntity {
-  const _$AddSelectedClassResponseEntityImpl(
-      {this.status, this.message, final List<SelectedClassEntity>? data})
-      : _data = data;
+  const _$AddSelectedClassResponseEntityImpl({this.status, this.message});
 
   factory _$AddSelectedClassResponseEntityImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$AddSelectedClassResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
-  final List<SelectedClassEntity>? _data;
-  @override
-  List<SelectedClassEntity>? get data {
-    final value = _data;
-    if (value == null) return null;
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
 
   @override
   String toString() {
-    return 'AddSelectedClassResponseEntity(status: $status, message: $message, data: $data)';
+    return 'AddSelectedClassResponseEntity(status: $status, message: $message)';
   }
 
   @override
@@ -168,14 +146,12 @@ class _$AddSelectedClassResponseEntityImpl
         (other.runtimeType == runtimeType &&
             other is _$AddSelectedClassResponseEntityImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, message, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, status, message);
 
   /// Create a copy of AddSelectedClassResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -198,20 +174,16 @@ class _$AddSelectedClassResponseEntityImpl
 abstract class _AddSelectedClassResponseEntity
     implements AddSelectedClassResponseEntity {
   const factory _AddSelectedClassResponseEntity(
-          {final int? status,
-          final String? message,
-          final List<SelectedClassEntity>? data}) =
-      _$AddSelectedClassResponseEntityImpl;
+      {final String? status,
+      final String? message}) = _$AddSelectedClassResponseEntityImpl;
 
   factory _AddSelectedClassResponseEntity.fromJson(Map<String, dynamic> json) =
       _$AddSelectedClassResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
-  @override
-  List<SelectedClassEntity>? get data;
 
   /// Create a copy of AddSelectedClassResponseEntity
   /// with the given fields replaced by the non-null parameter values.

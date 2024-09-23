@@ -59,7 +59,7 @@ class ClassesApiService {
 
   Future<ClassesResponseEntity> getUserRegisteredClasses() async {
     try {
-      final token = _sharedPreferences.getString('token');
+      final token = _sharedPreferences.getString('accessToken');
 
       final response = await http.get(
         Uri.parse('${AppConfig.shared.baseUrl}/registrations/me'),

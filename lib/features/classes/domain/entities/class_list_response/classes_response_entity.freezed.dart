@@ -21,7 +21,7 @@ ClassesResponseEntity _$ClassesResponseEntityFromJson(
 
 /// @nodoc
 mixin _$ClassesResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   List<ClassEntity>? get data => throw _privateConstructorUsedError;
 
@@ -41,7 +41,7 @@ abstract class $ClassesResponseEntityCopyWith<$Res> {
           $Res Function(ClassesResponseEntity) then) =
       _$ClassesResponseEntityCopyWithImpl<$Res, ClassesResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, List<ClassEntity>? data});
+  $Res call({String? status, String? message, List<ClassEntity>? data});
 }
 
 /// @nodoc
@@ -68,7 +68,7 @@ class _$ClassesResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -90,7 +90,7 @@ abstract class _$$ClassesResponseEntityImplCopyWith<$Res>
       __$$ClassesResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, List<ClassEntity>? data});
+  $Res call({String? status, String? message, List<ClassEntity>? data});
 }
 
 /// @nodoc
@@ -115,7 +115,7 @@ class __$$ClassesResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$ClassesResponseEntityImpl implements _ClassesResponseEntity {
       _$$ClassesResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   final List<ClassEntity>? _data;
@@ -191,7 +191,7 @@ class _$ClassesResponseEntityImpl implements _ClassesResponseEntity {
 
 abstract class _ClassesResponseEntity implements ClassesResponseEntity {
   const factory _ClassesResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final List<ClassEntity>? data}) = _$ClassesResponseEntityImpl;
 
@@ -199,7 +199,7 @@ abstract class _ClassesResponseEntity implements ClassesResponseEntity {
       _$ClassesResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
