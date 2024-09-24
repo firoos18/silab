@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
-import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -193,34 +192,34 @@ class _UserProfileCardState extends State<UserProfileCard> {
                               )
                             ],
                           ),
-                          BlocBuilder<SelectedSubjectByNimBloc,
-                              SelectedSubjectByNimState>(
-                            builder: (context, state) => Skeletonizer(
-                              enabled: state is SelectedSubjectByNimLoading &&
-                                      state.selectedSubjectEntity == null
-                                  ? true
-                                  : false,
-                              enableSwitchAnimation: true,
-                              child: Text(
-                                state.selectedSubjectEntity != null
-                                    ? state.selectedSubjectEntity!.subjects!
-                                            .isNotEmpty
-                                        ? 'Berhasil'
-                                        : 'Pending'
-                                    : 'Pending',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: state.selectedSubjectEntity != null
-                                      ? state.selectedSubjectEntity!.subjects!
-                                              .isNotEmpty
-                                          ? const Color(0xff27A149)
-                                          : const Color(0xffFAC730)
-                                      : const Color(0xffFAC730),
-                                ),
-                              ),
-                            ),
-                          ),
+                          // BlocBuilder<SelectedSubjectByNimBloc,
+                          //     SelectedSubjectByNimState>(
+                          //   builder: (context, state) => Skeletonizer(
+                          //     enabled: state is SelectedSubjectByNimLoading &&
+                          //             state.selectedSubjectEntity == null
+                          //         ? true
+                          //         : false,
+                          //     enableSwitchAnimation: true,
+                          //     child: Text(
+                          //       state.selectedSubjectEntity != null
+                          //           ? state.selectedSubjectEntity!.subjects!
+                          //                   .isNotEmpty
+                          //               ? 'Berhasil'
+                          //               : 'Pending'
+                          //           : 'Pending',
+                          //       style: TextStyle(
+                          //         fontSize: 16,
+                          //         fontWeight: FontWeight.bold,
+                          //         color: state.selectedSubjectEntity != null
+                          //             ? state.selectedSubjectEntity!.subjects!
+                          //                     .isNotEmpty
+                          //                 ? const Color(0xff27A149)
+                          //                 : const Color(0xffFAC730)
+                          //             : const Color(0xffFAC730),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     )

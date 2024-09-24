@@ -23,7 +23,7 @@ class ClassOptionList extends StatelessWidget {
             bottom: index != classes.indexOf(classes.last) ? 12 : 0),
         child: InkWell(
           borderRadius: BorderRadius.circular(24),
-          onTap: () => onClassChanged(classes[index].id),
+          onTap: () => onClassChanged(classes[index].class_id),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class ClassOptionList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Radio(
-                  value: classes[index].id,
+                  value: classes[index].class_id,
                   groupValue: selectedClass,
                   onChanged: (value) => onClassChanged(value),
                   visualDensity:

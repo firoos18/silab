@@ -23,7 +23,7 @@ SelectedSubjectResponseEntity _$SelectedSubjectResponseEntityFromJson(
 mixin _$SelectedSubjectResponseEntity {
   String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  SelectedSubjectEntity? get data => throw _privateConstructorUsedError;
+  List<SelectedSubjectEntity>? get data => throw _privateConstructorUsedError;
 
   /// Serializes this SelectedSubjectResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,9 +43,8 @@ abstract class $SelectedSubjectResponseEntityCopyWith<$Res> {
       _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
           SelectedSubjectResponseEntity>;
   @useResult
-  $Res call({String? status, String? message, SelectedSubjectEntity? data});
-
-  $SelectedSubjectEntityCopyWith<$Res>? get data;
+  $Res call(
+      {String? status, String? message, List<SelectedSubjectEntity>? data});
 }
 
 /// @nodoc
@@ -80,22 +79,8 @@ class _$SelectedSubjectResponseEntityCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as SelectedSubjectEntity?,
+              as List<SelectedSubjectEntity>?,
     ) as $Val);
-  }
-
-  /// Create a copy of SelectedSubjectResponseEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SelectedSubjectEntityCopyWith<$Res>? get data {
-    if (_value.data == null) {
-      return null;
-    }
-
-    return $SelectedSubjectEntityCopyWith<$Res>(_value.data!, (value) {
-      return _then(_value.copyWith(data: value) as $Val);
-    });
   }
 }
 
@@ -108,10 +93,8 @@ abstract class _$$SelectedSubjectResponseEntityImplCopyWith<$Res>
       __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? status, String? message, SelectedSubjectEntity? data});
-
-  @override
-  $SelectedSubjectEntityCopyWith<$Res>? get data;
+  $Res call(
+      {String? status, String? message, List<SelectedSubjectEntity>? data});
 }
 
 /// @nodoc
@@ -143,9 +126,9 @@ class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
       data: freezed == data
-          ? _value.data
+          ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as SelectedSubjectEntity?,
+              as List<SelectedSubjectEntity>?,
     ));
   }
 }
@@ -155,7 +138,8 @@ class __$$SelectedSubjectResponseEntityImplCopyWithImpl<$Res>
 class _$SelectedSubjectResponseEntityImpl
     implements _SelectedSubjectResponseEntity {
   const _$SelectedSubjectResponseEntityImpl(
-      {this.status, this.message, this.data});
+      {this.status, this.message, final List<SelectedSubjectEntity>? data})
+      : _data = data;
 
   factory _$SelectedSubjectResponseEntityImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -165,8 +149,15 @@ class _$SelectedSubjectResponseEntityImpl
   final String? status;
   @override
   final String? message;
+  final List<SelectedSubjectEntity>? _data;
   @override
-  final SelectedSubjectEntity? data;
+  List<SelectedSubjectEntity>? get data {
+    final value = _data;
+    if (value == null) return null;
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -180,12 +171,13 @@ class _$SelectedSubjectResponseEntityImpl
             other is _$SelectedSubjectResponseEntityImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.data, data) || other.data == data));
+            const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, data);
+  int get hashCode => Object.hash(
+      runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
   /// Create a copy of SelectedSubjectResponseEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -208,9 +200,10 @@ class _$SelectedSubjectResponseEntityImpl
 abstract class _SelectedSubjectResponseEntity
     implements SelectedSubjectResponseEntity {
   const factory _SelectedSubjectResponseEntity(
-      {final String? status,
-      final String? message,
-      final SelectedSubjectEntity? data}) = _$SelectedSubjectResponseEntityImpl;
+          {final String? status,
+          final String? message,
+          final List<SelectedSubjectEntity>? data}) =
+      _$SelectedSubjectResponseEntityImpl;
 
   factory _SelectedSubjectResponseEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectResponseEntityImpl.fromJson;
@@ -220,7 +213,7 @@ abstract class _SelectedSubjectResponseEntity
   @override
   String? get message;
   @override
-  SelectedSubjectEntity? get data;
+  List<SelectedSubjectEntity>? get data;
 
   /// Create a copy of SelectedSubjectResponseEntity
   /// with the given fields replaced by the non-null parameter values.

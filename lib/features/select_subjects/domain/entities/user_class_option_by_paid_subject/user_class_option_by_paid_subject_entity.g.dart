@@ -10,7 +10,7 @@ _$UserClassOptionByPaidSubjectEntityImpl
     _$$UserClassOptionByPaidSubjectEntityImplFromJson(
             Map<String, dynamic> json) =>
         _$UserClassOptionByPaidSubjectEntityImpl(
-          id: json['id'] as String?,
+          class_id: json['class_id'] as String?,
           subject_name: json['subject_name'] as String?,
           subject_class: json['subject_class'] as String?,
           semester: json['semester'] as String?,
@@ -22,7 +22,7 @@ _$UserClassOptionByPaidSubjectEntityImpl
 Map<String, dynamic> _$$UserClassOptionByPaidSubjectEntityImplToJson(
         _$UserClassOptionByPaidSubjectEntityImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'class_id': instance.class_id,
       'subject_name': instance.subject_name,
       'subject_class': instance.subject_class,
       'semester': instance.semester,

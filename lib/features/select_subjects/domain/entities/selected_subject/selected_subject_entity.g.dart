@@ -9,7 +9,7 @@ part of 'selected_subject_entity.dart';
 _$SelectedSubjectEntityImpl _$$SelectedSubjectEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$SelectedSubjectEntityImpl(
-      activationId: json['activationId'] as String?,
+      activation_id: json['activation_id'] as String?,
       status: json['status'] as String?,
       subjects: (json['subjects'] as List<dynamic>?)
           ?.map((e) =>
@@ -20,7 +20,7 @@ _$SelectedSubjectEntityImpl _$$SelectedSubjectEntityImplFromJson(
 Map<String, dynamic> _$$SelectedSubjectEntityImplToJson(
         _$SelectedSubjectEntityImpl instance) =>
     <String, dynamic>{
-      'activationId': instance.activationId,
+      'activation_id': instance.activation_id,
       'status': instance.status,
       'subjects': instance.subjects,
     };

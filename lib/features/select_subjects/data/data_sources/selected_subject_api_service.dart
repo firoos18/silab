@@ -136,8 +136,6 @@ class SelectedSubjectApiService {
         body: jsonEncode(requestBody),
       );
 
-      print(response.body);
-
       if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
         return AddSelectedClassResponseEntity.fromJson(data);

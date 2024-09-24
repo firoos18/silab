@@ -9,18 +9,13 @@ part of 'selected_subject_subjects.dart';
 _$SelectedSubjectSubjectsEntityImpl
     _$$SelectedSubjectSubjectsEntityImplFromJson(Map<String, dynamic> json) =>
         _$SelectedSubjectSubjectsEntityImpl(
-          subject: json['subject'] as String?,
+          subject_name: json['subject_name'] as String?,
           semester: json['semester'] as String?,
-          registeredClass: json['registeredClass'] == null
-              ? null
-              : RegisteredClassEntity.fromJson(
-                  json['registeredClass'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$$SelectedSubjectSubjectsEntityImplToJson(
         _$SelectedSubjectSubjectsEntityImpl instance) =>
     <String, dynamic>{
-      'subject': instance.subject,
+      'subject_name': instance.subject_name,
       'semester': instance.semester,
-      'registeredClass': instance.registeredClass,
     };

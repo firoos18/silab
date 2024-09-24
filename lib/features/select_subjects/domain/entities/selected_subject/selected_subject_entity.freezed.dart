@@ -21,7 +21,7 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 
 /// @nodoc
 mixin _$SelectedSubjectEntity {
-  String? get activationId => throw _privateConstructorUsedError;
+  String? get activation_id => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   List<SelectedSubjectSubjectsEntity>? get subjects =>
       throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
   $Res call(
-      {String? activationId,
+      {String? activation_id,
       String? status,
       List<SelectedSubjectSubjectsEntity>? subjects});
 }
@@ -64,14 +64,14 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activationId = freezed,
+    Object? activation_id = freezed,
     Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_value.copyWith(
-      activationId: freezed == activationId
-          ? _value.activationId
-          : activationId // ignore: cast_nullable_to_non_nullable
+      activation_id: freezed == activation_id
+          ? _value.activation_id
+          : activation_id // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -95,7 +95,7 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? activationId,
+      {String? activation_id,
       String? status,
       List<SelectedSubjectSubjectsEntity>? subjects});
 }
@@ -114,14 +114,14 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? activationId = freezed,
+    Object? activation_id = freezed,
     Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_$SelectedSubjectEntityImpl(
-      activationId: freezed == activationId
-          ? _value.activationId
-          : activationId // ignore: cast_nullable_to_non_nullable
+      activation_id: freezed == activation_id
+          ? _value.activation_id
+          : activation_id // ignore: cast_nullable_to_non_nullable
               as String?,
       status: freezed == status
           ? _value.status
@@ -139,7 +139,7 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.activationId,
+      {this.activation_id,
       this.status,
       final List<SelectedSubjectSubjectsEntity>? subjects})
       : _subjects = subjects;
@@ -148,7 +148,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
       _$$SelectedSubjectEntityImplFromJson(json);
 
   @override
-  final String? activationId;
+  final String? activation_id;
   @override
   final String? status;
   final List<SelectedSubjectSubjectsEntity>? _subjects;
@@ -163,7 +163,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   String toString() {
-    return 'SelectedSubjectEntity(activationId: $activationId, status: $status, subjects: $subjects)';
+    return 'SelectedSubjectEntity(activation_id: $activation_id, status: $status, subjects: $subjects)';
   }
 
   @override
@@ -171,15 +171,15 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectedSubjectEntityImpl &&
-            (identical(other.activationId, activationId) ||
-                other.activationId == activationId) &&
+            (identical(other.activation_id, activation_id) ||
+                other.activation_id == activation_id) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, activationId, status,
+  int get hashCode => Object.hash(runtimeType, activation_id, status,
       const DeepCollectionEquality().hash(_subjects));
 
   /// Create a copy of SelectedSubjectEntity
@@ -201,7 +201,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
-          {final String? activationId,
+          {final String? activation_id,
           final String? status,
           final List<SelectedSubjectSubjectsEntity>? subjects}) =
       _$SelectedSubjectEntityImpl;
@@ -210,7 +210,7 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
       _$SelectedSubjectEntityImpl.fromJson;
 
   @override
-  String? get activationId;
+  String? get activation_id;
   @override
   String? get status;
   @override

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:silab/core/common/entities/bottom_navbar/bottom_navbar_entity.dart';
@@ -24,8 +22,6 @@ class CustomBottomNavbar extends StatefulWidget {
 
 class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   bool _isVisible = true;
-  Timer? _hideTimer;
-  Timer? _showTimer;
 
   @override
   void initState() {
@@ -36,17 +32,10 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
   @override
   void dispose() {
     widget.scrollController.removeListener(_scrollListener);
-    _hideTimer?.cancel();
-    _showTimer?.cancel();
     super.dispose();
   }
 
   void _scrollListener() {
-    // Cancel any previous timers
-    _hideTimer?.cancel();
-    _showTimer?.cancel();
-
-    // Check if scrolling is happening
     if (widget.scrollController.position.userScrollDirection ==
         ScrollDirection.reverse) {
       if (_isVisible) {
@@ -54,16 +43,6 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
           _isVisible = false;
         });
       }
-      // Start a timer to show the navbar if scrolling stops
-      _showTimer = Timer(const Duration(seconds: 1), () {
-        if (!_isVisible &&
-            widget.scrollController.position.userScrollDirection ==
-                ScrollDirection.idle) {
-          setState(() {
-            _isVisible = true;
-          });
-        }
-      });
     } else if (widget.scrollController.position.userScrollDirection ==
         ScrollDirection.forward) {
       if (!_isVisible) {
@@ -71,14 +50,6 @@ class _CustomBottomNavbarState extends State<CustomBottomNavbar> {
           _isVisible = true;
         });
       }
-      // Start a timer to hide the navbar if scrolling continues
-      _hideTimer = Timer(const Duration(seconds: 1), () {
-        if (_isVisible) {
-          setState(() {
-            _isVisible = false;
-          });
-        }
-      });
     }
   }
 

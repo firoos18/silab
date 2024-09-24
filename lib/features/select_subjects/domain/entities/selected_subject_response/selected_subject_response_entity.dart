@@ -9,7 +9,7 @@ class SelectedSubjectResponseEntity with _$SelectedSubjectResponseEntity {
   const factory SelectedSubjectResponseEntity({
     final String? status,
     final String? message,
-    final SelectedSubjectEntity? data,
+    final List<SelectedSubjectEntity>? data,
   }) = _SelectedSubjectResponseEntity;
 
   factory SelectedSubjectResponseEntity.fromJson(Map<String, dynamic> json) =>

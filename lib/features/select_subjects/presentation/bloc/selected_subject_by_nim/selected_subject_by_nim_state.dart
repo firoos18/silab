@@ -1,7 +1,7 @@
 part of 'selected_subject_by_nim_bloc.dart';
 
 class SelectedSubjectByNimState extends Equatable {
-  final SelectedSubjectEntity? selectedSubjectEntity;
+  final List<SelectedSubjectEntity>? selectedSubjectEntity;
   final String? message;
 
   const SelectedSubjectByNimState({this.selectedSubjectEntity, this.message});
