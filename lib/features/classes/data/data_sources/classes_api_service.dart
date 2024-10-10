@@ -9,6 +9,7 @@ import 'package:silab/features/classes/domain/entities/class_list_response/class
 import 'package:http/http.dart' as http;
 import 'package:silab/features/classes/domain/entities/class_response/class_response_entity.dart';
 import 'package:silab/features/classes/domain/entities/classes_details_response/classes_details_response_entity.dart';
+import 'package:silab/features/classes/domain/entities/meetings_response/meetings_response_entity.dart';
 
 class ClassesApiService {
   final SharedPreferences _sharedPreferences;
@@ -111,6 +112,42 @@ class ClassesApiService {
     } else {
       final data = jsonDecode(response.body);
       throw RequestErrorException(data['message']);
+    }
+  }
+
+  Future<MeetingsResponseEntity> getUserMeetingsData({
+    String? classId,
+  }) async {
+    try {
+      final token = _sharedPreferences.getString('accessToken');
+
+      final response = await http.get(
+        Uri.parse(
+            '${AppConfig.shared.baseUrl}/subject/classes/$classId/meetings/me'),
+        headers: {
+          'Authorization': "Bearer $token",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return MeetingsResponseEntity.fromJson(data);
+      } else {
+        final data = jsonDecode(response.body);
+        throw RequestErrorException(data['message']);
+      }
+    } on SocketException catch (e) {
+      throw RequestErrorException(e.message);
+    } on TimeoutException catch (e) {
+      throw RequestErrorException(e.message!);
+    } on http.ClientException {
+      throw RequestErrorException(
+          "Client error, check your internet connections.");
+    } on HttpException {
+      throw RequestErrorException(
+          "Http error, check your internet connections");
+    } catch (e) {
+      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 }

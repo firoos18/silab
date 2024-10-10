@@ -66,8 +66,6 @@ class SelectedSubjectApiService {
       if (response.statusCode == 201) {
         final data = jsonDecode(response.body);
         return AddSelectedSubjectResponseEntity.fromJson(data);
-      } else if (response.statusCode == 504) {
-        throw RequestErrorException('An Internal Server Error Occurred');
       } else {
         final data = jsonDecode(response.body);
         throw RequestErrorException(data['message']);

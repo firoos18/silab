@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
+import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
 import 'package:silab/features/classes/presentation/widgets/class_card.dart';
 import 'package:silab/features/classes/presentation/widgets/class_details_tabview.dart';
 
@@ -20,16 +22,21 @@ class ClassDetailPage extends StatefulWidget {
 
 class _ClassDetailPageState extends State<ClassDetailPage> {
   @override
+  void initState() {
+    context.read<UserMeetingsBloc>().add(
+        GetUserMeetings(classId: widget.classDetailPageExtra.classEntity.id));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Material(
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
               ClassCard(classEntity: widget.classDetailPageExtra.classEntity),
               const SizedBox(height: 24),

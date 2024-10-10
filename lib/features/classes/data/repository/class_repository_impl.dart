@@ -6,6 +6,7 @@ import 'package:silab/features/classes/data/data_sources/classes_api_service.dar
 import 'package:silab/features/classes/domain/entities/class_list_response/classes_response_entity.dart';
 import 'package:silab/features/classes/domain/entities/class_response/class_response_entity.dart';
 import 'package:silab/features/classes/domain/entities/classes_details_response/classes_details_response_entity.dart';
+import 'package:silab/features/classes/domain/entities/meetings_response/meetings_response_entity.dart';
 import 'package:silab/features/classes/domain/repository/class_repository.dart';
 
 class ClassRepositoryImpl implements ClassRepository {
@@ -61,6 +62,21 @@ class ClassRepositoryImpl implements ClassRepository {
     try {
       final result = await _classesApiService.getUserSelectedClassesDetails(
           classes: classes);
+
+      return Right(result);
+    } on RequestErrorException catch (e) {
+      return Left(RequestFailures(e.message));
+    } on SocketException catch (e) {
+      return Left(RequestFailures(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failures, MeetingsResponseEntity>> getUserMeetingsData(
+      {String? classId}) async {
+    try {
+      final result =
+          await _classesApiService.getUserMeetingsData(classId: classId);
 
       return Right(result);
     } on RequestErrorException catch (e) {

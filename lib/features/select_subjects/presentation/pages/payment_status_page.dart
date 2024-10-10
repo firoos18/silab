@@ -31,7 +31,8 @@ class _PaymentStatusPageState extends State<PaymentStatusPage> {
     return Material(
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
+        padding:
+            const EdgeInsets.only(right: 15, left: 15, top: 24, bottom: 16),
         child: Column(
           children: [
             const Text(

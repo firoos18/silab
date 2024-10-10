@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:silab/features/classes/presentation/bloc/bloc/user_selected_classes_details_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/user_selected_classes/user_selected_classes_details_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

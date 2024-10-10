@@ -68,6 +68,10 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
       setState(() {
         appBarTitle = 'Pengumuman';
       });
+    } else if (currentRoute.startsWith('/home/class/')) {
+      setState(() {
+        appBarTitle = 'Detail Kelas';
+      });
     } else {
       switch (currentRoute) {
         case '/home/daftar-praktikum':
@@ -153,6 +157,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             controller: _scrollController,
+            physics: const ClampingScrollPhysics(),
             child: widget.navigationShell,
           ),
         ),

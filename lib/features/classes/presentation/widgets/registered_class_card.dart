@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/entities/class/class_entity.dart';
 import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
@@ -15,19 +14,26 @@ class RegisteredClassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.pushNamed(
+      onTap: () => context.goNamed(
         'class',
-        pathParameters: {'id': classEntity!.subject_class!},
+        pathParameters: {'id': classEntity!.id!},
         extra: ClassDetailPageExtra(classEntity: classEntity!),
       ),
       borderRadius: BorderRadius.circular(16),
+      splashColor: const Color(0xffBFD9EF).withValues(alpha: 0.5),
+      highlightColor: Colors.white,
+      hoverColor: const Color(0xffBFD9EF).withValues(alpha: 0.5),
       child: Container(
         width: double.infinity,
         height: 120,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
         decoration: BoxDecoration(
-          color: const Color(0xfff4f4f9),
+          color: Colors.transparent,
           borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: const Color(0xffBFD9EF),
+            width: 1.5,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,9 +47,14 @@ class RegisteredClassCard extends StatelessWidget {
                     Container(
                       width: 40,
                       height: 40,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xff1d1d1d),
+                        color: const Color(0xffFBFBEF),
+                        border: Border.all(
+                          color: const Color(0xffFFBF01),
+                          width: 1,
+                          strokeAlign: BorderSide.strokeAlignInside,
+                        ),
                       ),
                       child: Center(
                         child: Text(
@@ -51,7 +62,7 @@ class RegisteredClassCard extends StatelessWidget {
                               ? classEntity!.subject_class!
                               : 'A',
                           style: const TextStyle(
-                            color: Color(0xfff4f4f9),
+                            color: Color(0xffFFBF01),
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
@@ -88,12 +99,12 @@ class RegisteredClassCard extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: const BoxDecoration(
-                    color: Color(0xff3272CA),
+                    color: Color(0xffBFD9EF),
                     shape: BoxShape.circle,
                   ),
-                  child: SvgPicture.asset(
-                    'assets/image/arrow_right_up.png',
-                    fit: BoxFit.scaleDown,
+                  child: Image.asset(
+                    'assets/image/arrow-up-right.png',
+                    scale: 2,
                   ),
                 )
               ],
@@ -122,8 +133,8 @@ class RegisteredClassCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  VerticalDivider(
-                    color: const Color(0xff1d1d1d).withOpacity(0.5),
+                  const VerticalDivider(
+                    color: Color(0xffBFD9EF),
                     thickness: 1,
                   ),
                   SizedBox(

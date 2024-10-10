@@ -45,12 +45,21 @@ class _RegisteredClassListViewState extends State<RegisteredClassListView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Kelas',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+            Row(
+              children: [
+                Image.asset(
+                  'assets/image/bookmark.png',
+                  scale: 2,
+                ),
+                const SizedBox(width: 8),
+                const Text(
+                  'Kelas Terdaftar',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             Flexible(
