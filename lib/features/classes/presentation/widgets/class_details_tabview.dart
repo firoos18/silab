@@ -120,7 +120,7 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
                                 child: Text(meetingList[idx].meeting_name!),
                               ),
                               InkWell(
-                                onTap: () => context.goNamed('qr-scan'),
+                                onTap: () => context.pushNamed('qr-scan'),
                                 borderRadius: BorderRadius.circular(50),
                                 splashColor: const Color(0xffBFD9EF),
                                 child: Container(

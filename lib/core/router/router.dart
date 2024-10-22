@@ -41,6 +41,11 @@ final GoRouter router = GoRouter(
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
     ),
+    GoRoute(
+      path: '/qr-scan',
+      name: 'qr-scan',
+      builder: (context, state) => const QrScanPage(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           ScaffoldPage(navigationShell: navigationShell),
@@ -93,11 +98,6 @@ final GoRouter router = GoRouter(
                     classDetailPageExtra: state.extra as ClassDetailPageExtra,
                   ),
                 ),
-                GoRoute(
-                  path: 'qr-scan',
-                  name: 'qr-scan',
-                  builder: (context, state) => const QrScanPage(),
-                )
               ],
             )
           ],
