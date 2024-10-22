@@ -81,7 +81,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                     hintText: 'Password',
                     suffixIcon: 'assets/image/password.png',
                     textInputAction: TextInputAction.next,
-                    textInputType: TextInputType.number,
+                    textInputType: TextInputType.text,
                     isObscure: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {

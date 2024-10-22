@@ -9,27 +9,42 @@ class ClassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.maxFinite,
-      height: 140,
-      padding: const EdgeInsets.all(12),
+      width: double.infinity,
+      height: 120,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        color: const Color(0xfff4f4f9),
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: const Color(0xffBFD9EF),
+          width: 1.5,
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              CircleAvatar(
-                backgroundColor: const Color(0xff1d1d1d),
-                radius: 24,
-                child: Text(
-                  classEntity.subject_class!,
-                  style: const TextStyle(
-                    color: Color(0xfff4f4f9),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xffFBFBEF),
+                  border: Border.all(
+                    color: const Color(0xffFFBF01),
+                    width: 1.5,
+                    strokeAlign: BorderSide.strokeAlignInside,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Text(
+                    classEntity.subject_class!,
+                    style: const TextStyle(
+                      color: Color(0xffFFBF01),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
@@ -82,8 +97,8 @@ class ClassCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                VerticalDivider(
-                  color: const Color(0xff1d1d1d).withOpacity(0.5),
+                const VerticalDivider(
+                  color: Color(0xffBFD9EF),
                   thickness: 1,
                 ),
                 SizedBox(

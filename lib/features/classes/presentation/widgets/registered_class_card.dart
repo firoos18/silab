@@ -52,7 +52,7 @@ class RegisteredClassCard extends StatelessWidget {
                         color: const Color(0xffFBFBEF),
                         border: Border.all(
                           color: const Color(0xffFFBF01),
-                          width: 1,
+                          width: 1.5,
                           strokeAlign: BorderSide.strokeAlignInside,
                         ),
                       ),

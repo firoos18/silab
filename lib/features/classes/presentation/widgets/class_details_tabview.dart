@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/features/classes/domain/entities/meetings/meetings_entity.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
 
@@ -103,7 +104,7 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
                       physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, idx) => Container(
                           width: double.infinity,
-                          height: 50,
+                          height: 56,
                           margin: const EdgeInsets.only(bottom: 8),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 4),
@@ -118,44 +119,55 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
                                 padding: const EdgeInsets.only(left: 16),
                                 child: Text(meetingList[idx].meeting_name!),
                               ),
-                              Container(
-                                width: 40,
-                                height: 40,
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: meetingList[idx].is_attended ==
-                                              null &&
-                                          meetingList[idx].submitted_at == null
-                                      ? null
-                                      : Border.all(
-                                          color: meetingList[idx].is_attended !=
-                                                      null &&
-                                                  meetingList[idx]
-                                                          .submitted_at ==
-                                                      null
-                                              ? const Color(0xffF1416C)
-                                              : meetingList[idx].is_attended !=
-                                                          null &&
-                                                      meetingList[idx]
-                                                              .submitted_at !=
-                                                          null
-                                                  ? const Color(0xff50CD89)
-                                                  : Colors.transparent,
-                                          width: 2,
-                                        ),
-                                  color: meetingList[idx].is_attended != null &&
-                                          meetingList[idx].submitted_at == null
-                                      ? const Color(0xffFFF5F8)
-                                      : meetingList[idx].is_attended != null &&
-                                              meetingList[idx].submitted_at !=
-                                                  null
-                                          ? const Color(0xffE8FFF3)
-                                          : Colors.transparent,
-                                ),
-                                child: Image.asset(
-                                  scale: 2,
-                                  'assets/image/${meetingList[idx].is_attended != null && meetingList[idx].submitted_at == null ? 'absence.png' : meetingList[idx].is_attended != null && meetingList[idx].submitted_at != null ? 'presence.png' : 'none.png'}',
+                              InkWell(
+                                onTap: () => context.goNamed('qr-scan'),
+                                borderRadius: BorderRadius.circular(50),
+                                splashColor: const Color(0xffBFD9EF),
+                                child: Container(
+                                  width: 40,
+                                  height: 40,
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: meetingList[idx].is_attended ==
+                                                null &&
+                                            meetingList[idx].submitted_at ==
+                                                null
+                                        ? null
+                                        : Border.all(
+                                            color: meetingList[idx]
+                                                            .is_attended !=
+                                                        null &&
+                                                    meetingList[idx]
+                                                            .submitted_at ==
+                                                        null
+                                                ? const Color(0xffF1416C)
+                                                : meetingList[idx]
+                                                                .is_attended !=
+                                                            null &&
+                                                        meetingList[idx]
+                                                                .submitted_at !=
+                                                            null
+                                                    ? const Color(0xff50CD89)
+                                                    : Colors.transparent,
+                                            width: 2,
+                                          ),
+                                    color: meetingList[idx].is_attended !=
+                                                null &&
+                                            meetingList[idx].submitted_at ==
+                                                null
+                                        ? const Color(0xffFFF5F8)
+                                        : meetingList[idx].is_attended !=
+                                                    null &&
+                                                meetingList[idx].submitted_at !=
+                                                    null
+                                            ? const Color(0xffE8FFF3)
+                                            : Colors.transparent,
+                                  ),
+                                  child: Image.asset(
+                                    scale: 2,
+                                    'assets/image/${meetingList[idx].is_attended != null && meetingList[idx].submitted_at == null ? 'absence.png' : meetingList[idx].is_attended != null && meetingList[idx].submitted_at != null ? 'presence.png' : 'none.png'}',
+                                  ),
                                 ),
                               )
                             ],

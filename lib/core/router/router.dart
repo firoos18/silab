@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/app_config.dart';
+import 'package:silab/features/classes/presentation/pages/qr_scan_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/daftar_praktikum_page.dart';
 import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/payment_status_page.dart';
@@ -92,6 +93,11 @@ final GoRouter router = GoRouter(
                     classDetailPageExtra: state.extra as ClassDetailPageExtra,
                   ),
                 ),
+                GoRoute(
+                  path: 'qr-scan',
+                  name: 'qr-scan',
+                  builder: (context, state) => const QrScanPage(),
+                )
               ],
             )
           ],
