@@ -44,7 +44,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/qr-scan',
       name: 'qr-scan',
-      builder: (context, state) => const QrScanPage(),
+      builder: (context, state) => QrScanPage(
+        qrScanPageExtra: state.extra as QrScanPageExtra,
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>

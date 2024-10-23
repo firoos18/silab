@@ -23,7 +23,7 @@ mixin _$MeetingsEntity {
   String? get id => throw _privateConstructorUsedError;
   String? get meeting_name => throw _privateConstructorUsedError;
   String? get submitted_at => throw _privateConstructorUsedError;
-  String? get is_attended => throw _privateConstructorUsedError;
+  bool? get is_attended => throw _privateConstructorUsedError;
 
   /// Serializes this MeetingsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $MeetingsEntityCopyWith<$Res> {
       {String? id,
       String? meeting_name,
       String? submitted_at,
-      String? is_attended});
+      bool? is_attended});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class _$MeetingsEntityCopyWithImpl<$Res, $Val extends MeetingsEntity>
       is_attended: freezed == is_attended
           ? _value.is_attended
           : is_attended // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ) as $Val);
   }
 }
@@ -101,7 +101,7 @@ abstract class _$$MeetingsEntityImplCopyWith<$Res>
       {String? id,
       String? meeting_name,
       String? submitted_at,
-      String? is_attended});
+      bool? is_attended});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class __$$MeetingsEntityImplCopyWithImpl<$Res>
       is_attended: freezed == is_attended
           ? _value.is_attended
           : is_attended // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as bool?,
     ));
   }
 }
@@ -159,7 +159,7 @@ class _$MeetingsEntityImpl implements _MeetingsEntity {
   @override
   final String? submitted_at;
   @override
-  final String? is_attended;
+  final bool? is_attended;
 
   @override
   String toString() {
@@ -207,7 +207,7 @@ abstract class _MeetingsEntity implements MeetingsEntity {
       {final String? id,
       final String? meeting_name,
       final String? submitted_at,
-      final String? is_attended}) = _$MeetingsEntityImpl;
+      final bool? is_attended}) = _$MeetingsEntityImpl;
 
   factory _MeetingsEntity.fromJson(Map<String, dynamic> json) =
       _$MeetingsEntityImpl.fromJson;
@@ -219,7 +219,7 @@ abstract class _MeetingsEntity implements MeetingsEntity {
   @override
   String? get submitted_at;
   @override
-  String? get is_attended;
+  bool? get is_attended;
 
   /// Create a copy of MeetingsEntity
   /// with the given fields replaced by the non-null parameter values.

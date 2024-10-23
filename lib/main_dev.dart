@@ -6,6 +6,7 @@ import 'package:silab/core/router/router.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_all_announcements/get_all_announcements_bloc.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
 import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'package:silab/features/classes/presentation/bloc/user_attendances/user_attendances_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_selected_classes/user_selected_classes_details_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
@@ -90,6 +91,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<UserMeetingsBloc>(
           create: (_) => UserMeetingsBloc(injector()),
+        ),
+        BlocProvider<UserAttendancesBloc>(
+          create: (_) => UserAttendancesBloc(injector()),
         ),
       ],
       child: MaterialApp.router(

@@ -3,9 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/features/classes/domain/entities/meetings/meetings_entity.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
+import 'package:silab/features/classes/presentation/pages/qr_scan_page.dart';
 
 class ClassDetailTabView extends StatefulWidget {
-  const ClassDetailTabView({super.key});
+  final String? classId;
+
+  const ClassDetailTabView({
+    super.key,
+    this.classId,
+  });
 
   @override
   State<ClassDetailTabView> createState() => _ClassDetailPageTabiewState();
@@ -120,7 +126,13 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
                                 child: Text(meetingList[idx].meeting_name!),
                               ),
                               InkWell(
-                                onTap: () => context.pushNamed('qr-scan'),
+                                onTap: () => context.pushNamed(
+                                  'qr-scan',
+                                  extra: QrScanPageExtra(
+                                    meetingId: meetingList[idx].id,
+                                    classId: widget.classId,
+                                  ),
+                                ),
                                 borderRadius: BorderRadius.circular(50),
                                 splashColor: const Color(0xffBFD9EF),
                                 child: Container(

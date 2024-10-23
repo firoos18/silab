@@ -18,11 +18,13 @@ import 'package:silab/features/authentication/presentation/bloc/authentication_b
 import 'package:silab/features/classes/data/data_sources/classes_api_service.dart';
 import 'package:silab/features/classes/data/repository/class_repository_impl.dart';
 import 'package:silab/features/classes/domain/repository/class_repository.dart';
+import 'package:silab/features/classes/domain/usecases/add_user_attendances_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_class_by_id_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_class_list_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_user_meetings_data_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_user_registered_classes_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_user_selected_classes_details.dart';
+import 'package:silab/features/classes/presentation/bloc/user_attendances/user_attendances_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_selected_classes/user_selected_classes_details_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
@@ -126,6 +128,8 @@ Future<void> initializeDependencies() async {
       GetUserClassOptionByPaidSubjectUsecase(injector()));
   injector.registerSingleton<GetUserMeetingsDataUsecase>(
       GetUserMeetingsDataUsecase(injector()));
+  injector.registerSingleton<AddUserAttendancesUsecase>(
+      AddUserAttendancesUsecase(injector()));
 
   // BLoCs
   injector.registerFactory<AuthenticationBloc>(
@@ -157,4 +161,6 @@ Future<void> initializeDependencies() async {
       () => UserClassOptionByPaidSubjectBloc(injector()));
   injector
       .registerFactory<UserMeetingsBloc>(() => UserMeetingsBloc(injector()));
+  injector.registerFactory<UserAttendancesBloc>(
+      () => UserAttendancesBloc(injector()));
 }

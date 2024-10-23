@@ -40,7 +40,9 @@ class _ClassDetailPageState extends State<ClassDetailPage> {
             children: [
               ClassCard(classEntity: widget.classDetailPageExtra.classEntity),
               const SizedBox(height: 24),
-              const ClassDetailTabView()
+              ClassDetailTabView(
+                classId: widget.classDetailPageExtra.classEntity.id,
+              )
             ],
           ),
         ),

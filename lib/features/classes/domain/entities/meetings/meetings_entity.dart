@@ -9,7 +9,7 @@ class MeetingsEntity with _$MeetingsEntity {
     final String? id,
     final String? meeting_name,
     final String? submitted_at,
-    final String? is_attended,
+    final bool? is_attended,
   }) = _MeetingsEntity;
 
   factory MeetingsEntity.fromJson(Map<String, dynamic> json) =>
