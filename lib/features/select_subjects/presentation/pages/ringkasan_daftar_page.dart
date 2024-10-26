@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
@@ -69,8 +68,12 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                       Container(
                         margin: const EdgeInsets.only(top: 16),
                         decoration: BoxDecoration(
-                          color: const Color(0xfff4f4f9),
+                          color: Colors.transparent,
                           borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: const Color(0xffBFD9EF),
+                            width: 2,
+                          ),
                         ),
                         child: ListView.builder(
                           padding: const EdgeInsets.all(12),
@@ -132,21 +135,41 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                       useRootNavigator: true,
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text('Simpan Pendaftaran'),
+                        backgroundColor: const Color(0xfff4f4f9),
+                        title: const Text(
+                          'Simpan Pendaftaran',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         content: const Text(
                           'Apakah anda yakin untuk menyimpan pendaftaran praktikum dan lanjutkan proses pembayaran?',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.justify,
                         ),
                         actions: [
                           InkWell(
                             onTap: () =>
                                 Navigator.of(context, rootNavigator: true)
                                     .pop(),
-                            child: const Text(
-                              'Kembali',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xffFF0000),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffFF0000),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: const Text(
+                                'Kembali',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xffFFF5F8),
+                                ),
                               ),
                             ),
                           ),
@@ -164,54 +187,73 @@ class _RingkasanDaftarPageState extends State<RingkasanDaftarPage> {
                                         subjects: userSelectedSubjectIds),
                                   );
                             },
-                            child: BlocConsumer<AddSelectedSubjectBloc,
-                                AddSelectedSubjectState>(
-                              listener: (context, state) {
-                                if (state is AddSelectedSubjectSuccess) {
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackBar(
-                                      message:
-                                          'Silakan Lanjutkan Proses Pembayaran',
-                                      type: AlertType.success,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffBFD9EF),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: BlocConsumer<AddSelectedSubjectBloc,
+                                  AddSelectedSubjectState>(
+                                listener: (context, state) {
+                                  if (state is AddSelectedSubjectSuccess) {
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      snackBar(
+                                        message:
+                                            'Silakan Lanjutkan Proses Pembayaran',
+                                        type: AlertType.success,
+                                      ),
+                                    );
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                    context.goNamed('payment-status');
+                                  }
+                                  if (state is AddSelectedSubjectFailed) {
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      snackBar(
+                                        message: state.message,
+                                        type: AlertType.error,
+                                      ),
+                                    );
+                                    Navigator.pop(context, true);
+                                  }
+                                },
+                                builder: (context, state) {
+                                  return Skeletonizer(
+                                    enabled: state is AddSelectedSubjectLoading
+                                        ? true
+                                        : false,
+                                    enableSwitchAnimation: true,
+                                    child: const Text(
+                                      'Simpan',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xff3272CA),
+                                      ),
                                     ),
                                   );
-                                  Navigator.of(context, rootNavigator: true)
-                                      .pop();
-                                  context.goNamed('payment-status');
-                                } else {
-                                  ScaffoldMessenger.of(context)
-                                      .hideCurrentSnackBar();
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    snackBar(
-                                      message: state.message,
-                                      type: AlertType.error,
-                                    ),
-                                  );
-                                  Navigator.pop(context, true);
-                                }
-                              },
-                              builder: (context, state) {
-                                return Skeletonizer(
-                                  enabled: state is AddSelectedSubjectLoading
-                                      ? true
-                                      : false,
-                                  enableSwitchAnimation: true,
-                                  child: const Text(
-                                    'Simpan',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                );
-                              },
+                                },
+                              ),
                             ),
                           ),
                         ],
                         alignment: Alignment.center,
-                        icon: const Icon(Boxicons.bx_info_circle),
+                        icon: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: Image.asset(
+                            'assets/image/info.png',
+                            scale: 2,
+                          ),
+                        ),
                         actionsAlignment: MainAxisAlignment.spaceEvenly,
                       ),
                     ),

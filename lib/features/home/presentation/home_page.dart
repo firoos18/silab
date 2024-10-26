@@ -29,23 +29,34 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Material(
+    return Material(
       color: Colors.white,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 210,
-            width: double.infinity,
-            child: AnnouncementCarousel(),
-          ),
-          SizedBox(height: 8),
-          PickClassBanner(),
-          SizedBox(height: 16),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: RegisteredClassListView(),
-          ),
-        ],
+      child: RefreshIndicator(
+        color: const Color(0xffFFBF01),
+        onRefresh: () async {
+          context.read<GetAllAnnouncementsBloc>().add(GetAllAnnouncements());
+          context.read<UserRegisteredClassBloc>().add(GetUserRegisteredClass());
+          context
+              .read<UserClassOptionByPaidSubjectBloc>()
+              .add(GetUserClassOptionByPaidSubject());
+        },
+        child: ListView(
+          shrinkWrap: true,
+          children: const [
+            SizedBox(
+              height: 210,
+              width: double.infinity,
+              child: AnnouncementCarousel(),
+            ),
+            SizedBox(height: 8),
+            PickClassBanner(),
+            SizedBox(height: 16),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: RegisteredClassListView(),
+            ),
+          ],
+        ),
       ),
     );
   }

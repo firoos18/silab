@@ -8,9 +8,6 @@ import 'package:silab/features/announcement/presentation/blocs/get_announcement/
 import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_attendances/user_attendances_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/user_selected_classes/user_selected_classes_details_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_subject/add_selected_subject_bloc.dart';
@@ -53,12 +50,6 @@ class MainApp extends StatelessWidget {
         BlocProvider<SelectedSubjectByNimBloc>(
           create: (_) => SelectedSubjectByNimBloc(injector()),
         ),
-        BlocProvider<ClassByIdBloc>(
-          create: (_) => ClassByIdBloc(injector()),
-        ),
-        BlocProvider<ClassListBloc>(
-          create: (_) => ClassListBloc(injector()),
-        ),
         BlocProvider<SubjectDetailsBloc>(
           create: (_) => SubjectDetailsBloc(injector()),
         ),
@@ -82,9 +73,6 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider<UserRegisteredClassBloc>(
           create: (_) => UserRegisteredClassBloc(injector()),
-        ),
-        BlocProvider<UserSelectedClassesDetailsBloc>(
-          create: (_) => UserSelectedClassesDetailsBloc(injector()),
         ),
         BlocProvider<UserClassOptionByPaidSubjectBloc>(
           create: (_) => UserClassOptionByPaidSubjectBloc(injector()),

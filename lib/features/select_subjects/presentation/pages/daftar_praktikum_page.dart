@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/subjects/data/models/user_selected_subjects/user_selected_subjects_model.dart';
@@ -100,8 +99,8 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            width: 1,
-                            color: const Color(0xff1d1d1d),
+                            width: 2,
+                            color: const Color(0xffBFD9EF),
                           ),
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -116,10 +115,18 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
                           value: currentValue,
                           underline: const SizedBox(),
                           elevation: 100,
-                          icon: const Icon(Boxicons.bx_chevron_down),
+                          icon: Image.asset(
+                            'assets/image/chevron_down_blue.png',
+                            scale: 2,
+                          ),
                           enableFeedback: true,
                           alignment: Alignment.centerLeft,
                           isExpanded: true,
+                          style: const TextStyle(
+                            color: Color(0xff3272CA),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ],
@@ -133,11 +140,15 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
                         child: Container(
                           margin: const EdgeInsets.only(top: 16),
                           decoration: BoxDecoration(
-                            color: state.subjectList != null &&
-                                    state.subjectList!.isEmpty
-                                ? Colors.transparent
-                                : const Color(0xfff4f4f9),
+                            color: Colors.transparent,
                             borderRadius: BorderRadius.circular(12),
+                            border: state.subjectList != null &&
+                                    state.subjectList!.isEmpty
+                                ? null
+                                : Border.all(
+                                    color: const Color(0xffBFD9EF),
+                                    width: 2,
+                                  ),
                           ),
                           child: ListView.builder(
                             itemCount: state.subjectList != null &&
@@ -150,7 +161,11 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
                               bottom: state.subjectList != null &&
                                       state.subjectList!.isNotEmpty
                                   ? 16
-                                  : 8,
+                                  : 36,
+                              top: state.subjectList != null &&
+                                      state.subjectList!.isNotEmpty
+                                  ? 0
+                                  : 36,
                             ),
                             itemBuilder: (context, index) => state
                                             .subjectList !=
@@ -194,6 +209,11 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
                                 : const Center(
                                     child: Text(
                                       'Tidak ada praktikum yang ditawarkan',
+                                      style: TextStyle(
+                                        color: Color(0xff5E6278),
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ),
                           ),

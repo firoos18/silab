@@ -116,22 +116,6 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                         currentIndex == 1 ? "Find" : "Profile",
                       )
                     : const UserWelcomeWidget(),
-                actions: currentIndex == 0
-                    ? [
-                        Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          padding: const EdgeInsets.all(8),
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            color: const Color(0xffFFBF01).withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child:
-                              SvgPicture.asset('assets/image/notification.svg'),
-                        )
-                      ]
-                    : null,
                 forceMaterialTransparency: true,
               )
             : currentRoute.contains('/home')

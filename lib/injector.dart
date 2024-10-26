@@ -19,16 +19,10 @@ import 'package:silab/features/classes/data/data_sources/classes_api_service.dar
 import 'package:silab/features/classes/data/repository/class_repository_impl.dart';
 import 'package:silab/features/classes/domain/repository/class_repository.dart';
 import 'package:silab/features/classes/domain/usecases/add_user_attendances_usecase.dart';
-import 'package:silab/features/classes/domain/usecases/get_class_by_id_usecase.dart';
-import 'package:silab/features/classes/domain/usecases/get_class_list_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_user_meetings_data_usecase.dart';
 import 'package:silab/features/classes/domain/usecases/get_user_registered_classes_usecase.dart';
-import 'package:silab/features/classes/domain/usecases/get_user_selected_classes_details.dart';
 import 'package:silab/features/classes/presentation/bloc/user_attendances/user_attendances_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/user_selected_classes/user_selected_classes_details_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/class_by_id/class_by_id_bloc.dart';
-import 'package:silab/features/classes/presentation/bloc/class_list/class_list_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/data/data_sources/selected_subject_api_service.dart';
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
@@ -102,10 +96,6 @@ Future<void> initializeDependencies() async {
       GetUserDetailsUseCase(injector()));
   injector.registerSingleton<GetSelectedSubjectByNimUsecase>(
       GetSelectedSubjectByNimUsecase(injector()));
-  injector
-      .registerSingleton<GetClassByIdUseCase>(GetClassByIdUseCase(injector()));
-  injector
-      .registerSingleton<GetClassListUseCase>(GetClassListUseCase(injector()));
   injector.registerSingleton<GetSubjectDetailsUseCase>(
       GetSubjectDetailsUseCase(injector()));
   injector.registerSingleton<GetSubjectListUseCase>(
@@ -122,8 +112,6 @@ Future<void> initializeDependencies() async {
       AddSelectedClassUseCase(injector()));
   injector.registerSingleton<GetUserRegisteredClassesUseCase>(
       GetUserRegisteredClassesUseCase(injector()));
-  injector.registerSingleton<GetUserSelectedClassesDetailsUseCase>(
-      GetUserSelectedClassesDetailsUseCase(injector()));
   injector.registerSingleton<GetUserClassOptionByPaidSubjectUsecase>(
       GetUserClassOptionByPaidSubjectUsecase(injector()));
   injector.registerSingleton<GetUserMeetingsDataUsecase>(
@@ -138,8 +126,6 @@ Future<void> initializeDependencies() async {
       () => UserDetailsBloc(injector(), injector()));
   injector.registerFactory<SelectedSubjectByNimBloc>(
       () => SelectedSubjectByNimBloc(injector()));
-  injector.registerFactory<ClassListBloc>(() => ClassListBloc(injector()));
-  injector.registerFactory<ClassByIdBloc>(() => ClassByIdBloc(injector()));
   injector.registerFactory<SubjectDetailsBloc>(
       () => SubjectDetailsBloc(injector()));
   injector.registerFactory<SubjectListBloc>(() => SubjectListBloc(injector()));
@@ -155,8 +141,6 @@ Future<void> initializeDependencies() async {
       () => AddSelectedClassBloc(injector()));
   injector.registerFactory<UserRegisteredClassBloc>(
       () => UserRegisteredClassBloc(injector()));
-  injector.registerFactory<UserSelectedClassesDetailsBloc>(
-      () => UserSelectedClassesDetailsBloc(injector()));
   injector.registerFactory<UserClassOptionByPaidSubjectBloc>(
       () => UserClassOptionByPaidSubjectBloc(injector()));
   injector

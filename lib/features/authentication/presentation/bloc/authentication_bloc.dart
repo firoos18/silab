@@ -15,16 +15,20 @@ class AuthenticationBloc
   final GetUserAccessTokenUsecase _getUserAccessTokenUsecase;
   final GetAccessTokenExpiry _getAccessTokenExpiry;
 
-  AuthenticationBloc(this._userLoginUsecase, this._getUserAccessTokenUsecase,
-      this._getAccessTokenExpiry)
-      : super(AuthenticationInitial()) {
+  AuthenticationBloc(
+    this._userLoginUsecase,
+    this._getUserAccessTokenUsecase,
+    this._getAccessTokenExpiry,
+  ) : super(AuthenticationInitial()) {
     on<UserLogin>(onUserLogin);
     on<AppOpened>(onAppOpened);
     on<CheckAccessTokenExpiry>(onCheckAccessTokenExpiry);
   }
 
   void onUserLogin(
-      AuthenticationEvent event, Emitter<AuthenticationState> emit) async {
+    AuthenticationEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     emit(AuthenticationLoading());
     final data = await _userLoginUsecase.authenticationRepository
         .userLogin(loginData: event.loginData);
@@ -36,7 +40,9 @@ class AuthenticationBloc
   }
 
   void onAppOpened(
-      AuthenticationEvent event, Emitter<AuthenticationState> emit) async {
+    AuthenticationEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     final data = _getUserAccessTokenUsecase.authenticationRepository
         .getUserAccessToken();
 
@@ -47,7 +53,9 @@ class AuthenticationBloc
   }
 
   void onCheckAccessTokenExpiry(
-      AuthenticationEvent event, Emitter<AuthenticationState> emit) async {
+    AuthenticationEvent event,
+    Emitter<AuthenticationState> emit,
+  ) async {
     final expiryResult =
         _getAccessTokenExpiry.authenticationRepository.getAccessTokenExpiry();
 

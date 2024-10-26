@@ -36,14 +36,24 @@ class _ClassDetailPageState extends State<ClassDetailPage> {
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              ClassCard(classEntity: widget.classDetailPageExtra.classEntity),
-              const SizedBox(height: 24),
-              ClassDetailTabView(
-                classId: widget.classDetailPageExtra.classEntity.id,
-              )
-            ],
+          child: RefreshIndicator(
+            color: const Color(0xffFFBF01),
+            onRefresh: () async {
+              context.read<UserMeetingsBloc>().add(
+                    GetUserMeetings(
+                        classId: widget.classDetailPageExtra.classEntity.id),
+                  );
+            },
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                ClassCard(classEntity: widget.classDetailPageExtra.classEntity),
+                const SizedBox(height: 24),
+                ClassDetailTabView(
+                  classId: widget.classDetailPageExtra.classEntity.id,
+                )
+              ],
+            ),
           ),
         ),
       ),
