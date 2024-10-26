@@ -24,6 +24,11 @@ import 'package:silab/features/classes/domain/usecases/get_user_registered_class
 import 'package:silab/features/classes/presentation/bloc/user_attendances/user_attendances_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_meetings/user_meetings_bloc.dart';
 import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
+import 'package:silab/features/schedule/data/data_sources/schedule_api_service.dart';
+import 'package:silab/features/schedule/data/repository/schedule_repository_impl.dart';
+import 'package:silab/features/schedule/domain/repository/schedule_repository.dart';
+import 'package:silab/features/schedule/domain/usecases/get_user_schedule_usecase.dart';
+import 'package:silab/features/schedule/presentation/bloc/user_schedule_bloc.dart';
 import 'package:silab/features/select_subjects/data/data_sources/selected_subject_api_service.dart';
 import 'package:silab/features/select_subjects/data/repository/selected_subject_repository_impl.dart';
 import 'package:silab/features/select_subjects/domain/repository/selected_subject_repository.dart';
@@ -73,6 +78,8 @@ Future<void> initializeDependencies() async {
   injector.registerSingleton<SubjectApiService>(SubjectApiService(injector()));
   injector.registerSingleton<AnnouncementApiService>(
       AnnouncementApiService(injector()));
+  injector
+      .registerSingleton<ScheduleApiService>(ScheduleApiService(injector()));
 
   // Repositories
   injector.registerSingleton<AuthenticationRepository>(
@@ -85,6 +92,8 @@ Future<void> initializeDependencies() async {
       .registerSingleton<SubjectRepository>(SubjectRepositoryImpl(injector()));
   injector.registerSingleton<AnnouncementRepository>(
       AnnouncementRepositoryImpl(injector()));
+  injector.registerSingleton<ScheduleRepository>(
+      ScheduleRepositoryImpl(injector()));
 
   // UseCases
   injector.registerSingleton<UserLoginUsecase>(UserLoginUsecase(injector()));
@@ -118,6 +127,8 @@ Future<void> initializeDependencies() async {
       GetUserMeetingsDataUsecase(injector()));
   injector.registerSingleton<AddUserAttendancesUsecase>(
       AddUserAttendancesUsecase(injector()));
+  injector.registerSingleton<GetUserScheduleUsecase>(
+      GetUserScheduleUsecase(injector()));
 
   // BLoCs
   injector.registerFactory<AuthenticationBloc>(
@@ -147,4 +158,6 @@ Future<void> initializeDependencies() async {
       .registerFactory<UserMeetingsBloc>(() => UserMeetingsBloc(injector()));
   injector.registerFactory<UserAttendancesBloc>(
       () => UserAttendancesBloc(injector()));
+  injector
+      .registerFactory<UserScheduleBloc>(() => UserScheduleBloc(injector()));
 }

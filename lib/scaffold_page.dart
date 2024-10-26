@@ -113,7 +113,11 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
             ? AppBar(
                 title: currentIndex != 0
                     ? Text(
-                        currentIndex == 1 ? "Find" : "Profile",
+                        currentIndex == 1 ? "Jadwal Praktikum" : "Profile",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
                       )
                     : const UserWelcomeWidget(),
                 forceMaterialTransparency: true,
