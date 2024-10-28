@@ -19,6 +19,11 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllAnnouncementsBloc, GetAllAnnouncementsState>(
         builder: (context, state) {
+      final announcements =
+          (state is GetAllAnnouncementsLoaded && state.announcements != null)
+              ? state.announcements!
+              : [];
+
       if (state is GetAllAnnouncementsFailed) {
         return SizedBox(
           width: double.maxFinite,
@@ -46,82 +51,87 @@ class _AnnouncementCarouselState extends State<AnnouncementCarousel> {
           height: double.maxFinite,
           child: Column(
             children: [
-              Flexible(
-                child: PageView.builder(
-                  pageSnapping: true,
-                  onPageChanged: (value) => setState(() {
-                    currentPage = value;
-                  }),
-                  itemCount: state is GetAllAnnouncementsLoaded &&
-                          state.announcements != null
-                      ? state.announcements!.length
-                      : 1,
-                  itemBuilder: (context, index) => Skeletonizer(
-                    enabled: state is GetAllAnnouncementsLoading ? true : false,
-                    enableSwitchAnimation: true,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      child: AnnouncementBanner(
-                        id: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].id!
-                            : 'id',
-                        createdAt: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].created_at!
-                            : 'Created At',
-                        author: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].author!
-                            : 'Author',
-                        body: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].body!
-                            : 'Deskripsi',
-                        title: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].title!
-                            : 'Judul',
-                        type: state.announcements != null &&
-                                state is GetAllAnnouncementsLoaded
-                            ? state.announcements![index].type!
-                            : 'Tipe',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 24,
-                width: double.maxFinite,
-                child: Center(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: state is GetAllAnnouncementsLoaded &&
-                            state.announcements != null
-                        ? state.announcements!.length
-                        : 1,
-                    itemBuilder: (context, index) => AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      width: currentPage != index ? 4 : 6,
-                      height: currentPage != index ? 4 : 6,
-                      margin: const EdgeInsets.only(right: 4),
-                      decoration: BoxDecoration(
-                        color: currentPage == index
-                            ? const Color(0xffFFBF01)
-                            : const Color(0xffFFBF01).withValues(alpha: 0.45),
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _buildPageView(announcements, state),
+              _buildAnnouncementIndicators(announcements.length),
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget _buildPageView(List announcements, GetAllAnnouncementsState state) {
+    return Flexible(
+      child: PageView.builder(
+        pageSnapping: true,
+        onPageChanged: (value) => setState(() {
+          currentPage = value;
+        }),
+        itemCount:
+            state is GetAllAnnouncementsLoaded && state.announcements != null
+                ? state.announcements!.length
+                : 1,
+        itemBuilder: (context, index) => Skeletonizer(
+          enabled: state is GetAllAnnouncementsLoading ? true : false,
+          enableSwitchAnimation: true,
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15),
+            child: AnnouncementBanner(
+              id: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].id!
+                  : 'id',
+              createdAt: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].created_at!
+                  : 'Created At',
+              author: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].author!
+                  : 'Author',
+              body: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].body!
+                  : 'Deskripsi',
+              title: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].title!
+                  : 'Judul',
+              type: state.announcements != null &&
+                      state is GetAllAnnouncementsLoaded
+                  ? state.announcements![index].type!
+                  : 'Tipe',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAnnouncementIndicators(int itemCount) {
+    return SizedBox(
+      height: 24,
+      width: double.maxFinite,
+      child: Center(
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: itemCount,
+          itemBuilder: (context, index) => AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeInOut,
+            width: currentPage != index ? 4 : 6,
+            height: currentPage != index ? 4 : 6,
+            margin: const EdgeInsets.only(right: 4),
+            decoration: BoxDecoration(
+              color: currentPage == index
+                  ? const Color(0xffFFBF01)
+                  : const Color(0xffFFBF01).withValues(alpha: 0.45),
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

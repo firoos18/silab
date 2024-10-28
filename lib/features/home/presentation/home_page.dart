@@ -7,6 +7,7 @@ import 'package:silab/features/classes/presentation/widgets/registered_class_lis
 import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_event.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/pick_class_banner.dart';
+import 'package:silab/features/user_details/presentation/bloc/user_details_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     context
         .read<UserClassOptionByPaidSubjectBloc>()
         .add(GetUserClassOptionByPaidSubject());
-    // context.read<UserDetailsBloc>().add(GetUserDetails());
+    context.read<UserDetailsBloc>().add(GetUserDetails());
     super.initState();
   }
 
@@ -32,8 +33,11 @@ class _HomePageState extends State<HomePage> {
     return Material(
       color: Colors.white,
       child: RefreshIndicator(
-        color: const Color(0xffFFBF01),
+        color: const Color(0xff3272CA),
+        backgroundColor: Colors.white,
+        triggerMode: RefreshIndicatorTriggerMode.anywhere,
         onRefresh: () async {
+          context.read<UserDetailsBloc>().add(GetUserDetails());
           context.read<GetAllAnnouncementsBloc>().add(GetAllAnnouncements());
           context.read<UserRegisteredClassBloc>().add(GetUserRegisteredClass());
           context
@@ -42,22 +46,34 @@ class _HomePageState extends State<HomePage> {
         },
         child: ListView(
           shrinkWrap: true,
-          children: const [
-            SizedBox(
-              height: 210,
-              width: double.infinity,
-              child: AnnouncementCarousel(),
-            ),
-            SizedBox(height: 8),
-            PickClassBanner(),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: RegisteredClassListView(),
-            ),
+          children: [
+            _buildAnnouncementCarousel(),
+            const SizedBox(height: 8),
+            _buildPickClassBanner(),
+            const SizedBox(height: 16),
+            _buildRegisteredClassListView(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildAnnouncementCarousel() {
+    return const SizedBox(
+      height: 210,
+      width: double.infinity,
+      child: AnnouncementCarousel(),
+    );
+  }
+
+  Widget _buildPickClassBanner() {
+    return const PickClassBanner();
+  }
+
+  Widget _buildRegisteredClassListView() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: RegisteredClassListView(),
     );
   }
 }

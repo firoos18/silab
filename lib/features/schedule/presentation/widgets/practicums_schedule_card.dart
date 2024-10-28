@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:silab/features/schedule/domain/entities/practicums/practicums_entity.dart';
 
 class PracticumsScheduleCard extends StatelessWidget {
-  final List<PracticumsEntity> practicumsEntity;
+  final List<PracticumsEntity>? practicumsEntity;
 
   const PracticumsScheduleCard({
     super.key,
@@ -14,7 +14,7 @@ class PracticumsScheduleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      itemCount: practicumsEntity.length,
+      itemCount: practicumsEntity?.length ?? 1,
       itemBuilder: (context, idx) => Container(
         margin: const EdgeInsets.only(top: 8),
         padding: const EdgeInsets.symmetric(
@@ -41,7 +41,7 @@ class PracticumsScheduleCard extends StatelessWidget {
                 ),
               ),
               child: Text(
-                practicumsEntity[idx].subject_class!,
+                practicumsEntity?[idx].subject_class! ?? 'Mata Praktikum',
                 style: const TextStyle(
                   color: Color(0xffFFBF01),
                   fontWeight: FontWeight.w600,
@@ -55,14 +55,14 @@ class PracticumsScheduleCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  practicumsEntity[idx].subject_name!,
+                  practicumsEntity?[idx].subject_name! ?? 'X',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  practicumsEntity[idx].session!,
+                  practicumsEntity?[idx].session! ?? 'Sesi Kelas',
                   style: const TextStyle(
                     fontSize: 14,
                   ),

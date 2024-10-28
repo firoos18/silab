@@ -37,7 +37,9 @@ class _ClassDetailPageState extends State<ClassDetailPage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: RefreshIndicator(
-            color: const Color(0xffFFBF01),
+            color: const Color(0xff3272CA),
+            backgroundColor: Colors.white,
+            triggerMode: RefreshIndicatorTriggerMode.anywhere,
             onRefresh: () async {
               context.read<UserMeetingsBloc>().add(
                     GetUserMeetings(

@@ -20,12 +20,9 @@ UserDetailEntity _$UserDetailEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDetailEntity {
-  String? get id => throw _privateConstructorUsedError;
-  String? get email => throw _privateConstructorUsedError;
   String? get nim => throw _privateConstructorUsedError;
   String? get fullname => throw _privateConstructorUsedError;
-  List<String>? get role => throw _privateConstructorUsedError;
-  bool? get paid => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   /// Serializes this UserDetailEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,13 +40,7 @@ abstract class $UserDetailEntityCopyWith<$Res> {
           UserDetailEntity value, $Res Function(UserDetailEntity) then) =
       _$UserDetailEntityCopyWithImpl<$Res, UserDetailEntity>;
   @useResult
-  $Res call(
-      {String? id,
-      String? email,
-      String? nim,
-      String? fullname,
-      List<String>? role,
-      bool? paid});
+  $Res call({String? nim, String? fullname, String? email});
 }
 
 /// @nodoc
@@ -67,22 +58,11 @@ class _$UserDetailEntityCopyWithImpl<$Res, $Val extends UserDetailEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? email = freezed,
     Object? nim = freezed,
     Object? fullname = freezed,
-    Object? role = freezed,
-    Object? paid = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
       nim: freezed == nim
           ? _value.nim
           : nim // ignore: cast_nullable_to_non_nullable
@@ -91,14 +71,10 @@ class _$UserDetailEntityCopyWithImpl<$Res, $Val extends UserDetailEntity>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      paid: freezed == paid
-          ? _value.paid
-          : paid // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -111,13 +87,7 @@ abstract class _$$UserDetailEntityImplCopyWith<$Res>
       __$$UserDetailEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String? email,
-      String? nim,
-      String? fullname,
-      List<String>? role,
-      bool? paid});
+  $Res call({String? nim, String? fullname, String? email});
 }
 
 /// @nodoc
@@ -133,22 +103,11 @@ class __$$UserDetailEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? email = freezed,
     Object? nim = freezed,
     Object? fullname = freezed,
-    Object? role = freezed,
-    Object? paid = freezed,
+    Object? email = freezed,
   }) {
     return _then(_$UserDetailEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      email: freezed == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String?,
       nim: freezed == nim
           ? _value.nim
           : nim // ignore: cast_nullable_to_non_nullable
@@ -157,14 +116,10 @@ class __$$UserDetailEntityImplCopyWithImpl<$Res>
           ? _value.fullname
           : fullname // ignore: cast_nullable_to_non_nullable
               as String?,
-      role: freezed == role
-          ? _value._role
-          : role // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      paid: freezed == paid
-          ? _value.paid
-          : paid // ignore: cast_nullable_to_non_nullable
-              as bool?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -172,42 +127,21 @@ class __$$UserDetailEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserDetailEntityImpl implements _UserDetailEntity {
-  const _$UserDetailEntityImpl(
-      {this.id,
-      this.email,
-      this.nim,
-      this.fullname,
-      final List<String>? role,
-      this.paid})
-      : _role = role;
+  const _$UserDetailEntityImpl({this.nim, this.fullname, this.email});
 
   factory _$UserDetailEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDetailEntityImplFromJson(json);
 
   @override
-  final String? id;
-  @override
-  final String? email;
-  @override
   final String? nim;
   @override
   final String? fullname;
-  final List<String>? _role;
   @override
-  List<String>? get role {
-    final value = _role;
-    if (value == null) return null;
-    if (_role is EqualUnmodifiableListView) return _role;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final bool? paid;
+  final String? email;
 
   @override
   String toString() {
-    return 'UserDetailEntity(id: $id, email: $email, nim: $nim, fullname: $fullname, role: $role, paid: $paid)';
+    return 'UserDetailEntity(nim: $nim, fullname: $fullname, email: $email)';
   }
 
   @override
@@ -215,19 +149,15 @@ class _$UserDetailEntityImpl implements _UserDetailEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserDetailEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.email, email) || other.email == email) &&
             (identical(other.nim, nim) || other.nim == nim) &&
             (identical(other.fullname, fullname) ||
                 other.fullname == fullname) &&
-            const DeepCollectionEquality().equals(other._role, _role) &&
-            (identical(other.paid, paid) || other.paid == paid));
+            (identical(other.email, email) || other.email == email));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, nim, fullname,
-      const DeepCollectionEquality().hash(_role), paid);
+  int get hashCode => Object.hash(runtimeType, nim, fullname, email);
 
   /// Create a copy of UserDetailEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -248,28 +178,19 @@ class _$UserDetailEntityImpl implements _UserDetailEntity {
 
 abstract class _UserDetailEntity implements UserDetailEntity {
   const factory _UserDetailEntity(
-      {final String? id,
-      final String? email,
-      final String? nim,
+      {final String? nim,
       final String? fullname,
-      final List<String>? role,
-      final bool? paid}) = _$UserDetailEntityImpl;
+      final String? email}) = _$UserDetailEntityImpl;
 
   factory _UserDetailEntity.fromJson(Map<String, dynamic> json) =
       _$UserDetailEntityImpl.fromJson;
 
   @override
-  String? get id;
-  @override
-  String? get email;
-  @override
   String? get nim;
   @override
   String? get fullname;
   @override
-  List<String>? get role;
-  @override
-  bool? get paid;
+  String? get email;
 
   /// Create a copy of UserDetailEntity
   /// with the given fields replaced by the non-null parameter values.
