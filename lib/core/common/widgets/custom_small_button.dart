@@ -13,15 +13,16 @@ class CustomSmallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          fixedSize: const Size(130, 40),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          backgroundColor: const Color(0xff3272CA),
-          foregroundColor: const Color(0xfff4f4f9),
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(130, 40),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
         ),
-        child: label);
+        backgroundColor: const Color(0xff3272CA),
+        foregroundColor: const Color(0xfff4f4f9),
+      ),
+      child: label,
+    );
   }
 }

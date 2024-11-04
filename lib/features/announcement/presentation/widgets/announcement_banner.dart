@@ -61,7 +61,7 @@ class _AnnouncementBannerState extends State<AnnouncementBanner> {
                     color: Colors.white,
                   ),
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  maxLines: 4,
                 ),
               ),
             ],

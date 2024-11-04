@@ -73,13 +73,17 @@ class RegisteredClassCard extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          classEntity != null
-                              ? classEntity!.subject_name!
-                              : 'Subject Name',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: Text(
+                            classEntity != null
+                                ? classEntity!.subject_name!
+                                : 'Subject Name',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Text(
@@ -124,7 +128,8 @@ class RegisteredClassCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
-                            color: const Color(0xff1d1d1d).withOpacity(0.5),
+                            color:
+                                const Color(0xff1d1d1d).withValues(alpha: 0.5),
                           ),
                         ),
                         Text(
@@ -147,7 +152,8 @@ class RegisteredClassCard extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
-                            color: const Color(0xff1d1d1d).withOpacity(0.5),
+                            color:
+                                const Color(0xff1d1d1d).withValues(alpha: 0.5),
                           ),
                         ),
                         Text(

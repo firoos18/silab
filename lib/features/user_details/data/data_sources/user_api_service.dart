@@ -13,7 +13,7 @@ class UserApiService {
 
   const UserApiService(this._sharedPreferences);
 
-  Future<UserDetailResponseEntity> getUserDetails(String? nim) async {
+  Future<UserDetailResponseEntity> getUserDetails() async {
     try {
       final token = _sharedPreferences.getString("accessToken");
 

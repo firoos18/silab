@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:silab/features/schedule/presentation/bloc/user_schedule_bloc.dart';
 import 'package:silab/features/schedule/presentation/widgets/practicums_schedule_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -22,7 +23,8 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.maxFinite,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery.of(context).size.height -
+          Scaffold.of(context).appBarMaxHeight!,
       child: Material(
         color: Colors.white,
         child: Padding(
@@ -39,25 +41,38 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget _buildPageContent() {
     return BlocBuilder<UserScheduleBloc, UserScheduleState>(
       builder: (context, state) {
-        return RefreshIndicator(
-          onRefresh: () async =>
-              context.read<UserScheduleBloc>().add(GetUserSchedule()),
-          triggerMode: RefreshIndicatorTriggerMode.anywhere,
-          color: const Color(0xff3272CA),
-          backgroundColor: Colors.white,
-          child: ListView.builder(
-            itemCount: state.schedules?.length ?? 1,
-            itemBuilder: (context, index) {
-              if (state is UserScheduleSuccess &&
-                  state.schedules != null &&
-                  state.schedules!.isEmpty) {
-                return _buildEmptySchedule();
-              } else {
-                return _buildSchedule(state, index);
-              }
-            },
-          ),
-        );
+        if (state is UserScheduleFailed) {
+          return Center(
+            child: Column(
+              children: [
+                const Text('Terjadi suatu kesalahan, coba lagi!'),
+                IconButton(
+                  onPressed: () =>
+                      context.read<UserScheduleBloc>().add(GetUserSchedule()),
+                  icon: const Icon(Boxicons.bx_refresh),
+                ),
+              ],
+            ),
+          );
+        } else {
+          return RefreshIndicator(
+            onRefresh: () async =>
+                context.read<UserScheduleBloc>().add(GetUserSchedule()),
+            triggerMode: RefreshIndicatorTriggerMode.anywhere,
+            color: const Color(0xff3272CA),
+            backgroundColor: Colors.white,
+            child: ListView.builder(
+              itemCount: state.schedules?.length ?? 1,
+              itemBuilder: (context, index) {
+                if (state.schedules == null) {
+                  return _buildEmptySchedule();
+                } else {
+                  return _buildSchedule(state, index);
+                }
+              },
+            ),
+          );
+        }
       },
     );
   }
@@ -67,6 +82,10 @@ class _SchedulePageState extends State<SchedulePage> {
       child: Text(
         'Anda Belum Terdaftar di Kelas Praktikum',
         textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -82,7 +101,7 @@ class _SchedulePageState extends State<SchedulePage> {
             Text(
               state.schedules != null && state.schedules![index].day != null
                   ? state.schedules![index].day!
-                  : 'Hari',
+                  : '',
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

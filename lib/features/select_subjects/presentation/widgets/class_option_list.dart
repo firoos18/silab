@@ -18,6 +18,7 @@ class ClassOptionList extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: classes.length,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) => Container(
         margin: EdgeInsets.only(
             bottom: index != classes.indexOf(classes.last) ? 12 : 0),

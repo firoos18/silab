@@ -15,6 +15,7 @@ class PracticumsScheduleCard extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: practicumsEntity?.length ?? 1,
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, idx) => Container(
         margin: const EdgeInsets.only(top: 8),
         padding: const EdgeInsets.symmetric(
@@ -41,12 +42,13 @@ class PracticumsScheduleCard extends StatelessWidget {
                 ),
               ),
               child: Text(
-                practicumsEntity?[idx].subject_class! ?? 'Mata Praktikum',
+                practicumsEntity?[idx].subject_class! ?? 'X',
                 style: const TextStyle(
                   color: Color(0xffFFBF01),
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(width: 8),
@@ -54,11 +56,15 @@ class PracticumsScheduleCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  practicumsEntity?[idx].subject_name! ?? 'X',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: Text(
+                    practicumsEntity?[idx].subject_name! ?? 'Mata Praktikum',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Text(

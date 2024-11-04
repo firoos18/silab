@@ -12,11 +12,9 @@ class UserRepositoryImpl implements UserRepository {
   const UserRepositoryImpl(this._userApiService);
 
   @override
-  Future<Either<Failures, UserDetailResponseEntity>> getUserDetails(
-    String? nim,
-  ) async {
+  Future<Either<Failures, UserDetailResponseEntity>> getUserDetails() async {
     try {
-      final result = await _userApiService.getUserDetails(nim);
+      final result = await _userApiService.getUserDetails();
 
       return Right(result);
     } on RequestErrorException catch (e) {
