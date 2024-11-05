@@ -217,10 +217,12 @@ class _ProfilePageState extends State<ProfilePage> {
   ) {
     String? fullname;
     String? nim;
+    String? email;
 
     if (state is UserDetailLoaded) {
       fullname = state.userDetailEntity!.fullname;
       nim = state.userDetailEntity!.nim;
+      email = state.userDetailEntity!.email;
     }
 
     return Skeletonizer(
@@ -234,6 +236,13 @@ class _ProfilePageState extends State<ProfilePage> {
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w700,
+            ),
+          ),
+          Text(
+            email ?? "email",
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Text(
