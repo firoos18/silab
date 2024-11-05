@@ -30,13 +30,20 @@ class _ProfilePageState extends State<ProfilePage> {
         child: BlocConsumer<UserDetailsBloc, UserDetailsState>(
           listener: (context, state) {
             if (state is UserDetailFailed) {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              ScaffoldMessenger.of(context).showSnackBar(snackBar(
-                  message: state.message,
-                  type: AlertType.error,
-                  action: () =>
-                      context.read<UserDetailsBloc>().add(GetUserDetails()),
-                  actionLabel: 'Ulangi'));
+              if (state.message == 'jwt expired') {
+                context.goNamed('authentication');
+              } else {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  snackBar(
+                    message: state.message,
+                    type: AlertType.error,
+                    action: () =>
+                        context.read<UserDetailsBloc>().add(GetUserDetails()),
+                    actionLabel: 'Ulangi',
+                  ),
+                );
+              }
             }
           },
           builder: (context, state) {
@@ -58,7 +65,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: double.maxFinite,
                     margin: const EdgeInsets.symmetric(horizontal: 15),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 20),
+                      horizontal: 8,
+                      vertical: 20,
+                    ),
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: const Color(0xffBFD9EF),
@@ -71,66 +80,85 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         InkWell(
                           onTap: () => context.pushNamed('payment-status'),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/image/notepad.png',
-                                    scale: 2,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text(
-                                    'Status Pembayaran',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xff5E6278),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/image/notepad.png',
+                                      scale: 2,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Image.asset(
-                                'assets/image/chevron-right.png',
-                                scale: 2,
-                              ),
-                            ],
+                                    const SizedBox(width: 8),
+                                    const Text(
+                                      'Status Pembayaran',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff5E6278),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Image.asset(
+                                  'assets/image/chevron-right.png',
+                                  scale: 2,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(vertical: 16),
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 8,
+                          ),
                           child: Divider(
                             color:
                                 const Color(0xff1d1d1d).withValues(alpha: 0.5),
                             thickness: 0.5,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
+                        InkWell(
+                          onTap: null,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 8,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Image.asset(
-                                  'assets/image/tab-tablet.png',
-                                  scale: 2,
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/image/tab-tablet.png',
+                                      scale: 2,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const Text(
+                                      'Riwayat Pembayaran',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff5E6278),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                const SizedBox(width: 8),
-                                const Text(
-                                  'Riwayat Pembayaran',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff5E6278),
-                                  ),
+                                Image.asset(
+                                  'assets/image/chevron-right.png',
+                                  scale: 2,
                                 ),
                               ],
                             ),
-                            Image.asset(
-                              'assets/image/chevron-right.png',
-                              scale: 2,
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),

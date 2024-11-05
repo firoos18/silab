@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
+import 'package:silab/features/classes/presentation/bloc/user_registered_class/user_registered_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_bloc.dart';
+import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_event.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class BuildPickClassPageConfirmationDialog extends StatelessWidget {
@@ -67,6 +71,11 @@ class BuildPickClassPageConfirmationDialog extends StatelessWidget {
               listener: (context, state) {
                 if (state is AddSelectedClassSuccess) {
                   Navigator.of(context, rootNavigator: true).pop();
+                  showDialog(
+                    context: context,
+                    useRootNavigator: true,
+                    builder: (context) => _buildSuccessDialog(context),
+                  );
                 }
                 if (state is AddSelectedClassFailed) {
                   ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -105,6 +114,69 @@ class BuildPickClassPageConfirmationDialog extends StatelessWidget {
         ),
       ),
       actionsAlignment: MainAxisAlignment.spaceEvenly,
+    );
+  }
+
+  Widget _buildSuccessDialog(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: const Color(0xffE8FFF3),
+      alignment: Alignment.center,
+      actionsAlignment: MainAxisAlignment.center,
+      icon: SizedBox(
+        width: 65,
+        height: 65,
+        child: Image.asset(
+          'assets/image/checkmark-green.png',
+          scale: 2,
+        ),
+      ),
+      title: const Text(
+        'Berhasil',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Anda sudah terdaftar di kelas praktikum',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: const Color(0xff1d1d1d).withValues(alpha: 0.6),
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            context
+                .read<UserRegisteredClassBloc>()
+                .add(GetUserRegisteredClass());
+            context
+                .read<UserClassOptionByPaidSubjectBloc>()
+                .add(GetUserClassOptionByPaidSubject());
+            context.goNamed('home');
+            Navigator.of(context, rootNavigator: true).pop();
+          },
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 24,
+            ),
+            backgroundColor: const Color(0xffBFD9EF),
+            foregroundColor: const Color(0xff3272CA),
+          ),
+          child: const Text(
+            'OK',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        )
+      ],
     );
   }
 }

@@ -8,8 +8,10 @@ class BuildRegisteredClassFailed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height / 2;
+
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: screenHeight,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

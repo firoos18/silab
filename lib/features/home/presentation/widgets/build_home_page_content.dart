@@ -28,7 +28,6 @@ class BuildHomePageContent extends StatelessWidget {
       },
       child: ListView(
         shrinkWrap: true,
-        physics: const ClampingScrollPhysics(),
         children: const [
           BuildAnnouncementCarousel(),
           SizedBox(height: 8),

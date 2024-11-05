@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_small_button.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/build_daftar_praktikum_page_dropdown.dart';
 import 'package:silab/features/select_subjects/presentation/widgets/build_daftar_praktikum_page_subject_empty.dart';
@@ -40,6 +41,7 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
           padding: const EdgeInsets.only(right: 15, left: 15, top: 24),
           child: ListView(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               const Text(
                 'Pilihlah praktikum sesuai dengan Mata Kuliah yang anda ambil di KRS.',
@@ -51,9 +53,9 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
               const SizedBox(height: 48),
               SizedBox(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     _buildDropdownHeader(),
                     _buildSubjectList(),
@@ -118,7 +120,22 @@ class _DaftarPraktikumPageState extends State<DaftarPraktikumPage> {
   Widget _buildSubjectList() {
     return Flexible(
       fit: FlexFit.loose,
-      child: BlocBuilder<SubjectListBloc, SubjectListState>(
+      child: BlocConsumer<SubjectListBloc, SubjectListState>(
+        listener: (context, state) {
+          if (state is SubjectListFailed) {
+            if (state.message == 'jwt expired') {
+              context.goNamed('authentication');
+            } else {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                snackBar(
+                  message: state.message,
+                  type: AlertType.error,
+                ),
+              );
+            }
+          }
+        },
         builder: (context, state) => Skeletonizer(
           enabled: state is SubjectListLoading ? true : false,
           enableSwitchAnimation: true,

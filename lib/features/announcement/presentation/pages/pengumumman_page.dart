@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/announcement/presentation/blocs/get_announcement/get_announcement_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -42,7 +44,22 @@ class _PengumumanPageState extends State<PengumumanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAnnouncementBloc, GetAnnouncementState>(
+    return BlocConsumer<GetAnnouncementBloc, GetAnnouncementState>(
+      listener: (context, state) {
+        if (state is GetAnnouncementFailed) {
+          if (state.message == 'jwt expired') {
+            context.goNamed('authentication');
+          } else {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(
+                type: AlertType.error,
+                message: state.message,
+              ),
+            );
+          }
+        }
+      },
       builder: (context, state) {
         if (state is GetAnnouncementLoaded) {
           return SizedBox(

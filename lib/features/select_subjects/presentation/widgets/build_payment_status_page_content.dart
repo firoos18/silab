@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/selected_subject_by_nim/selected_subject_by_nim_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_event.dart';
@@ -22,6 +24,7 @@ class BuildPaymentStatusPageContent extends StatelessWidget {
       backgroundColor: Colors.white,
       triggerMode: RefreshIndicatorTriggerMode.anywhere,
       child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         children: [
           const Text(
@@ -50,8 +53,23 @@ class BuildPaymentStatusPageContent extends StatelessWidget {
                     ),
                   ],
                 ),
-                BlocBuilder<SelectedSubjectByNimBloc,
+                BlocConsumer<SelectedSubjectByNimBloc,
                     SelectedSubjectByNimState>(
+                  listener: (context, state) {
+                    if (state is SelectedSubjectByNimFailed) {
+                      if (state.message == 'jwt expired') {
+                        context.goNamed('authentication');
+                      } else {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          snackBar(
+                            message: state.message,
+                            type: AlertType.error,
+                          ),
+                        );
+                      }
+                    }
+                  },
                   builder: (context, state) {
                     if (state is SelectedSubjectByNimLoaded) {
                       return BuildPaymentStatusPageSubjectList(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ class ScaffoldPage extends StatefulWidget {
 
 class _ScaffoldPageState extends State<ScaffoldPage> {
   int currentIndex = 0;
+  bool _isNavbarVisible = true;
   ScrollController _scrollController = ScrollController();
 
   List<BottomNavbarEntity> items = [
@@ -143,14 +145,31 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
                   )
                 : null,
         body: SafeArea(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            physics: const ClampingScrollPhysics(),
-            child: widget.navigationShell,
+          child: NotificationListener<ScrollNotification>(
+            onNotification: (scrollNotification) {
+              if (scrollNotification is UserScrollNotification) {
+                if (scrollNotification.direction == ScrollDirection.reverse) {
+                  if (_isNavbarVisible) {
+                    setState(() => _isNavbarVisible = false);
+                  }
+                } else if (scrollNotification.direction ==
+                    ScrollDirection.forward) {
+                  if (!_isNavbarVisible) {
+                    setState(() => _isNavbarVisible = true);
+                  }
+                }
+              }
+              return true;
+            },
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: widget.navigationShell,
+            ),
           ),
         ),
         extendBody: true,
         floatingActionButton: CustomBottomNavbar(
+            isVisible: _isNavbarVisible,
             currentIndex: currentIndex,
             items: items,
             scrollController: _scrollController,

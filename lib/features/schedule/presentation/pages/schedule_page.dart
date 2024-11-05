@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
+import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/schedule/presentation/bloc/user_schedule_bloc.dart';
 import 'package:silab/features/schedule/presentation/widgets/practicums_schedule_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -39,7 +41,22 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   Widget _buildPageContent() {
-    return BlocBuilder<UserScheduleBloc, UserScheduleState>(
+    return BlocConsumer<UserScheduleBloc, UserScheduleState>(
+      listener: (context, state) {
+        if (state is UserScheduleFailed) {
+          if (state.message == 'jwt expired') {
+            context.goNamed('authentication');
+          } else {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(
+                message: state.message,
+                type: AlertType.error,
+              ),
+            );
+          }
+        }
+      },
       builder: (context, state) {
         if (state is UserScheduleFailed) {
           return Center(
@@ -61,15 +78,18 @@ class _SchedulePageState extends State<SchedulePage> {
             triggerMode: RefreshIndicatorTriggerMode.anywhere,
             color: const Color(0xff3272CA),
             backgroundColor: Colors.white,
-            child: ListView.builder(
-              itemCount: state.schedules?.length ?? 1,
-              itemBuilder: (context, index) {
-                if (state.schedules == null) {
-                  return _buildEmptySchedule();
-                } else {
-                  return _buildSchedule(state, index);
-                }
-              },
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: ListView.builder(
+                itemCount: state.schedules?.length ?? 1,
+                itemBuilder: (context, index) {
+                  if (state.schedules == null) {
+                    return _buildEmptySchedule();
+                  } else {
+                    return _buildSchedule(state, index);
+                  }
+                },
+              ),
             ),
           );
         }

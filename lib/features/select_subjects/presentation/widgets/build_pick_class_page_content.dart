@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silab/core/common/widgets/custom_small_button.dart';
+import 'package:silab/core/common/widgets/custom_snackbar.dart';
 import 'package:silab/features/select_subjects/domain/entities/user_class_option_by_paid_subject/user_class_option_by_paid_subject_entity.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/add_selected_class/add_selected_class_bloc.dart';
 import 'package:silab/features/select_subjects/presentation/bloc/user_class_option_by_paid_subject/user_class_option_by_paid_subject_bloc.dart';
@@ -37,8 +39,23 @@ class _BuildPickClassPageContentState extends State<BuildPickClassPageContent> {
           'Pilih kelas yang anda inginkan. Sesuaikan dengan jadwal anda!',
         ),
         const SizedBox(height: 20),
-        BlocBuilder<UserClassOptionByPaidSubjectBloc,
+        BlocConsumer<UserClassOptionByPaidSubjectBloc,
             UserClassOptionByPaidSubjectState>(
+          listener: (context, state) {
+            if (state is UserClassOptionByPaidSubjectFailed) {
+              if (state.message == 'jwt expired') {
+                context.goNamed('authentication');
+              } else {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  snackBar(
+                    message: state.message,
+                    type: AlertType.error,
+                  ),
+                );
+              }
+            }
+          },
           builder: (context, state) {
             if (state is UserClassOptionByPaidSubjectLoaded) {
               final Map<String?, List<UserClassOptionByPaidSubjectEntity>>
@@ -91,7 +108,8 @@ class _BuildPickClassPageContentState extends State<BuildPickClassPageContent> {
                   : null,
             ),
           ],
-        )
+        ),
+        const SizedBox(height: 16),
       ],
     );
   }

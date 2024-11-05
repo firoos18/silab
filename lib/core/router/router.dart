@@ -12,7 +12,6 @@ import 'package:silab/features/classes/presentation/pages/class_detail_page.dart
 import 'package:silab/features/home/presentation/home_page.dart';
 import 'package:silab/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
-import 'package:silab/features/user_details/presentation/pages/user_detail_page.dart';
 import 'package:silab/scaffold_page.dart';
 import 'package:silab/splash_screen.dart';
 
@@ -121,14 +120,6 @@ final GoRouter router = GoRouter(
               path: '/profile',
               name: 'profile',
               builder: (context, state) => const ProfilePage(),
-              routes: [
-                GoRoute(
-                  path: 'user-detail',
-                  name: 'user-detail',
-                  parentNavigatorKey: _rootNavigator,
-                  builder: (context, state) => const UserDetailPage(),
-                ),
-              ],
             )
           ],
         )
