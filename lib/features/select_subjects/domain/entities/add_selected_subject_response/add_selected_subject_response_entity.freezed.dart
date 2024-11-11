@@ -21,12 +21,16 @@ AddSelectedSubjectResponseEntity _$AddSelectedSubjectResponseEntityFromJson(
 
 /// @nodoc
 mixin _$AddSelectedSubjectResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   AddSubjectSubjectsEntity? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AddSelectedSubjectResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddSelectedSubjectResponseEntityCopyWith<AddSelectedSubjectResponseEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -39,7 +43,7 @@ abstract class $AddSelectedSubjectResponseEntityCopyWith<$Res> {
       _$AddSelectedSubjectResponseEntityCopyWithImpl<$Res,
           AddSelectedSubjectResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, AddSubjectSubjectsEntity? data});
+  $Res call({String? status, String? message, AddSubjectSubjectsEntity? data});
 
   $AddSubjectSubjectsEntityCopyWith<$Res>? get data;
 }
@@ -55,6 +59,8 @@ class _$AddSelectedSubjectResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -66,7 +72,7 @@ class _$AddSelectedSubjectResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -78,6 +84,8 @@ class _$AddSelectedSubjectResponseEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddSubjectSubjectsEntityCopyWith<$Res>? get data {
@@ -100,7 +108,7 @@ abstract class _$$AddSelectedSubjectResponseEntityImplCopyWith<$Res>
       __$$AddSelectedSubjectResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, AddSubjectSubjectsEntity? data});
+  $Res call({String? status, String? message, AddSubjectSubjectsEntity? data});
 
   @override
   $AddSubjectSubjectsEntityCopyWith<$Res>? get data;
@@ -116,6 +124,8 @@ class __$$AddSelectedSubjectResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$AddSelectedSubjectResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -127,7 +137,7 @@ class __$$AddSelectedSubjectResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -152,7 +162,7 @@ class _$AddSelectedSubjectResponseEntityImpl
       _$$AddSelectedSubjectResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   @override
@@ -173,11 +183,13 @@ class _$AddSelectedSubjectResponseEntityImpl
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddSelectedSubjectResponseEntityImplCopyWith<
@@ -196,7 +208,7 @@ class _$AddSelectedSubjectResponseEntityImpl
 abstract class _AddSelectedSubjectResponseEntity
     implements AddSelectedSubjectResponseEntity {
   const factory _AddSelectedSubjectResponseEntity(
-          {final int? status,
+          {final String? status,
           final String? message,
           final AddSubjectSubjectsEntity? data}) =
       _$AddSelectedSubjectResponseEntityImpl;
@@ -206,13 +218,16 @@ abstract class _AddSelectedSubjectResponseEntity
       _$AddSelectedSubjectResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
   AddSubjectSubjectsEntity? get data;
+
+  /// Create a copy of AddSelectedSubjectResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddSelectedSubjectResponseEntityImplCopyWith<
           _$AddSelectedSubjectResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -6,12 +6,9 @@ part 'user_detail_entity.g.dart';
 @freezed
 class UserDetailEntity with _$UserDetailEntity {
   const factory UserDetailEntity({
-    final String? id,
-    final String? email,
     final String? nim,
     final String? fullname,
-    final List<String>? role,
-    final bool? paid,
+    final String? email,
   }) = _UserDetailEntity;
 
   factory UserDetailEntity.fromJson(Map<String, dynamic> json) =>

@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:silab/app_config.dart';
+import 'package:silab/features/classes/presentation/pages/qr_scan_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/daftar_praktikum_page.dart';
 import 'package:silab/features/announcement/presentation/pages/pengumumman_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/payment_status_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/pilih_kelas_page.dart';
 import 'package:silab/features/select_subjects/presentation/pages/ringkasan_daftar_page.dart';
 import 'package:silab/features/authentication/presentation/pages/authentication_page.dart';
-import 'package:silab/features/authentication/presentation/pages/reset_password_page.dart';
-import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/user_info_page.dart';
-import 'package:silab/features/authentication/presentation/pages/user_info_page_extra.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page.dart';
-import 'package:silab/features/authentication/presentation/pages/verify_reset_password_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
 import 'package:silab/features/classes/presentation/pages/class_detail_page.dart';
 import 'package:silab/features/home/presentation/home_page.dart';
 import 'package:silab/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:silab/features/user_details/presentation/pages/profile_page.dart';
-import 'package:silab/features/user_details/presentation/pages/user_detail_page.dart';
 import 'package:silab/scaffold_page.dart';
 import 'package:silab/splash_screen.dart';
 
@@ -41,52 +32,20 @@ final GoRouter router = GoRouter(
       path: '/authentication',
       name: 'authentication',
       parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => AuthenticationPage(
-        formType: state.extra as FormType,
-      ),
-    ),
-    GoRoute(
-      path: '/user-info',
-      name: 'user-info',
-      builder: (context, state) => UserInfoPage(
-        userInfoPageExtra: state.extra as UserInfoPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/verify-otp',
-      name: 'verify-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => VerifyOtpPage(
-        verifyOtpPageExtra: state.extra as VerifyOtpPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/send-reset-password-otp',
-      name: 'send-reset-password-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => const SendResetPasswordOtpPage(),
-    ),
-    GoRoute(
-      path: '/verify-reset-password-otp',
-      name: 'verify-reset-password-otp',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) => VerifyResetPasswordOtpPage(
-        verifyResetPasswordOtpPageExtra:
-            state.extra as VerifyResetPasswordOtpPageExtra,
-      ),
-    ),
-    GoRoute(
-      path: '/reset-password',
-      name: 'reset-password',
-      parentNavigatorKey: _rootNavigator,
-      builder: (context, state) =>
-          ResetPasswordPage(userId: state.extra as String),
+      builder: (context, state) => const AuthenticationPage(),
     ),
     GoRoute(
       path: '/splash',
       name: 'splash',
       parentNavigatorKey: _rootNavigator,
       builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: '/qr-scan',
+      name: 'qr-scan',
+      builder: (context, state) => QrScanPage(
+        qrScanPageExtra: state.extra as QrScanPageExtra,
+      ),
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
@@ -119,12 +78,15 @@ final GoRouter router = GoRouter(
                   builder: (context, state) => const PaymentStatusPage(),
                 ),
                 GoRoute(
-                  path: 'pengumuman',
-                  name: 'pengumuman',
-                  builder: (context, state) => PengumumanPage(
-                    pengumumanPageExtra: state.extra as PengumumanPageExtra,
-                  ),
-                ),
+                    path: 'pengumuman/:id',
+                    name: 'pengumuman',
+                    builder: (context, state) {
+                      final id = state.pathParameters['id'];
+                      return PengumumanPage(
+                        id: id,
+                        // pengumumanPageExtra: state.extra as PengumumanPageExtra,
+                      );
+                    }),
                 GoRoute(
                   path: 'pilih-kelas',
                   name: 'pilih-kelas',
@@ -158,14 +120,6 @@ final GoRouter router = GoRouter(
               path: '/profile',
               name: 'profile',
               builder: (context, state) => const ProfilePage(),
-              routes: [
-                GoRoute(
-                  path: 'user-detail',
-                  name: 'user-detail',
-                  parentNavigatorKey: _rootNavigator,
-                  builder: (context, state) => const UserDetailPage(),
-                ),
-              ],
             )
           ],
         )

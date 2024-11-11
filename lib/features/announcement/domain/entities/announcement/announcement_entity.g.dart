@@ -12,8 +12,9 @@ _$AnnouncementEntityImpl _$$AnnouncementEntityImplFromJson(
       id: json['id'] as String?,
       title: json['title'] as String?,
       type: json['type'] as String?,
-      desc: json['desc'] as String?,
-      posterUrl: json['posterUrl'] as String?,
+      body: json['body'] as String?,
+      created_at: json['created_at'] as String?,
+      author: json['author'] as String?,
     );
 
 Map<String, dynamic> _$$AnnouncementEntityImplToJson(
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$AnnouncementEntityImplToJson(
       'id': instance.id,
       'title': instance.title,
       'type': instance.type,
-      'desc': instance.desc,
-      'posterUrl': instance.posterUrl,
+      'body': instance.body,
+      'created_at': instance.created_at,
+      'author': instance.author,
     };

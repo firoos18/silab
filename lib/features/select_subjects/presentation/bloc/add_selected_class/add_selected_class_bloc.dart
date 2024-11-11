@@ -24,7 +24,7 @@ class AddSelectedClassBloc
 
     data.fold(
       (left) => emit(AddSelectedClassFailed(message: left.message)),
-      (right) => emit(AddSelectedClassSuccess(selectedClass: right.data)),
+      (right) => emit(AddSelectedClassSuccess()),
     );
   }
 }

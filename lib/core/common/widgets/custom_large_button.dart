@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
 
 class CustomLargeButton extends StatelessWidget {
-  final void Function() onPressed;
-  final String text;
+  final void Function()? action;
+  final Widget label;
 
   const CustomLargeButton({
     super.key,
-    required this.onPressed,
-    required this.text,
+    required this.action,
+    required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      onPressed: action,
       style: ElevatedButton.styleFrom(
-          minimumSize: const Size(double.infinity, 48),
-          backgroundColor: const Color(0xff3272CA),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          )),
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Color(0xfff4f4f9),
-          fontWeight: FontWeight.w600,
+        backgroundColor: const Color(0xff3272CA),
+        foregroundColor: const Color(0xffF4F4F9),
+        fixedSize: const Size(double.maxFinite, 48),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
         ),
       ),
+      child: label,
     );
   }
 }

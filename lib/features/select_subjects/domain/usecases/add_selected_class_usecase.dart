@@ -7,14 +7,14 @@ import 'package:silab/features/select_subjects/domain/repository/selected_subjec
 class AddSelectedClassUseCase
     implements
         UseCase<Either<Failures, AddSelectedClassResponseEntity>,
-            Map<String, String>?> {
+            List<String>?> {
   final SelectedSubjectRepository selectedSubjectRepository;
 
   const AddSelectedClassUseCase(this.selectedSubjectRepository);
 
   @override
   Future<Either<Failures, AddSelectedClassResponseEntity>> call(
-      {Map<String, String>? params}) async {
+      {List<String>? params}) async {
     return selectedSubjectRepository.addSelectedClass(selectedClass: params);
   }
 }

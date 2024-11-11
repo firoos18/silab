@@ -21,12 +21,16 @@ ClassesResponseEntity _$ClassesResponseEntityFromJson(
 
 /// @nodoc
 mixin _$ClassesResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   List<ClassEntity>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ClassesResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClassesResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClassesResponseEntityCopyWith<ClassesResponseEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,7 +41,7 @@ abstract class $ClassesResponseEntityCopyWith<$Res> {
           $Res Function(ClassesResponseEntity) then) =
       _$ClassesResponseEntityCopyWithImpl<$Res, ClassesResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, List<ClassEntity>? data});
+  $Res call({String? status, String? message, List<ClassEntity>? data});
 }
 
 /// @nodoc
@@ -51,6 +55,8 @@ class _$ClassesResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClassesResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -62,7 +68,7 @@ class _$ClassesResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -84,7 +90,7 @@ abstract class _$$ClassesResponseEntityImplCopyWith<$Res>
       __$$ClassesResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, List<ClassEntity>? data});
+  $Res call({String? status, String? message, List<ClassEntity>? data});
 }
 
 /// @nodoc
@@ -96,6 +102,8 @@ class __$$ClassesResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$ClassesResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClassesResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,7 +115,7 @@ class __$$ClassesResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -131,7 +139,7 @@ class _$ClassesResponseEntityImpl implements _ClassesResponseEntity {
       _$$ClassesResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   final List<ClassEntity>? _data;
@@ -159,12 +167,14 @@ class _$ClassesResponseEntityImpl implements _ClassesResponseEntity {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClassesResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClassesResponseEntityImplCopyWith<_$ClassesResponseEntityImpl>
@@ -181,7 +191,7 @@ class _$ClassesResponseEntityImpl implements _ClassesResponseEntity {
 
 abstract class _ClassesResponseEntity implements ClassesResponseEntity {
   const factory _ClassesResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final List<ClassEntity>? data}) = _$ClassesResponseEntityImpl;
 
@@ -189,13 +199,16 @@ abstract class _ClassesResponseEntity implements ClassesResponseEntity {
       _$ClassesResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
   List<ClassEntity>? get data;
+
+  /// Create a copy of ClassesResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClassesResponseEntityImplCopyWith<_$ClassesResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -24,10 +24,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
   ) async {
     emit(UserDetailLoading());
 
-    final nim = _sharedPreferences.getString("nim");
-
-    final data =
-        await _getUserDetailsUseCase.userRepository.getUserDetails(nim);
+    final data = await _getUserDetailsUseCase.userRepository.getUserDetails();
 
     data.fold(
       (left) => emit(UserDetailFailed(message: left.message)),

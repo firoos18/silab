@@ -21,16 +21,15 @@ SelectedSubjectSubjectsEntity _$SelectedSubjectSubjectsEntityFromJson(
 
 /// @nodoc
 mixin _$SelectedSubjectSubjectsEntity {
-  String? get id => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
-  String? get lecturer => throw _privateConstructorUsedError;
-  List<ClassEntity>? get classes => throw _privateConstructorUsedError;
-  int? get semester => throw _privateConstructorUsedError;
-  RegisteredClassEntity? get registeredClass =>
-      throw _privateConstructorUsedError;
+  String? get subject_name => throw _privateConstructorUsedError;
+  String? get semester => throw _privateConstructorUsedError;
 
+  /// Serializes this SelectedSubjectSubjectsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedSubjectSubjectsEntityCopyWith<SelectedSubjectSubjectsEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -43,15 +42,7 @@ abstract class $SelectedSubjectSubjectsEntityCopyWith<$Res> {
       _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
           SelectedSubjectSubjectsEntity>;
   @useResult
-  $Res call(
-      {String? id,
-      String? name,
-      String? lecturer,
-      List<ClassEntity>? classes,
-      int? semester,
-      RegisteredClassEntity? registeredClass});
-
-  $RegisteredClassEntityCopyWith<$Res>? get registeredClass;
+  $Res call({String? subject_name, String? semester});
 }
 
 /// @nodoc
@@ -65,55 +56,24 @@ class _$SelectedSubjectSubjectsEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? lecturer = freezed,
-    Object? classes = freezed,
+    Object? subject_name = freezed,
     Object? semester = freezed,
-    Object? registeredClass = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      subject_name: freezed == subject_name
+          ? _value.subject_name
+          : subject_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lecturer: freezed == lecturer
-          ? _value.lecturer
-          : lecturer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      classes: freezed == classes
-          ? _value.classes
-          : classes // ignore: cast_nullable_to_non_nullable
-              as List<ClassEntity>?,
       semester: freezed == semester
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
-              as int?,
-      registeredClass: freezed == registeredClass
-          ? _value.registeredClass
-          : registeredClass // ignore: cast_nullable_to_non_nullable
-              as RegisteredClassEntity?,
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RegisteredClassEntityCopyWith<$Res>? get registeredClass {
-    if (_value.registeredClass == null) {
-      return null;
-    }
-
-    return $RegisteredClassEntityCopyWith<$Res>(_value.registeredClass!,
-        (value) {
-      return _then(_value.copyWith(registeredClass: value) as $Val);
-    });
   }
 }
 
@@ -126,16 +86,7 @@ abstract class _$$SelectedSubjectSubjectsEntityImplCopyWith<$Res>
       __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? id,
-      String? name,
-      String? lecturer,
-      List<ClassEntity>? classes,
-      int? semester,
-      RegisteredClassEntity? registeredClass});
-
-  @override
-  $RegisteredClassEntityCopyWith<$Res>? get registeredClass;
+  $Res call({String? subject_name, String? semester});
 }
 
 /// @nodoc
@@ -148,41 +99,23 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
       $Res Function(_$SelectedSubjectSubjectsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? lecturer = freezed,
-    Object? classes = freezed,
+    Object? subject_name = freezed,
     Object? semester = freezed,
-    Object? registeredClass = freezed,
   }) {
     return _then(_$SelectedSubjectSubjectsEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      subject_name: freezed == subject_name
+          ? _value.subject_name
+          : subject_name // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      lecturer: freezed == lecturer
-          ? _value.lecturer
-          : lecturer // ignore: cast_nullable_to_non_nullable
-              as String?,
-      classes: freezed == classes
-          ? _value._classes
-          : classes // ignore: cast_nullable_to_non_nullable
-              as List<ClassEntity>?,
       semester: freezed == semester
           ? _value.semester
           : semester // ignore: cast_nullable_to_non_nullable
-              as int?,
-      registeredClass: freezed == registeredClass
-          ? _value.registeredClass
-          : registeredClass // ignore: cast_nullable_to_non_nullable
-              as RegisteredClassEntity?,
+              as String?,
     ));
   }
 }
@@ -191,43 +124,20 @@ class __$$SelectedSubjectSubjectsEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectSubjectsEntityImpl
     implements _SelectedSubjectSubjectsEntity {
-  const _$SelectedSubjectSubjectsEntityImpl(
-      {this.id,
-      this.name,
-      this.lecturer,
-      final List<ClassEntity>? classes,
-      this.semester,
-      required this.registeredClass})
-      : _classes = classes;
+  const _$SelectedSubjectSubjectsEntityImpl({this.subject_name, this.semester});
 
   factory _$SelectedSubjectSubjectsEntityImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$SelectedSubjectSubjectsEntityImplFromJson(json);
 
   @override
-  final String? id;
+  final String? subject_name;
   @override
-  final String? name;
-  @override
-  final String? lecturer;
-  final List<ClassEntity>? _classes;
-  @override
-  List<ClassEntity>? get classes {
-    final value = _classes;
-    if (value == null) return null;
-    if (_classes is EqualUnmodifiableListView) return _classes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  final int? semester;
-  @override
-  final RegisteredClassEntity? registeredClass;
+  final String? semester;
 
   @override
   String toString() {
-    return 'SelectedSubjectSubjectsEntity(id: $id, name: $name, lecturer: $lecturer, classes: $classes, semester: $semester, registeredClass: $registeredClass)';
+    return 'SelectedSubjectSubjectsEntity(subject_name: $subject_name, semester: $semester)';
   }
 
   @override
@@ -235,23 +145,19 @@ class _$SelectedSubjectSubjectsEntityImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectedSubjectSubjectsEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.lecturer, lecturer) ||
-                other.lecturer == lecturer) &&
-            const DeepCollectionEquality().equals(other._classes, _classes) &&
+            (identical(other.subject_name, subject_name) ||
+                other.subject_name == subject_name) &&
             (identical(other.semester, semester) ||
-                other.semester == semester) &&
-            (identical(other.registeredClass, registeredClass) ||
-                other.registeredClass == registeredClass));
+                other.semester == semester));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, lecturer,
-      const DeepCollectionEquality().hash(_classes), semester, registeredClass);
+  int get hashCode => Object.hash(runtimeType, subject_name, semester);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedSubjectSubjectsEntityImplCopyWith<
@@ -270,31 +176,21 @@ class _$SelectedSubjectSubjectsEntityImpl
 abstract class _SelectedSubjectSubjectsEntity
     implements SelectedSubjectSubjectsEntity {
   const factory _SelectedSubjectSubjectsEntity(
-          {final String? id,
-          final String? name,
-          final String? lecturer,
-          final List<ClassEntity>? classes,
-          final int? semester,
-          required final RegisteredClassEntity? registeredClass}) =
-      _$SelectedSubjectSubjectsEntityImpl;
+      {final String? subject_name,
+      final String? semester}) = _$SelectedSubjectSubjectsEntityImpl;
 
   factory _SelectedSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =
       _$SelectedSubjectSubjectsEntityImpl.fromJson;
 
   @override
-  String? get id;
+  String? get subject_name;
   @override
-  String? get name;
+  String? get semester;
+
+  /// Create a copy of SelectedSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String? get lecturer;
-  @override
-  List<ClassEntity>? get classes;
-  @override
-  int? get semester;
-  @override
-  RegisteredClassEntity? get registeredClass;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedSubjectSubjectsEntityImplCopyWith<
           _$SelectedSubjectSubjectsEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

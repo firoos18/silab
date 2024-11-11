@@ -17,12 +17,16 @@ class GetAnnouncementBloc
 
   void onGetAnnouncement(
       GetAnnouncementEvent event, Emitter<GetAnnouncementState> emit) async {
-    final data =
-        await _getAnnouncementUseCase.announcementRepository.getAnnouncement();
+    if (event.id != null) {
+      final data = await _getAnnouncementUseCase.announcementRepository
+          .getAnnouncement(id: event.id!);
 
-    data.fold(
-      (left) => emit(GetAnnouncementFailed(message: left.message)),
-      (right) => emit(GetAnnouncementLoaded(announcement: right)),
-    );
+      data.fold(
+        (left) => emit(GetAnnouncementFailed(message: left.message)),
+        (right) => emit(GetAnnouncementLoaded(announcement: right)),
+      );
+    } else {
+      emit(const GetAnnouncementFailed(message: 'An Error Occured'));
+    }
   }
 }

@@ -26,8 +26,12 @@ mixin _$SubjectEntity {
   int? get semester => throw _privateConstructorUsedError;
   List<String>? get classes => throw _privateConstructorUsedError;
 
+  /// Serializes this SubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubjectEntityCopyWith<SubjectEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$SubjectEntityCopyWithImpl<$Res, $Val extends SubjectEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,6 +120,8 @@ class __$$SubjectEntityImplCopyWithImpl<$Res>
       _$SubjectEntityImpl _value, $Res Function(_$SubjectEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -199,12 +207,14 @@ class _$SubjectEntityImpl implements _SubjectEntity {
             const DeepCollectionEquality().equals(other._classes, _classes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, lecturer, semester,
       const DeepCollectionEquality().hash(_classes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubjectEntityImplCopyWith<_$SubjectEntityImpl> get copyWith =>
@@ -239,8 +249,11 @@ abstract class _SubjectEntity implements SubjectEntity {
   int? get semester;
   @override
   List<String>? get classes;
+
+  /// Create a copy of SubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubjectEntityImplCopyWith<_$SubjectEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

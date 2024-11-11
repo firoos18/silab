@@ -7,7 +7,7 @@ part 'login_response_entity.g.dart';
 @freezed
 class LoginResponseEntity with _$LoginResponseEntity {
   const factory LoginResponseEntity({
-    final int? status,
+    final String? status,
     final String? message,
     final LoginDataEntity? data,
   }) = _LoginResponseEntity;

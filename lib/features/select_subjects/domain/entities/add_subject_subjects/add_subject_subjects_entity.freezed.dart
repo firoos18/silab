@@ -22,11 +22,13 @@ AddSubjectSubjectsEntity _$AddSubjectSubjectsEntityFromJson(
 /// @nodoc
 mixin _$AddSubjectSubjectsEntity {
   String? get id => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
-  List<String>? get subjects => throw _privateConstructorUsedError;
 
+  /// Serializes this AddSubjectSubjectsEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddSubjectSubjectsEntityCopyWith<AddSubjectSubjectsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,7 +39,7 @@ abstract class $AddSubjectSubjectsEntityCopyWith<$Res> {
           $Res Function(AddSubjectSubjectsEntity) then) =
       _$AddSubjectSubjectsEntityCopyWithImpl<$Res, AddSubjectSubjectsEntity>;
   @useResult
-  $Res call({String? id, String? userId, List<String>? subjects});
+  $Res call({String? id});
 }
 
 /// @nodoc
@@ -51,26 +53,18 @@ class _$AddSubjectSubjectsEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? userId = freezed,
-    Object? subjects = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subjects: freezed == subjects
-          ? _value.subjects
-          : subjects // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ) as $Val);
   }
 }
@@ -84,7 +78,7 @@ abstract class _$$AddSubjectSubjectsEntityImplCopyWith<$Res>
       __$$AddSubjectSubjectsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? userId, List<String>? subjects});
+  $Res call({String? id});
 }
 
 /// @nodoc
@@ -97,26 +91,18 @@ class __$$AddSubjectSubjectsEntityImplCopyWithImpl<$Res>
       $Res Function(_$AddSubjectSubjectsEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? userId = freezed,
-    Object? subjects = freezed,
   }) {
     return _then(_$AddSubjectSubjectsEntityImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      subjects: freezed == subjects
-          ? _value._subjects
-          : subjects // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
     ));
   }
 }
@@ -124,30 +110,17 @@ class __$$AddSubjectSubjectsEntityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AddSubjectSubjectsEntityImpl implements _AddSubjectSubjectsEntity {
-  const _$AddSubjectSubjectsEntityImpl(
-      {this.id, this.userId, final List<String>? subjects})
-      : _subjects = subjects;
+  const _$AddSubjectSubjectsEntityImpl({this.id});
 
   factory _$AddSubjectSubjectsEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddSubjectSubjectsEntityImplFromJson(json);
 
   @override
   final String? id;
-  @override
-  final String? userId;
-  final List<String>? _subjects;
-  @override
-  List<String>? get subjects {
-    final value = _subjects;
-    if (value == null) return null;
-    if (_subjects is EqualUnmodifiableListView) return _subjects;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
 
   @override
   String toString() {
-    return 'AddSubjectSubjectsEntity(id: $id, userId: $userId, subjects: $subjects)';
+    return 'AddSubjectSubjectsEntity(id: $id)';
   }
 
   @override
@@ -155,17 +128,16 @@ class _$AddSubjectSubjectsEntityImpl implements _AddSubjectSubjectsEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddSubjectSubjectsEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            const DeepCollectionEquality().equals(other._subjects, _subjects));
+            (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, const DeepCollectionEquality().hash(_subjects));
+  int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddSubjectSubjectsEntityImplCopyWith<_$AddSubjectSubjectsEntityImpl>
@@ -181,22 +153,19 @@ class _$AddSubjectSubjectsEntityImpl implements _AddSubjectSubjectsEntity {
 }
 
 abstract class _AddSubjectSubjectsEntity implements AddSubjectSubjectsEntity {
-  const factory _AddSubjectSubjectsEntity(
-      {final String? id,
-      final String? userId,
-      final List<String>? subjects}) = _$AddSubjectSubjectsEntityImpl;
+  const factory _AddSubjectSubjectsEntity({final String? id}) =
+      _$AddSubjectSubjectsEntityImpl;
 
   factory _AddSubjectSubjectsEntity.fromJson(Map<String, dynamic> json) =
       _$AddSubjectSubjectsEntityImpl.fromJson;
 
   @override
   String? get id;
+
+  /// Create a copy of AddSubjectSubjectsEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String? get userId;
-  @override
-  List<String>? get subjects;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddSubjectSubjectsEntityImplCopyWith<_$AddSubjectSubjectsEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

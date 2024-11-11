@@ -21,13 +21,17 @@ SelectedSubjectEntity _$SelectedSubjectEntityFromJson(
 
 /// @nodoc
 mixin _$SelectedSubjectEntity {
-  String? get id => throw _privateConstructorUsedError;
-  String? get userId => throw _privateConstructorUsedError;
+  String? get activation_id => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   List<SelectedSubjectSubjectsEntity>? get subjects =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this SelectedSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectedSubjectEntityCopyWith<SelectedSubjectEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -39,8 +43,8 @@ abstract class $SelectedSubjectEntityCopyWith<$Res> {
       _$SelectedSubjectEntityCopyWithImpl<$Res, SelectedSubjectEntity>;
   @useResult
   $Res call(
-      {String? id,
-      String? userId,
+      {String? activation_id,
+      String? status,
       List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
@@ -55,21 +59,23 @@ class _$SelectedSubjectEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? activation_id = freezed,
+    Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      activation_id: freezed == activation_id
+          ? _value.activation_id
+          : activation_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       subjects: freezed == subjects
           ? _value.subjects
@@ -89,8 +95,8 @@ abstract class _$$SelectedSubjectEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? id,
-      String? userId,
+      {String? activation_id,
+      String? status,
       List<SelectedSubjectSubjectsEntity>? subjects});
 }
 
@@ -103,21 +109,23 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
       $Res Function(_$SelectedSubjectEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? userId = freezed,
+    Object? activation_id = freezed,
+    Object? status = freezed,
     Object? subjects = freezed,
   }) {
     return _then(_$SelectedSubjectEntityImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      activation_id: freezed == activation_id
+          ? _value.activation_id
+          : activation_id // ignore: cast_nullable_to_non_nullable
               as String?,
-      userId: freezed == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
               as String?,
       subjects: freezed == subjects
           ? _value._subjects
@@ -131,8 +139,8 @@ class __$$SelectedSubjectEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
   const _$SelectedSubjectEntityImpl(
-      {this.id,
-      this.userId,
+      {this.activation_id,
+      this.status,
       final List<SelectedSubjectSubjectsEntity>? subjects})
       : _subjects = subjects;
 
@@ -140,9 +148,9 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
       _$$SelectedSubjectEntityImplFromJson(json);
 
   @override
-  final String? id;
+  final String? activation_id;
   @override
-  final String? userId;
+  final String? status;
   final List<SelectedSubjectSubjectsEntity>? _subjects;
   @override
   List<SelectedSubjectSubjectsEntity>? get subjects {
@@ -155,7 +163,7 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
   @override
   String toString() {
-    return 'SelectedSubjectEntity(id: $id, userId: $userId, subjects: $subjects)';
+    return 'SelectedSubjectEntity(activation_id: $activation_id, status: $status, subjects: $subjects)';
   }
 
   @override
@@ -163,17 +171,20 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SelectedSubjectEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.activation_id, activation_id) ||
+                other.activation_id == activation_id) &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._subjects, _subjects));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, userId, const DeepCollectionEquality().hash(_subjects));
+  int get hashCode => Object.hash(runtimeType, activation_id, status,
+      const DeepCollectionEquality().hash(_subjects));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectedSubjectEntityImplCopyWith<_$SelectedSubjectEntityImpl>
@@ -190,8 +201,8 @@ class _$SelectedSubjectEntityImpl implements _SelectedSubjectEntity {
 
 abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
   const factory _SelectedSubjectEntity(
-          {final String? id,
-          final String? userId,
+          {final String? activation_id,
+          final String? status,
           final List<SelectedSubjectSubjectsEntity>? subjects}) =
       _$SelectedSubjectEntityImpl;
 
@@ -199,13 +210,16 @@ abstract class _SelectedSubjectEntity implements SelectedSubjectEntity {
       _$SelectedSubjectEntityImpl.fromJson;
 
   @override
-  String? get id;
+  String? get activation_id;
   @override
-  String? get userId;
+  String? get status;
   @override
   List<SelectedSubjectSubjectsEntity>? get subjects;
+
+  /// Create a copy of SelectedSubjectEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectedSubjectEntityImplCopyWith<_$SelectedSubjectEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -13,18 +13,28 @@ class SubjectListBloc extends Bloc<SubjectListEvent, SubjectListState> {
     on<SubjectListEvent>(onGetSubjectList);
   }
 
+  final List<SubjectEntity> subjectList = [];
+
   void onGetSubjectList(
     SubjectListEvent event,
     Emitter<SubjectListState> emit,
   ) async {
+    subjectList.clear();
     emit(SubjectListLoading());
 
-    final data = await _getSubjectListUseCase.subjectRepository
-        .getSubjectList(semester: event.semester);
+    final data =
+        await _getSubjectListUseCase.subjectRepository.getSubjectList();
+
+    if (data.isRight && data.right.data != null) {
+      final List<SubjectEntity> filteredSubjectList = data.right.data!
+          .where((data) => data.semester == event.semester.toString())
+          .toList();
+      subjectList.addAll(filteredSubjectList);
+    }
 
     data.fold(
       (left) => emit(SubjectListFailed(message: left.message)),
-      (right) => emit(SubjectListSuccess(subjectList: right.data)),
+      (right) => emit(SubjectListSuccess(subjectList: subjectList)),
     );
   }
 }

@@ -9,12 +9,12 @@ part of 'selected_subject_response_entity.dart';
 _$SelectedSubjectResponseEntityImpl
     _$$SelectedSubjectResponseEntityImplFromJson(Map<String, dynamic> json) =>
         _$SelectedSubjectResponseEntityImpl(
-          status: (json['status'] as num?)?.toInt(),
+          status: json['status'] as String?,
           message: json['message'] as String?,
-          data: json['data'] == null
-              ? null
-              : SelectedSubjectEntity.fromJson(
-                  json['data'] as Map<String, dynamic>),
+          data: (json['data'] as List<dynamic>?)
+              ?.map((e) =>
+                  SelectedSubjectEntity.fromJson(e as Map<String, dynamic>))
+              .toList(),
         );
 
 Map<String, dynamic> _$$SelectedSubjectResponseEntityImplToJson(

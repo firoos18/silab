@@ -1,214 +1,120 @@
-import 'dart:io';
 import 'package:either_dart/either.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
 import 'package:silab/core/failures/failures.dart';
 import 'package:silab/features/authentication/data/data_sources/local/authentication_local_datasource.dart';
 import 'package:silab/features/authentication/data/data_sources/remote/authentication_api_service.dart';
 import 'package:silab/features/authentication/data/models/login_model.dart';
-import 'package:silab/features/authentication/data/models/register_model.dart';
-import 'package:silab/features/authentication/data/models/resend_otp_model.dart';
-import 'package:silab/features/authentication/data/models/reset_password_model.dart';
-import 'package:silab/features/authentication/data/models/send_reset_password_otp_model.dart';
-import 'package:silab/features/authentication/data/models/verify_otp_model.dart';
-import 'package:silab/features/authentication/data/models/verify_reset_password_otp_model.dart';
 import 'package:silab/features/authentication/domain/entities/login_response/login_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/register_response/register_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/resend_otp_response/resend_otp_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/reset_password/reset_password_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/send_reset_password_otp/send_reset_password_otp_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/verify_otp/verify_otp_response_entity.dart';
-import 'package:silab/features/authentication/domain/entities/verify_reset_password_otp/verify_reset_password_otp_response_entity.dart';
 import 'package:silab/features/authentication/domain/repositories/authentication_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final AuthenticationApiService _authenticationApiService;
   final AuthenticationLocalDataSource _authenticationLocalDataSource;
-  final SharedPreferences _sharedPreferences;
 
   const AuthenticationRepositoryImpl(
     this._authenticationApiService,
     this._authenticationLocalDataSource,
-    this._sharedPreferences,
   );
 
   @override
-  Either<Failures, String> getUserToken() {
-    final token = _authenticationLocalDataSource.getUserToken();
-
-    if (token != null) {
-      return Right(token);
-    } else {
-      return Left(RequestFailures("No User Token Found"));
-    }
-  }
-
-  @override
-  Future<Either<Failures, ResendOtpResponseEntity>> resendEmailVerificationOtp(
-    ResendOtpModel resendOtpData,
-  ) async {
+  Future<Either<Failures, LoginResponseEntity>> userLogin(
+      {LoginModel? loginData}) async {
     try {
-      final result = await _authenticationApiService
-          .resendEmailVerificationOtp(resendOtpData);
+      if (loginData != null) {
+        final result = await _authenticationApiService.userLogin(loginData);
 
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
+        if (result.data != null &&
+            result.data!.accessToken != null &&
+            result.data!.refreshToken != null) {
+          await setUserTokens(
+            refreshToken: result.data!.refreshToken,
+            accessToken: result.data!.accessToken,
+          );
 
-  @override
-  Future<Either<Failures, String>> setUserData({
-    String? userToken,
-    String? email,
-    String? nim,
-  }) async {
-    try {
-      if (userToken != null && email != null && nim != null) {
-        await _authenticationLocalDataSource.setUserData(
-          userToken: userToken,
-          email: email,
-          nim: nim,
-        );
-
-        return const Right("success");
+          return Right(result);
+        } else {
+          return Left(RequestFailures('An Error Occurred!'));
+        }
       } else {
-        throw "User Token is Empty";
+        return Left(RequestFailures('An Error Occurred!'));
       }
     } on RequestErrorException catch (e) {
       return Left(RequestFailures(e.message));
+    }
+  }
+
+  @override
+  Either<Failures, String> getUserAccessToken() {
+    final String? userAccessToken =
+        _authenticationLocalDataSource.getUserAccessToken();
+
+    if (userAccessToken != null) {
+      return Right(userAccessToken);
+    } else {
+      return Left(RequestFailures('An Error Occurred!'));
+    }
+  }
+
+  @override
+  Either<Failures, String> getUserId() {
+    try {
+      final String? userId = _authenticationLocalDataSource.getUserId();
+
+      if (userId != null) {
+        return Right(userId);
+      } else {
+        return Left(RequestFailures('An Error Occurred!'));
+      }
     } catch (e) {
-      return Left(RequestFailures(e.toString()));
+      return Left(RequestFailures('An Error Occurred!'));
     }
   }
 
   @override
-  Future<Either<Failures, LoginResponseEntity>> userLogin(
-    LoginModel loginData,
-  ) async {
+  Either<Failures, String> getUserRole() {
     try {
-      final result = await _authenticationApiService.userLogin(loginData);
+      final String? userRole = _authenticationLocalDataSource.getUserRole();
 
-      setUserData(
-        userToken: result.data!.token,
-        email: result.data!.email,
-        nim: result.data!.nim,
-      );
-
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
+      if (userRole != null) {
+        return Right(userRole);
+      } else {
+        return Left(RequestFailures('An Error Occurred!'));
+      }
+    } catch (e) {
+      return Left(RequestFailures('An Error Occurred!'));
     }
   }
 
   @override
-  Future<Either<Failures, RegisterResponseEntity>> userRegister(
-    RegisterModel registerData,
-  ) async {
+  Future<Either<Failures, String>> setUserTokens({
+    String? accessToken,
+    String? refreshToken,
+  }) async {
     try {
-      final result = await _authenticationApiService.userRegister(registerData);
+      if (accessToken != null && refreshToken != null) {
+        await _authenticationLocalDataSource.setUserTokens(
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        );
 
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
+        return const Right('success');
+      } else {
+        return Left(RequestFailures('An Error Occurred!'));
+      }
+    } catch (e) {
+      return Left(RequestFailures('An Error Occurred!'));
     }
   }
 
   @override
-  Future<Either<Failures, VerifyOtpResponseEntity>> verifyOtp(
-      VerifyOtpModel verifyOtpData) async {
-    try {
-      final result = await _authenticationApiService.verifyOtp(verifyOtpData);
+  Either<Failures, int> getAccessTokenExpiry() {
+    final int? accessTokenExpiry =
+        _authenticationLocalDataSource.getAccessTokenExpiry();
 
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failures, SendResetPasswordOtpResponseEntity>>
-      resendResetPasswordOtp(
-    SendResetPasswordOtpModel sendResetPasswordOtpData,
-  ) async {
-    try {
-      final result = await _authenticationApiService
-          .resendResetPasswordOtp(sendResetPasswordOtpData);
-
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failures, ResetPasswordResponseEntity>> resetPassword(
-    ResetPasswordModel resetPasswordData,
-  ) async {
-    try {
-      final result =
-          await _authenticationApiService.resetPassword(resetPasswordData);
-
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failures, SendResetPasswordOtpResponseEntity>>
-      sendResetPasswordOtp(
-    SendResetPasswordOtpModel sendResetPasswordOtpData,
-  ) async {
-    try {
-      final result = await _authenticationApiService
-          .sendResetPasswordOtp(sendResetPasswordOtpData);
-
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failures, VerifyResetPasswordOtpResponseEntity>>
-      verifyResetPasswordOtp(
-    VerifyResetPasswordOtpModel verifyResetPasswordOtpData,
-  ) async {
-    try {
-      final result = await _authenticationApiService
-          .verifyResetPasswordOtp(verifyResetPasswordOtpData);
-
-      return Right(result);
-    } on RequestErrorException catch (e) {
-      return Left(RequestFailures(e.message));
-    } on SocketException catch (e) {
-      return Left(RequestFailures(e.message));
-    }
-  }
-
-  @override
-  Future<Either<Failures, bool>> userLogOut() async {
-    try {
-      final isLogOut = await _sharedPreferences.remove('token');
-
-      return Right(isLogOut);
-    } on RequestErrorException catch (e) {
-      throw Left(RequestFailures(e.message));
+    if (accessTokenExpiry != null) {
+      return Right(accessTokenExpiry);
+    } else {
+      return Left(RequestFailures('An Error Occurred!'));
     }
   }
 }

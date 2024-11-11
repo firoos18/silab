@@ -9,19 +9,15 @@ part of 'subject_entity.dart';
 _$SubjectEntityImpl _$$SubjectEntityImplFromJson(Map<String, dynamic> json) =>
     _$SubjectEntityImpl(
       id: json['id'] as String?,
-      name: json['name'] as String?,
-      lecturer: json['lecturer'] as String?,
-      semester: (json['semester'] as num?)?.toInt(),
-      classes: (json['classes'] as List<dynamic>?)
-          ?.map((e) => ClassEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      subject_name: json['subject_name'] as String?,
+      subject_code: json['subject_code'] as String?,
+      semester: json['semester'] as String?,
     );
 
 Map<String, dynamic> _$$SubjectEntityImplToJson(_$SubjectEntityImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'lecturer': instance.lecturer,
+      'subject_name': instance.subject_name,
+      'subject_code': instance.subject_code,
       'semester': instance.semester,
-      'classes': instance.classes,
     };

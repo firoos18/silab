@@ -10,7 +10,7 @@ _$AddSelectedSubjectResponseEntityImpl
     _$$AddSelectedSubjectResponseEntityImplFromJson(
             Map<String, dynamic> json) =>
         _$AddSelectedSubjectResponseEntityImpl(
-          status: (json['status'] as num?)?.toInt(),
+          status: json['status'] as String?,
           message: json['message'] as String?,
           data: json['data'] == null
               ? null

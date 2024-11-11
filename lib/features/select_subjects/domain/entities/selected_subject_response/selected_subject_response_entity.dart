@@ -7,9 +7,9 @@ part 'selected_subject_response_entity.g.dart';
 @freezed
 class SelectedSubjectResponseEntity with _$SelectedSubjectResponseEntity {
   const factory SelectedSubjectResponseEntity({
-    final int? status,
+    final String? status,
     final String? message,
-    final SelectedSubjectEntity? data,
+    final List<SelectedSubjectEntity>? data,
   }) = _SelectedSubjectResponseEntity;
 
   factory SelectedSubjectResponseEntity.fromJson(Map<String, dynamic> json) =>

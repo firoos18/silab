@@ -21,12 +21,16 @@ AnnouncementResponseEntity _$AnnouncementResponseEntityFromJson(
 
 /// @nodoc
 mixin _$AnnouncementResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   AnnouncementEntity? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this AnnouncementResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnnouncementResponseEntityCopyWith<AnnouncementResponseEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -38,7 +42,7 @@ abstract class $AnnouncementResponseEntityCopyWith<$Res> {
       _$AnnouncementResponseEntityCopyWithImpl<$Res,
           AnnouncementResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, AnnouncementEntity? data});
+  $Res call({String? status, String? message, AnnouncementEntity? data});
 
   $AnnouncementEntityCopyWith<$Res>? get data;
 }
@@ -54,6 +58,8 @@ class _$AnnouncementResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -65,7 +71,7 @@ class _$AnnouncementResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -77,6 +83,8 @@ class _$AnnouncementResponseEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AnnouncementEntityCopyWith<$Res>? get data {
@@ -99,7 +107,7 @@ abstract class _$$AnnouncementResponseEntityImplCopyWith<$Res>
       __$$AnnouncementResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, AnnouncementEntity? data});
+  $Res call({String? status, String? message, AnnouncementEntity? data});
 
   @override
   $AnnouncementEntityCopyWith<$Res>? get data;
@@ -115,6 +123,8 @@ class __$$AnnouncementResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$AnnouncementResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,7 +136,7 @@ class __$$AnnouncementResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -150,7 +160,7 @@ class _$AnnouncementResponseEntityImpl implements _AnnouncementResponseEntity {
       _$$AnnouncementResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   @override
@@ -171,11 +181,13 @@ class _$AnnouncementResponseEntityImpl implements _AnnouncementResponseEntity {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnnouncementResponseEntityImplCopyWith<_$AnnouncementResponseEntityImpl>
@@ -193,7 +205,7 @@ class _$AnnouncementResponseEntityImpl implements _AnnouncementResponseEntity {
 abstract class _AnnouncementResponseEntity
     implements AnnouncementResponseEntity {
   const factory _AnnouncementResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final AnnouncementEntity? data}) = _$AnnouncementResponseEntityImpl;
 
@@ -201,13 +213,16 @@ abstract class _AnnouncementResponseEntity
       _$AnnouncementResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
   AnnouncementEntity? get data;
+
+  /// Create a copy of AnnouncementResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnnouncementResponseEntityImplCopyWith<_$AnnouncementResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

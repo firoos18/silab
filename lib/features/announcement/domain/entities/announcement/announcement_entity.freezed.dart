@@ -23,11 +23,16 @@ mixin _$AnnouncementEntity {
   String? get id => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
-  String? get desc => throw _privateConstructorUsedError;
-  String? get posterUrl => throw _privateConstructorUsedError;
+  String? get body => throw _privateConstructorUsedError;
+  String? get created_at => throw _privateConstructorUsedError;
+  String? get author => throw _privateConstructorUsedError;
 
+  /// Serializes this AnnouncementEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnnouncementEntityCopyWith<AnnouncementEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,8 +47,9 @@ abstract class $AnnouncementEntityCopyWith<$Res> {
       {String? id,
       String? title,
       String? type,
-      String? desc,
-      String? posterUrl});
+      String? body,
+      String? created_at,
+      String? author});
 }
 
 /// @nodoc
@@ -56,14 +62,17 @@ class _$AnnouncementEntityCopyWithImpl<$Res, $Val extends AnnouncementEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
     Object? type = freezed,
-    Object? desc = freezed,
-    Object? posterUrl = freezed,
+    Object? body = freezed,
+    Object? created_at = freezed,
+    Object? author = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -78,13 +87,17 @@ class _$AnnouncementEntityCopyWithImpl<$Res, $Val extends AnnouncementEntity>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: freezed == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
+      body: freezed == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String?,
-      posterUrl: freezed == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String?,
+      author: freezed == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -102,8 +115,9 @@ abstract class _$$AnnouncementEntityImplCopyWith<$Res>
       {String? id,
       String? title,
       String? type,
-      String? desc,
-      String? posterUrl});
+      String? body,
+      String? created_at,
+      String? author});
 }
 
 /// @nodoc
@@ -114,14 +128,17 @@ class __$$AnnouncementEntityImplCopyWithImpl<$Res>
       $Res Function(_$AnnouncementEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? title = freezed,
     Object? type = freezed,
-    Object? desc = freezed,
-    Object? posterUrl = freezed,
+    Object? body = freezed,
+    Object? created_at = freezed,
+    Object? author = freezed,
   }) {
     return _then(_$AnnouncementEntityImpl(
       id: freezed == id
@@ -136,13 +153,17 @@ class __$$AnnouncementEntityImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
-      desc: freezed == desc
-          ? _value.desc
-          : desc // ignore: cast_nullable_to_non_nullable
+      body: freezed == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String?,
-      posterUrl: freezed == posterUrl
-          ? _value.posterUrl
-          : posterUrl // ignore: cast_nullable_to_non_nullable
+      created_at: freezed == created_at
+          ? _value.created_at
+          : created_at // ignore: cast_nullable_to_non_nullable
+              as String?,
+      author: freezed == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -152,7 +173,12 @@ class __$$AnnouncementEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AnnouncementEntityImpl implements _AnnouncementEntity {
   const _$AnnouncementEntityImpl(
-      {this.id, this.title, this.type, this.desc, this.posterUrl});
+      {this.id,
+      this.title,
+      this.type,
+      this.body,
+      this.created_at,
+      this.author});
 
   factory _$AnnouncementEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnnouncementEntityImplFromJson(json);
@@ -164,13 +190,15 @@ class _$AnnouncementEntityImpl implements _AnnouncementEntity {
   @override
   final String? type;
   @override
-  final String? desc;
+  final String? body;
   @override
-  final String? posterUrl;
+  final String? created_at;
+  @override
+  final String? author;
 
   @override
   String toString() {
-    return 'AnnouncementEntity(id: $id, title: $title, type: $type, desc: $desc, posterUrl: $posterUrl)';
+    return 'AnnouncementEntity(id: $id, title: $title, type: $type, body: $body, created_at: $created_at, author: $author)';
   }
 
   @override
@@ -181,17 +209,20 @@ class _$AnnouncementEntityImpl implements _AnnouncementEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.desc, desc) || other.desc == desc) &&
-            (identical(other.posterUrl, posterUrl) ||
-                other.posterUrl == posterUrl));
+            (identical(other.body, body) || other.body == body) &&
+            (identical(other.created_at, created_at) ||
+                other.created_at == created_at) &&
+            (identical(other.author, author) || other.author == author));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, type, desc, posterUrl);
+      Object.hash(runtimeType, id, title, type, body, created_at, author);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnnouncementEntityImplCopyWith<_$AnnouncementEntityImpl> get copyWith =>
@@ -211,8 +242,9 @@ abstract class _AnnouncementEntity implements AnnouncementEntity {
       {final String? id,
       final String? title,
       final String? type,
-      final String? desc,
-      final String? posterUrl}) = _$AnnouncementEntityImpl;
+      final String? body,
+      final String? created_at,
+      final String? author}) = _$AnnouncementEntityImpl;
 
   factory _AnnouncementEntity.fromJson(Map<String, dynamic> json) =
       _$AnnouncementEntityImpl.fromJson;
@@ -224,11 +256,16 @@ abstract class _AnnouncementEntity implements AnnouncementEntity {
   @override
   String? get type;
   @override
-  String? get desc;
+  String? get body;
   @override
-  String? get posterUrl;
+  String? get created_at;
   @override
-  @JsonKey(ignore: true)
+  String? get author;
+
+  /// Create a copy of AnnouncementEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnnouncementEntityImplCopyWith<_$AnnouncementEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

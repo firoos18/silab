@@ -7,7 +7,7 @@ part 'user_detail_response_entity.g.dart';
 @freezed
 class UserDetailResponseEntity with _$UserDetailResponseEntity {
   const factory UserDetailResponseEntity({
-    final int? status,
+    final String? status,
     final String? message,
     final UserDetailEntity? data,
   }) = _UserDetailResponseEntity;

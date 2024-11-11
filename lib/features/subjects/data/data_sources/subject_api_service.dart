@@ -1,5 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silab/app_config.dart';
 import 'package:silab/core/exceptions/exceptions.dart';
@@ -13,28 +14,38 @@ class SubjectApiService {
 
   const SubjectApiService(this._sharedPreferences);
 
-  Future<SubjectListResponseEntity> getSubjectList({int? semester}) async {
-    final token = _sharedPreferences.getString('token');
+  Future<SubjectListResponseEntity> getSubjectList() async {
+    try {
+      final token = _sharedPreferences.getString('accessToken');
 
-    final response = await http.get(
-      Uri.parse(
-        semester != null
-            ? '${AppConfig.shared.baseUrl}/subject/?semester=$semester'
-            : '${AppConfig.shared.baseUrl}/subject/',
-      ),
-      headers: {
-        'Authorization': "Bearer $token",
-      },
-    );
+      final response = await http.get(
+        Uri.parse(
+          '${AppConfig.shared.baseUrl}/subjects/',
+        ),
+        headers: {
+          'Authorization': "Bearer $token",
+        },
+      );
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return SubjectListResponseEntity.fromJson(data);
-    } else if (response.statusCode == 504) {
-      throw RequestErrorException('An Internal Server Error Occurred');
-    } else {
-      final data = jsonDecode(response.body);
-      throw RequestErrorException(data['message']);
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return SubjectListResponseEntity.fromJson(data);
+      } else {
+        final data = jsonDecode(response.body);
+        throw RequestErrorException(data['message']);
+      }
+    } on SocketException catch (e) {
+      throw RequestErrorException(e.message);
+    } on TimeoutException catch (e) {
+      throw RequestErrorException(e.message!);
+    } on http.ClientException {
+      throw RequestErrorException(
+          "Client error, check your internet connections.");
+    } on HttpException {
+      throw RequestErrorException(
+          "Http error, check your internet connections");
+    } catch (e) {
+      throw RequestErrorException("Unknown error occurred: ${e.toString()}");
     }
   }
 

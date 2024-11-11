@@ -25,8 +25,12 @@ mixin _$ClassesDetailsResponseEntity {
   String? get message => throw _privateConstructorUsedError;
   List<ClassEntity>? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this ClassesDetailsResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClassesDetailsResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClassesDetailsResponseEntityCopyWith<ClassesDetailsResponseEntity>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -53,6 +57,8 @@ class _$ClassesDetailsResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClassesDetailsResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -99,6 +105,8 @@ class __$$ClassesDetailsResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$ClassesDetailsResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClassesDetailsResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,12 +172,14 @@ class _$ClassesDetailsResponseEntityImpl
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, status, message, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClassesDetailsResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClassesDetailsResponseEntityImplCopyWith<
@@ -201,8 +211,11 @@ abstract class _ClassesDetailsResponseEntity
   String? get message;
   @override
   List<ClassEntity>? get data;
+
+  /// Create a copy of ClassesDetailsResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClassesDetailsResponseEntityImplCopyWith<
           _$ClassesDetailsResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;

@@ -25,8 +25,12 @@ mixin _$SubjectOfClassEntity {
   String? get lecturer => throw _privateConstructorUsedError;
   List<String>? get classes => throw _privateConstructorUsedError;
 
+  /// Serializes this SubjectOfClassEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubjectOfClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SubjectOfClassEntityCopyWith<SubjectOfClassEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$SubjectOfClassEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SubjectOfClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +107,8 @@ class __$$SubjectOfClassEntityImplCopyWithImpl<$Res>
       $Res Function(_$SubjectOfClassEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubjectOfClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -173,12 +181,14 @@ class _$SubjectOfClassEntityImpl implements _SubjectOfClassEntity {
             const DeepCollectionEquality().equals(other._classes, _classes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, lecturer,
       const DeepCollectionEquality().hash(_classes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubjectOfClassEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SubjectOfClassEntityImplCopyWith<_$SubjectOfClassEntityImpl>
@@ -212,8 +222,11 @@ abstract class _SubjectOfClassEntity implements SubjectOfClassEntity {
   String? get lecturer;
   @override
   List<String>? get classes;
+
+  /// Create a copy of SubjectOfClassEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubjectOfClassEntityImplCopyWith<_$SubjectOfClassEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

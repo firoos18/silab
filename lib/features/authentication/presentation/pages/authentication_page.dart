@@ -1,345 +1,133 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silab/core/common/widgets/custom_form_field.dart';
 import 'package:silab/core/common/widgets/custom_large_button.dart';
-import 'package:silab/core/common/widgets/custom_loading_indicator.dart';
 import 'package:silab/core/common/widgets/custom_snackbar.dart';
-import 'package:silab/core/common/widgets/custom_textformfield.dart';
 import 'package:silab/features/authentication/data/models/login_model.dart';
-import 'package:silab/features/authentication/presentation/bloc/login/login_bloc.dart';
-import 'package:silab/features/authentication/presentation/pages/send_reset_password_otp_page_extra.dart';
-import 'package:silab/features/authentication/presentation/pages/user_info_page_extra.dart';
-import 'package:silab/features/authentication/presentation/widgets/authentication_form.dart';
+import 'package:silab/features/authentication/presentation/bloc/authentication_bloc.dart';
 
 class AuthenticationPage extends StatefulWidget {
-  final FormType? formType;
-
-  const AuthenticationPage({super.key, required this.formType});
+  const AuthenticationPage({super.key});
 
   @override
   State<AuthenticationPage> createState() => _AuthenticationPageState();
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
-  late FormType formType;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nimController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _repeatPasswordController =
-      TextEditingController();
-
-  String password = "";
-
-  @override
-  void initState() {
-    if (widget.formType != null) {
-      setState(() {
-        formType = widget.formType!;
-      });
-    } else {
-      setState(() {
-        formType = FormType.register;
-      });
-    }
-    super.initState();
-  }
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _repeatPasswordController.dispose();
-
     super.dispose();
+    _nimController.dispose();
+    _passwordController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-          child: BlocListener<LoginBloc, LoginState>(
-            listener: (context, state) {
-              if (state is LoginLoading) {
-                showDialog(
-                  context: context,
-                  useRootNavigator: false,
-                  builder: (context) => const CustomLoadingIndicator(),
-                );
-              } else if (state is LoginFailed) {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  snackBar(
-                    message: state.message,
-                    type: AlertType.error,
+      backgroundColor: Colors.white,
+      body: BlocListener<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) {
+          if (state is AuthenticationSuccess) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(message: 'Sign In Success', type: AlertType.success),
+            );
+
+            context.goNamed('home');
+          } else if (state is AuthenticationFailed) {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            ScaffoldMessenger.of(context).showSnackBar(
+              snackBar(message: state.message, type: AlertType.error),
+            );
+          }
+        },
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/image/sisinfo-blue.png',
+                    scale: 3,
                   ),
-                );
+                  const SizedBox(height: 64),
+                  CustomFormField(
+                    controller: _nimController,
+                    hintText: 'NIM',
+                    suffixIcon: 'assets/image/email.png',
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.number,
+                    isObscure: false,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'NIM Anda Belum Diisi!';
+                      } else if (value.length < 10) {
+                        return 'Masukkan NIM yang Valid!';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  CustomFormField(
+                    controller: _passwordController,
+                    hintText: 'Password',
+                    suffixIcon: 'assets/image/password.png',
+                    textInputAction: TextInputAction.next,
+                    textInputType: TextInputType.text,
+                    isObscure: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password Anda Belum Diisi!';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                    builder: (context, state) {
+                      return CustomLargeButton(
+                        action: state is! AuthenticationLoading
+                            ? () {
+                                if (formKey.currentState!.validate()) {
+                                  final String nim = _nimController.text.trim();
+                                  final String password =
+                                      _passwordController.text.trim();
+                                  final LoginModel loginData =
+                                      LoginModel(nim: nim, password: password);
 
-                Navigator.of(context, rootNavigator: true).pop();
-              } else if (state is LoginSuccess) {
-                context.goNamed('home');
-              }
-            },
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: MediaQuery.of(context).size.width,
-                minHeight: MediaQuery.of(context).size.height - 50,
-              ),
-              child: IntrinsicHeight(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            margin: const EdgeInsets.only(top: 95),
-                            child: Image.asset(
-                              'assets/image/sisinfo-blue.png',
-                              width: 160,
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                          const SizedBox(height: 64),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Form(
-                                  key: formKey,
-                                  child: formType == FormType.login
-                                      ? Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            CustomTextFormField(
-                                              hintText: 'Email',
-                                              controller: _emailController,
-                                              isObscure: false,
-                                              prefixIcon: Boxicons.bx_envelope,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return "Email tidak boleh kosong!";
-                                                } else if (!value.contains(
-                                                    "@webmail.uad.ac.id")) {
-                                                  return "Gunakan Email kampus yang sesuai!";
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                            const SizedBox(height: 8),
-                                            CustomTextFormField(
-                                              hintText: 'Password',
-                                              controller: _passwordController,
-                                              isObscure: true,
-                                              prefixIcon: Boxicons.bx_lock,
-                                              suffixIcon: Boxicons.bx_show,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return "Password tidak boleh kosong!";
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                          ],
-                                        )
-                                      : Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            CustomTextFormField(
-                                              controller: _emailController,
-                                              hintText: 'Email',
-                                              isObscure: false,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return "Email tidak boleh kosong!";
-                                                } else if (!value.contains(
-                                                    "@webmail.uad.ac.id")) {
-                                                  return "Gunakan Email kampus yang sesuai!";
-                                                }
-                                                return null;
-                                              },
-                                              prefixIcon: Boxicons.bx_envelope,
-                                            ),
-                                            const SizedBox(height: 8),
-                                            CustomTextFormField(
-                                              hintText: 'Password',
-                                              controller: _passwordController,
-                                              isObscure: true,
-                                              prefixIcon: Boxicons.bx_lock,
-                                              suffixIcon: Boxicons.bx_show,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return "Password tidak boleh kosong!";
-                                                } else if (value.length < 8) {
-                                                  return "Password minimal berjumlah 8 karakter!";
-                                                }
-                                                return null;
-                                              },
-                                              onChanged: (value) =>
-                                                  setState(() {
-                                                password = value;
-                                              }),
-                                            ),
-                                            const SizedBox(height: 8),
-                                            CustomTextFormField(
-                                              hintText: 'Ulangi Password',
-                                              controller:
-                                                  _repeatPasswordController,
-                                              isObscure: true,
-                                              prefixIcon: Boxicons.bx_lock,
-                                              suffixIcon: Boxicons.bx_show,
-                                              validator: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return "Password tidak boleh kosong!";
-                                                } else if (value != password) {
-                                                  return "Kombinasi password tidak sesuai!";
-                                                }
-                                                return null;
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                ),
-                              ),
-                              if (formType == FormType.login)
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
-                                  margin: const EdgeInsets.only(top: 8),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          final email =
-                                              _emailController.text.trim();
-
-                                          context.pushNamed(
-                                              'send-reset-password-otp',
-                                              extra:
-                                                  SendResetPasswordOtpPageExtra(
-                                                      email: email));
-                                        },
-                                        child: const Text(
-                                          "Lupa Password?",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 12,
-                                            color: Color(0xff1d1d1d),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              else
-                                const SizedBox(),
-                              SizedBox(
-                                height: formType == FormType.login ? 110 : 71,
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: CustomLargeButton(
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      final email =
-                                          _emailController.text.trim();
-                                      final password =
-                                          _passwordController.text.trim();
-                                      final repeatPassword =
-                                          _repeatPasswordController.text.trim();
-
-                                      if (formType == FormType.register) {
-                                        final UserInfoPageExtra
-                                            userInfoPageExtra =
-                                            UserInfoPageExtra(
-                                          email: email,
-                                          password: password,
-                                          repeatPassword: repeatPassword,
-                                        );
-
-                                        context.pushNamed(
-                                          'user-info',
-                                          extra: userInfoPageExtra,
-                                        );
-                                      } else {
-                                        final LoginModel loginModel =
-                                            LoginModel(
-                                          email: email,
-                                          password: password,
-                                        );
-
-                                        context.read<LoginBloc>().add(
-                                            LoginButtonTapped(
-                                                loginModel: loginModel));
-                                      }
-                                    }
-                                  },
-                                  text: formType == FormType.register
-                                      ? "Selanjutnya"
-                                      : "Masuk",
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          formType == FormType.register
-                              ? "Sudah punya akun?"
-                              : "Belum punya akun?",
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w300,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              formKey.currentState!.reset();
-                              if (formType == FormType.login) {
-                                formType = FormType.register;
-                              } else {
-                                formType = FormType.login;
+                                  context
+                                      .read<AuthenticationBloc>()
+                                      .add(UserLogin(loginData: loginData));
+                                }
                               }
-                            });
-                            _emailController.clear();
-                            _passwordController.clear();
-                            _repeatPasswordController.clear();
-                          },
-                          child: Text(
-                            formType == FormType.register
-                                ? "Masuk"
-                                : "Buat Akun",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                            : null,
+                        label: state is! AuthenticationLoading
+                            ? const Text(
+                                'Sign In',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
+                            : const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                      );
+                    },
+                  )
+                ],
               ),
             ),
           ),

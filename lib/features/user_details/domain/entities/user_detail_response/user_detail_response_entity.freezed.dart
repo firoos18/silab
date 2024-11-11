@@ -21,12 +21,16 @@ UserDetailResponseEntity _$UserDetailResponseEntityFromJson(
 
 /// @nodoc
 mixin _$UserDetailResponseEntity {
-  int? get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   UserDetailEntity? get data => throw _privateConstructorUsedError;
 
+  /// Serializes this UserDetailResponseEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserDetailResponseEntityCopyWith<UserDetailResponseEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,7 +41,7 @@ abstract class $UserDetailResponseEntityCopyWith<$Res> {
           $Res Function(UserDetailResponseEntity) then) =
       _$UserDetailResponseEntityCopyWithImpl<$Res, UserDetailResponseEntity>;
   @useResult
-  $Res call({int? status, String? message, UserDetailEntity? data});
+  $Res call({String? status, String? message, UserDetailEntity? data});
 
   $UserDetailEntityCopyWith<$Res>? get data;
 }
@@ -53,6 +57,8 @@ class _$UserDetailResponseEntityCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -64,7 +70,7 @@ class _$UserDetailResponseEntityCopyWithImpl<$Res,
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -76,6 +82,8 @@ class _$UserDetailResponseEntityCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserDetailEntityCopyWith<$Res>? get data {
@@ -98,7 +106,7 @@ abstract class _$$UserDetailResponseEntityImplCopyWith<$Res>
       __$$UserDetailResponseEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? status, String? message, UserDetailEntity? data});
+  $Res call({String? status, String? message, UserDetailEntity? data});
 
   @override
   $UserDetailEntityCopyWith<$Res>? get data;
@@ -114,6 +122,8 @@ class __$$UserDetailResponseEntityImplCopyWithImpl<$Res>
       $Res Function(_$UserDetailResponseEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,7 +135,7 @@ class __$$UserDetailResponseEntityImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -147,7 +157,7 @@ class _$UserDetailResponseEntityImpl implements _UserDetailResponseEntity {
       _$$UserDetailResponseEntityImplFromJson(json);
 
   @override
-  final int? status;
+  final String? status;
   @override
   final String? message;
   @override
@@ -168,11 +178,13 @@ class _$UserDetailResponseEntityImpl implements _UserDetailResponseEntity {
             (identical(other.data, data) || other.data == data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserDetailResponseEntityImplCopyWith<_$UserDetailResponseEntityImpl>
@@ -189,7 +201,7 @@ class _$UserDetailResponseEntityImpl implements _UserDetailResponseEntity {
 
 abstract class _UserDetailResponseEntity implements UserDetailResponseEntity {
   const factory _UserDetailResponseEntity(
-      {final int? status,
+      {final String? status,
       final String? message,
       final UserDetailEntity? data}) = _$UserDetailResponseEntityImpl;
 
@@ -197,13 +209,16 @@ abstract class _UserDetailResponseEntity implements UserDetailResponseEntity {
       _$UserDetailResponseEntityImpl.fromJson;
 
   @override
-  int? get status;
+  String? get status;
   @override
   String? get message;
   @override
   UserDetailEntity? get data;
+
+  /// Create a copy of UserDetailResponseEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserDetailResponseEntityImplCopyWith<_$UserDetailResponseEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
