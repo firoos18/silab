@@ -128,7 +128,8 @@ class _SchedulePageState extends State<SchedulePage> {
               ),
             ),
             PracticumsScheduleCard(
-              practicumsEntity: state.schedules?[index].practicums ?? [],
+              practicumsEntity:
+                  state.schedules?[index].practicums?.reversed.toList() ?? [],
             )
           ],
         ),

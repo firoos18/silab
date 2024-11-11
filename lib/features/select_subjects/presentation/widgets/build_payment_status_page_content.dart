@@ -24,7 +24,6 @@ class BuildPaymentStatusPageContent extends StatelessWidget {
       backgroundColor: Colors.white,
       triggerMode: RefreshIndicatorTriggerMode.anywhere,
       child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         children: [
           const Text(
