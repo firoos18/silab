@@ -23,6 +23,7 @@ class BuildAnnouncementPageView extends StatelessWidget {
       child: PageView.builder(
         pageSnapping: true,
         onPageChanged: onPageChanged,
+        scrollDirection: Axis.horizontal,
         itemCount:
             state is GetAllAnnouncementsLoaded && announcements.length > 1
                 ? announcements.length

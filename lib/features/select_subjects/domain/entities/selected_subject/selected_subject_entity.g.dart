@@ -11,6 +11,7 @@ _$SelectedSubjectEntityImpl _$$SelectedSubjectEntityImplFromJson(
     _$SelectedSubjectEntityImpl(
       activation_id: json['activation_id'] as String?,
       status: json['status'] as String?,
+      created_at: json['created_at'] as String?,
       subjects: (json['subjects'] as List<dynamic>?)
           ?.map((e) =>
               SelectedSubjectSubjectsEntity.fromJson(e as Map<String, dynamic>))
@@ -22,5 +23,6 @@ Map<String, dynamic> _$$SelectedSubjectEntityImplToJson(
     <String, dynamic>{
       'activation_id': instance.activation_id,
       'status': instance.status,
+      'created_at': instance.created_at,
       'subjects': instance.subjects,
     };

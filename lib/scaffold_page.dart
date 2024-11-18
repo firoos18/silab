@@ -148,7 +148,8 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
           child: NotificationListener<ScrollNotification>(
             onNotification: (scrollNotification) {
               if (scrollNotification is UserScrollNotification) {
-                if (scrollNotification.direction == ScrollDirection.reverse) {
+                if (scrollNotification.direction == ScrollDirection.reverse &&
+                    scrollNotification.metrics.axis == Axis.vertical) {
                   if (_isNavbarVisible) {
                     setState(() => _isNavbarVisible = false);
                   }

@@ -9,6 +9,7 @@ class SelectedSubjectEntity with _$SelectedSubjectEntity {
   const factory SelectedSubjectEntity({
     final String? activation_id,
     final String? status,
+    final String? created_at,
     final List<SelectedSubjectSubjectsEntity>? subjects,
   }) = _SelectedSubjectEntity;
 

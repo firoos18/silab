@@ -61,7 +61,7 @@ class AuthenticationBloc
 
     expiryResult.fold(
       (left) {
-        emit(AuthenticationFailed(message: left.message));
+        emit(const AuthenticationFailed(message: 'JWT Expired'));
       },
       (right) {
         final expiryTime = DateTime.fromMillisecondsSinceEpoch(right * 1000);
