@@ -110,7 +110,8 @@ class MainApp extends StatelessWidget {
             ),
           ),
           radioTheme: const RadioThemeData(
-              fillColor: WidgetStatePropertyAll(Color(0xff3272CA))),
+            fillColor: WidgetStatePropertyAll(Color(0xff3272CA)),
+          ),
           dialogBackgroundColor: Colors.white,
         ),
         routerConfig: router,

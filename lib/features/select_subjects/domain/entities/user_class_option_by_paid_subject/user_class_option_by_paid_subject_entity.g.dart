@@ -17,6 +17,7 @@ _$UserClassOptionByPaidSubjectEntityImpl
           session_time: json['session_time'] as String?,
           quota: json['quota'] as String?,
           registered_students: json['registered_students'] as String?,
+          day: json['day'] as String?,
         );
 
 Map<String, dynamic> _$$UserClassOptionByPaidSubjectEntityImplToJson(
@@ -29,4 +30,5 @@ Map<String, dynamic> _$$UserClassOptionByPaidSubjectEntityImplToJson(
       'session_time': instance.session_time,
       'quota': instance.quota,
       'registered_students': instance.registered_students,
+      'day': instance.day,
     };

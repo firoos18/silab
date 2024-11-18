@@ -14,6 +14,7 @@ class UserClassOptionByPaidSubjectEntity
     final String? session_time,
     final String? quota,
     final String? registered_students,
+    final String? day,
   }) = _UserClassOptionByPaidSubjectEntity;
 
   factory UserClassOptionByPaidSubjectEntity.fromJson(

@@ -28,6 +28,7 @@ mixin _$UserClassOptionByPaidSubjectEntity {
   String? get session_time => throw _privateConstructorUsedError;
   String? get quota => throw _privateConstructorUsedError;
   String? get registered_students => throw _privateConstructorUsedError;
+  String? get day => throw _privateConstructorUsedError;
 
   /// Serializes this UserClassOptionByPaidSubjectEntity to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +56,8 @@ abstract class $UserClassOptionByPaidSubjectEntityCopyWith<$Res> {
       String? semester,
       String? session_time,
       String? quota,
-      String? registered_students});
+      String? registered_students,
+      String? day});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$UserClassOptionByPaidSubjectEntityCopyWithImpl<$Res,
     Object? session_time = freezed,
     Object? quota = freezed,
     Object? registered_students = freezed,
+    Object? day = freezed,
   }) {
     return _then(_value.copyWith(
       class_id: freezed == class_id
@@ -111,6 +114,10 @@ class _$UserClassOptionByPaidSubjectEntityCopyWithImpl<$Res,
           ? _value.registered_students
           : registered_students // ignore: cast_nullable_to_non_nullable
               as String?,
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -131,7 +138,8 @@ abstract class _$$UserClassOptionByPaidSubjectEntityImplCopyWith<$Res>
       String? semester,
       String? session_time,
       String? quota,
-      String? registered_students});
+      String? registered_students,
+      String? day});
 }
 
 /// @nodoc
@@ -156,6 +164,7 @@ class __$$UserClassOptionByPaidSubjectEntityImplCopyWithImpl<$Res>
     Object? session_time = freezed,
     Object? quota = freezed,
     Object? registered_students = freezed,
+    Object? day = freezed,
   }) {
     return _then(_$UserClassOptionByPaidSubjectEntityImpl(
       class_id: freezed == class_id
@@ -186,6 +195,10 @@ class __$$UserClassOptionByPaidSubjectEntityImplCopyWithImpl<$Res>
           ? _value.registered_students
           : registered_students // ignore: cast_nullable_to_non_nullable
               as String?,
+      day: freezed == day
+          ? _value.day
+          : day // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -201,7 +214,8 @@ class _$UserClassOptionByPaidSubjectEntityImpl
       this.semester,
       this.session_time,
       this.quota,
-      this.registered_students});
+      this.registered_students,
+      this.day});
 
   factory _$UserClassOptionByPaidSubjectEntityImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -221,10 +235,12 @@ class _$UserClassOptionByPaidSubjectEntityImpl
   final String? quota;
   @override
   final String? registered_students;
+  @override
+  final String? day;
 
   @override
   String toString() {
-    return 'UserClassOptionByPaidSubjectEntity(class_id: $class_id, subject_name: $subject_name, subject_class: $subject_class, semester: $semester, session_time: $session_time, quota: $quota, registered_students: $registered_students)';
+    return 'UserClassOptionByPaidSubjectEntity(class_id: $class_id, subject_name: $subject_name, subject_class: $subject_class, semester: $semester, session_time: $session_time, quota: $quota, registered_students: $registered_students, day: $day)';
   }
 
   @override
@@ -244,13 +260,14 @@ class _$UserClassOptionByPaidSubjectEntityImpl
                 other.session_time == session_time) &&
             (identical(other.quota, quota) || other.quota == quota) &&
             (identical(other.registered_students, registered_students) ||
-                other.registered_students == registered_students));
+                other.registered_students == registered_students) &&
+            (identical(other.day, day) || other.day == day));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, class_id, subject_name,
-      subject_class, semester, session_time, quota, registered_students);
+      subject_class, semester, session_time, quota, registered_students, day);
 
   /// Create a copy of UserClassOptionByPaidSubjectEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -273,14 +290,14 @@ class _$UserClassOptionByPaidSubjectEntityImpl
 abstract class _UserClassOptionByPaidSubjectEntity
     implements UserClassOptionByPaidSubjectEntity {
   const factory _UserClassOptionByPaidSubjectEntity(
-          {final String? class_id,
-          final String? subject_name,
-          final String? subject_class,
-          final String? semester,
-          final String? session_time,
-          final String? quota,
-          final String? registered_students}) =
-      _$UserClassOptionByPaidSubjectEntityImpl;
+      {final String? class_id,
+      final String? subject_name,
+      final String? subject_class,
+      final String? semester,
+      final String? session_time,
+      final String? quota,
+      final String? registered_students,
+      final String? day}) = _$UserClassOptionByPaidSubjectEntityImpl;
 
   factory _UserClassOptionByPaidSubjectEntity.fromJson(
           Map<String, dynamic> json) =
@@ -300,6 +317,8 @@ abstract class _UserClassOptionByPaidSubjectEntity
   String? get quota;
   @override
   String? get registered_students;
+  @override
+  String? get day;
 
   /// Create a copy of UserClassOptionByPaidSubjectEntity
   /// with the given fields replaced by the non-null parameter values.
