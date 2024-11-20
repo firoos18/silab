@@ -120,8 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             horizontal: 8,
                           ),
                           child: Divider(
-                            color:
-                                const Color(0xff1d1d1d).withValues(alpha: 0.5),
+                            color: const Color(0xff1d1d1d).withOpacity(0.5),
                             thickness: 0.5,
                           ),
                         ),

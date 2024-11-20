@@ -91,7 +91,7 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
             : const Color(0xff3272CA),
         border: pageLocation != index
             ? Border.all(
-                color: const Color(0xff1D1D1D).withValues(alpha: 0.5),
+                color: const Color(0xff1D1D1D).withOpacity(0.5),
                 width: 0.5,
                 strokeAlign: BorderSide.strokeAlignInside,
               )
@@ -102,7 +102,7 @@ class _ClassDetailPageTabiewState extends State<ClassDetailTabView> {
           pageItems[index],
           style: TextStyle(
             color: pageLocation != index
-                ? const Color(0xff1D1D1D).withValues(alpha: 0.7)
+                ? const Color(0xff1D1D1D).withOpacity(0.7)
                 : const Color(0xffF4F4F9),
           ),
         ),

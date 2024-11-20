@@ -62,7 +62,7 @@ class ClassOptionList extends StatelessWidget {
                       : true,
                   fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                     if (states.contains(WidgetState.disabled)) {
-                      return const Color(0xff8d8d8d).withValues(alpha: 0.5);
+                      return const Color(0xff8d8d8d).withOpacity(0.5);
                     }
                     return const Color(0xff3272CA);
                   }),

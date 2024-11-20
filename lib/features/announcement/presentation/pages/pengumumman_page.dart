@@ -88,7 +88,7 @@ class _PengumumanPageState extends State<PengumumanPage> {
                       style: TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.w300,
-                        color: const Color(0xff1d1d1d).withValues(alpha: 0.3),
+                        color: const Color(0xff1d1d1d).withOpacity(0.3),
                       ),
                     ),
                     const SizedBox(height: 24),

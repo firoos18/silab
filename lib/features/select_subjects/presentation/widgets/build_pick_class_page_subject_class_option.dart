@@ -21,7 +21,7 @@ class BuildPickClassPageSubjectClassOption extends StatelessWidget {
       itemCount: groupedClasses.length,
       physics: const NeverScrollableScrollPhysics(),
       separatorBuilder: (context, index) => Divider(
-        color: const Color(0xff1d1d1d).withValues(alpha: 0.5),
+        color: const Color(0xff1d1d1d).withOpacity(0.5),
         thickness: 0.5,
       ),
       itemBuilder: (context, index) => BuildPickClassPageSubjectItem(

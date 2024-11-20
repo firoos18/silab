@@ -29,7 +29,7 @@ class BuildAnnouncementIndicators extends StatelessWidget {
             decoration: BoxDecoration(
               color: currentPage == index
                   ? const Color(0xffFFBF01)
-                  : const Color(0xffFFBF01).withValues(alpha: 0.45),
+                  : const Color(0xffFFBF01).withOpacity(0.45),
               shape: BoxShape.circle,
             ),
           ),

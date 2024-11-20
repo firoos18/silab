@@ -4,10 +4,10 @@ publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: ">=3.4.0-190.0.dev <4.0.0"
+  sdk: ">=3.5.4 <4.0.0"
 
 dependencies:
-  collection: ^1.19.0
+  collection: ^1.18.0
   either_dart: ^1.0.0
   equatable: ^2.0.5
   flutter:
@@ -39,8 +39,6 @@ dev_dependencies:
   build_runner: ^2.4.9
   json_serializable: ^6.8.0
   freezed: ^2.5.2
-  mockito: ^5.4.4
-  test: ^1.25.8
 
 flutter:
   uses-material-design: true

@@ -50,7 +50,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
         hintStyle: TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
-          color: const Color(0xff1d1d1d).withValues(alpha: 0.3),
+          color: const Color(0xff1d1d1d).withOpacity(0.3),
         ),
         prefixIcon: widget.suffixIcon != null
             ? Image.asset(
