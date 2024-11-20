@@ -7,7 +7,7 @@ class PracticumsScheduleCard extends StatelessWidget {
 
   const PracticumsScheduleCard({
     super.key,
-    required this.practicumsEntity,
+    this.practicumsEntity,
   });
 
   @override
